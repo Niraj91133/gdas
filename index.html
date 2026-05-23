@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeadFlow Pro | Outreach Command Center</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fas fa-rocket"></i>
+                <span>LeadFlow <span>Pro</span></span>
+            </div>
+            <nav>
+                <div class="nav-label">Status Filters</div>
+                <div class="nav-item active" data-filter="all">
+                    <i class="fas fa-th-large"></i>
+                    <span>All Leads</span>
+                </div>
+                <div class="nav-item" data-filter="New">
+                    <i class="fas fa-star"></i>
+                    <span>New Leads</span>
+                </div>
+                <div class="nav-item" data-filter="Contacted">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Contacted</span>
+                </div>
+                <div class="nav-item" data-filter="Interested">
+                    <i class="fas fa-check-circle"></i>
+                    <span>Interested</span>
+                </div>
+
+                <div class="nav-label" style="margin-top: 2rem;">Categories</div>
+                <div id="category-filters">
+                    <!-- Categories will be injected here -->
+                </div>
+            </nav>
+            <div class="stats-card">
+                <h3>Goal Tracker</h3>
+                <div class="progress-container">
+                    <div class="progress-bar" id="progress"></div>
+                </div>
+                <p><span id="contacted-count">0</span> / 50 Contacted</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="lead-search" placeholder="Search by name, founder or niche...">
+                </div>
+                <div class="user-profile">
+                    <div class="badge">PRO</div>
+                    <span>Niraj Kumar</span>
+                </div>
+            </header>
+
+            <section class="leads-section">
+                <div class="section-title">
+                    <h2>US Stealth & SaaS Leads</h2>
+                    <span class="count-badge" id="total-leads-count">0</span>
+                </div>
+                <div class="leads-grid" id="leads-container">
+                    <!-- Leads will be injected here -->
+                </div>
+            </section>
+        </main>
+
+        <!-- Preview Panel -->
+        <div class="modal" id="message-modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h2>Outreach Template</h2>
+                <p>Personalized for: <span id="modal-founder-name"></span></p>
+                <textarea id="message-area" readonly></textarea>
+                <div class="modal-actions">
+                    <button id="copy-btn" class="primary-btn"><i class="fas fa-copy"></i> Copy to Clipboard</button>
+                    <button id="open-linkedin" class="secondary-btn"><i class="fab fa-linkedin"></i> Open LinkedIn</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>

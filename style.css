@@ -206,15 +206,15 @@ nav {
 
 .leads-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
 }
 
 .lead-card {
     background: var(--card-bg);
     border: 1px solid var(--border);
-    border-radius: 20px;
-    padding: 1.5rem;
+    border-radius: 12px;
+    padding: 1rem;
     transition: 0.4s;
     position: relative;
     overflow: hidden;
@@ -239,7 +239,7 @@ nav {
 .lead-header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 .lead-type {
@@ -259,24 +259,24 @@ nav {
 }
 
 .lead-body h3 {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     margin-bottom: 5px;
 }
 
 .founder-name {
     color: var(--text-dim);
-    font-size: 0.9rem;
-    margin-bottom: 15px;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
     display: block;
 }
 
 .detail-item {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: var(--text-dim);
-    margin-top: 8px;
+    margin-top: 5px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
 }
 
 .detail-item i {
@@ -295,33 +295,43 @@ nav {
 
 .niche-tag {
     display: inline-block;
-    padding: 4px 10px;
+    padding: 3px 8px;
     background: var(--glass);
     border-radius: 6px;
-    font-size: 0.7rem;
-    margin-top: 10px;
+    font-size: 0.65rem;
+    margin-top: 5px;
+    margin-bottom: 5px;
     border: 1px solid var(--border);
 }
 
 .lead-footer {
     display: flex;
-    gap: 10px;
-    margin-top: 2rem;
+    gap: 5px;
+    margin-top: 1rem;
 }
 
 button {
     cursor: pointer;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     font-weight: 600;
     transition: 0.3s;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    text-decoration: none;
+    font-size: 0.8rem;
+    padding: 8px 10px;
 }
 
 .primary-btn {
     flex-grow: 2;
     background: var(--primary);
     color: white;
-    padding: 12px;
 }
 
 .primary-btn:hover {
@@ -333,12 +343,22 @@ button {
     flex-grow: 1;
     background: var(--glass);
     color: white;
-    padding: 12px;
     border: 1px solid var(--border);
 }
 
 .secondary-btn:hover {
     background: rgba(255,255,255,0.1);
+}
+
+.call-btn {
+    background: #28a745;
+    color: white;
+    border: none;
+    flex-grow: 2;
+}
+
+.call-btn:hover {
+    background: #218838;
 }
 
 /* Modal */
@@ -405,23 +425,22 @@ textarea {
         padding-bottom: 70px;
     }
     
-    /* Top Header - Remove sticky/backdrop-filter to avoid containing block issues */
+    /* Top Header */
     .sidebar {
         width: 100%;
         border-right: none;
         border-bottom: 1px solid var(--border);
         padding: 1rem;
         display: flex;
-        flex-direction: row;
+        flex-direction: column; /* Stack logo and nav vertically on mobile */
         align-items: center;
-        justify-content: center;
-        position: static; /* Must be static so fixed children attach to viewport */
+        position: static;
         background: var(--card-bg);
         z-index: 10;
     }
     
     .logo {
-        margin-bottom: 0;
+        margin-bottom: 1rem;
         font-size: 1.2rem;
     }
     
@@ -429,91 +448,66 @@ textarea {
         display: none;
     }
     
-    /* Bottom Navigation Bar */
+    /* Top Navigation Bar - Scrollable horizontally */
     .sidebar nav {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        background: var(--card-bg);
-        border-top: 1px solid var(--border);
+        position: static;
+        width: 100vw;
+        max-width: 100%;
+        background: transparent;
         display: flex;
-        justify-content: space-around;
-        padding: 10px 0;
+        flex-direction: row;
+        overflow-x: auto;
+        gap: 10px;
+        padding: 0 15px 15px 15px;
         z-index: 100;
         margin: 0;
+        border: none;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .sidebar nav::-webkit-scrollbar {
+        display: none;
     }
     
     .nav-label {
         display: none !important;
     }
     
-    .sidebar nav > .nav-item {
-        flex-direction: column;
-        gap: 5px;
-        padding: 5px;
-        margin: 0;
-        font-size: 0.7rem;
-        border-radius: 8px;
-        background: transparent;
-        flex: 1;
-        align-items: center;
-        justify-content: center;
+    #category-filters {
+        display: contents !important; /* Make category items join the main nav flex row */
     }
     
-    .sidebar nav > .nav-item i {
-        font-size: 1.2rem;
+    .sidebar nav .nav-item {
+        flex-direction: row;
+        gap: 8px;
+        padding: 8px 18px;
+        margin: 0;
+        font-size: 0.85rem;
+        border-radius: 30px; /* Make them look like pill buttons */
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        display: inline-flex;
+        align-items: center;
+        flex-shrink: 0;
+        color: var(--text-main);
+        font-weight: 600;
+    }
+    
+    .sidebar nav .nav-item i {
+        font-size: 1rem;
         width: auto;
     }
     
-    .sidebar nav > .nav-item.active {
-        border-left: none;
-        border-top: 3px solid var(--primary);
-        background: linear-gradient(180deg, rgba(131, 15, 29, 0.15) 0%, transparent 100%);
-        color: var(--primary);
-    }
-    
-    /* Scrollable Categories */
-    #category-filters {
-        display: flex !important;
-        position: fixed;
-        top: 55px; /* Directly below the static header */
-        left: 0;
-        width: 100%;
-        overflow-x: auto;
-        background: var(--bg-dark);
-        padding: 10px;
-        z-index: 90;
-        border-bottom: 1px solid var(--border);
-        white-space: nowrap;
-        gap: 10px;
-        max-height: none;
-    }
-    
-    #category-filters::-webkit-scrollbar {
-        display: none;
-    }
-    
-    #category-filters .nav-item {
-        flex-direction: row;
-        background: var(--card-bg);
-        border: 1px solid var(--border);
-        padding: 8px 15px;
-        border-radius: 20px;
-        display: inline-flex;
-        font-size: 0.8rem;
-    }
-    
-    #category-filters .nav-item.active {
+    .sidebar nav .nav-item.active {
+        border-color: var(--primary);
         background: var(--primary);
         color: white;
-        border-left: none;
-        border-top: none;
     }
     
     .main-content {
         padding: 1rem;
-        padding-top: 70px; /* Space for horizontal categories */
+        padding-top: 1rem; /* Adjust padding since top bar is static now */
         overflow-y: visible;
     }
     

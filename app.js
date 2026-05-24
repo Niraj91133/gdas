@@ -94,12 +94,13 @@ function renderLeads(leads) {
                 <p class="niche-tag"><i class="fas fa-tag"></i> ${lead.niche}</p>
                 ${lead.location ? `<p class="detail-item"><i class="fas fa-map-marker-alt"></i> ${lead.location}</p>` : ''}
                 ${lead.phone ? `<p class="detail-item"><i class="fas fa-phone"></i> ${lead.phone}</p>` : ''}
-                ${lead.website && lead.website !== 'n/a' ? `<p class="detail-item"><i class="fas fa-globe"></i> <a href="${lead.website}" target="_blank">${lead.website}</a></p>` : ''}
+                ${lead.website && lead.website !== 'n/a' ? `<p class="detail-item"><i class="fas fa-globe"></i> <a href="${lead.website}" target="_blank">${lead.website.replace(/^https?:\/\//, '')}</a></p>` : ''}
             </div>
             <div class="lead-footer">
-                <button class="primary-btn" onclick="openModal(${lead.id})"><i class="fas fa-envelope"></i> Message</button>
+                <button class="primary-btn action-btn" onclick="openModal(${lead.id})"><i class="fas fa-envelope"></i> Msg</button>
+                ${lead.phone ? `<a href="tel:${lead.phone}" class="secondary-btn action-btn call-btn"><i class="fas fa-phone-alt"></i> Call</a>` : ''}
                 ${lead.linkedin && lead.linkedin !== 'n/a' ? `
-                <a href="${lead.linkedin}" target="_blank" class="secondary-btn" onclick="markContacted(${lead.id})">
+                <a href="${lead.linkedin}" target="_blank" class="secondary-btn action-btn" onclick="markContacted(${lead.id})">
                     <i class="fab fa-linkedin"></i>
                 </a>` : ''}
             </div>
@@ -111,15 +112,7 @@ function renderLeads(leads) {
 // Search Event
 document.getElementById('lead-search').addEventListener('input', filterAndRender);
 
-// Status Nav Event
-document.querySelectorAll('.sidebar > nav > .nav-item').forEach(item => {
-    item.addEventListener('click', () => {
-        document.querySelectorAll('.sidebar > nav > .nav-item').forEach(n => n.classList.remove('active'));
-        item.classList.add('active');
-        currentFilter = item.getAttribute('data-filter');
-        filterAndRender();
-    });
-});
+// Status Nav Event removed as requested by user
 
 // Modal Logic
 function openModal(id) {

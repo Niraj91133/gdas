@@ -7,7 +7,7 @@ export default function DisclaimerPage() {
   return (
     <div style={{ backgroundColor: '#000000', color: '#ffffff', minHeight: '100vh', padding: '120px 20px 60px 20px' }}>
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-        <Link href="/" style={{ color: '#ff4533', textDecoration: 'none', fontSize: '14px', fontWeight: 600 }}>← Back to GDAs Home</Link>
+        <Link href="/" style={{ color: '#3b82f6', textDecoration: 'none', fontSize: '14px', fontWeight: 600 }}>← Back to GDAs Home</Link>
         <h1 style={{ fontSize: '36px', fontWeight: 800, marginTop: '20px', marginBottom: '8px' }}>Performance & Earnings Disclaimer</h1>
         <p style={{ color: '#888', fontSize: '13px', marginBottom: '30px' }}>Last updated: September 2026</p>
 
@@ -30,7 +30,7 @@ export default function DisclaimerPage() {
 
         <div style={{ marginTop: '50px', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.1)', display: 'flex', justifyContent: 'space-between', fontSize: '13px', color: '#666' }}>
           <span>© {new Date().getFullYear()} GDAs (Ganesha Digital Ads).</span>
-          <Link href="/privacy-policy" style={{ color: '#ff4533', textDecoration: 'none' }}>Privacy Policy →</Link>
+          <Link href="/privacy-policy" style={{ color: '#3b82f6', textDecoration: 'none' }}>Privacy Policy →</Link>
         </div>
       </div>
     </div>

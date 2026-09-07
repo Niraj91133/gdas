@@ -231,10 +231,17 @@ Learn how to separate pure cold acquisition PMax campaigns from high-intent exac
       >
         <div className="glass-nav" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 24px', borderRadius: '9999px' }}>
           <Link href="/" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: '#fff' }}>
-            <div style={{ width: '30px', height: '30px', borderRadius: '8px', background: 'linear-gradient(135deg, #ff4533 0%, #ff220e 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>
-            </div>
-            <span style={{ fontWeight: 800, fontSize: '18px', color: '#fff' }}>GDAs<span style={{ color: '#ff4533' }}>.</span></span>
+            <img
+              src="/gda_logo.png"
+              alt="GDAs Logo"
+              style={{
+                height: '36px',
+                width: 'auto',
+                objectFit: 'contain',
+                borderRadius: '6px',
+              }}
+            />
+            <span style={{ fontWeight: 800, fontSize: '18px', color: '#fff' }}>GDAs<span style={{ color: '#3b82f6' }}>.</span></span>
           </Link>
 
           <nav style={{ display: 'flex', alignItems: 'center', gap: '26px' }} className="desktop-nav">
@@ -242,7 +249,7 @@ Learn how to separate pure cold acquisition PMax campaigns from high-intent exac
             <Link href="/about" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>About</Link>
             <Link href="/#services" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Services</Link>
             <Link href="/training" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Training</Link>
-            <Link href="/blog" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 700, color: '#ff4533', textDecoration: 'none' }}>Blog</Link>
+            <Link href="/blog" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 700, color: '#3b82f6', textDecoration: 'none' }}>Blog</Link>
             <Link href="/careers" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Careers</Link>
           </nav>
 
@@ -263,7 +270,7 @@ Learn how to separate pure cold acquisition PMax campaigns from high-intent exac
           </motion.div>
 
           <motion.h1 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={blurFadeIn} custom={1} style={{ fontSize: 'clamp(34px, 5vw, 62px)', fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.035em', maxWidth: '850px', margin: '0 auto 20px auto' }}>
-            Battle-tested strategies for <span className="serif-italic" style={{ color: '#ff4533' }}>high-scaling brands</span>.
+            Battle-tested strategies for <span className="serif-italic" style={{ color: '#3b82f6' }}>high-scaling brands</span>.
           </motion.h1>
 
           <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={blurFadeIn} custom={2} style={{ fontSize: '16px', color: '#a3a3a3', maxWidth: '640px', margin: '0 auto 35px auto', lineHeight: 1.6 }}>
@@ -300,9 +307,9 @@ Learn how to separate pure cold acquisition PMax campaigns from high-intent exac
                   onMouseEnter={() => setCursorHovered(true)}
                   onMouseLeave={() => setCursorHovered(false)}
                   style={{
-                    background: activeCategory === cat ? '#ff4533' : 'rgba(255,255,255,0.04)',
+                    background: activeCategory === cat ? '#2563eb' : 'rgba(255,255,255,0.04)',
                     color: activeCategory === cat ? '#fff' : '#888',
-                    border: activeCategory === cat ? '1px solid #ff4533' : '1px solid rgba(255,255,255,0.08)',
+                    border: activeCategory === cat ? '1px solid #3b82f6' : '1px solid rgba(255,255,255,0.08)',
                     borderRadius: '50px',
                     padding: '6px 14px',
                     fontSize: '12.5px',
@@ -331,7 +338,7 @@ Learn how to separate pure cold acquisition PMax campaigns from high-intent exac
                 viewport={{ once: true }}
                 variants={blurFadeIn}
                 custom={idx}
-                whileHover={{ y: -6, borderColor: 'rgba(255,69,51,0.45)' }}
+                whileHover={{ y: -6, borderColor: 'rgba(37,99,235,0.45)' }}
                 style={{
                   background: '#0a0a0a',
                   border: '1px solid rgba(255,255,255,0.08)',
@@ -350,7 +357,7 @@ Learn how to separate pure cold acquisition PMax campaigns from high-intent exac
                 <div>
                   <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', overflow: 'hidden' }}>
                     <img src={post.image} alt={post.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    <div style={{ position: 'absolute', top: '12px', left: '12px', background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '50px', padding: '4px 12px', fontSize: '11px', fontWeight: 700, color: '#ff4533', textTransform: 'uppercase' }}>
+                    <div style={{ position: 'absolute', top: '12px', left: '12px', background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '50px', padding: '4px 12px', fontSize: '11px', fontWeight: 700, color: '#60a5fa', textTransform: 'uppercase' }}>
                       {post.category}
                     </div>
                   </div>
@@ -377,7 +384,7 @@ Learn how to separate pure cold acquisition PMax campaigns from high-intent exac
                     <div style={{ fontSize: '12px', fontWeight: 700, color: '#fff' }}>{post.author}</div>
                     <div style={{ fontSize: '11px', color: '#666' }}>{post.authorRole}</div>
                   </div>
-                  <span style={{ color: '#ff4533', fontSize: '13px', fontWeight: 700 }}>Read Article →</span>
+                  <span style={{ color: '#3b82f6', fontSize: '13px', fontWeight: 700 }}>Read Article →</span>
                 </div>
               </motion.article>
             ))}
@@ -390,10 +397,17 @@ Learn how to separate pure cold acquisition PMax campaigns from high-intent exac
         <div className="container-custom">
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '24px', paddingBottom: '30px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
             <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: '#fff' }}>
-              <div style={{ width: '26px', height: '26px', borderRadius: '7px', background: 'linear-gradient(135deg, #ff4533 0%, #ff220e 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>
-              </div>
-              <span style={{ fontWeight: 800, fontSize: '16px' }}>GDAs<span style={{ color: '#ff4533' }}>.</span></span>
+              <img
+                src="/gda_logo.png"
+                alt="GDAs Logo"
+                style={{
+                  height: '32px',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  borderRadius: '6px',
+                }}
+              />
+              <span style={{ fontWeight: 800, fontSize: '16px' }}>GDAs<span style={{ color: '#3b82f6' }}>.</span></span>
             </Link>
 
             <div style={{ display: 'flex', gap: '20px', fontSize: '13px', flexWrap: 'wrap' }}>
@@ -401,7 +415,7 @@ Learn how to separate pure cold acquisition PMax campaigns from high-intent exac
               <Link href="/about" style={{ color: '#888', textDecoration: 'none' }}>About</Link>
               <Link href="/#services" style={{ color: '#888', textDecoration: 'none' }}>Services</Link>
               <Link href="/training" style={{ color: '#888', textDecoration: 'none' }}>Training</Link>
-              <Link href="/blog" style={{ color: '#ff4533', textDecoration: 'none', fontWeight: 600 }}>Blog</Link>
+              <Link href="/blog" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 600 }}>Blog</Link>
               <Link href="/careers" style={{ color: '#888', textDecoration: 'none' }}>Careers</Link>
               <Link href="/privacy-policy" style={{ color: '#888', textDecoration: 'none' }}>Privacy Policy</Link>
               <Link href="/refund-policy" style={{ color: '#888', textDecoration: 'none' }}>Refund Policy</Link>
@@ -427,7 +441,7 @@ Learn how to separate pure cold acquisition PMax campaigns from high-intent exac
             <motion.div initial={{ scale: 0.9, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0, y: 20 }} className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '750px', maxHeight: '85vh', overflowY: 'auto' }}>
               <button onClick={() => setSelectedArticle(null)} style={{ position: 'absolute', top: '16px', right: '16px', background: 'none', border: 'none', color: '#888', cursor: 'pointer', fontSize: '20px' }}>✕</button>
               
-              <div style={{ fontSize: '11px', color: '#ff4533', fontWeight: 700, textTransform: 'uppercase', marginBottom: '8px' }}>{selectedArticle.category}</div>
+              <div style={{ fontSize: '11px', color: '#60a5fa', fontWeight: 700, textTransform: 'uppercase', marginBottom: '8px' }}>{selectedArticle.category}</div>
               <h2 style={{ fontSize: '24px', fontWeight: 800, color: '#fff', lineHeight: 1.3, marginBottom: '14px' }}>{selectedArticle.title}</h2>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '12px', color: '#888', marginBottom: '20px' }}>
                 <span>By {selectedArticle.author} ({selectedArticle.authorRole})</span>

@@ -108,7 +108,7 @@ export default function AboutPage() {
   const whatWeDoList = [
     {
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff4533" strokeWidth="2">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2">
           <path d="M12 20V10M18 20V4M6 20v-4" />
         </svg>
       ),
@@ -117,7 +117,7 @@ export default function AboutPage() {
     },
     {
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff4533" strokeWidth="2">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2">
           <circle cx="12" cy="12" r="10" />
           <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20" />
         </svg>
@@ -127,7 +127,7 @@ export default function AboutPage() {
     },
     {
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff4533" strokeWidth="2">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2">
           <path d="m15 18-6-6 6-6" />
           <rect width="18" height="18" x="3" y="3" rx="2" />
         </svg>
@@ -137,7 +137,7 @@ export default function AboutPage() {
     },
     {
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff4533" strokeWidth="2">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2">
           <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
           <path d="M22 6l-10 7L2 6" />
         </svg>
@@ -147,7 +147,7 @@ export default function AboutPage() {
     },
     {
       icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#ff4533" strokeWidth="2">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2">
           <path d="M18 20V10M12 20V4M6 20v-6" />
         </svg>
       ),
@@ -414,31 +414,25 @@ export default function AboutPage() {
             onMouseLeave={() => setCursorHovered(false)}
             style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: '#fff' }}
           >
-            <div
+            <img
+              src="/gda_logo.png"
+              alt="GDAs Logo"
               style={{
-                width: '30px',
-                height: '30px',
-                borderRadius: '8px',
-                background: 'linear-gradient(135deg, #ff4533 0%, #ff220e 100%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: '0 0 15px rgba(255, 69, 51, 0.45)',
+                height: '36px',
+                width: 'auto',
+                objectFit: 'contain',
+                borderRadius: '6px',
               }}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-              </svg>
-            </div>
+            />
             <span style={{ fontWeight: 800, fontSize: '18px', letterSpacing: '-0.02em', color: '#ffffff' }}>
-              GDAs<span style={{ color: '#ff4533' }}>.</span>
+              GDAs<span style={{ color: '#3b82f6' }}>.</span>
             </span>
           </Link>
 
           {/* Desktop Nav Links */}
           <nav style={{ display: 'flex', alignItems: 'center', gap: '26px' }} className="desktop-nav">
             <Link href="/" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Home</Link>
-            <Link href="/about" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 700, color: '#ff4533', textDecoration: 'none' }}>About</Link>
+            <Link href="/about" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 700, color: '#3b82f6', textDecoration: 'none' }}>About</Link>
             <Link href="/#services" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Services</Link>
             <Link href="/training" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Training</Link>
             <Link href="/blog" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Blog</Link>
@@ -498,7 +492,7 @@ export default function AboutPage() {
               }}
             >
               <Link href="/" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Home</Link>
-              <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#ff4533', textDecoration: 'none', fontSize: '15px', fontWeight: 700 }}>About</Link>
+              <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#3b82f6', textDecoration: 'none', fontSize: '15px', fontWeight: 700 }}>About</Link>
               <Link href="/#services" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Services</Link>
               <Link href="/training" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Training</Link>
               <Link href="/blog" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Blog</Link>
@@ -533,7 +527,7 @@ export default function AboutPage() {
             <div className="pill-badge pill-badge-orange">
               <span className="pulse-dot" />
               <span>What's new? Scaled $15M+ in Ad Revenue</span>
-              <span style={{ color: '#ff7766', marginLeft: '6px' }}>Discover our story →</span>
+              <span style={{ color: '#60a5fa', marginLeft: '6px' }}>Discover our story →</span>
             </div>
           </motion.div>
 
@@ -553,7 +547,7 @@ export default function AboutPage() {
               margin: '0 auto 22px auto',
             }}
           >
-            Innovation and digital excellence where <span className="serif-italic" style={{ color: '#ff4533' }}>creativity</span> meets performance strategy.
+            Innovation and digital excellence where <span className="serif-italic" style={{ color: '#3b82f6' }}>creativity</span> meets performance strategy.
           </motion.h1>
 
           {/* Subtitle */}
@@ -617,7 +611,7 @@ export default function AboutPage() {
                 }}
               >
                 <div style={{ textAlign: 'left' }}>
-                  <div style={{ fontSize: '11px', color: '#ff4533', fontWeight: 700, textTransform: 'uppercase' }}>CREATIVE LAB</div>
+                  <div style={{ fontSize: '11px', color: '#60a5fa', fontWeight: 700, textTransform: 'uppercase' }}>CREATIVE LAB</div>
                   <div style={{ fontSize: '16px', fontWeight: 700, color: '#fff' }}>Strategic Hook Sprints</div>
                 </div>
               </div>
@@ -632,8 +626,8 @@ export default function AboutPage() {
                 overflow: 'hidden',
                 position: 'relative',
                 aspectRatio: '4/3',
-                border: '1px solid rgba(255, 69, 51, 0.4)',
-                boxShadow: '0 0 35px rgba(255, 69, 51, 0.25)',
+                border: '1px solid rgba(37, 99, 235, 0.4)',
+                boxShadow: '0 0 35px rgba(37, 99, 235, 0.25)',
               }}
             >
               <img
@@ -687,7 +681,7 @@ export default function AboutPage() {
                 }}
               >
                 <div style={{ textAlign: 'left' }}>
-                  <div style={{ fontSize: '11px', color: '#ff4533', fontWeight: 700, textTransform: 'uppercase' }}>ATTRIBUTION</div>
+                  <div style={{ fontSize: '11px', color: '#60a5fa', fontWeight: 700, textTransform: 'uppercase' }}>ATTRIBUTION</div>
                   <div style={{ fontSize: '16px', fontWeight: 700, color: '#fff' }}>Unit Economics Precision</div>
                 </div>
               </div>
@@ -720,7 +714,7 @@ export default function AboutPage() {
               custom={1}
               style={{ fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.15 }}
             >
-              GDAs has been on a relentless pursuit of <span className="serif-italic" style={{ color: '#ff4533' }}>excellence</span> since inception.
+              GDAs has been on a relentless pursuit of <span className="serif-italic" style={{ color: '#3b82f6' }}>excellence</span> since inception.
             </motion.h2>
             <motion.p
               initial="hidden"
@@ -743,9 +737,9 @@ export default function AboutPage() {
             }}
           >
             {[
-              { label: 'Attributed Client Revenue', value: '$15M+', sub: 'Generated globally across Meta & Google', color: '#ff4533' },
+              { label: 'Attributed Client Revenue', value: '$15M+', sub: 'Generated globally across Meta & Google', color: '#3b82f6' },
               { label: 'Average Blended ROAS', value: '5.84x', sub: 'Calculated on net customer acquisition', color: '#ffffff' },
-              { label: 'Client Retention Rate', value: '98.4%', sub: 'Long-term partnership focus', color: '#ff4533' },
+              { label: 'Client Retention Rate', value: '98.4%', sub: 'Long-term partnership focus', color: '#60a5fa' },
               { label: 'Brands Scaled', value: '25+', sub: 'Category leaders in DTC, Tech & SaaS', color: '#ffffff' },
             ].map((stat, idx) => (
               <motion.div
@@ -755,7 +749,7 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 variants={blurFadeIn}
                 custom={idx}
-                whileHover={{ y: -4, borderColor: 'rgba(255, 69, 51, 0.4)' }}
+                whileHover={{ y: -4, borderColor: 'rgba(37, 99, 235, 0.4)' }}
                 style={{
                   background: '#0a0a0a',
                   border: '1px solid rgba(255,255,255,0.08)',
@@ -815,7 +809,7 @@ export default function AboutPage() {
                 custom={1}
                 style={{ fontSize: 'clamp(28px, 3.8vw, 44px)', fontWeight: 800, letterSpacing: '-0.025em', lineHeight: 1.15, marginBottom: '20px' }}
               >
-                Our mission is to empower ambitious brands to thrive in the <span className="serif-italic" style={{ color: '#ff4533' }}>dynamic digital world</span>.
+                Our mission is to empower ambitious brands to thrive in the <span className="serif-italic" style={{ color: '#3b82f6' }}>dynamic digital world</span>.
               </motion.h2>
 
               <motion.p
@@ -889,13 +883,13 @@ export default function AboutPage() {
                   width: '100%',
                   height: '140px',
                   borderRadius: '16px',
-                  background: 'linear-gradient(135deg, #ff4533 0%, #ff220e 70%, #990000 100%)',
+                  background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 70%, #1e3a8a 100%)',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'flex-end',
                   padding: '18px',
                   marginBottom: '24px',
-                  boxShadow: '0 10px 25px rgba(255,69,51,0.3)',
+                  boxShadow: '0 10px 25px rgba(37,99,235,0.3)',
                 }}
               >
                 <div style={{ fontSize: '12px', color: '#fff', opacity: 0.85, fontWeight: 600 }}>GDAs PERFORMANCE SYSTEM</div>
@@ -913,7 +907,7 @@ export default function AboutPage() {
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <span style={{ fontSize: '13px', color: '#888' }}>Attribution Loss Protection</span>
-                  <span style={{ fontSize: '14px', fontWeight: 700, color: '#ff4533' }}>100% CAPI Integrated</span>
+                  <span style={{ fontSize: '14px', fontWeight: 700, color: '#3b82f6' }}>100% CAPI Integrated</span>
                 </div>
               </div>
             </motion.div>
@@ -956,7 +950,7 @@ export default function AboutPage() {
                   width: '320px',
                   height: '320px',
                   borderRadius: '50%',
-                  border: '1px dashed rgba(255, 69, 51, 0.25)',
+                  border: '1px dashed rgba(37, 99, 235, 0.3)',
                   animation: 'spin 40s linear infinite',
                 }}
               />
@@ -979,7 +973,7 @@ export default function AboutPage() {
                   width: '140px',
                   height: '140px',
                   borderRadius: '50%',
-                  border: '1px dashed rgba(255, 69, 51, 0.4)',
+                  border: '1px dashed rgba(37, 99, 235, 0.45)',
                 }}
               />
 
@@ -990,11 +984,11 @@ export default function AboutPage() {
                   width: '74px',
                   height: '74px',
                   borderRadius: '50%',
-                  background: 'linear-gradient(135deg, #ff4533 0%, #ff220e 100%)',
+                  background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  boxShadow: '0 0 40px rgba(255, 69, 51, 0.5)',
+                  boxShadow: '0 0 40px rgba(37, 99, 235, 0.55)',
                   zIndex: 2,
                 }}
               >
@@ -1057,7 +1051,7 @@ export default function AboutPage() {
                 custom={1}
                 style={{ fontSize: 'clamp(28px, 3.8vw, 44px)', fontWeight: 800, letterSpacing: '-0.025em', lineHeight: 1.15, marginBottom: '16px' }}
               >
-                We're driven by a set of <span className="serif-italic" style={{ color: '#ff4533' }}>core values</span> that form the essence of our agency.
+                We're driven by a set of <span className="serif-italic" style={{ color: '#3b82f6' }}>core values</span> that form the essence of our agency.
               </motion.h2>
 
               <motion.p
@@ -1084,22 +1078,22 @@ export default function AboutPage() {
                       style={{
                         padding: '16px 20px',
                         borderRadius: '14px',
-                        background: isActive ? 'rgba(255, 69, 51, 0.08)' : 'rgba(255,255,255,0.02)',
-                        border: isActive ? '1px solid rgba(255, 69, 51, 0.4)' : '1px solid rgba(255,255,255,0.06)',
+                        background: isActive ? 'rgba(37, 99, 235, 0.1)' : 'rgba(255,255,255,0.02)',
+                        border: isActive ? '1px solid rgba(37, 99, 235, 0.4)' : '1px solid rgba(255,255,255,0.06)',
                         cursor: 'pointer',
                         transition: 'all 0.25s ease',
                       }}
                     >
                       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-                          <span style={{ fontSize: '13px', fontWeight: 800, color: isActive ? '#ff4533' : '#666' }}>
+                          <span style={{ fontSize: '13px', fontWeight: 800, color: isActive ? '#3b82f6' : '#666' }}>
                             {val.number}.
                           </span>
                           <span style={{ fontSize: '16px', fontWeight: 700, color: '#fff' }}>
                             {val.title}
                           </span>
                         </div>
-                        <span style={{ fontSize: '16px', color: isActive ? '#ff4533' : '#666' }}>
+                        <span style={{ fontSize: '16px', color: isActive ? '#3b82f6' : '#666' }}>
                           {isActive ? '−' : '+'}
                         </span>
                       </div>
@@ -1133,7 +1127,7 @@ export default function AboutPage() {
             <div>
               <div className="section-tag">What we do</div>
               <h2 style={{ fontSize: 'clamp(28px, 3.8vw, 44px)', fontWeight: 800, letterSpacing: '-0.025em', lineHeight: 1.15 }}>
-                Elevating brands through <span className="serif-italic" style={{ color: '#ff4533' }}>innovation & expertise</span>.
+                Elevating brands through <span className="serif-italic" style={{ color: '#3b82f6' }}>innovation & expertise</span>.
               </h2>
             </div>
 
@@ -1169,8 +1163,8 @@ export default function AboutPage() {
                   width: '42px',
                   height: '42px',
                   borderRadius: '50%',
-                  background: whatWeDoIndex >= whatWeDoList.length - 2 ? 'rgba(255,255,255,0.03)' : '#ff4533',
-                  border: '1px solid rgba(255,69,51,0.3)',
+                  background: whatWeDoIndex >= whatWeDoList.length - 2 ? 'rgba(255,255,255,0.03)' : '#2563eb',
+                  border: '1px solid rgba(37,99,235,0.3)',
                   color: '#fff',
                   cursor: whatWeDoIndex >= whatWeDoList.length - 2 ? 'not-allowed' : 'pointer',
                   display: 'flex',
@@ -1198,7 +1192,7 @@ export default function AboutPage() {
                 initial={{ opacity: 0, filter: 'blur(8px)', scale: 0.96 }}
                 animate={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
                 transition={{ duration: 0.35 }}
-                whileHover={{ y: -6, borderColor: 'rgba(255,69,51,0.5)' }}
+                whileHover={{ y: -6, borderColor: 'rgba(37,99,235,0.5)' }}
                 style={{
                   background: 'linear-gradient(135deg, #0e0e0e 0%, #151515 100%)',
                   border: '1px solid rgba(255,255,255,0.1)',
@@ -1217,7 +1211,7 @@ export default function AboutPage() {
                       width: '46px',
                       height: '46px',
                       borderRadius: '12px',
-                      background: 'rgba(255,69,51,0.12)',
+                      background: 'rgba(37,99,235,0.12)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -1242,7 +1236,7 @@ export default function AboutPage() {
                     style={{
                       background: 'none',
                       border: 'none',
-                      color: '#ff4533',
+                      color: '#3b82f6',
                       fontSize: '13px',
                       fontWeight: 700,
                       cursor: 'pointer',
@@ -1279,7 +1273,7 @@ export default function AboutPage() {
               custom={1}
               style={{ fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.15 }}
             >
-              Why high-growth brands choose <span className="serif-italic" style={{ color: '#ff4533' }}>GDAs over traditional agencies</span>.
+              Why high-growth brands choose <span className="serif-italic" style={{ color: '#3b82f6' }}>GDAs over traditional agencies</span>.
             </motion.h2>
             <motion.p
               initial="hidden"
@@ -1314,9 +1308,9 @@ export default function AboutPage() {
                 <thead>
                   <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.02)' }}>
                     <th style={{ padding: '20px 24px', fontSize: '14px', fontWeight: 700, color: '#888', width: '34%' }}>Growth Pillar</th>
-                    <th style={{ padding: '20px 24px', fontSize: '15px', fontWeight: 800, color: '#ff4533', width: '33%', background: 'rgba(255,69,51,0.08)' }}>
+                    <th style={{ padding: '20px 24px', fontSize: '15px', fontWeight: 800, color: '#60a5fa', width: '33%', background: 'rgba(37,99,235,0.08)' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ff4533' }} />
+                        <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }} />
                         GDAs Performance Agency
                       </div>
                     </th>
@@ -1371,7 +1365,7 @@ export default function AboutPage() {
                       <td style={{ padding: '18px 24px', fontSize: '14px', fontWeight: 600, color: '#fff' }}>
                         {row.pillar}
                       </td>
-                      <td style={{ padding: '18px 24px', fontSize: '13.5px', fontWeight: 600, color: '#e5e5e5', background: 'rgba(255,69,51,0.04)' }}>
+                      <td style={{ padding: '18px 24px', fontSize: '13.5px', fontWeight: 600, color: '#e5e5e5', background: 'rgba(37,99,235,0.04)' }}>
                         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
                           <span style={{ color: '#10b981', fontWeight: 800 }}>✓</span>
                           <span>{row.gdas}</span>
@@ -1422,7 +1416,7 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 variants={blurFadeIn}
                 custom={cIdx * 0.5}
-                whileHover={{ y: -5, borderColor: 'rgba(255,69,51,0.4)' }}
+                whileHover={{ y: -5, borderColor: 'rgba(37,99,235,0.4)' }}
                 style={{
                   background: 'linear-gradient(135deg, #0e0e0e 0%, #151515 100%)',
                   border: '1px solid rgba(255,255,255,0.08)',
@@ -1449,7 +1443,7 @@ export default function AboutPage() {
           <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 50px auto' }}>
             <div className="section-tag">The Minds Behind GDAs</div>
             <h2 style={{ fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.15 }}>
-              Meet our <span className="serif-italic" style={{ color: '#ff4533' }}>Growth Architects</span>.
+              Meet our <span className="serif-italic" style={{ color: '#3b82f6' }}>Growth Architects</span>.
             </h2>
             <p style={{ fontSize: '15px', color: '#a3a3a3', marginTop: '12px' }}>
               Direct-response media buyers, creative directors, and data engineers with proven track records scaling 7-figure brands.
@@ -1471,7 +1465,7 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 variants={blurFadeIn}
                 custom={idx}
-                whileHover={{ y: -6, borderColor: 'rgba(255,69,51,0.4)' }}
+                whileHover={{ y: -6, borderColor: 'rgba(37,99,235,0.4)' }}
                 style={{
                   background: '#0a0a0a',
                   border: '1px solid rgba(255,255,255,0.08)',
@@ -1498,7 +1492,7 @@ export default function AboutPage() {
                       padding: '4px 10px',
                       fontSize: '10px',
                       fontWeight: 700,
-                      color: '#ff4533',
+                      color: '#60a5fa',
                       textTransform: 'uppercase',
                     }}
                   >
@@ -1510,7 +1504,7 @@ export default function AboutPage() {
                   <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#fff', marginBottom: '4px' }}>
                     {member.name}
                   </h3>
-                  <div style={{ fontSize: '12px', color: '#ff7766', fontWeight: 600, marginBottom: '10px' }}>
+                  <div style={{ fontSize: '12px', color: '#60a5fa', fontWeight: 600, marginBottom: '10px' }}>
                     {member.role}
                   </div>
                   <p style={{ fontSize: '13px', color: '#888', lineHeight: 1.5 }}>
@@ -1533,7 +1527,7 @@ export default function AboutPage() {
             <div>
               <div className="section-tag">Testimonials</div>
               <h2 style={{ fontSize: 'clamp(28px, 3.8vw, 44px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.15 }}>
-                Hear from our <span className="serif-italic" style={{ color: '#ff4533' }}>happy partners</span>.
+                Hear from our <span className="serif-italic" style={{ color: '#3b82f6' }}>happy partners</span>.
               </h2>
             </div>
 
@@ -1569,8 +1563,8 @@ export default function AboutPage() {
                   width: '42px',
                   height: '42px',
                   borderRadius: '50%',
-                  background: testimonialIndex >= testimonials.length - 2 ? 'rgba(255,255,255,0.03)' : '#ff4533',
-                  border: '1px solid rgba(255,69,51,0.3)',
+                  background: testimonialIndex >= testimonials.length - 2 ? 'rgba(255,255,255,0.03)' : '#2563eb',
+                  border: '1px solid rgba(37,99,235,0.3)',
                   color: '#fff',
                   cursor: testimonialIndex >= testimonials.length - 2 ? 'not-allowed' : 'pointer',
                   display: 'flex',
@@ -1647,9 +1641,9 @@ export default function AboutPage() {
             style={{
               borderRadius: '28px',
               padding: 'clamp(40px, 6vw, 70px) clamp(24px, 4vw, 50px)',
-              background: 'linear-gradient(135deg, #0a0a0a 0%, #170806 50%, #290c07 100%)',
-              border: '1px solid rgba(255, 69, 51, 0.35)',
-              boxShadow: '0 0 60px rgba(255, 69, 51, 0.2)',
+              background: 'linear-gradient(135deg, #0a0a0a 0%, #0c1a30 50%, #172554 100%)',
+              border: '1px solid rgba(37, 99, 235, 0.35)',
+              boxShadow: '0 0 60px rgba(37, 99, 235, 0.2)',
               position: 'relative',
               overflow: 'hidden',
               display: 'flex',
@@ -1664,7 +1658,7 @@ export default function AboutPage() {
               style={{
                 position: 'absolute',
                 inset: 0,
-                backgroundImage: 'radial-gradient(rgba(255, 69, 51, 0.15) 1px, transparent 1px)',
+                backgroundImage: 'radial-gradient(rgba(37, 99, 235, 0.18) 1px, transparent 1px)',
                 backgroundSize: '24px 24px',
                 pointerEvents: 'none',
               }}
@@ -1676,7 +1670,7 @@ export default function AboutPage() {
                 <span>Q3 Client Scaling Intake Active</span>
               </div>
               <h2 style={{ fontSize: 'clamp(28px, 4.2vw, 48px)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.1, color: '#fff' }}>
-                Get started toward <span className="serif-italic" style={{ color: '#ff4533' }}>scalable growth</span>.
+                Get started toward <span className="serif-italic" style={{ color: '#3b82f6' }}>scalable growth</span>.
               </h2>
               <p style={{ fontSize: '15px', color: '#a3a3a3', marginTop: '12px' }}>
                 Partner with GDAs to engineer predictable, hyper-profitable customer acquisition funnels for your brand.
@@ -1685,7 +1679,7 @@ export default function AboutPage() {
 
             <div style={{ position: 'relative', zIndex: 1 }}>
               <motion.button
-                whileHover={{ scale: 1.05, boxShadow: '0 0 35px rgba(255, 69, 51, 0.6)' }}
+                whileHover={{ scale: 1.05, boxShadow: '0 0 35px rgba(37, 99, 235, 0.6)' }}
                 whileTap={{ scale: 0.96 }}
                 onClick={() => setModalOpen(true)}
                 onMouseEnter={() => setCursorHovered(true)}
@@ -1717,29 +1711,24 @@ export default function AboutPage() {
             }}
           >
             <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: '#fff' }}>
-              <div
+              <img
+                src="/gda_logo.png"
+                alt="GDAs Logo"
                 style={{
-                  width: '26px',
-                  height: '26px',
-                  borderRadius: '7px',
-                  background: 'linear-gradient(135deg, #ff4533 0%, #ff220e 100%)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  height: '32px',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  borderRadius: '6px',
                 }}
-              >
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.5">
-                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                </svg>
-              </div>
+              />
               <span style={{ fontWeight: 800, fontSize: '16px' }}>
-                GDAs<span style={{ color: '#ff4533' }}>.</span>
+                GDAs<span style={{ color: '#3b82f6' }}>.</span>
               </span>
             </Link>
 
             <div style={{ display: 'flex', gap: '20px', fontSize: '13px', flexWrap: 'wrap' }}>
               <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>Home</Link>
-              <Link href="/about" style={{ color: '#ff4533', textDecoration: 'none', fontWeight: 600 }}>About</Link>
+              <Link href="/about" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 600 }}>About</Link>
               <Link href="/#services" style={{ color: '#888', textDecoration: 'none' }}>Services</Link>
               <Link href="/#client-videos" style={{ color: '#888', textDecoration: 'none' }}>Clients</Link>
               <Link href="/training" style={{ color: '#888', textDecoration: 'none' }}>Training</Link>
@@ -1811,7 +1800,7 @@ export default function AboutPage() {
 
               {modalSubmitted ? (
                 <div style={{ textAlign: 'center', padding: '30px 10px' }}>
-                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(255,69,51,0.15)', color: '#ff4533', fontSize: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 14px auto' }}>
+                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(37,99,235,0.15)', color: '#3b82f6', fontSize: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 14px auto' }}>
                     ✓
                   </div>
                   <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#fff', marginBottom: '6px' }}>Request Received!</h3>

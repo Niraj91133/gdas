@@ -176,11 +176,8 @@ export default function CareersPage() {
         style={{ position: 'fixed', top: '20px', left: 0, right: 0, margin: '0 auto', width: 'calc(100% - 40px)', maxWidth: '1100px', zIndex: 100 }}
       >
         <div className="glass-nav" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 24px', borderRadius: '9999px' }}>
-          <Link href="/" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: '#fff' }}>
-            <div style={{ width: '30px', height: '30px', borderRadius: '8px', background: 'linear-gradient(135deg, #ff4533 0%, #ff220e 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>
-            </div>
-            <span style={{ fontWeight: 800, fontSize: '18px', color: '#fff' }}>GDAs<span style={{ color: '#ff4533' }}>.</span></span>
+          <Link href="/" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: '#fff' }}>
+            <img src="/gda_logo.png" alt="GDAs Logo" style={{ height: '36px', width: 'auto', objectFit: 'contain', borderRadius: '6px' }} />
           </Link>
 
           <nav style={{ display: 'flex', alignItems: 'center', gap: '26px' }} className="desktop-nav">
@@ -189,7 +186,7 @@ export default function CareersPage() {
             <Link href="/#services" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Services</Link>
             <Link href="/training" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Training</Link>
             <Link href="/blog" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Blog</Link>
-            <Link href="/careers" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 700, color: '#ff4533', textDecoration: 'none' }}>Careers</Link>
+            <Link href="/careers" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 700, color: '#3b82f6', textDecoration: 'none' }}>Careers</Link>
           </nav>
 
           <a href="#open-roles" className="btn btn-primary" style={{ padding: '8px 18px', fontSize: '12.5px', fontWeight: 700, textDecoration: 'none' }}>
@@ -209,7 +206,7 @@ export default function CareersPage() {
           </motion.div>
 
           <motion.h1 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={blurFadeIn} custom={1} style={{ fontSize: 'clamp(34px, 5vw, 62px)', fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.035em', maxWidth: '850px', margin: '0 auto 20px auto' }}>
-            Build the future of paid media with <span className="serif-italic" style={{ color: '#ff4533' }}>high-agency talent</span>.
+            Build the future of paid media with <span className="serif-italic" style={{ color: '#3b82f6' }}>high-agency talent</span>.
           </motion.h1>
 
           <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={blurFadeIn} custom={2} style={{ fontSize: '16px', color: '#a3a3a3', maxWidth: '640px', margin: '0 auto 40px auto', lineHeight: 1.6 }}>
@@ -240,7 +237,7 @@ export default function CareersPage() {
           <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 50px auto' }}>
             <div className="section-tag">Open Positions</div>
             <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.15 }}>
-              Current <span className="serif-italic" style={{ color: '#ff4533' }}>Opportunities</span>.
+              Current <span className="serif-italic" style={{ color: '#3b82f6' }}>Opportunities</span>.
             </h2>
           </div>
 
@@ -253,7 +250,7 @@ export default function CareersPage() {
                 viewport={{ once: true }}
                 variants={blurFadeIn}
                 custom={idx}
-                whileHover={{ borderColor: 'rgba(255,69,51,0.4)', y: -2 }}
+                whileHover={{ borderColor: 'rgba(37,99,235,0.5)', y: -2 }}
                 style={{
                   background: 'linear-gradient(135deg, #0a0a0a 0%, #111 100%)',
                   border: '1px solid rgba(255,255,255,0.08)',
@@ -268,7 +265,7 @@ export default function CareersPage() {
               >
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-                    <span style={{ fontSize: '11px', fontWeight: 700, color: '#ff4533', background: 'rgba(255,69,51,0.12)', padding: '4px 10px', borderRadius: '50px' }}>{role.department}</span>
+                    <span style={{ fontSize: '11px', fontWeight: 700, color: '#60a5fa', background: 'rgba(37,99,235,0.14)', border: '1px solid rgba(37,99,235,0.3)', padding: '4px 10px', borderRadius: '50px' }}>{role.department}</span>
                     <span style={{ fontSize: '12px', color: '#888' }}>{role.type}</span>
                   </div>
                   <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#fff', marginBottom: '8px' }}>{role.title}</h3>
@@ -301,11 +298,8 @@ export default function CareersPage() {
       <footer style={{ borderTop: '1px solid rgba(255,255,255,0.08)', background: '#050505', padding: '50px 0 30px 0' }}>
         <div className="container-custom">
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '24px', paddingBottom: '30px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: '#fff' }}>
-              <div style={{ width: '26px', height: '26px', borderRadius: '7px', background: 'linear-gradient(135deg, #ff4533 0%, #ff220e 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>
-              </div>
-              <span style={{ fontWeight: 800, fontSize: '16px' }}>GDAs<span style={{ color: '#ff4533' }}>.</span></span>
+            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: '#fff' }}>
+              <img src="/gda_logo.png" alt="GDAs Logo" style={{ height: '32px', width: 'auto', objectFit: 'contain', borderRadius: '6px' }} />
             </Link>
 
             <div style={{ display: 'flex', gap: '20px', fontSize: '13px', flexWrap: 'wrap' }}>
@@ -314,7 +308,7 @@ export default function CareersPage() {
               <Link href="/#services" style={{ color: '#888', textDecoration: 'none' }}>Services</Link>
               <Link href="/training" style={{ color: '#888', textDecoration: 'none' }}>Training</Link>
               <Link href="/blog" style={{ color: '#888', textDecoration: 'none' }}>Blog</Link>
-              <Link href="/careers" style={{ color: '#ff4533', textDecoration: 'none', fontWeight: 600 }}>Careers</Link>
+              <Link href="/careers" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 600 }}>Careers</Link>
               <Link href="/privacy-policy" style={{ color: '#888', textDecoration: 'none' }}>Privacy Policy</Link>
               <Link href="/refund-policy" style={{ color: '#888', textDecoration: 'none' }}>Refund Policy</Link>
               <Link href="/terms-conditions" style={{ color: '#888', textDecoration: 'none' }}>Terms & Conditions</Link>
@@ -341,7 +335,7 @@ export default function CareersPage() {
 
               {applySubmitted ? (
                 <div style={{ textAlign: 'center', padding: '30px 10px' }}>
-                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(255,69,51,0.15)', color: '#ff4533', fontSize: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 14px auto' }}>✓</div>
+                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(37,99,235,0.15)', color: '#60a5fa', fontSize: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 14px auto' }}>✓</div>
                   <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#fff', marginBottom: '6px' }}>Application Received!</h3>
                   <p style={{ fontSize: '13px', color: '#a3a3a3' }}>Our growth team will review your portfolio and reach out via email within 48 hours.</p>
                 </div>

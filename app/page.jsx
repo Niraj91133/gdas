@@ -556,33 +556,18 @@ export default function Home() {
           }}
         >
           {/* Logo */}
-          <motion.a
-            href="#"
-            whileHover={{ scale: 1.03 }}
+          <Link
+            href="/"
             onMouseEnter={() => setCursorHovered(true)}
             onMouseLeave={() => setCursorHovered(false)}
-            style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: '#fff' }}
+            style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}
           >
-            <div
-              style={{
-                width: '30px',
-                height: '30px',
-                borderRadius: '8px',
-                background: 'linear-gradient(135deg, #ff4533 0%, #ff220e 100%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: '0 0 15px rgba(255, 69, 51, 0.45)',
-              }}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-              </svg>
-            </div>
-            <span style={{ fontWeight: 800, fontSize: '18px', letterSpacing: '-0.02em', color: '#ffffff' }}>
-              GDAs<span style={{ color: '#ff4533' }}>.</span>
-            </span>
-          </motion.a>
+            <img
+              src="/gda_logo.png"
+              alt="GDAs Logo"
+              style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
+            />
+          </Link>
 
           {/* Desktop Nav Links */}
           <nav style={{ display: 'flex', alignItems: 'center', gap: '28px' }} className="desktop-nav">
@@ -649,7 +634,7 @@ export default function Home() {
             >
               <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>About</Link>
               <a href="#services" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Services</a>
-              <Link href="/training" onClick={() => setMobileMenuOpen(false)} style={{ color: '#ff4533', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}>Training (Demo Class)</Link>
+              <Link href="/training" onClick={() => setMobileMenuOpen(false)} style={{ color: '#3b82f6', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}>Training (Demo Class)</Link>
               <Link href="/blog" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Blog</Link>
               <Link href="/careers" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Careers</Link>
             </motion.div>
@@ -788,7 +773,7 @@ export default function Home() {
               }}
             >
               <div>
-                <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#ff7766', fontWeight: 700 }}>
+                <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#60a5fa', fontWeight: 700 }}>
                   Live Client Performance
                 </div>
                 <div style={{ fontSize: '18px', fontWeight: 700, color: '#ffffff', marginTop: '2px' }}>
@@ -812,9 +797,9 @@ export default function Home() {
                       borderRadius: '6px',
                       border: 'none',
                       cursor: 'pointer',
-                      background: activeTimeframe === tf ? '#ff4533' : 'transparent',
+                      background: activeTimeframe === tf ? '#2563eb' : 'transparent',
                       color: activeTimeframe === tf ? '#ffffff' : '#888888',
-                      boxShadow: activeTimeframe === tf ? '0 0 12px rgba(255, 69, 51, 0.4)' : 'none',
+                      boxShadow: activeTimeframe === tf ? '0 0 12px rgba(37, 99, 235, 0.5)' : 'none',
                       transition: 'all 0.2s ease',
                     }}
                   >
@@ -860,7 +845,7 @@ export default function Home() {
                   style={{ background: 'rgba(255,255,255,0.02)', padding: '14px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.06)' }}
                 >
                   <div style={{ fontSize: '11px', color: '#888', marginBottom: '4px' }}>Blended ROAS</div>
-                  <div style={{ fontSize: '22px', fontWeight: 800, color: '#ff5533' }}>{currentStats.roas}</div>
+                  <div style={{ fontSize: '22px', fontWeight: 800, color: '#60a5fa' }}>{currentStats.roas}</div>
                   <div style={{ fontSize: '11px', color: '#10b981', fontWeight: 600, marginTop: '2px' }}>
                     {currentStats.roasTarget}
                   </div>
@@ -907,8 +892,8 @@ export default function Home() {
               <svg viewBox="0 0 800 160" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
                 <defs>
                   <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#ff4533" stopOpacity="0.4" />
-                    <stop offset="100%" stopColor="#ff4533" stopOpacity="0.0" />
+                    <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.4" />
+                    <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.0" />
                   </linearGradient>
                 </defs>
                 <line x1="0" y1="30" x2="800" y2="30" stroke="rgba(255,255,255,0.04)" strokeDasharray="4 4" />
@@ -928,7 +913,7 @@ export default function Home() {
                   animate={{ pathLength: 1, d: currentStats.linePath }}
                   transition={{ duration: 0.7, ease: 'easeInOut' }}
                   fill="none"
-                  stroke="#ff4533"
+                  stroke="#3b82f6"
                   strokeWidth="3"
                   strokeLinecap="round"
                 />
@@ -942,8 +927,8 @@ export default function Home() {
                     cx={d.cx}
                     cy={d.cy}
                     r={di === 3 ? 5 : 4}
-                    fill={di === 3 ? '#ff4533' : '#fff'}
-                    stroke={di === 3 ? '#fff' : '#ff4533'}
+                    fill={di === 3 ? '#3b82f6' : '#fff'}
+                    stroke={di === 3 ? '#fff' : '#3b82f6'}
                     strokeWidth="2"
                   />
                 ))}
@@ -967,7 +952,7 @@ export default function Home() {
                 <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10b981' }} />
                 <span>Live CAPI Sync Active ({activeTimeframe})</span>
               </div>
-              <div style={{ color: '#ff7766', fontWeight: 600 }}>Peak ROAS: {currentStats.peakRoas}</div>
+              <div style={{ color: '#60a5fa', fontWeight: 600 }}>Peak ROAS: {currentStats.peakRoas}</div>
             </div>
           </motion.div>
         </div>
@@ -1105,7 +1090,7 @@ export default function Home() {
                     />
                     <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%)' }} />
 
-                    {/* Red Play Button */}
+                    {/* Blue Play Button */}
                     <div
                       style={{
                         position: 'absolute',
@@ -1115,11 +1100,11 @@ export default function Home() {
                         width: '50px',
                         height: '50px',
                         borderRadius: '50%',
-                        background: 'linear-gradient(135deg, #ff4533 0%, #ff220e 100%)',
+                        background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        boxShadow: '0 0 20px rgba(255, 69, 51, 0.6)',
+                        boxShadow: '0 0 20px rgba(37, 99, 235, 0.6)',
                       }}
                     >
                       <svg width="18" height="18" viewBox="0 0 24 24" fill="#ffffff">
@@ -1144,7 +1129,7 @@ export default function Home() {
                       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                         <span>00:00</span>
                         <div style={{ width: '35px', height: '3px', background: 'rgba(255,255,255,0.4)', borderRadius: '2px' }}>
-                          <div style={{ width: '10px', height: '100%', background: '#ff4533' }} />
+                          <div style={{ width: '10px', height: '100%', background: '#3b82f6' }} />
                         </div>
                       </div>
                     </div>
@@ -1258,7 +1243,7 @@ export default function Home() {
                   className="glass-card"
                   style={{ padding: '28px' }}
                 >
-                  <div style={{ display: 'inline-block', padding: '4px 10px', background: 'rgba(255,69,51,0.1)', borderRadius: '6px', fontSize: '11px', fontWeight: 700, color: '#ff7766', marginBottom: '16px' }}>
+                  <div style={{ display: 'inline-block', padding: '4px 10px', background: 'rgba(37,99,235,0.12)', borderRadius: '6px', fontSize: '11px', fontWeight: 700, color: '#60a5fa', marginBottom: '16px' }}>
                     {srv.badge}
                   </div>
                   <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '10px' }}>{srv.title}</h3>
@@ -1268,7 +1253,7 @@ export default function Home() {
                   <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13px', color: '#d1d1d1' }}>
                     {srv.features.map((f, fi) => (
                       <li key={fi} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <span style={{ color: '#ff4533' }}>✓</span> {f}
+                        <span style={{ color: '#3b82f6' }}>✓</span> {f}
                       </li>
                     ))}
                   </ul>
@@ -1318,7 +1303,7 @@ export default function Home() {
               className="glass-card"
               style={{ padding: '32px', background: '#080808' }}
             >
-              <div style={{ fontSize: '13px', fontWeight: 700, color: '#ff5555', textTransform: 'uppercase', marginBottom: '16px' }}>
+              <div style={{ fontSize: '13px', fontWeight: 700, color: '#ef4444', textTransform: 'uppercase', marginBottom: '16px' }}>
                 Other Agencies
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
@@ -1329,7 +1314,7 @@ export default function Home() {
                   'Locked into rigid 6-12 month contracts',
                 ].map((item, idx) => (
                   <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '14px', color: '#777' }}>
-                    <span style={{ color: '#ff4444', fontWeight: 700 }}>✕</span>
+                    <span style={{ color: '#ef4444', fontWeight: 700 }}>✕</span>
                     <span>{item}</span>
                   </div>
                 ))}
@@ -1348,7 +1333,7 @@ export default function Home() {
               className="glass-card glass-card-glow"
               style={{ padding: '32px' }}
             >
-              <div style={{ fontSize: '13px', fontWeight: 700, color: '#ff7766', textTransform: 'uppercase', marginBottom: '16px' }}>
+              <div style={{ fontSize: '13px', fontWeight: 700, color: '#60a5fa', textTransform: 'uppercase', marginBottom: '16px' }}>
                 GDAs Framework
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
@@ -1359,7 +1344,7 @@ export default function Home() {
                   'No lock-in contracts — month to month partnership',
                 ].map((item, idx) => (
                   <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '14px', color: '#ffffff' }}>
-                    <span style={{ color: '#ff4533', fontWeight: 700 }}>✓</span>
+                    <span style={{ color: '#3b82f6', fontWeight: 700 }}>✓</span>
                     <span style={{ fontWeight: 500 }}>{item}</span>
                   </div>
                 ))}
@@ -1416,7 +1401,7 @@ export default function Home() {
                 className="glass-card"
                 style={{ padding: '30px' }}
               >
-                <div style={{ fontSize: '38px', fontFamily: 'var(--font-serif)', fontStyle: 'italic', color: '#ff4533', marginBottom: '12px' }}>
+                <div style={{ fontSize: '38px', fontFamily: 'var(--font-serif)', fontStyle: 'italic', color: '#3b82f6', marginBottom: '12px' }}>
                   {step.num}
                 </div>
                 <h3 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '8px' }}>{step.title}</h3>
@@ -1477,7 +1462,7 @@ export default function Home() {
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
                     <div style={{ color: '#ffb703', fontSize: '13px' }}>★★★★★</div>
-                    <span style={{ fontSize: '11px', fontWeight: 700, color: '#ff5533', background: 'rgba(255,69,51,0.1)', padding: '2px 6px', borderRadius: '4px' }}>
+                    <span style={{ fontSize: '11px', fontWeight: 700, color: '#60a5fa', background: 'rgba(37,99,235,0.12)', padding: '2px 6px', borderRadius: '4px' }}>
                       {item.roas}
                     </span>
                   </div>
@@ -1541,7 +1526,7 @@ export default function Home() {
                   className="glass-card"
                   style={{
                     borderRadius: '14px',
-                    borderColor: isOpen ? 'rgba(255, 69, 51, 0.3)' : 'rgba(255, 255, 255, 0.08)',
+                    borderColor: isOpen ? 'rgba(37, 99, 235, 0.4)' : 'rgba(255, 255, 255, 0.08)',
                   }}
                 >
                   <button
@@ -1568,7 +1553,7 @@ export default function Home() {
                         width: '24px',
                         height: '24px',
                         borderRadius: '50%',
-                        background: isOpen ? '#ff4533' : 'rgba(255,255,255,0.06)',
+                        background: isOpen ? '#2563eb' : 'rgba(255,255,255,0.06)',
                         color: '#fff',
                         display: 'flex',
                         alignItems: 'center',
@@ -1669,23 +1654,18 @@ export default function Home() {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <div
+              <img
+                src="/gda_logo.png"
+                alt="GDAs Logo"
                 style={{
-                  width: '26px',
-                  height: '26px',
-                  borderRadius: '7px',
-                  background: 'linear-gradient(135deg, #ff4533 0%, #ff220e 100%)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  height: '32px',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  borderRadius: '6px',
                 }}
-              >
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.5">
-                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                </svg>
-              </div>
-              <span style={{ fontWeight: 800, fontSize: '16px' }}>
-                GDAs<span style={{ color: '#ff4533' }}>.</span>
+              />
+              <span style={{ fontWeight: 800, fontSize: '16px', color: '#fff' }}>
+                GDAs<span style={{ color: '#3b82f6' }}>.</span>
               </span>
             </div>
 
@@ -1769,7 +1749,7 @@ export default function Home() {
               </button>
 
               <div style={{ marginBottom: '12px' }}>
-                <div style={{ fontSize: '11px', color: '#ff7766', fontWeight: 700, textTransform: 'uppercase' }}>
+                <div style={{ fontSize: '11px', color: '#60a5fa', fontWeight: 700, textTransform: 'uppercase' }}>
                   {videoModal.role}
                 </div>
                 <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#fff' }}>
@@ -1829,7 +1809,7 @@ export default function Home() {
 
               {modalSubmitted ? (
                 <div style={{ textAlign: 'center', padding: '30px 10px' }}>
-                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(255,69,51,0.15)', color: '#ff4533', fontSize: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 14px auto' }}>
+                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(37,99,235,0.15)', color: '#3b82f6', fontSize: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 14px auto' }}>
                     ✓
                   </div>
                   <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#fff', marginBottom: '6px' }}>Request Received!</h3>

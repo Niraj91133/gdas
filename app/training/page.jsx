@@ -317,24 +317,18 @@ export default function TrainingPage() {
             onMouseLeave={() => setCursorHovered(false)}
             style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: '#fff' }}
           >
-            <div
+            <img
+              src="/gda_logo.png"
+              alt="GDAs Logo"
               style={{
-                width: '30px',
-                height: '30px',
-                borderRadius: '8px',
-                background: 'linear-gradient(135deg, #ff4533 0%, #ff220e 100%)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                boxShadow: '0 0 15px rgba(255, 69, 51, 0.45)',
+                height: '36px',
+                width: 'auto',
+                objectFit: 'contain',
+                borderRadius: '6px',
               }}
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.5">
-                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-              </svg>
-            </div>
+            />
             <span style={{ fontWeight: 800, fontSize: '18px', letterSpacing: '-0.02em', color: '#ffffff' }}>
-              GDAs<span style={{ color: '#ff4533' }}>.</span>
+              GDAs<span style={{ color: '#3b82f6' }}>.</span>
             </span>
           </Link>
 
@@ -343,7 +337,7 @@ export default function TrainingPage() {
             <Link href="/" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Home</Link>
             <Link href="/about" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>About</Link>
             <Link href="/#services" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Services</Link>
-            <Link href="/training" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 700, color: '#ff4533', textDecoration: 'none' }}>Training</Link>
+            <Link href="/training" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 700, color: '#3b82f6', textDecoration: 'none' }}>Training</Link>
             <Link href="/blog" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Blog</Link>
             <Link href="/careers" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Careers</Link>
           </nav>
@@ -398,7 +392,7 @@ export default function TrainingPage() {
               <Link href="/" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Home</Link>
               <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>About</Link>
               <Link href="/#services" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Services</Link>
-              <Link href="/training" onClick={() => setMobileMenuOpen(false)} style={{ color: '#ff4533', textDecoration: 'none', fontSize: '15px', fontWeight: 700 }}>Training</Link>
+              <Link href="/training" onClick={() => setMobileMenuOpen(false)} style={{ color: '#3b82f6', textDecoration: 'none', fontSize: '15px', fontWeight: 700 }}>Training</Link>
               <Link href="/blog" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Blog</Link>
               <Link href="/careers" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Careers</Link>
               <button
@@ -448,7 +442,7 @@ export default function TrainingPage() {
               margin: '0 auto 22px auto',
             }}
           >
-            Master Performance Paid Ads & Growth Marketing from <span className="serif-italic" style={{ color: '#ff4533' }}>Real Agency Practitioners</span>.
+            Master Performance Paid Ads & Growth Marketing from <span className="serif-italic" style={{ color: '#3b82f6' }}>Real Agency Practitioners</span>.
           </motion.h1>
 
           <motion.p
@@ -477,7 +471,7 @@ export default function TrainingPage() {
             style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}
           >
             <motion.button
-              whileHover={{ scale: 1.05, boxShadow: '0 0 35px rgba(255, 69, 51, 0.6)' }}
+              whileHover={{ scale: 1.05, boxShadow: '0 0 35px rgba(37, 99, 235, 0.6)' }}
               whileTap={{ scale: 0.96 }}
               onClick={() => setDemoModalOpen(true)}
               onMouseEnter={() => setCursorHovered(true)}
@@ -546,7 +540,7 @@ export default function TrainingPage() {
           <div style={{ textAlign: 'center', maxWidth: '750px', margin: '0 auto 50px auto' }}>
             <div className="section-tag">Comprehensive Syllabus</div>
             <h2 style={{ fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.15 }}>
-              12 Weeks of <span className="serif-italic" style={{ color: '#ff4533' }}>Hands-on Performance Mastery</span>.
+              12 Weeks of <span className="serif-italic" style={{ color: '#3b82f6' }}>Hands-on Performance Mastery</span>.
             </h2>
             <p style={{ fontSize: '15px', color: '#a3a3a3', marginTop: '12px' }}>
               From initial audience research to advanced CAPI tracking, master every layer of modern digital marketing.
@@ -568,7 +562,7 @@ export default function TrainingPage() {
                 viewport={{ once: true }}
                 variants={blurFadeIn}
                 custom={idx}
-                whileHover={{ y: -6, borderColor: 'rgba(255, 69, 51, 0.45)' }}
+                whileHover={{ y: -6, borderColor: 'rgba(37, 99, 235, 0.45)' }}
                 style={{
                   background: 'linear-gradient(135deg, #0a0a0a 0%, #111111 100%)',
                   border: '1px solid rgba(255,255,255,0.08)',
@@ -582,7 +576,7 @@ export default function TrainingPage() {
               >
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '14px' }}>
-                    <span style={{ fontSize: '11px', fontWeight: 800, color: '#ff4533', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                    <span style={{ fontSize: '11px', fontWeight: 800, color: '#3b82f6', textTransform: 'uppercase', letterSpacing: '1px' }}>
                       {module.moduleNum}
                     </span>
                     <span style={{ fontSize: '11px', background: 'rgba(255,255,255,0.08)', padding: '4px 10px', borderRadius: '50px', color: '#aaa' }}>
@@ -597,7 +591,7 @@ export default function TrainingPage() {
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
                     {module.topics.map((topic, tIdx) => (
                       <li key={tIdx} style={{ fontSize: '13px', color: '#999', display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
-                        <span style={{ color: '#ff4533', fontWeight: 700 }}>✓</span>
+                        <span style={{ color: '#3b82f6', fontWeight: 700 }}>✓</span>
                         <span>{topic}</span>
                       </li>
                     ))}
@@ -612,7 +606,7 @@ export default function TrainingPage() {
                     style={{
                       background: 'none',
                       border: 'none',
-                      color: '#ff4533',
+                      color: '#3b82f6',
                       fontSize: '13px',
                       fontWeight: 700,
                       cursor: 'pointer',
@@ -640,7 +634,7 @@ export default function TrainingPage() {
           <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 50px auto' }}>
             <div className="section-tag">Ideal Candidates</div>
             <h2 style={{ fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.15 }}>
-              Engineered for <span className="serif-italic" style={{ color: '#ff4533' }}>high-ambition marketers</span>.
+              Engineered for <span className="serif-italic" style={{ color: '#3b82f6' }}>high-ambition marketers</span>.
             </h2>
           </div>
 
@@ -671,7 +665,7 @@ export default function TrainingPage() {
                   padding: '28px 22px',
                 }}
               >
-                <div style={{ fontSize: '11px', color: '#ff4533', fontWeight: 700, textTransform: 'uppercase', marginBottom: '10px' }}>
+                <div style={{ fontSize: '11px', color: '#60a5fa', fontWeight: 700, textTransform: 'uppercase', marginBottom: '10px' }}>
                   {card.tag}
                 </div>
                 <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#fff', marginBottom: '10px' }}>
@@ -699,9 +693,9 @@ export default function TrainingPage() {
             style={{
               borderRadius: '28px',
               padding: 'clamp(40px, 6vw, 70px) clamp(24px, 4vw, 50px)',
-              background: 'linear-gradient(135deg, #0a0a0a 0%, #170806 50%, #290c07 100%)',
-              border: '1px solid rgba(255, 69, 51, 0.35)',
-              boxShadow: '0 0 60px rgba(255, 69, 51, 0.2)',
+              background: 'linear-gradient(135deg, #0a0a0a 0%, #0c1a30 50%, #172554 100%)',
+              border: '1px solid rgba(37, 99, 235, 0.35)',
+              boxShadow: '0 0 60px rgba(37, 99, 235, 0.2)',
               position: 'relative',
               overflow: 'hidden',
               display: 'flex',
@@ -717,7 +711,7 @@ export default function TrainingPage() {
                 <span>Next Cohort Starts This Saturday</span>
               </div>
               <h2 style={{ fontSize: 'clamp(28px, 4.2vw, 48px)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.1, color: '#fff' }}>
-                Attend a free <span className="serif-italic" style={{ color: '#ff4533' }}>Live Demo Class</span>.
+                Attend a free <span className="serif-italic" style={{ color: '#3b82f6' }}>Live Demo Class</span>.
               </h2>
               <p style={{ fontSize: '15px', color: '#a3a3a3', marginTop: '12px' }}>
                 Experience our live agency campaign breakdown and interact with our lead instructors before enrolling.
@@ -726,7 +720,7 @@ export default function TrainingPage() {
 
             <div style={{ position: 'relative', zIndex: 1 }}>
               <motion.button
-                whileHover={{ scale: 1.05, boxShadow: '0 0 35px rgba(255, 69, 51, 0.6)' }}
+                whileHover={{ scale: 1.05, boxShadow: '0 0 35px rgba(37, 99, 235, 0.6)' }}
                 whileTap={{ scale: 0.96 }}
                 onClick={() => setDemoModalOpen(true)}
                 onMouseEnter={() => setCursorHovered(true)}
@@ -758,23 +752,18 @@ export default function TrainingPage() {
             }}
           >
             <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: '#fff' }}>
-              <div
+              <img
+                src="/gda_logo.png"
+                alt="GDAs Logo"
                 style={{
-                  width: '26px',
-                  height: '26px',
-                  borderRadius: '7px',
-                  background: 'linear-gradient(135deg, #ff4533 0%, #ff220e 100%)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  height: '32px',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  borderRadius: '6px',
                 }}
-              >
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.5">
-                  <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-                </svg>
-              </div>
+              />
               <span style={{ fontWeight: 800, fontSize: '16px' }}>
-                GDAs<span style={{ color: '#ff4533' }}>.</span>
+                GDAs<span style={{ color: '#3b82f6' }}>.</span>
               </span>
             </Link>
 
@@ -782,7 +771,7 @@ export default function TrainingPage() {
               <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>Home</Link>
               <Link href="/about" style={{ color: '#888', textDecoration: 'none' }}>About</Link>
               <Link href="/#services" style={{ color: '#888', textDecoration: 'none' }}>Services</Link>
-              <Link href="/training" style={{ color: '#ff4533', textDecoration: 'none', fontWeight: 600 }}>Training</Link>
+              <Link href="/training" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 600 }}>Training</Link>
               <Link href="/blog" style={{ color: '#888', textDecoration: 'none' }}>Blog</Link>
               <Link href="/careers" style={{ color: '#888', textDecoration: 'none' }}>Careers</Link>
               <Link href="/privacy-policy" style={{ color: '#888', textDecoration: 'none' }}>Privacy Policy</Link>
@@ -851,7 +840,7 @@ export default function TrainingPage() {
 
               {demoSubmitted ? (
                 <div style={{ textAlign: 'center', padding: '30px 10px' }}>
-                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(255,69,51,0.15)', color: '#ff4533', fontSize: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 14px auto' }}>
+                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(37,99,235,0.15)', color: '#3b82f6', fontSize: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 14px auto' }}>
                     ✓
                   </div>
                   <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#fff', marginBottom: '6px' }}>Demo Seat Confirmed!</h3>

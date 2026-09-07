@@ -668,104 +668,297 @@ export default function Home() {
       {/* ========================================================================= */}
       {/* 2. HERO SECTION */}
       {/* ========================================================================= */}
-      <section className="hero-wrapper" id="about">
+      <section className="hero-wrapper" id="about" style={{ paddingTop: '155px', paddingBottom: '60px', position: 'relative' }}>
         <div className="container-custom">
+          {/* Top Badge */}
+          <motion.div
+            initial={{ opacity: 0, filter: 'blur(10px)', y: 20 }}
+            animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            style={{ display: 'inline-flex', alignItems: 'center', marginBottom: '26px' }}
+          >
+            <div
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '10px',
+                background: 'rgba(255, 255, 255, 0.05)',
+                border: '1px solid rgba(255, 255, 255, 0.12)',
+                borderRadius: '50px',
+                padding: '5px 16px 5px 6px',
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)',
+              }}
+            >
+              <div
+                style={{
+                  background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+                  color: '#ffffff',
+                  fontSize: '11px',
+                  fontWeight: 800,
+                  padding: '3px 8px',
+                  borderRadius: '50px',
+                  letterSpacing: '0.04em',
+                  boxShadow: '0 2px 8px rgba(37, 99, 235, 0.5)',
+                }}
+              >
+                #1
+              </div>
+              <span
+                style={{
+                  fontSize: '11.5px',
+                  fontWeight: 700,
+                  letterSpacing: '0.08em',
+                  color: '#ffffff',
+                  textTransform: 'uppercase',
+                }}
+              >
+                Digital Marketing Agency
+              </span>
+            </div>
+          </motion.div>
+
           {/* Main Headline */}
           <motion.h1
             initial={{ opacity: 0, filter: 'blur(12px)', y: 30 }}
             animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-            transition={{ duration: 0.85, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="hero-h1"
+            transition={{ duration: 0.85, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            style={{
+              fontSize: 'clamp(38px, 6.2vw, 76px)',
+              fontWeight: 800,
+              lineHeight: 1.08,
+              letterSpacing: '-0.035em',
+              maxWidth: '960px',
+              margin: '0 auto 22px auto',
+              textAlign: 'center',
+              color: '#ffffff',
+            }}
           >
-            We generate results that <span className="serif-italic">matter.</span>
+            The Best{' '}
+            <span
+              style={{
+                display: 'inline-block',
+                position: 'relative',
+                background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+                color: '#ffffff',
+                padding: '2px 18px 6px 18px',
+                borderRadius: '12px',
+                boxShadow: '0 8px 30px rgba(37, 99, 235, 0.4)',
+                transform: 'rotate(-2deg)',
+                margin: '0 6px',
+                border: '1px solid rgba(255, 255, 255, 0.2)',
+              }}
+            >
+              Digital
+            </span>
+            <br />
+            Marketing{' '}
+            <span
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: 'clamp(44px, 5.5vw, 66px)',
+                height: 'clamp(44px, 5.5vw, 66px)',
+                borderRadius: '50%',
+                background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+                verticalAlign: 'middle',
+                margin: '0 8px',
+                boxShadow: '0 6px 24px rgba(37, 99, 235, 0.45)',
+                transform: 'rotate(10deg)',
+                border: '2px solid rgba(255, 255, 255, 0.25)',
+              }}
+            >
+              <svg width="58%" height="58%" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M11 5L6 9H2v6h4l5 4V5z" />
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
+                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
+              </svg>
+            </span>
+            Agency.
           </motion.h1>
 
           {/* Subtext */}
           <motion.p
             initial={{ opacity: 0, filter: 'blur(10px)', y: 25 }}
             animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-            transition={{ duration: 0.75, delay: 0.48, ease: [0.16, 1, 0.3, 1] }}
-            className="hero-subtext"
-            style={{ maxWidth: '520px' }}
+            transition={{ duration: 0.75, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            style={{
+              fontSize: '16.5px',
+              color: '#a3a3a3',
+              maxWidth: '680px',
+              margin: '0 auto 34px auto',
+              lineHeight: 1.65,
+              textAlign: 'center',
+            }}
           >
-            High-performance paid ads strategy tailored to scale your brand and maximize profitable revenue.
+            We believe in combining innovative design, sustainable practices, and exceptional craftsmanship to bring your vision to life.
           </motion.p>
 
-          {/* CTA Buttons */}
+          {/* Primary CTA Button */}
           <motion.div
             initial={{ opacity: 0, filter: 'blur(8px)', y: 20 }}
             animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-            transition={{ duration: 0.65, delay: 0.6 }}
-            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap', marginBottom: '36px' }}
+            transition={{ duration: 0.65, delay: 0.55 }}
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap', marginBottom: '34px' }}
           >
             <motion.button
-              onClick={() => setModalOpen(true)}
+              onClick={() => setBookingModal(true)}
               onMouseEnter={() => setCursorHovered(true)}
               onMouseLeave={() => setCursorHovered(false)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-primary"
+              style={{
+                background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+                color: '#ffffff',
+                fontSize: '14px',
+                fontWeight: 700,
+                letterSpacing: '0.04em',
+                textTransform: 'uppercase',
+                padding: '14px 34px',
+                borderRadius: '50px',
+                border: 'none',
+                cursor: 'pointer',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '12px',
+                boxShadow: '0 6px 28px rgba(37, 99, 235, 0.45)',
+                transition: 'all 0.25s ease',
+              }}
             >
-              Book a call
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
+              <span>GET AUDIT</span>
+              <span
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '20px',
+                  height: '20px',
+                  borderRadius: '50%',
+                  background: 'rgba(255, 255, 255, 0.2)',
+                }}
+              >
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </span>
             </motion.button>
-            <motion.a
-              href="#services"
-              onMouseEnter={() => setCursorHovered(true)}
-              onMouseLeave={() => setCursorHovered(false)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn-secondary"
-            >
-              Our services
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </motion.a>
           </motion.div>
 
-          {/* Social Proof */}
+          {/* Social Proof Trust Bar */}
           <motion.div
-            initial={{ opacity: 0, filter: 'blur(8px)', scale: 0.92 }}
+            initial={{ opacity: 0, filter: 'blur(8px)', scale: 0.94 }}
             animate={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.7 }}
-            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px', marginBottom: '50px' }}
+            transition={{ duration: 0.7, delay: 0.65 }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '18px',
+              flexWrap: 'wrap',
+            }}
           >
-            <div style={{ display: 'flex', marginLeft: '10px' }}>
+            {/* 5 Overlapping Avatars */}
+            <div style={{ display: 'flex', alignItems: 'center' }}>
               {[
                 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80',
                 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80',
                 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80',
                 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80',
+                'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80',
               ].map((imgUrl, idx) => (
                 <img
                   key={idx}
                   src={imgUrl}
-                  alt="Client avatar"
-                  style={{ width: '32px', height: '32px', borderRadius: '50%', border: '2px solid #000', marginLeft: '-8px', objectFit: 'cover' }}
+                  alt="Verified client avatar"
+                  style={{
+                    width: '38px',
+                    height: '38px',
+                    borderRadius: '50%',
+                    border: '2.5px solid #000000',
+                    marginLeft: idx === 0 ? '0' : '-10px',
+                    objectFit: 'cover',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.5)',
+                  }}
                 />
               ))}
             </div>
+
+            {/* Rating & Review Count */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left' }}>
-              <div style={{ color: '#ffb703', fontSize: '13px', letterSpacing: '2px' }}>★★★★★</div>
-              <span style={{ fontSize: '12px', color: '#a3a3a3', fontWeight: 500 }}>20+ happy brands</span>
+              <div style={{ display: 'flex', gap: '4px', color: '#3b82f6', fontSize: '15px' }}>
+                <span>✦</span>
+                <span>✦</span>
+                <span>✦</span>
+                <span>✦</span>
+                <span>✦</span>
+              </div>
+              <span style={{ fontSize: '12px', fontWeight: 800, color: '#ffffff', letterSpacing: '0.06em', textTransform: 'uppercase', marginTop: '2px' }}>
+                2000+ 5 Star Reviews
+              </span>
             </div>
           </motion.div>
+        </div>
+      </section>
 
-          {/* ========================================================================= */}
-          {/* INTERACTIVE PERFORMANCE DASHBOARD (7D, 30D, 90D, 1Y) */}
-          {/* ========================================================================= */}
+      {/* ========================================================================= */}
+      {/* 3. LOGO MARQUEE */}
+      {/* ========================================================================= */}
+      <motion.section
+        initial={{ opacity: 0, filter: 'blur(8px)' }}
+        whileInView={{ opacity: 1, filter: 'blur(0px)' }}
+        viewport={{ once: true, margin: '-40px' }}
+        transition={{ duration: 0.8 }}
+        style={{ padding: '36px 0 46px 0', borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)', background: '#020202' }}
+      >
+        <div className="marquee-wrapper">
+          <div className="marquee-content">
+            {brands.concat(brands).map((brand, i) => (
+              <div
+                key={i}
+                style={{
+                  fontSize: '18px',
+                  fontWeight: 800,
+                  letterSpacing: '0.12em',
+                  color: 'rgba(255, 255, 255, 0.35)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                }}
+              >
+                <span>◆</span>
+                <span>{brand}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* ========================================================================= */}
+      {/* 4. LIVE CLIENT PERFORMANCE DASHBOARD (Moved below hero and marquee) */}
+      {/* ========================================================================= */}
+      <section id="live-performance" className="section-spacing" style={{ paddingTop: '70px', paddingBottom: '90px', position: 'relative' }}>
+        <div className="container-custom">
+          {/* Section Header */}
+          <div className="section-header">
+            <div className="section-tag">Real-Time Data</div>
+            <h2 className="section-title">
+              Live Client <span className="serif-italic">Performance.</span>
+            </h2>
+            <p className="section-subtitle">
+              Direct server-side CAPI telemetry tracking blended ROAS, ad spend, and revenue generation in real-time.
+            </p>
+          </div>
+
           <motion.div
             initial={{ opacity: 0, filter: 'blur(14px)', y: 40, scale: 0.96 }}
-            animate={{ opacity: 1, filter: 'blur(0px)', y: 0, scale: 1 }}
-            transition={{ duration: 0.95, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0, scale: 1 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
             className="glass-card glass-card-glow"
             style={{
-              maxWidth: '920px',
+              maxWidth: '960px',
               margin: '0 auto',
-              padding: '24px',
+              padding: '28px',
               textAlign: 'left',
             }}
           >
@@ -967,39 +1160,6 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-
-      {/* ========================================================================= */}
-      {/* 3. LOGO MARQUEE */}
-      {/* ========================================================================= */}
-      <motion.section
-        initial={{ opacity: 0, filter: 'blur(8px)' }}
-        whileInView={{ opacity: 1, filter: 'blur(0px)' }}
-        viewport={{ once: true, margin: '-40px' }}
-        transition={{ duration: 0.8 }}
-        style={{ padding: '30px 0 50px 0', borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}
-      >
-        <div className="marquee-wrapper">
-          <div className="marquee-content">
-            {brands.concat(brands).map((brand, i) => (
-              <div
-                key={i}
-                style={{
-                  fontSize: '18px',
-                  fontWeight: 800,
-                  letterSpacing: '0.12em',
-                  color: 'rgba(255, 255, 255, 0.3)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '10px',
-                }}
-              >
-                <span>◆</span>
-                <span>{brand}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
 
       {/* ========================================================================= */}
       {/* 4. OUR CLIENTS VIDEO CAROUSEL (< and >) */}

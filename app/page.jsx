@@ -585,16 +585,13 @@ export default function Home() {
           </motion.a>
 
           {/* Desktop Nav Links */}
-          <nav style={{ display: 'flex', alignItems: 'center', gap: '22px' }} className="desktop-nav">
+          <nav style={{ display: 'flex', alignItems: 'center', gap: '28px' }} className="desktop-nav">
             {[
               { href: '/about', label: 'About' },
               { href: '#services', label: 'Services' },
-              { href: '#client-videos', label: 'Clients' },
               { href: '/training', label: 'Training' },
               { href: '/blog', label: 'Blog' },
               { href: '/careers', label: 'Careers' },
-              { href: '#reviews', label: 'Reviews' },
-              { href: '#faq', label: 'FAQ' },
             ].map((link, i) => (
               <motion.a
                 key={i}
@@ -602,7 +599,7 @@ export default function Home() {
                 onMouseEnter={() => setCursorHovered(true)}
                 onMouseLeave={() => setCursorHovered(false)}
                 whileHover={{ y: -2, color: '#ffffff' }}
-                style={{ color: '#a3a3a3', textDecoration: 'none', fontSize: '13.5px', fontWeight: 500, transition: 'color 0.2s' }}
+                style={{ color: '#a3a3a3', textDecoration: 'none', fontSize: '14px', fontWeight: 500, transition: 'color 0.2s' }}
               >
                 {link.label}
               </motion.a>
@@ -652,12 +649,9 @@ export default function Home() {
             >
               <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>About</Link>
               <a href="#services" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Services</a>
-              <a href="#client-videos" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Clients</a>
               <Link href="/training" onClick={() => setMobileMenuOpen(false)} style={{ color: '#ff4533', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}>Training (Demo Class)</Link>
               <Link href="/blog" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Blog</Link>
               <Link href="/careers" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Careers</Link>
-              <a href="#reviews" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Reviews</a>
-              <a href="#faq" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>FAQ</a>
             </motion.div>
           )}
         </AnimatePresence>

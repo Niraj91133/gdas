@@ -436,16 +436,13 @@ export default function AboutPage() {
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav style={{ display: 'flex', alignItems: 'center', gap: '22px' }} className="desktop-nav">
+          <nav style={{ display: 'flex', alignItems: 'center', gap: '26px' }} className="desktop-nav">
             <Link href="/" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Home</Link>
             <Link href="/about" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 700, color: '#ff4533', textDecoration: 'none' }}>About</Link>
             <Link href="/#services" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Services</Link>
-            <Link href="/#client-videos" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Clients</Link>
             <Link href="/training" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Training</Link>
             <Link href="/blog" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Blog</Link>
             <Link href="/careers" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Careers</Link>
-            <Link href="/#reviews" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Reviews</Link>
-            <Link href="/#faq" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>FAQ</Link>
           </nav>
 
           {/* Right Action */}
@@ -503,22 +500,13 @@ export default function AboutPage() {
               <Link href="/" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Home</Link>
               <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#ff4533', textDecoration: 'none', fontSize: '15px', fontWeight: 700 }}>About</Link>
               <Link href="/#services" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Services</Link>
-              <Link href="/#client-videos" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Clients</Link>
               <Link href="/training" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Training</Link>
               <Link href="/blog" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Blog</Link>
               <Link href="/careers" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Careers</Link>
-              <Link href="/#reviews" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Reviews</Link>
-              <Link href="/#faq" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>FAQ</Link>
-              <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#ff4533', textDecoration: 'none', fontSize: '15px', fontWeight: 700 }}>About</Link>
-              <Link href="/#services" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Services</Link>
-              <Link href="/#client-videos" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Clients</Link>
-              <Link href="/#why-us" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Why Us</Link>
-              <Link href="/#reviews" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Reviews</Link>
-              <Link href="/#faq" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>FAQ</Link>
               <button
                 onClick={() => { setMobileMenuOpen(false); setModalOpen(true); }}
                 className="btn btn-primary"
-                style={{ width: '100%', padding: '10px' }}
+                style={{ width: '100%', padding: '10px', marginTop: '6px' }}
               >
                 Book a call →
               </button>

@@ -183,16 +183,13 @@ export default function CareersPage() {
             <span style={{ fontWeight: 800, fontSize: '18px', color: '#fff' }}>GDAs<span style={{ color: '#ff4533' }}>.</span></span>
           </Link>
 
-          <nav style={{ display: 'flex', alignItems: 'center', gap: '22px' }} className="desktop-nav">
+          <nav style={{ display: 'flex', alignItems: 'center', gap: '26px' }} className="desktop-nav">
             <Link href="/" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Home</Link>
             <Link href="/about" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>About</Link>
             <Link href="/#services" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Services</Link>
-            <Link href="/#client-videos" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Clients</Link>
             <Link href="/training" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Training</Link>
             <Link href="/blog" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Blog</Link>
             <Link href="/careers" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 700, color: '#ff4533', textDecoration: 'none' }}>Careers</Link>
-            <Link href="/#reviews" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Reviews</Link>
-            <Link href="/#faq" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>FAQ</Link>
           </nav>
 
           <a href="#open-roles" className="btn btn-primary" style={{ padding: '8px 18px', fontSize: '12.5px', fontWeight: 700, textDecoration: 'none' }}>

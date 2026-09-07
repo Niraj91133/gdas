@@ -3,37 +3,29 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Animation Variants for smooth Framer Motion reveals
-const fadeInUp = {
-  hidden: { opacity: 0, y: 35 },
+// Signature Framer "Blur to Normal" Scroll Animations
+const blurFadeIn = {
+  hidden: { opacity: 0, filter: 'blur(10px)', y: 30 },
   visible: (custom = 0) => ({
     opacity: 1,
+    filter: 'blur(0px)',
     y: 0,
     transition: {
-      duration: 0.65,
-      delay: custom * 0.12,
+      duration: 0.8,
+      delay: custom * 0.1,
       ease: [0.22, 1, 0.36, 1],
     },
   }),
 };
 
-const staggerContainer = {
+const blurStagger = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
+      staggerChildren: 0.12,
+      delayChildren: 0.08,
     },
-  },
-};
-
-const scaleIn = {
-  hidden: { opacity: 0, scale: 0.92 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
   },
 };
 
@@ -227,17 +219,18 @@ export default function Home() {
       />
 
       {/* ========================================================================= */}
-      {/* 1. FLOATING NAVIGATION BAR */}
+      {/* 1. FLOATING NAVIGATION BAR (PERFECTLY CENTERED ON ALL SCREENS) */}
       {/* ========================================================================= */}
       <motion.header
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
+        initial={{ y: -50, opacity: 0, filter: 'blur(8px)' }}
+        animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         style={{
           position: 'fixed',
           top: '20px',
-          left: '50%',
-          transform: 'translateX(-50%)',
+          left: '0',
+          right: '0',
+          margin: '0 auto',
           width: 'calc(100% - 40px)',
           maxWidth: '1100px',
           zIndex: 100,
@@ -354,9 +347,9 @@ export default function Home() {
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.95 }}
+              initial={{ opacity: 0, y: -10, scale: 0.95, filter: 'blur(8px)' }}
+              animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
+              exit={{ opacity: 0, y: -10, scale: 0.95, filter: 'blur(8px)' }}
               transition={{ duration: 0.25 }}
               className="glass-card"
               style={{
@@ -381,15 +374,15 @@ export default function Home() {
       </motion.header>
 
       {/* ========================================================================= */}
-      {/* 2. HERO SECTION */}
+      {/* 2. HERO SECTION WITH BLUR TO NORMAL REVEAL */}
       {/* ========================================================================= */}
       <section className="hero-wrapper" id="about">
         <div className="container-custom">
           {/* Status Badge */}
           <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            initial={{ opacity: 0, filter: 'blur(10px)', y: 20 }}
+            animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
             style={{ display: 'inline-block', marginBottom: '8px' }}
           >
             <div className="pill-badge pill-badge-orange">
@@ -398,21 +391,21 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Main Headline with Framer Motion */}
+          {/* Main Headline with Blur to Normal Effect */}
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, filter: 'blur(12px)', y: 30 }}
+            animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+            transition={{ duration: 0.85, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
             className="hero-h1"
           >
             We generate results that <span className="serif-italic">matter.</span>
           </motion.h1>
 
-          {/* Subtext */}
+          {/* Subtext with Blur to Normal Effect */}
           <motion.p
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.48, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, filter: 'blur(10px)', y: 25 }}
+            animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+            transition={{ duration: 0.75, delay: 0.48, ease: [0.16, 1, 0.3, 1] }}
             className="hero-subtext"
           >
             Experience unprecedented growth with our paid ads strategy, tailored to skyrocket your brand and maximize profitable revenue.
@@ -420,9 +413,9 @@ export default function Home() {
 
           {/* CTA Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+            initial={{ opacity: 0, filter: 'blur(8px)', y: 20 }}
+            animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+            transition={{ duration: 0.65, delay: 0.6 }}
             style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap', marginBottom: '40px' }}
           >
             <motion.button
@@ -451,9 +444,9 @@ export default function Home() {
 
           {/* Social Proof (Stars & Avatars) */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
+            initial={{ opacity: 0, filter: 'blur(8px)', scale: 0.92 }}
+            animate={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.7 }}
             style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px', marginBottom: '60px' }}
           >
             <div style={{ display: 'flex', marginLeft: '10px' }}>
@@ -467,8 +460,8 @@ export default function Home() {
                   key={idx}
                   src={imgUrl}
                   alt="Client avatar"
-                  initial={{ opacity: 0, x: -10 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, x: -10, filter: 'blur(4px)' }}
+                  animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
                   transition={{ delay: 0.75 + idx * 0.08 }}
                   style={{
                     width: '34px',
@@ -487,11 +480,11 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Interactive Hero Analytics Graphic */}
+          {/* Interactive Hero Analytics Graphic with Blur Reveal */}
           <motion.div
-            initial={{ opacity: 0, y: 50, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.9, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, filter: 'blur(14px)', y: 40, scale: 0.96 }}
+            animate={{ opacity: 1, filter: 'blur(0px)', y: 0, scale: 1 }}
+            transition={{ duration: 0.95, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="glass-card glass-card-glow"
             style={{
               maxWidth: '960px',
@@ -645,9 +638,9 @@ export default function Home() {
       {/* 3. LOGO MARQUEE */}
       {/* ========================================================================= */}
       <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
+        initial={{ opacity: 0, filter: 'blur(8px)' }}
+        whileInView={{ opacity: 1, filter: 'blur(0px)' }}
+        viewport={{ once: true, margin: '-40px' }}
         transition={{ duration: 0.8 }}
         style={{ padding: '40px 0 60px 0', borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}
       >
@@ -680,16 +673,16 @@ export default function Home() {
       </motion.section>
 
       {/* ========================================================================= */}
-      {/* 4. HEAR IT DIRECTLY FROM OUR CLIENTS (VIDEO TESTIMONIALS) */}
+      {/* 4. HEAR IT DIRECTLY FROM OUR CLIENTS (VIDEO TESTIMONIALS WITH BLUR) */}
       {/* ========================================================================= */}
       <section className="section-spacing" id="client-videos" style={{ position: 'relative' }}>
         <div className="container-custom">
-          {/* Section Header with Scroll Animation */}
+          {/* Section Header with Blur to Normal */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, filter: 'blur(10px)', y: 30 }}
+            whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.8 }}
             className="section-header"
           >
             <div className="pill-badge" style={{ marginBottom: '8px' }}>
@@ -703,10 +696,10 @@ export default function Home() {
             </p>
           </motion.div>
 
-          {/* Video Cards Grid with Staggered Scroll Animation */}
+          {/* Video Cards Grid with Staggered Blur to Normal */}
           <div style={{ position: 'relative' }}>
             <motion.div
-              variants={staggerContainer}
+              variants={blurStagger}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: '-60px' }}
@@ -719,7 +712,7 @@ export default function Home() {
               {clientVideos.map((video, idx) => (
                 <motion.div
                   key={video.id}
-                  variants={fadeInUp}
+                  variants={blurFadeIn}
                   custom={idx}
                   whileHover={{ y: -6, transition: { duration: 0.25 } }}
                   className="glass-card"
@@ -764,7 +757,7 @@ export default function Home() {
                       }}
                     />
 
-                    {/* Red / Orange Circular Play Button with Motion */}
+                    {/* Red / Orange Circular Play Button */}
                     <motion.div
                       whileHover={{ scale: 1.15 }}
                       whileTap={{ scale: 0.9 }}
@@ -817,6 +810,10 @@ export default function Home() {
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2">
                           <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
                           <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+                        </svg>
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2">
+                          <circle cx="12" cy="12" r="3" />
+                          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
                         </svg>
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2">
                           <polyline points="15 3 21 3 21 9" />
@@ -898,15 +895,15 @@ export default function Home() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 5. SERVICES SECTION */}
+      {/* 5. SERVICES SECTION WITH BLUR TO NORMAL */}
       {/* ========================================================================= */}
       <section className="section-spacing" id="services" style={{ background: 'linear-gradient(180deg, #000 0%, #080808 50%, #000 100%)' }}>
         <div className="container-custom">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, filter: 'blur(10px)', y: 30 }}
+            whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.8 }}
             className="section-header"
           >
             <div className="pill-badge pill-badge-orange">
@@ -921,7 +918,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            variants={staggerContainer}
+            variants={blurStagger}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-60px' }}
@@ -959,7 +956,7 @@ export default function Home() {
             ].map((srv, idx) => (
               <motion.div
                 key={idx}
-                variants={fadeInUp}
+                variants={blurFadeIn}
                 custom={idx}
                 whileHover={{ y: -6, transition: { duration: 0.25 } }}
                 className="glass-card"
@@ -991,10 +988,10 @@ export default function Home() {
       <section className="section-spacing" id="why-us">
         <div className="container-custom">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, filter: 'blur(10px)', y: 30 }}
+            whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.8 }}
             className="section-header"
           >
             <div className="pill-badge">
@@ -1019,10 +1016,10 @@ export default function Home() {
           >
             {/* Traditional Agency Card */}
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, filter: 'blur(10px)', x: -30 }}
+              whileInView={{ opacity: 1, filter: 'blur(0px)', x: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.7 }}
+              transition={{ duration: 0.8 }}
               className="glass-card"
               style={{
                 padding: '40px',
@@ -1055,10 +1052,10 @@ export default function Home() {
 
             {/* GDAs Agency Card (Glowing) */}
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, filter: 'blur(10px)', x: 30 }}
+              whileInView={{ opacity: 1, filter: 'blur(0px)', x: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.7 }}
+              transition={{ duration: 0.8 }}
               whileHover={{ y: -4 }}
               className="glass-card glass-card-glow"
               style={{
@@ -1126,15 +1123,15 @@ export default function Home() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 7. 3-STEP PROCESS SECTION */}
+      {/* 7. 3-STEP PROCESS SECTION WITH BLUR TO NORMAL */}
       {/* ========================================================================= */}
       <section className="section-spacing" id="process" style={{ background: '#050505' }}>
         <div className="container-custom">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, filter: 'blur(10px)', y: 30 }}
+            whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.8 }}
             className="section-header"
           >
             <div className="pill-badge pill-badge-orange">
@@ -1149,7 +1146,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            variants={staggerContainer}
+            variants={blurStagger}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-60px' }}
@@ -1166,7 +1163,7 @@ export default function Home() {
             ].map((step, idx) => (
               <motion.div
                 key={idx}
-                variants={fadeInUp}
+                variants={blurFadeIn}
                 custom={idx}
                 whileHover={{ y: -6, transition: { duration: 0.25 } }}
                 className="glass-card"
@@ -1196,15 +1193,15 @@ export default function Home() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 8. TESTIMONIALS / REVIEWS */}
+      {/* 8. TESTIMONIALS / REVIEWS WITH BLUR TO NORMAL */}
       {/* ========================================================================= */}
       <section className="section-spacing" id="reviews">
         <div className="container-custom">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, filter: 'blur(10px)', y: 30 }}
+            whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.8 }}
             className="section-header"
           >
             <div className="pill-badge">
@@ -1219,7 +1216,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            variants={staggerContainer}
+            variants={blurStagger}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-60px' }}
@@ -1232,7 +1229,7 @@ export default function Home() {
             {testimonials.map((item, idx) => (
               <motion.div
                 key={idx}
-                variants={fadeInUp}
+                variants={blurFadeIn}
                 custom={idx}
                 whileHover={{ y: -6, transition: { duration: 0.25 } }}
                 className="glass-card"
@@ -1268,15 +1265,15 @@ export default function Home() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 9. TEAM SECTION */}
+      {/* 9. TEAM SECTION WITH BLUR TO NORMAL */}
       {/* ========================================================================= */}
       <section className="section-spacing" id="team" style={{ background: '#050505' }}>
         <div className="container-custom">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, filter: 'blur(10px)', y: 30 }}
+            whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.8 }}
             className="section-header"
           >
             <div className="pill-badge pill-badge-orange">
@@ -1291,7 +1288,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            variants={staggerContainer}
+            variants={blurStagger}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-60px' }}
@@ -1304,7 +1301,7 @@ export default function Home() {
             {team.map((member, idx) => (
               <motion.div
                 key={idx}
-                variants={fadeInUp}
+                variants={blurFadeIn}
                 custom={idx}
                 whileHover={{ y: -6, transition: { duration: 0.25 } }}
                 className="glass-card"
@@ -1335,15 +1332,15 @@ export default function Home() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 10. FAQ ACCORDION */}
+      {/* 10. FAQ ACCORDION WITH BLUR TO NORMAL */}
       {/* ========================================================================= */}
       <section className="section-spacing" id="faq">
         <div className="container-custom">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, filter: 'blur(10px)', y: 30 }}
+            whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.8 }}
             className="section-header"
           >
             <div className="pill-badge">
@@ -1358,7 +1355,7 @@ export default function Home() {
           </motion.div>
 
           <motion.div
-            variants={staggerContainer}
+            variants={blurStagger}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-60px' }}
@@ -1369,7 +1366,7 @@ export default function Home() {
               return (
                 <motion.div
                   key={index}
-                  variants={fadeInUp}
+                  variants={blurFadeIn}
                   custom={index}
                   className="glass-card"
                   style={{
@@ -1417,9 +1414,9 @@ export default function Home() {
                   <AnimatePresence>
                     {isOpen && (
                       <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
+                        initial={{ height: 0, opacity: 0, filter: 'blur(6px)' }}
+                        animate={{ height: 'auto', opacity: 1, filter: 'blur(0px)' }}
+                        exit={{ height: 0, opacity: 0, filter: 'blur(6px)' }}
                         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                         style={{ overflow: 'hidden' }}
                       >
@@ -1437,16 +1434,16 @@ export default function Home() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 11. FINAL CTA BANNER */}
+      {/* 11. FINAL CTA BANNER WITH BLUR TO NORMAL */}
       {/* ========================================================================= */}
       <section style={{ padding: '100px 0', position: 'relative', overflow: 'hidden' }}>
         <div className="bg-ambient-cta" />
         <div className="container-custom" style={{ position: 'relative', zIndex: 1 }}>
           <motion.div
-            initial={{ opacity: 0, scale: 0.94, y: 40 }}
-            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            initial={{ opacity: 0, filter: 'blur(14px)', scale: 0.94, y: 40 }}
+            whileInView={{ opacity: 1, filter: 'blur(0px)', scale: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
             className="glass-card glass-card-glow"
             style={{
               padding: '60px 40px',
@@ -1495,10 +1492,10 @@ export default function Home() {
       <footer style={{ borderTop: '1px solid rgba(255,255,255,0.08)', background: '#050505', padding: '60px 0 40px 0' }}>
         <div className="container-custom">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, filter: 'blur(8px)', y: 20 }}
+            whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7 }}
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
@@ -1639,9 +1636,9 @@ export default function Home() {
             onClick={() => setVideoModal(null)}
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              initial={{ scale: 0.9, opacity: 0, y: 20, filter: 'blur(10px)' }}
+              animate={{ scale: 1, opacity: 1, y: 0, filter: 'blur(0px)' }}
+              exit={{ scale: 0.9, opacity: 0, y: 20, filter: 'blur(10px)' }}
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
               className="modal-content"
               onClick={(e) => e.stopPropagation()}
@@ -1710,9 +1707,9 @@ export default function Home() {
             onClick={() => setModalOpen(false)}
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              initial={{ scale: 0.9, opacity: 0, y: 20, filter: 'blur(10px)' }}
+              animate={{ scale: 1, opacity: 1, y: 0, filter: 'blur(0px)' }}
+              exit={{ scale: 0.9, opacity: 0, y: 20, filter: 'blur(10px)' }}
               transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
               className="modal-content"
               onClick={(e) => e.stopPropagation()}

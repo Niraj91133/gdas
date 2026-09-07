@@ -177,7 +177,30 @@ export default function CareersPage() {
       >
         <div className="glass-nav" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 24px', borderRadius: '9999px' }}>
           <Link href="/" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: '#fff' }}>
-            <img src="/gda_logo.png" alt="GDAs Logo" style={{ height: '36px', width: 'auto', objectFit: 'contain', borderRadius: '6px' }} />
+            <div
+              style={{
+                width: '32px',
+                height: '32px',
+                borderRadius: '8px',
+                background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '4px',
+                boxShadow: '0 2px 10px rgba(37, 99, 235, 0.35)',
+              }}
+            >
+              <img
+                src="/gda_logo.png"
+                alt="GDAs Logo"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
+                }}
+              />
+            </div>
+            <span style={{ fontWeight: 800, fontSize: '18px', color: '#fff', letterSpacing: '-0.02em' }}>GDAs<span style={{ color: '#3b82f6' }}>.</span></span>
           </Link>
 
           <nav style={{ display: 'flex', alignItems: 'center', gap: '26px' }} className="desktop-nav">
@@ -299,7 +322,30 @@ export default function CareersPage() {
         <div className="container-custom">
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '24px', paddingBottom: '30px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
             <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: '#fff' }}>
-              <img src="/gda_logo.png" alt="GDAs Logo" style={{ height: '32px', width: 'auto', objectFit: 'contain', borderRadius: '6px' }} />
+              <div
+                style={{
+                  width: '28px',
+                  height: '28px',
+                  borderRadius: '7px',
+                  background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '3px',
+                  boxShadow: '0 2px 8px rgba(37, 99, 235, 0.3)',
+                }}
+              >
+                <img
+                  src="/gda_logo.png"
+                  alt="GDAs Logo"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                  }}
+                />
+              </div>
+              <span style={{ fontWeight: 800, fontSize: '16px' }}>GDAs<span style={{ color: '#3b82f6' }}>.</span></span>
             </Link>
 
             <div style={{ display: 'flex', gap: '20px', fontSize: '13px', flexWrap: 'wrap' }}>

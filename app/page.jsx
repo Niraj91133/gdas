@@ -560,13 +560,30 @@ export default function Home() {
             href="/"
             onMouseEnter={() => setCursorHovered(true)}
             onMouseLeave={() => setCursorHovered(false)}
-            style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}
+            style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}
           >
-            <img
-              src="/gda_logo.png"
-              alt="GDAs Logo"
-              style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
-            />
+            <div
+              style={{
+                width: '32px',
+                height: '32px',
+                borderRadius: '8px',
+                background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '4px',
+                boxShadow: '0 2px 10px rgba(37, 99, 235, 0.35)',
+              }}
+            >
+              <img
+                src="/gda_logo.png"
+                alt="GDAs Logo"
+                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+              />
+            </div>
+            <span style={{ fontWeight: 800, fontSize: '18px', color: '#fff', letterSpacing: '-0.02em' }}>
+              GDAs<span style={{ color: '#3b82f6' }}>.</span>
+            </span>
           </Link>
 
           {/* Desktop Nav Links */}
@@ -583,8 +600,14 @@ export default function Home() {
                 href={link.href}
                 onMouseEnter={() => setCursorHovered(true)}
                 onMouseLeave={() => setCursorHovered(false)}
-                whileHover={{ y: -2, color: '#ffffff' }}
-                style={{ color: '#a3a3a3', textDecoration: 'none', fontSize: '14px', fontWeight: 500, transition: 'color 0.2s' }}
+                className="nav-link"
+                style={{
+                  fontSize: '13.5px',
+                  fontWeight: 500,
+                  color: '#a3a3a3',
+                  textDecoration: 'none',
+                }}
+                whileHover={{ color: '#ffffff' }}
               >
                 {link.label}
               </motion.a>
@@ -594,7 +617,7 @@ export default function Home() {
           {/* Right Action */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
             <motion.button
-              onClick={() => setModalOpen(true)}
+              onClick={() => setBookingModal(true)}
               onMouseEnter={() => setCursorHovered(true)}
               onMouseLeave={() => setCursorHovered(false)}
               whileHover={{ scale: 1.05 }}
@@ -647,19 +670,6 @@ export default function Home() {
       {/* ========================================================================= */}
       <section className="hero-wrapper" id="about">
         <div className="container-custom">
-          {/* Status Badge */}
-          <motion.div
-            initial={{ opacity: 0, filter: 'blur(10px)', y: 20 }}
-            animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            style={{ display: 'inline-block', marginBottom: '8px' }}
-          >
-            <div className="pill-badge pill-badge-orange">
-              <span className="pulse-dot" />
-              <span>2 slots left this month</span>
-            </div>
-          </motion.div>
-
           {/* Main Headline */}
           <motion.h1
             initial={{ opacity: 0, filter: 'blur(12px)', y: 30 }}
@@ -1653,21 +1663,34 @@ export default function Home() {
               borderBottom: '1px solid rgba(255,255,255,0.06)',
             }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <img
-                src="/gda_logo.png"
-                alt="GDAs Logo"
+            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
+              <div
                 style={{
-                  height: '32px',
-                  width: 'auto',
-                  objectFit: 'contain',
-                  borderRadius: '6px',
+                  width: '28px',
+                  height: '28px',
+                  borderRadius: '7px',
+                  background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '3px',
+                  boxShadow: '0 2px 8px rgba(37, 99, 235, 0.3)',
                 }}
-              />
-              <span style={{ fontWeight: 800, fontSize: '16px', color: '#fff' }}>
+              >
+                <img
+                  src="/gda_logo.png"
+                  alt="GDAs Logo"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                  }}
+                />
+              </div>
+              <span style={{ fontWeight: 800, fontSize: '16px', color: '#fff', letterSpacing: '-0.02em' }}>
                 GDAs<span style={{ color: '#3b82f6' }}>.</span>
               </span>
-            </div>
+            </Link>
 
             <div style={{ display: 'flex', gap: '20px', fontSize: '13px', flexWrap: 'wrap' }}>
               <Link href="/about" style={{ color: '#888', textDecoration: 'none' }}>About</Link>

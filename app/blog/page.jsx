@@ -230,18 +230,31 @@ Learn how to separate pure cold acquisition PMax campaigns from high-intent exac
         style={{ position: 'fixed', top: '20px', left: 0, right: 0, margin: '0 auto', width: 'calc(100% - 40px)', maxWidth: '1100px', zIndex: 100 }}
       >
         <div className="glass-nav" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 24px', borderRadius: '9999px' }}>
-          <Link href="/" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: '#fff' }}>
-            <img
-              src="/gda_logo.png"
-              alt="GDAs Logo"
+          <Link href="/" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: '#fff' }}>
+            <div
               style={{
-                height: '36px',
-                width: 'auto',
-                objectFit: 'contain',
-                borderRadius: '6px',
+                width: '32px',
+                height: '32px',
+                borderRadius: '8px',
+                background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '4px',
+                boxShadow: '0 2px 10px rgba(37, 99, 235, 0.35)',
               }}
-            />
-            <span style={{ fontWeight: 800, fontSize: '18px', color: '#fff' }}>GDAs<span style={{ color: '#3b82f6' }}>.</span></span>
+            >
+              <img
+                src="/gda_logo.png"
+                alt="GDAs Logo"
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
+                }}
+              />
+            </div>
+            <span style={{ fontWeight: 800, fontSize: '18px', color: '#fff', letterSpacing: '-0.02em' }}>GDAs<span style={{ color: '#3b82f6' }}>.</span></span>
           </Link>
 
           <nav style={{ display: 'flex', alignItems: 'center', gap: '26px' }} className="desktop-nav">
@@ -396,17 +409,30 @@ Learn how to separate pure cold acquisition PMax campaigns from high-intent exac
       <footer style={{ borderTop: '1px solid rgba(255,255,255,0.08)', background: '#050505', padding: '50px 0 30px 0' }}>
         <div className="container-custom">
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '24px', paddingBottom: '30px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: '#fff' }}>
-              <img
-                src="/gda_logo.png"
-                alt="GDAs Logo"
+            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: '#fff' }}>
+              <div
                 style={{
-                  height: '32px',
-                  width: 'auto',
-                  objectFit: 'contain',
-                  borderRadius: '6px',
+                  width: '28px',
+                  height: '28px',
+                  borderRadius: '7px',
+                  background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: '3px',
+                  boxShadow: '0 2px 8px rgba(37, 99, 235, 0.3)',
                 }}
-              />
+              >
+                <img
+                  src="/gda_logo.png"
+                  alt="GDAs Logo"
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                  }}
+                />
+              </div>
               <span style={{ fontWeight: 800, fontSize: '16px' }}>GDAs<span style={{ color: '#3b82f6' }}>.</span></span>
             </Link>
 

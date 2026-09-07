@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Signature Framer "Blur to Normal" Scroll Animations
@@ -586,7 +587,7 @@ export default function Home() {
           {/* Desktop Nav Links */}
           <nav style={{ display: 'flex', alignItems: 'center', gap: '28px' }} className="desktop-nav">
             {[
-              { href: '#about', label: 'About' },
+              { href: '/about', label: 'About' },
               { href: '#client-videos', label: 'Clients' },
               { href: '#services', label: 'Services' },
               { href: '#why-us', label: 'Why Us' },
@@ -648,7 +649,7 @@ export default function Home() {
               className="glass-card"
               style={{ marginTop: '10px', padding: '20px', borderRadius: '20px', display: 'flex', flexDirection: 'column', gap: '16px' }}
             >
-              <a href="#about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>About</a>
+              <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>About</Link>
               <a href="#client-videos" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Clients</a>
               <a href="#services" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Services</a>
               <a href="#why-us" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Why Us</a>
@@ -1693,7 +1694,7 @@ export default function Home() {
             </div>
 
             <div style={{ display: 'flex', gap: '20px', fontSize: '13px' }}>
-              <a href="#about" style={{ color: '#888', textDecoration: 'none' }}>About</a>
+              <Link href="/about" style={{ color: '#888', textDecoration: 'none' }}>About</Link>
               <a href="#services" style={{ color: '#888', textDecoration: 'none' }}>Services</a>
               <a href="#client-videos" style={{ color: '#888', textDecoration: 'none' }}>Clients</a>
               <a href="#faq" style={{ color: '#888', textDecoration: 'none' }}>FAQ</a>

@@ -585,13 +585,14 @@ export default function Home() {
           </motion.a>
 
           {/* Desktop Nav Links */}
-          <nav style={{ display: 'flex', alignItems: 'center', gap: '28px' }} className="desktop-nav">
+          <nav style={{ display: 'flex', alignItems: 'center', gap: '22px' }} className="desktop-nav">
             {[
               { href: '/about', label: 'About' },
-              { href: '#client-videos', label: 'Clients' },
               { href: '#services', label: 'Services' },
-              { href: '#why-us', label: 'Why Us' },
-              { href: '#process', label: 'Process' },
+              { href: '#client-videos', label: 'Clients' },
+              { href: '/training', label: 'Training' },
+              { href: '/blog', label: 'Blog' },
+              { href: '/careers', label: 'Careers' },
               { href: '#reviews', label: 'Reviews' },
               { href: '#faq', label: 'FAQ' },
             ].map((link, i) => (
@@ -601,7 +602,7 @@ export default function Home() {
                 onMouseEnter={() => setCursorHovered(true)}
                 onMouseLeave={() => setCursorHovered(false)}
                 whileHover={{ y: -2, color: '#ffffff' }}
-                style={{ color: '#a3a3a3', textDecoration: 'none', fontSize: '14px', fontWeight: 500, transition: 'color 0.2s' }}
+                style={{ color: '#a3a3a3', textDecoration: 'none', fontSize: '13.5px', fontWeight: 500, transition: 'color 0.2s' }}
               >
                 {link.label}
               </motion.a>
@@ -650,10 +651,11 @@ export default function Home() {
               style={{ marginTop: '10px', padding: '20px', borderRadius: '20px', display: 'flex', flexDirection: 'column', gap: '16px' }}
             >
               <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>About</Link>
-              <a href="#client-videos" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Clients</a>
               <a href="#services" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Services</a>
-              <a href="#why-us" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Why Us</a>
-              <a href="#process" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Process</a>
+              <a href="#client-videos" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Clients</a>
+              <Link href="/training" onClick={() => setMobileMenuOpen(false)} style={{ color: '#ff4533', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}>Training (Demo Class)</Link>
+              <Link href="/blog" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Blog</Link>
+              <Link href="/careers" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Careers</Link>
               <a href="#reviews" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Reviews</a>
               <a href="#faq" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>FAQ</a>
             </motion.div>
@@ -1693,12 +1695,17 @@ export default function Home() {
               </span>
             </div>
 
-            <div style={{ display: 'flex', gap: '20px', fontSize: '13px' }}>
+            <div style={{ display: 'flex', gap: '20px', fontSize: '13px', flexWrap: 'wrap' }}>
               <Link href="/about" style={{ color: '#888', textDecoration: 'none' }}>About</Link>
               <a href="#services" style={{ color: '#888', textDecoration: 'none' }}>Services</a>
               <a href="#client-videos" style={{ color: '#888', textDecoration: 'none' }}>Clients</a>
-              <a href="#faq" style={{ color: '#888', textDecoration: 'none' }}>FAQ</a>
-              <a href="mailto:contact@ganeshadigiads.in" style={{ color: '#888', textDecoration: 'none' }}>Contact</a>
+              <Link href="/training" style={{ color: '#888', textDecoration: 'none' }}>Training</Link>
+              <Link href="/blog" style={{ color: '#888', textDecoration: 'none' }}>Blog</Link>
+              <Link href="/careers" style={{ color: '#888', textDecoration: 'none' }}>Careers</Link>
+              <Link href="/privacy-policy" style={{ color: '#888', textDecoration: 'none' }}>Privacy Policy</Link>
+              <Link href="/refund-policy" style={{ color: '#888', textDecoration: 'none' }}>Refund Policy</Link>
+              <Link href="/terms-conditions" style={{ color: '#888', textDecoration: 'none' }}>Terms & Conditions</Link>
+              <Link href="/disclaimer" style={{ color: '#888', textDecoration: 'none' }}>Disclaimer</Link>
             </div>
           </div>
 

@@ -436,63 +436,16 @@ export default function AboutPage() {
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav style={{ display: 'flex', alignItems: 'center', gap: '28px' }} className="desktop-nav">
-            <Link
-              href="/"
-              onMouseEnter={() => setCursorHovered(true)}
-              onMouseLeave={() => setCursorHovered(false)}
-              style={{ fontSize: '14px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none', transition: 'color 0.2s' }}
-            >
-              Home
-            </Link>
-            <Link
-              href="/about"
-              onMouseEnter={() => setCursorHovered(true)}
-              onMouseLeave={() => setCursorHovered(false)}
-              style={{ fontSize: '14px', fontWeight: 600, color: '#ff4533', textDecoration: 'none' }}
-            >
-              About
-            </Link>
-            <Link
-              href="/#services"
-              onMouseEnter={() => setCursorHovered(true)}
-              onMouseLeave={() => setCursorHovered(false)}
-              style={{ fontSize: '14px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}
-            >
-              Services
-            </Link>
-            <Link
-              href="/#client-videos"
-              onMouseEnter={() => setCursorHovered(true)}
-              onMouseLeave={() => setCursorHovered(false)}
-              style={{ fontSize: '14px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}
-            >
-              Clients
-            </Link>
-            <Link
-              href="/#why-us"
-              onMouseEnter={() => setCursorHovered(true)}
-              onMouseLeave={() => setCursorHovered(false)}
-              style={{ fontSize: '14px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}
-            >
-              Why Us
-            </Link>
-            <Link
-              href="/#reviews"
-              onMouseEnter={() => setCursorHovered(true)}
-              onMouseLeave={() => setCursorHovered(false)}
-              style={{ fontSize: '14px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}
-            >
-              Reviews
-            </Link>
-            <Link
-              href="/#faq"
-              onMouseEnter={() => setCursorHovered(true)}
-              onMouseLeave={() => setCursorHovered(false)}
-              style={{ fontSize: '14px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}
-            >
-              FAQ
-            </Link>
+          <nav style={{ display: 'flex', alignItems: 'center', gap: '22px' }} className="desktop-nav">
+            <Link href="/" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Home</Link>
+            <Link href="/about" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 700, color: '#ff4533', textDecoration: 'none' }}>About</Link>
+            <Link href="/#services" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Services</Link>
+            <Link href="/#client-videos" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Clients</Link>
+            <Link href="/training" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Training</Link>
+            <Link href="/blog" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Blog</Link>
+            <Link href="/careers" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Careers</Link>
+            <Link href="/#reviews" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Reviews</Link>
+            <Link href="/#faq" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>FAQ</Link>
           </nav>
 
           {/* Right Action */}
@@ -544,10 +497,18 @@ export default function AboutPage() {
                 padding: '20px',
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '16px',
+                gap: '14px',
               }}
             >
               <Link href="/" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Home</Link>
+              <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#ff4533', textDecoration: 'none', fontSize: '15px', fontWeight: 700 }}>About</Link>
+              <Link href="/#services" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Services</Link>
+              <Link href="/#client-videos" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Clients</Link>
+              <Link href="/training" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Training</Link>
+              <Link href="/blog" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Blog</Link>
+              <Link href="/careers" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Careers</Link>
+              <Link href="/#reviews" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Reviews</Link>
+              <Link href="/#faq" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>FAQ</Link>
               <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#ff4533', textDecoration: 'none', fontSize: '15px', fontWeight: 700 }}>About</Link>
               <Link href="/#services" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Services</Link>
               <Link href="/#client-videos" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Clients</Link>
@@ -1313,6 +1274,185 @@ export default function AboutPage() {
       </section>
 
       {/* ========================================================================= */}
+      {/* 6.5. WHY US / GDAS VS TRADITIONAL AGENCIES COMPARISON MATRIX */}
+      {/* ========================================================================= */}
+      <section id="why-us" className="section-spacing" style={{ background: '#070707', position: 'relative' }}>
+        <div className="container-custom">
+          
+          <div style={{ textAlign: 'center', maxWidth: '750px', margin: '0 auto 50px auto' }}>
+            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={blurFadeIn} className="section-tag">
+              Why Us • The GDAs Advantage
+            </motion.div>
+            <motion.h2
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={blurFadeIn}
+              custom={1}
+              style={{ fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.15 }}
+            >
+              Why high-growth brands choose <span className="serif-italic" style={{ color: '#ff4533' }}>GDAs over traditional agencies</span>.
+            </motion.h2>
+            <motion.p
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={blurFadeIn}
+              custom={2}
+              style={{ fontSize: '15px', color: '#a3a3a3', marginTop: '14px', lineHeight: 1.6 }}
+            >
+              Traditional agencies assign junior interns and report on vanity metrics. We engineer high-velocity creative funnels, server-side data pipelines, and pure bottom-line ROAS.
+            </motion.p>
+          </div>
+
+          {/* Comparison Table */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={blurFadeIn}
+            custom={3}
+            style={{
+              background: '#0d0d0d',
+              border: '1px solid rgba(255,255,255,0.08)',
+              borderRadius: '22px',
+              overflow: 'hidden',
+              boxShadow: '0 20px 50px rgba(0,0,0,0.6)',
+              marginBottom: '40px',
+            }}
+          >
+            <div style={{ overflowX: 'auto' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '650px' }}>
+                <thead>
+                  <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.02)' }}>
+                    <th style={{ padding: '20px 24px', fontSize: '14px', fontWeight: 700, color: '#888', width: '34%' }}>Growth Pillar</th>
+                    <th style={{ padding: '20px 24px', fontSize: '15px', fontWeight: 800, color: '#ff4533', width: '33%', background: 'rgba(255,69,51,0.08)' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#ff4533' }} />
+                        GDAs Performance Agency
+                      </div>
+                    </th>
+                    <th style={{ padding: '20px 24px', fontSize: '14px', fontWeight: 700, color: '#666', width: '33%' }}>Traditional Agencies / Freelancers</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    {
+                      pillar: 'Creative Velocity & UGC',
+                      gdas: '8+ High-converting UGC & Static hooks produced & tested weekly',
+                      others: '1-2 generic graphic ads per month with slow turnarounds',
+                    },
+                    {
+                      pillar: 'Target ROAS & Focus',
+                      gdas: 'Blended Cash-on-Cash ROAS, MER & Net Contribution Margins',
+                      others: 'Vanity clicks, impressions, and inflated platform metrics',
+                    },
+                    {
+                      pillar: 'Attribution & Signal Stack',
+                      gdas: '100% Server-side Meta CAPI & First-Party Custom Data Pipelines',
+                      others: 'Standard browser pixel losing 35-45% of conversion events',
+                    },
+                    {
+                      pillar: 'Optimization Frequency',
+                      gdas: 'Daily deep-dive bid adjustments, audience scaling & budget pacing',
+                      others: 'Bi-weekly or monthly automated checks without real strategy',
+                    },
+                    {
+                      pillar: 'Media Buying Seniority',
+                      gdas: 'Direct management by 7-figure performance specialists',
+                      others: 'Passed off to junior interns after contracts are signed',
+                    },
+                    {
+                      pillar: 'Team Communication',
+                      gdas: 'Dedicated live Slack channel + weekly async Loom video breakdowns',
+                      others: 'Support ticket queues with 48-72 hour response lags',
+                    },
+                    {
+                      pillar: 'Contract Terms',
+                      gdas: 'Month-to-month agility; we earn your business through results',
+                      others: 'Rigid 6 to 12-month lock-in retainers with high penalty fees',
+                    },
+                  ].map((row, rIdx) => (
+                    <tr
+                      key={rIdx}
+                      style={{
+                        borderBottom: rIdx < 6 ? '1px solid rgba(255,255,255,0.05)' : 'none',
+                        background: rIdx % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)',
+                      }}
+                    >
+                      <td style={{ padding: '18px 24px', fontSize: '14px', fontWeight: 600, color: '#fff' }}>
+                        {row.pillar}
+                      </td>
+                      <td style={{ padding: '18px 24px', fontSize: '13.5px', fontWeight: 600, color: '#e5e5e5', background: 'rgba(255,69,51,0.04)' }}>
+                        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                          <span style={{ color: '#10b981', fontWeight: 800 }}>✓</span>
+                          <span>{row.gdas}</span>
+                        </div>
+                      </td>
+                      <td style={{ padding: '18px 24px', fontSize: '13px', color: '#777' }}>
+                        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                          <span style={{ color: '#ef4444', fontWeight: 700 }}>✕</span>
+                          <span>{row.others}</span>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </motion.div>
+
+          {/* 3 Bento Advantage Cards */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '20px',
+            }}
+          >
+            {[
+              {
+                icon: '⚡',
+                title: 'High-Velocity Creative Studio',
+                desc: 'We write conversion copy, direct UGC creators, and edit 4K motion graphics in-house to crush ad fatigue before it starts.',
+              },
+              {
+                icon: '🛡️',
+                title: 'Server-Side Meta CAPI Moat',
+                desc: 'Our proprietary tracking architecture feeds Meta’s AI algorithm with 100% enriched purchase signals, unlocking lower CPAs.',
+              },
+              {
+                icon: '📈',
+                title: 'Predictable Revenue Scaling',
+                desc: 'We treat ad spend as calculated capital investment, scaling winning campaigns systematically while pruning underperformers.',
+              },
+            ].map((card, cIdx) => (
+              <motion.div
+                key={cIdx}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={blurFadeIn}
+                custom={cIdx * 0.5}
+                whileHover={{ y: -5, borderColor: 'rgba(255,69,51,0.4)' }}
+                style={{
+                  background: 'linear-gradient(135deg, #0e0e0e 0%, #151515 100%)',
+                  border: '1px solid rgba(255,255,255,0.08)',
+                  borderRadius: '18px',
+                  padding: '28px 24px',
+                  transition: 'all 0.3s ease',
+                }}
+              >
+                <div style={{ fontSize: '24px', marginBottom: '14px' }}>{card.icon}</div>
+                <h3 style={{ fontSize: '17px', fontWeight: 700, color: '#fff', marginBottom: '8px' }}>{card.title}</h3>
+                <p style={{ fontSize: '13px', color: '#888', lineHeight: 1.6 }}>{card.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
       {/* 7. LEADERSHIP & TEAM SHOWCASE */}
       {/* ========================================================================= */}
       <section className="section-spacing" style={{ background: '#050505' }}>
@@ -1404,7 +1544,7 @@ export default function AboutPage() {
           <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px', marginBottom: '40px' }}>
             <div>
               <div className="section-tag">Testimonials</div>
-              <h2 style={{ fontSize: 'clamp(28px, 3.8vw, 44px)', fontWeight: 800, letterSpacing: '-0.025em', lineHeight: 1.15 }}>
+              <h2 style={{ fontSize: 'clamp(28px, 3.8vw, 44px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.15 }}>
                 Hear from our <span className="serif-italic" style={{ color: '#ff4533' }}>happy partners</span>.
               </h2>
             </div>
@@ -1609,13 +1749,18 @@ export default function AboutPage() {
               </span>
             </Link>
 
-            <div style={{ display: 'flex', gap: '20px', fontSize: '13px' }}>
+            <div style={{ display: 'flex', gap: '20px', fontSize: '13px', flexWrap: 'wrap' }}>
               <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>Home</Link>
               <Link href="/about" style={{ color: '#ff4533', textDecoration: 'none', fontWeight: 600 }}>About</Link>
               <Link href="/#services" style={{ color: '#888', textDecoration: 'none' }}>Services</Link>
               <Link href="/#client-videos" style={{ color: '#888', textDecoration: 'none' }}>Clients</Link>
-              <Link href="/#faq" style={{ color: '#888', textDecoration: 'none' }}>FAQ</Link>
-              <a href="mailto:contact@ganeshadigiads.in" style={{ color: '#888', textDecoration: 'none' }}>Contact</a>
+              <Link href="/training" style={{ color: '#888', textDecoration: 'none' }}>Training</Link>
+              <Link href="/blog" style={{ color: '#888', textDecoration: 'none' }}>Blog</Link>
+              <Link href="/careers" style={{ color: '#888', textDecoration: 'none' }}>Careers</Link>
+              <Link href="/privacy-policy" style={{ color: '#888', textDecoration: 'none' }}>Privacy Policy</Link>
+              <Link href="/refund-policy" style={{ color: '#888', textDecoration: 'none' }}>Refund Policy</Link>
+              <Link href="/terms-conditions" style={{ color: '#888', textDecoration: 'none' }}>Terms & Conditions</Link>
+              <Link href="/disclaimer" style={{ color: '#888', textDecoration: 'none' }}>Disclaimer</Link>
             </div>
           </div>
 
@@ -1634,7 +1779,7 @@ export default function AboutPage() {
             <div>© {new Date().getFullYear()} GDAs (Ganesha Digital Ads). All rights reserved.</div>
             <div style={{ color: '#10b981', display: 'flex', alignItems: 'center', gap: '5px' }}>
               <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#10b981' }} />
-              <span>All systems live</span>
+              <span>All agency systems live</span>
             </div>
           </div>
         </div>

@@ -1,16 +1,50 @@
 'use client';
 
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+// Animation Variants for smooth Framer Motion reveals
+const fadeInUp = {
+  hidden: { opacity: 0, y: 35 },
+  visible: (custom = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.65,
+      delay: custom * 0.12,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.92 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+  },
+};
 
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [videoModal, setVideoModal] = useState(null); // url or video info
+  const [videoModal, setVideoModal] = useState(null);
   const [activeFaq, setActiveFaq] = useState(0);
   const [activeTimeframe, setActiveTimeframe] = useState('30D');
   const [newsletterEmail, setNewsletterEmail] = useState('');
   const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
-  const [videoCardIndex, setVideoCardIndex] = useState(0);
   const [modalForm, setModalForm] = useState({
     name: '',
     email: '',
@@ -20,7 +54,7 @@ export default function Home() {
   });
   const [modalSubmitted, setModalSubmitted] = useState(false);
 
-  // Video Testimonials Data matching the Framer template
+  // Video Testimonials Data
   const clientVideos = [
     {
       id: 1,
@@ -37,7 +71,7 @@ export default function Home() {
       thumbnail: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&auto=format&fit=crop&q=80',
       brandLogo: 'Amsterdam',
       brandType: 'icon',
-      quote: 'These guys don\'t mess around. We saw results from month one. If you want to grow your business, look no further.',
+      quote: "These guys don't mess around. We saw results from month one. If you want to grow your business, look no further.",
       name: 'Tony Gomez',
       role: 'Founder of Thursday',
       videoSrc: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
@@ -51,16 +85,6 @@ export default function Home() {
       name: 'Naomi Campbell',
       role: 'CEO of Wednesday',
       videoSrc: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4',
-    },
-    {
-      id: 4,
-      thumbnail: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&auto=format&fit=crop&q=80',
-      brandLogo: 'LUMINA',
-      brandType: 'bold',
-      quote: 'Scaling from $20k to $150k monthly revenue felt seamless with the GDAs media buying team.',
-      name: 'Sarah Chen',
-      role: 'CMO of Aura',
-      videoSrc: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
     },
   ];
 
@@ -193,14 +217,22 @@ export default function Home() {
   };
 
   return (
-    <div style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#000000', color: '#ffffff' }}>
+    <div style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#000000', color: '#ffffff', overflowX: 'hidden' }}>
       {/* Top Ambient Glow */}
-      <div className="bg-ambient-top" />
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.2, ease: 'easeOut' }}
+        className="bg-ambient-top"
+      />
 
       {/* ========================================================================= */}
       {/* 1. FLOATING NAVIGATION BAR */}
       {/* ========================================================================= */}
-      <header
+      <motion.header
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         style={{
           position: 'fixed',
           top: '20px',
@@ -222,7 +254,12 @@ export default function Home() {
           }}
         >
           {/* Logo with GDAs branding */}
-          <a href="#" style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: '#fff' }}>
+          <motion.a
+            href="#"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            style={{ display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', color: '#fff' }}
+          >
             <div
               style={{
                 width: '32px',
@@ -242,7 +279,7 @@ export default function Home() {
             <span style={{ fontWeight: 800, fontSize: '18px', letterSpacing: '-0.02em', color: '#ffffff' }}>
               GDAs<span style={{ color: '#ff4533' }}>.</span>
             </span>
-          </a>
+          </motion.a>
 
           {/* Desktop Nav Links */}
           <nav
@@ -253,33 +290,32 @@ export default function Home() {
             }}
             className="desktop-nav"
           >
-            <a href="#about" style={{ color: '#a3a3a3', textDecoration: 'none', fontSize: '14px', fontWeight: 500, transition: 'color 0.2s' }} onMouseOver={(e) => (e.target.style.color = '#fff')} onMouseOut={(e) => (e.target.style.color = '#a3a3a3')}>
-              About
-            </a>
-            <a href="#client-videos" style={{ color: '#a3a3a3', textDecoration: 'none', fontSize: '14px', fontWeight: 500, transition: 'color 0.2s' }} onMouseOver={(e) => (e.target.style.color = '#fff')} onMouseOut={(e) => (e.target.style.color = '#a3a3a3')}>
-              Clients
-            </a>
-            <a href="#services" style={{ color: '#a3a3a3', textDecoration: 'none', fontSize: '14px', fontWeight: 500, transition: 'color 0.2s' }} onMouseOver={(e) => (e.target.style.color = '#fff')} onMouseOut={(e) => (e.target.style.color = '#a3a3a3')}>
-              Services
-            </a>
-            <a href="#why-us" style={{ color: '#a3a3a3', textDecoration: 'none', fontSize: '14px', fontWeight: 500, transition: 'color 0.2s' }} onMouseOver={(e) => (e.target.style.color = '#fff')} onMouseOut={(e) => (e.target.style.color = '#a3a3a3')}>
-              Why Us
-            </a>
-            <a href="#process" style={{ color: '#a3a3a3', textDecoration: 'none', fontSize: '14px', fontWeight: 500, transition: 'color 0.2s' }} onMouseOver={(e) => (e.target.style.color = '#fff')} onMouseOut={(e) => (e.target.style.color = '#a3a3a3')}>
-              Process
-            </a>
-            <a href="#reviews" style={{ color: '#a3a3a3', textDecoration: 'none', fontSize: '14px', fontWeight: 500, transition: 'color 0.2s' }} onMouseOver={(e) => (e.target.style.color = '#fff')} onMouseOut={(e) => (e.target.style.color = '#a3a3a3')}>
-              Reviews
-            </a>
-            <a href="#faq" style={{ color: '#a3a3a3', textDecoration: 'none', fontSize: '14px', fontWeight: 500, transition: 'color 0.2s' }} onMouseOver={(e) => (e.target.style.color = '#fff')} onMouseOut={(e) => (e.target.style.color = '#a3a3a3')}>
-              FAQ
-            </a>
+            {[
+              { href: '#about', label: 'About' },
+              { href: '#client-videos', label: 'Clients' },
+              { href: '#services', label: 'Services' },
+              { href: '#why-us', label: 'Why Us' },
+              { href: '#process', label: 'Process' },
+              { href: '#reviews', label: 'Reviews' },
+              { href: '#faq', label: 'FAQ' },
+            ].map((link, i) => (
+              <motion.a
+                key={i}
+                href={link.href}
+                whileHover={{ y: -2, color: '#ffffff' }}
+                style={{ color: '#a3a3a3', textDecoration: 'none', fontSize: '14px', fontWeight: 500, transition: 'color 0.2s' }}
+              >
+                {link.label}
+              </motion.a>
+            ))}
           </nav>
 
           {/* Right Action */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <button
+            <motion.button
               onClick={() => setModalOpen(true)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               className="btn-primary"
               style={{ padding: '9px 20px', fontSize: '13px' }}
             >
@@ -287,7 +323,7 @@ export default function Home() {
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </button>
+            </motion.button>
 
             {/* Mobile menu hamburger */}
             <button
@@ -314,29 +350,35 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Mobile Dropdown Menu */}
-        {mobileMenuOpen && (
-          <div
-            className="glass-card"
-            style={{
-              marginTop: '10px',
-              padding: '20px',
-              borderRadius: '20px',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '16px',
-            }}
-          >
-            <a href="#about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>About</a>
-            <a href="#client-videos" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Clients</a>
-            <a href="#services" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Services</a>
-            <a href="#why-us" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Why Us</a>
-            <a href="#process" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Process</a>
-            <a href="#reviews" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Reviews</a>
-            <a href="#faq" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>FAQ</a>
-          </div>
-        )}
-      </header>
+        {/* Mobile Dropdown Menu with Framer Motion */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.95 }}
+              transition={{ duration: 0.25 }}
+              className="glass-card"
+              style={{
+                marginTop: '10px',
+                padding: '20px',
+                borderRadius: '20px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '16px',
+              }}
+            >
+              <a href="#about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>About</a>
+              <a href="#client-videos" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Clients</a>
+              <a href="#services" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Services</a>
+              <a href="#why-us" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Why Us</a>
+              <a href="#process" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Process</a>
+              <a href="#reviews" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Reviews</a>
+              <a href="#faq" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>FAQ</a>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.header>
 
       {/* ========================================================================= */}
       {/* 2. HERO SECTION */}
@@ -344,41 +386,76 @@ export default function Home() {
       <section className="hero-wrapper" id="about">
         <div className="container-custom">
           {/* Status Badge */}
-          <div style={{ display: 'inline-block', marginBottom: '8px' }}>
+          <motion.div
+            initial={{ opacity: 0, y: 20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            style={{ display: 'inline-block', marginBottom: '8px' }}
+          >
             <div className="pill-badge pill-badge-orange">
               <span className="pulse-dot" />
               <span>2 slots remaining for this month</span>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Main Headline */}
-          <h1 className="hero-h1">
+          {/* Main Headline with Framer Motion */}
+          <motion.h1
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            className="hero-h1"
+          >
             We generate results that <span className="serif-italic">matter.</span>
-          </h1>
+          </motion.h1>
 
           {/* Subtext */}
-          <p className="hero-subtext">
+          <motion.p
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.48, ease: [0.16, 1, 0.3, 1] }}
+            className="hero-subtext"
+          >
             Experience unprecedented growth with our paid ads strategy, tailored to skyrocket your brand and maximize profitable revenue.
-          </p>
+          </motion.p>
 
           {/* CTA Buttons */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap', marginBottom: '40px' }}>
-            <button onClick={() => setModalOpen(true)} className="btn-primary">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap', marginBottom: '40px' }}
+          >
+            <motion.button
+              onClick={() => setModalOpen(true)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="btn-primary"
+            >
               Book a call
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </button>
-            <a href="#services" className="btn-secondary">
+            </motion.button>
+            <motion.a
+              href="#services"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="btn-secondary"
+            >
               Our services
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </a>
-          </div>
+            </motion.a>
+          </motion.div>
 
           {/* Social Proof (Stars & Avatars) */}
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px', marginBottom: '60px' }}>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.7 }}
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px', marginBottom: '60px' }}
+          >
             <div style={{ display: 'flex', marginLeft: '10px' }}>
               {[
                 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80',
@@ -386,10 +463,13 @@ export default function Home() {
                 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80',
                 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80',
               ].map((imgUrl, idx) => (
-                <img
+                <motion.img
                   key={idx}
                   src={imgUrl}
                   alt="Client avatar"
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.75 + idx * 0.08 }}
                   style={{
                     width: '34px',
                     height: '34px',
@@ -405,10 +485,13 @@ export default function Home() {
               <div style={{ color: '#ffb703', fontSize: '14px', letterSpacing: '2px' }}>★★★★★</div>
               <span style={{ fontSize: '13px', color: '#a3a3a3', fontWeight: 500 }}>Over 20+ happy clients</span>
             </div>
-          </div>
+          </motion.div>
 
           {/* Interactive Hero Analytics Graphic */}
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: 50, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="glass-card glass-card-glow"
             style={{
               maxWidth: '960px',
@@ -442,8 +525,9 @@ export default function Home() {
               {/* Timeframe selector */}
               <div style={{ display: 'flex', background: 'rgba(255,255,255,0.05)', padding: '3px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.08)' }}>
                 {['7D', '30D', '90D', '1Y'].map((tf) => (
-                  <button
+                  <motion.button
                     key={tf}
+                    whileTap={{ scale: 0.92 }}
                     onClick={() => setActiveTimeframe(tf)}
                     style={{
                       padding: '5px 12px',
@@ -458,7 +542,7 @@ export default function Home() {
                     }}
                   >
                     {tf}
-                  </button>
+                  </motion.button>
                 ))}
               </div>
             </div>
@@ -472,37 +556,24 @@ export default function Home() {
                 marginBottom: '28px',
               }}
             >
-              <div style={{ background: 'rgba(255,255,255,0.02)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.06)' }}>
-                <div style={{ fontSize: '12px', color: '#888', marginBottom: '6px' }}>Total Attributed Revenue</div>
-                <div style={{ fontSize: '24px', fontWeight: 800, color: '#fff' }}>$184,920</div>
-                <div style={{ fontSize: '12px', color: '#10b981', fontWeight: 600, marginTop: '4px', display: 'flex', alignItems: 'center', gap: '4px' }}>
-                  ↑ +142.8% <span style={{ color: '#666', fontWeight: 400 }}>vs prior</span>
-                </div>
-              </div>
-
-              <div style={{ background: 'rgba(255,255,255,0.02)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.06)' }}>
-                <div style={{ fontSize: '12px', color: '#888', marginBottom: '6px' }}>Blended ROAS</div>
-                <div style={{ fontSize: '24px', fontWeight: 800, color: '#ff5533' }}>5.84x</div>
-                <div style={{ fontSize: '12px', color: '#10b981', fontWeight: 600, marginTop: '4px' }}>
-                  Target: 3.50x
-                </div>
-              </div>
-
-              <div style={{ background: 'rgba(255,255,255,0.02)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.06)' }}>
-                <div style={{ fontSize: '12px', color: '#888', marginBottom: '6px' }}>Total Ad Spend</div>
-                <div style={{ fontSize: '24px', fontWeight: 800, color: '#fff' }}>$31,650</div>
-                <div style={{ fontSize: '12px', color: '#a3a3a3', marginTop: '4px' }}>
-                  Meta & Google
-                </div>
-              </div>
-
-              <div style={{ background: 'rgba(255,255,255,0.02)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.06)' }}>
-                <div style={{ fontSize: '12px', color: '#888', marginBottom: '6px' }}>Qualified Purchases</div>
-                <div style={{ fontSize: '24px', fontWeight: 800, color: '#fff' }}>2,490</div>
-                <div style={{ fontSize: '12px', color: '#10b981', fontWeight: 600, marginTop: '4px' }}>
-                  Avg Order: $74.26
-                </div>
-              </div>
+              {[
+                { title: 'Total Attributed Revenue', val: '$184,920', sub: '↑ +142.8%', subColor: '#10b981', subText: 'vs prior' },
+                { title: 'Blended ROAS', val: '5.84x', valColor: '#ff5533', sub: 'Target: 3.50x', subColor: '#10b981' },
+                { title: 'Total Ad Spend', val: '$31,650', sub: 'Meta & Google', subColor: '#a3a3a3' },
+                { title: 'Qualified Purchases', val: '2,490', sub: 'Avg Order: $74.26', subColor: '#10b981' },
+              ].map((stat, i) => (
+                <motion.div
+                  key={i}
+                  whileHover={{ y: -4 }}
+                  style={{ background: 'rgba(255,255,255,0.02)', padding: '16px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.06)' }}
+                >
+                  <div style={{ fontSize: '12px', color: '#888', marginBottom: '6px' }}>{stat.title}</div>
+                  <div style={{ fontSize: '24px', fontWeight: 800, color: stat.valColor || '#fff' }}>{stat.val}</div>
+                  <div style={{ fontSize: '12px', color: stat.subColor, fontWeight: 600, marginTop: '4px', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                    {stat.sub} {stat.subText && <span style={{ color: '#666', fontWeight: 400 }}>{stat.subText}</span>}
+                  </div>
+                </motion.div>
+              ))}
             </div>
 
             {/* Glowing Chart Visual */}
@@ -514,18 +585,21 @@ export default function Home() {
                     <stop offset="100%" stopColor="#ff4533" stopOpacity="0.0" />
                   </linearGradient>
                 </defs>
-                {/* Horizontal Grid lines */}
                 <line x1="0" y1="30" x2="800" y2="30" stroke="rgba(255,255,255,0.04)" strokeDasharray="4 4" />
                 <line x1="0" y1="80" x2="800" y2="80" stroke="rgba(255,255,255,0.04)" strokeDasharray="4 4" />
                 <line x1="0" y1="130" x2="800" y2="130" stroke="rgba(255,255,255,0.04)" strokeDasharray="4 4" />
 
-                {/* Area under curve */}
-                <path
+                <motion.path
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 1 }}
+                  transition={{ duration: 1.5, delay: 0.9, ease: 'easeInOut' }}
                   d="M0,160 Q100,140 200,120 T400,90 T600,45 T800,20 L800,180 L0,180 Z"
                   fill="url(#chartGradient)"
                 />
-                {/* Glowing Stroke line */}
-                <path
+                <motion.path
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 1.5, delay: 0.9, ease: 'easeInOut' }}
                   d="M0,160 Q100,140 200,120 T400,90 T600,45 T800,20"
                   fill="none"
                   stroke="#ff4533"
@@ -533,7 +607,6 @@ export default function Home() {
                   strokeLinecap="round"
                 />
 
-                {/* Data points */}
                 <circle cx="200" cy="120" r="4" fill="#fff" stroke="#ff4533" strokeWidth="2" />
                 <circle cx="400" cy="90" r="4" fill="#fff" stroke="#ff4533" strokeWidth="2" />
                 <circle cx="600" cy="45" r="4" fill="#fff" stroke="#ff4533" strokeWidth="2" />
@@ -564,14 +637,20 @@ export default function Home() {
                 Peak ROAS today: 7.2x
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* ========================================================================= */}
       {/* 3. LOGO MARQUEE */}
       {/* ========================================================================= */}
-      <section style={{ padding: '40px 0 60px 0', borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+      <motion.section
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        style={{ padding: '40px 0 60px 0', borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}
+      >
         <div className="container-custom" style={{ textAlign: 'center', marginBottom: '24px' }}>
           <p style={{ fontSize: '12px', letterSpacing: '0.12em', textTransform: 'uppercase', color: '#777', fontWeight: 600 }}>
             Trusted by fast-growing direct-to-consumer brands
@@ -598,15 +677,21 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* ========================================================================= */}
-      {/* 4. REPLACED SECTION: HEAR IT DIRECTLY FROM OUR CLIENTS (VIDEO TESTIMONIALS) */}
+      {/* 4. HEAR IT DIRECTLY FROM OUR CLIENTS (VIDEO TESTIMONIALS) */}
       {/* ========================================================================= */}
       <section className="section-spacing" id="client-videos" style={{ position: 'relative' }}>
         <div className="container-custom">
-          {/* Section Header */}
-          <div className="section-header">
+          {/* Section Header with Scroll Animation */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7 }}
+            className="section-header"
+          >
             <div className="pill-badge" style={{ marginBottom: '8px' }}>
               <span>Our Clients</span>
             </div>
@@ -616,20 +701,27 @@ export default function Home() {
             <p className="section-subtitle">
               Hear what our clients have to say. Our testimonials reflect the satisfaction our clients have in our services.
             </p>
-          </div>
+          </motion.div>
 
-          {/* Video Cards Grid / Carousel Container */}
+          {/* Video Cards Grid with Staggered Scroll Animation */}
           <div style={{ position: 'relative' }}>
-            <div
+            <motion.div
+              variants={staggerContainer}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: '-60px' }}
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
                 gap: '24px',
               }}
             >
-              {clientVideos.slice(0, 3).map((video) => (
-                <div
+              {clientVideos.map((video, idx) => (
+                <motion.div
                   key={video.id}
+                  variants={fadeInUp}
+                  custom={idx}
+                  whileHover={{ y: -6, transition: { duration: 0.25 } }}
                   className="glass-card"
                   style={{
                     padding: '16px',
@@ -639,7 +731,7 @@ export default function Home() {
                     justifyContent: 'space-between',
                   }}
                 >
-                  {/* Video Thumbnail Box with Fake/Interactive Player Controls */}
+                  {/* Video Thumbnail Box */}
                   <div
                     onClick={() => setVideoModal(video)}
                     style={{
@@ -661,8 +753,6 @@ export default function Home() {
                         objectFit: 'cover',
                         transition: 'transform 0.4s ease',
                       }}
-                      onMouseOver={(e) => (e.target.style.transform = 'scale(1.05)')}
-                      onMouseOut={(e) => (e.target.style.transform = 'scale(1)')}
                     />
 
                     {/* Dark gradient overlay */}
@@ -674,8 +764,10 @@ export default function Home() {
                       }}
                     />
 
-                    {/* Red / Orange Circular Play Button */}
-                    <div
+                    {/* Red / Orange Circular Play Button with Motion */}
+                    <motion.div
+                      whileHover={{ scale: 1.15 }}
+                      whileTap={{ scale: 0.9 }}
                       style={{
                         position: 'absolute',
                         top: '50%',
@@ -689,17 +781,14 @@ export default function Home() {
                         alignItems: 'center',
                         justifyContent: 'center',
                         boxShadow: '0 0 24px rgba(255, 69, 51, 0.6)',
-                        transition: 'transform 0.2s ease',
                       }}
-                      onMouseOver={(e) => (e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1.12)')}
-                      onMouseOut={(e) => (e.currentTarget.style.transform = 'translate(-50%, -50%) scale(1)')}
                     >
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="#ffffff" stroke="none">
                         <polygon points="5 3 19 12 5 21 5 3" />
                       </svg>
-                    </div>
+                    </motion.div>
 
-                    {/* Custom Video Control Bar at bottom of thumbnail */}
+                    {/* Custom Video Control Bar */}
                     <div
                       style={{
                         position: 'absolute',
@@ -730,10 +819,6 @@ export default function Home() {
                           <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
                         </svg>
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2">
-                          <circle cx="12" cy="12" r="3" />
-                          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
-                        </svg>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2">
                           <polyline points="15 3 21 3 21 9" />
                           <polyline points="9 21 3 21 3 15" />
                           <line x1="21" y1="3" x2="14" y2="10" />
@@ -745,7 +830,6 @@ export default function Home() {
 
                   {/* Client Brand & Testimonial Quote */}
                   <div style={{ padding: '24px 8px 12px 8px' }}>
-                    {/* Brand Logo Display */}
                     <div style={{ height: '32px', display: 'flex', alignItems: 'center', marginBottom: '16px' }}>
                       {video.brandType === 'script' && (
                         <span style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: '28px', fontWeight: 700, letterSpacing: '-0.03em', color: '#ffffff' }}>
@@ -767,24 +851,24 @@ export default function Home() {
                       )}
                     </div>
 
-                    {/* Client Quote */}
                     <p style={{ fontSize: '15px', color: '#a3a3a3', lineHeight: 1.6, marginBottom: '24px', minHeight: '68px' }}>
                       &ldquo;{video.quote}&rdquo;
                     </p>
 
-                    {/* Client Name & Position */}
                     <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '16px' }}>
                       <div style={{ fontSize: '15px', fontWeight: 700, color: '#ffffff' }}>{video.name}</div>
                       <div style={{ fontSize: '13px', color: '#777', marginTop: '2px' }}>{video.role}</div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
 
-            {/* Red Floating Carousel Navigation Button matching the design */}
-            <button
+            {/* Red Floating Carousel Navigation Button */}
+            <motion.button
               onClick={() => setVideoModal(clientVideos[0])}
+              whileHover={{ scale: 1.15 }}
+              whileTap={{ scale: 0.9 }}
               style={{
                 position: 'absolute',
                 top: '40%',
@@ -802,16 +886,13 @@ export default function Home() {
                 justifyContent: 'center',
                 boxShadow: '0 4px 20px rgba(255, 69, 51, 0.5)',
                 zIndex: 10,
-                transition: 'transform 0.2s',
               }}
-              onMouseOver={(e) => (e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)')}
-              onMouseOut={(e) => (e.currentTarget.style.transform = 'translateY(-50%) scale(1)')}
               aria-label="Next client review"
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5">
                 <path d="M9 18l6-6-6-6" />
               </svg>
-            </button>
+            </motion.button>
           </div>
         </div>
       </section>
@@ -821,7 +902,13 @@ export default function Home() {
       {/* ========================================================================= */}
       <section className="section-spacing" id="services" style={{ background: 'linear-gradient(180deg, #000 0%, #080808 50%, #000 100%)' }}>
         <div className="container-custom">
-          <div className="section-header">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7 }}
+            className="section-header"
+          >
             <div className="pill-badge pill-badge-orange">
               <span>// WHAT WE DO</span>
             </div>
@@ -831,112 +918,85 @@ export default function Home() {
             <p className="section-subtitle">
               Comprehensive paid media execution backed by creative engineering and conversion rate optimization.
             </p>
-          </div>
+          </motion.div>
 
-          <div
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))',
               gap: '24px',
             }}
           >
-            {/* Service 1: Meta Ads */}
-            <div className="glass-card" style={{ padding: '32px' }}>
-              <div style={{ display: 'inline-block', padding: '6px 12px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', fontSize: '12px', fontWeight: 600, color: '#ff7766', marginBottom: '20px' }}>
-                SCALE CHANNELS
-              </div>
-              <h3 style={{ fontSize: '22px', fontWeight: 700, marginBottom: '12px' }}>Meta Ads (FB & IG)</h3>
-              <p style={{ fontSize: '14px', color: '#a3a3a3', lineHeight: 1.6, marginBottom: '24px' }}>
-                Advanced Advantage+ shopping campaigns, dynamic retargeting, and broad audience scaling for maximum revenue.
-              </p>
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px', color: '#d1d1d1' }}>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ color: '#ff4533' }}>✓</span> Advantage+ Budget Architecture
-                </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ color: '#ff4533' }}>✓</span> Creative Hook Variation Testing
-                </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ color: '#ff4533' }}>✓</span> CAPI & Pixel Setup
-                </li>
-              </ul>
-            </div>
-
-            {/* Service 2: Google & YouTube */}
-            <div className="glass-card" style={{ padding: '32px' }}>
-              <div style={{ display: 'inline-block', padding: '6px 12px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', fontSize: '12px', fontWeight: 600, color: '#ff7766', marginBottom: '20px' }}>
-                SEARCH INTENT
-              </div>
-              <h3 style={{ fontSize: '22px', fontWeight: 700, marginBottom: '12px' }}>Google & YouTube Ads</h3>
-              <p style={{ fontSize: '14px', color: '#a3a3a3', lineHeight: 1.6, marginBottom: '24px' }}>
-                Capture high-intent buyers searching for your solution and scale with Performance Max and YouTube bumper ads.
-              </p>
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px', color: '#d1d1d1' }}>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ color: '#ff4533' }}>✓</span> Performance Max Campaign Design
-                </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ color: '#ff4533' }}>✓</span> High-Intent Search Keyword Bidding
-                </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ color: '#ff4533' }}>✓</span> YouTube Funnel Retargeting
-                </li>
-              </ul>
-            </div>
-
-            {/* Service 3: TikTok Ads */}
-            <div className="glass-card" style={{ padding: '32px' }}>
-              <div style={{ display: 'inline-block', padding: '6px 12px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', fontSize: '12px', fontWeight: 600, color: '#ff7766', marginBottom: '20px' }}>
-                VIRAL GROWTH
-              </div>
-              <h3 style={{ fontSize: '22px', fontWeight: 700, marginBottom: '12px' }}>TikTok Ads & Spark</h3>
-              <p style={{ fontSize: '14px', color: '#a3a3a3', lineHeight: 1.6, marginBottom: '24px' }}>
-                Creator Spark ads, native trending hooks, and rapid iteration formats that turn viral attention into checkout conversions.
-              </p>
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px', color: '#d1d1d1' }}>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ color: '#ff4533' }}>✓</span> Creator Spark Ad Sourcing
-                </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ color: '#ff4533' }}>✓</span> First 3-Second Hook Optimization
-                </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ color: '#ff4533' }}>✓</span> Gen-Z Native Creative Direction
-                </li>
-              </ul>
-            </div>
-
-            {/* Service 4: CRO & Creatives */}
-            <div className="glass-card" style={{ padding: '32px' }}>
-              <div style={{ display: 'inline-block', padding: '6px 12px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', fontSize: '12px', fontWeight: 600, color: '#ff7766', marginBottom: '20px' }}>
-                MAX PROFIT
-              </div>
-              <h3 style={{ fontSize: '22px', fontWeight: 700, marginBottom: '12px' }}>Creative Strategy & CRO</h3>
-              <p style={{ fontSize: '14px', color: '#a3a3a3', lineHeight: 1.6, marginBottom: '24px' }}>
-                Landing page redesigns, checkout friction removal, and A/B split testing to increase conversion rates across every visit.
-              </p>
-              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px', color: '#d1d1d1' }}>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ color: '#ff4533' }}>✓</span> High-Converting Advertorials
-                </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ color: '#ff4533' }}>✓</span> A/B Landing Page Split Testing
-                </li>
-                <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ color: '#ff4533' }}>✓</span> Checkout Average Order Value (AOV) Boost
-                </li>
-              </ul>
-            </div>
-          </div>
+            {[
+              {
+                badge: 'SCALE CHANNELS',
+                title: 'Meta Ads (FB & IG)',
+                desc: 'Advanced Advantage+ shopping campaigns, dynamic retargeting, and broad audience scaling for maximum revenue.',
+                features: ['Advantage+ Budget Architecture', 'Creative Hook Variation Testing', 'CAPI & Pixel Setup'],
+              },
+              {
+                badge: 'SEARCH INTENT',
+                title: 'Google & YouTube Ads',
+                desc: 'Capture high-intent buyers searching for your solution and scale with Performance Max and YouTube bumper ads.',
+                features: ['Performance Max Campaign Design', 'High-Intent Search Keyword Bidding', 'YouTube Funnel Retargeting'],
+              },
+              {
+                badge: 'VIRAL GROWTH',
+                title: 'TikTok Ads & Spark',
+                desc: 'Creator Spark ads, native trending hooks, and rapid iteration formats that turn viral attention into checkout conversions.',
+                features: ['Creator Spark Ad Sourcing', 'First 3-Second Hook Optimization', 'Gen-Z Native Creative Direction'],
+              },
+              {
+                badge: 'MAX PROFIT',
+                title: 'Creative Strategy & CRO',
+                desc: 'Landing page redesigns, checkout friction removal, and A/B split testing to increase conversion rates across every visit.',
+                features: ['High-Converting Advertorials', 'A/B Landing Page Split Testing', 'Checkout Average Order Value (AOV) Boost'],
+              },
+            ].map((srv, idx) => (
+              <motion.div
+                key={idx}
+                variants={fadeInUp}
+                custom={idx}
+                whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                className="glass-card"
+                style={{ padding: '32px' }}
+              >
+                <div style={{ display: 'inline-block', padding: '6px 12px', background: 'rgba(255,255,255,0.05)', borderRadius: '6px', fontSize: '12px', fontWeight: 600, color: '#ff7766', marginBottom: '20px' }}>
+                  {srv.badge}
+                </div>
+                <h3 style={{ fontSize: '22px', fontWeight: 700, marginBottom: '12px' }}>{srv.title}</h3>
+                <p style={{ fontSize: '14px', color: '#a3a3a3', lineHeight: 1.6, marginBottom: '24px' }}>
+                  {srv.desc}
+                </p>
+                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13px', color: '#d1d1d1' }}>
+                  {srv.features.map((f, fi) => (
+                    <li key={fi} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <span style={{ color: '#ff4533' }}>✓</span> {f}
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* 6. COMPARISON MATRIX ("WHY WORK WITH US?") */}
+      {/* 6. COMPARISON MATRIX ("WHY WORK WITH GDAs?") */}
       {/* ========================================================================= */}
       <section className="section-spacing" id="why-us">
         <div className="container-custom">
-          <div className="section-header">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7 }}
+            className="section-header"
+          >
             <div className="pill-badge">
               <span>// THE DIFFERENCE</span>
             </div>
@@ -946,7 +1006,7 @@ export default function Home() {
             <p className="section-subtitle">
               See how our agile performance model compares to traditional marketing agencies.
             </p>
-          </div>
+          </motion.div>
 
           <div
             style={{
@@ -958,7 +1018,11 @@ export default function Home() {
             }}
           >
             {/* Traditional Agency Card */}
-            <div
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.7 }}
               className="glass-card"
               style={{
                 padding: '40px',
@@ -987,10 +1051,15 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
 
             {/* GDAs Agency Card (Glowing) */}
-            <div
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.7 }}
+              whileHover={{ y: -4 }}
               className="glass-card glass-card-glow"
               style={{
                 padding: '40px',
@@ -1038,8 +1107,10 @@ export default function Home() {
               </div>
 
               <div style={{ marginTop: '32px' }}>
-                <button
+                <motion.button
                   onClick={() => setModalOpen(true)}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
                   className="btn-primary"
                   style={{ width: '100%' }}
                 >
@@ -1047,9 +1118,9 @@ export default function Home() {
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
-                </button>
+                </motion.button>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -1059,7 +1130,13 @@ export default function Home() {
       {/* ========================================================================= */}
       <section className="section-spacing" id="process" style={{ background: '#050505' }}>
         <div className="container-custom">
-          <div className="section-header">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7 }}
+            className="section-header"
+          >
             <div className="pill-badge pill-badge-orange">
               <span>// HOW IT WORKS</span>
             </div>
@@ -1069,78 +1146,52 @@ export default function Home() {
             <p className="section-subtitle">
               We eliminate guesswork with a streamlined, repeatable roadmap built for scale.
             </p>
-          </div>
+          </motion.div>
 
-          <div
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
               gap: '28px',
             }}
           >
-            {/* Step 1 */}
-            <div className="glass-card" style={{ padding: '36px' }}>
-              <div
-                style={{
-                  fontSize: '44px',
-                  fontFamily: 'var(--font-serif)',
-                  fontStyle: 'italic',
-                  color: '#ff4533',
-                  marginBottom: '16px',
-                }}
+            {[
+              { num: '01', title: 'In-Depth Funnel & Ad Audit', desc: 'We dissect your past campaigns, ad accounts, pixel tracking, and checkout conversion drop-offs to pinpoint the exact levers for rapid revenue growth.' },
+              { num: '02', title: 'Creative & Campaign Architecture', desc: 'Our creative lab produces high-impact UGC hooks, static carousels, and copy angles while we construct clean, scalable ad account structures.' },
+              { num: '03', title: 'Aggressive Scale & Profit Maximization', desc: 'We aggressively inject budget into winning creative angles, expand audience reach, and continuously optimize checkout metrics for maximum net margin.' },
+            ].map((step, idx) => (
+              <motion.div
+                key={idx}
+                variants={fadeInUp}
+                custom={idx}
+                whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                className="glass-card"
+                style={{ padding: '36px' }}
               >
-                01
-              </div>
-              <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '12px' }}>
-                In-Depth Funnel & Ad Audit
-              </h3>
-              <p style={{ fontSize: '15px', color: '#a3a3a3', lineHeight: 1.6 }}>
-                We dissect your past campaigns, ad accounts, pixel tracking, and checkout conversion drop-offs to pinpoint the exact levers for rapid revenue growth.
-              </p>
-            </div>
-
-            {/* Step 2 */}
-            <div className="glass-card" style={{ padding: '36px' }}>
-              <div
-                style={{
-                  fontSize: '44px',
-                  fontFamily: 'var(--font-serif)',
-                  fontStyle: 'italic',
-                  color: '#ff4533',
-                  marginBottom: '16px',
-                }}
-              >
-                02
-              </div>
-              <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '12px' }}>
-                Creative & Campaign Architecture
-              </h3>
-              <p style={{ fontSize: '15px', color: '#a3a3a3', lineHeight: 1.6 }}>
-                Our creative lab produces high-impact UGC hooks, static carousels, and copy angles while we construct clean, scalable ad account structures.
-              </p>
-            </div>
-
-            {/* Step 3 */}
-            <div className="glass-card" style={{ padding: '36px' }}>
-              <div
-                style={{
-                  fontSize: '44px',
-                  fontFamily: 'var(--font-serif)',
-                  fontStyle: 'italic',
-                  color: '#ff4533',
-                  marginBottom: '16px',
-                }}
-              >
-                03
-              </div>
-              <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '12px' }}>
-                Aggressive Scale & Profit Maximization
-              </h3>
-              <p style={{ fontSize: '15px', color: '#a3a3a3', lineHeight: 1.6 }}>
-                We aggressively inject budget into winning creative angles, expand audience reach, and continuously optimize checkout metrics for maximum net margin.
-              </p>
-            </div>
-          </div>
+                <div
+                  style={{
+                    fontSize: '44px',
+                    fontFamily: 'var(--font-serif)',
+                    fontStyle: 'italic',
+                    color: '#ff4533',
+                    marginBottom: '16px',
+                  }}
+                >
+                  {step.num}
+                </div>
+                <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '12px' }}>
+                  {step.title}
+                </h3>
+                <p style={{ fontSize: '15px', color: '#a3a3a3', lineHeight: 1.6 }}>
+                  {step.desc}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
@@ -1149,7 +1200,13 @@ export default function Home() {
       {/* ========================================================================= */}
       <section className="section-spacing" id="reviews">
         <div className="container-custom">
-          <div className="section-header">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7 }}
+            className="section-header"
+          >
             <div className="pill-badge">
               <span>// TESTIMONIALS</span>
             </div>
@@ -1159,9 +1216,13 @@ export default function Home() {
             <p className="section-subtitle">
               Don&apos;t just take our word for it. Here is what leading founders and CMOs have to say.
             </p>
-          </div>
+          </motion.div>
 
-          <div
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
@@ -1169,7 +1230,14 @@ export default function Home() {
             }}
           >
             {testimonials.map((item, idx) => (
-              <div key={idx} className="glass-card" style={{ padding: '32px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <motion.div
+                key={idx}
+                variants={fadeInUp}
+                custom={idx}
+                whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                className="glass-card"
+                style={{ padding: '32px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+              >
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
                     <div style={{ color: '#ffb703', fontSize: '14px', letterSpacing: '2px' }}>★★★★★</div>
@@ -1193,9 +1261,9 @@ export default function Home() {
                     <div style={{ fontSize: '13px', color: '#888' }}>{item.role}</div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -1204,7 +1272,13 @@ export default function Home() {
       {/* ========================================================================= */}
       <section className="section-spacing" id="team" style={{ background: '#050505' }}>
         <div className="container-custom">
-          <div className="section-header">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7 }}
+            className="section-header"
+          >
             <div className="pill-badge pill-badge-orange">
               <span>// THE MINDS</span>
             </div>
@@ -1214,9 +1288,13 @@ export default function Home() {
             <p className="section-subtitle">
               Direct access to seasoned growth architects dedicated to your brand.
             </p>
-          </div>
+          </motion.div>
 
-          <div
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
@@ -1224,14 +1302,21 @@ export default function Home() {
             }}
           >
             {team.map((member, idx) => (
-              <div key={idx} className="glass-card" style={{ overflow: 'hidden' }}>
+              <motion.div
+                key={idx}
+                variants={fadeInUp}
+                custom={idx}
+                whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                className="glass-card"
+                style={{ overflow: 'hidden' }}
+              >
                 <div style={{ width: '100%', height: '240px', overflow: 'hidden' }}>
-                  <img
+                  <motion.img
                     src={member.image}
                     alt={member.name}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s' }}
-                    onMouseOver={(e) => (e.target.style.transform = 'scale(1.05)')}
-                    onMouseOut={(e) => (e.target.style.transform = 'scale(1)')}
+                    whileHover={{ scale: 1.08 }}
+                    transition={{ duration: 0.4 }}
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
                 </div>
                 <div style={{ padding: '24px' }}>
@@ -1243,9 +1328,9 @@ export default function Home() {
                     {member.bio}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -1254,7 +1339,13 @@ export default function Home() {
       {/* ========================================================================= */}
       <section className="section-spacing" id="faq">
         <div className="container-custom">
-          <div className="section-header">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.7 }}
+            className="section-header"
+          >
             <div className="pill-badge">
               <span>// COMMON QUESTIONS</span>
             </div>
@@ -1264,19 +1355,27 @@ export default function Home() {
             <p className="section-subtitle">
               Everything you need to know about our partnership and onboarding process.
             </p>
-          </div>
+          </motion.div>
 
-          <div style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '14px' }}
+          >
             {faqs.map((faq, index) => {
               const isOpen = activeFaq === index;
               return (
-                <div
+                <motion.div
                   key={index}
+                  variants={fadeInUp}
+                  custom={index}
                   className="glass-card"
                   style={{
                     borderRadius: '16px',
                     borderColor: isOpen ? 'rgba(255, 69, 51, 0.3)' : 'rgba(255, 255, 255, 0.08)',
-                    transition: 'all 0.25s ease',
+                    transition: 'border-color 0.25s ease',
                   }}
                 >
                   <button
@@ -1295,7 +1394,9 @@ export default function Home() {
                     }}
                   >
                     <span style={{ fontSize: '16px', fontWeight: 600, paddingRight: '16px' }}>{faq.q}</span>
-                    <span
+                    <motion.span
+                      animate={{ rotate: isOpen ? 45 : 0 }}
+                      transition={{ duration: 0.2 }}
                       style={{
                         width: '28px',
                         height: '28px',
@@ -1307,22 +1408,31 @@ export default function Home() {
                         justifyContent: 'center',
                         fontSize: '18px',
                         flexShrink: 0,
-                        transition: 'all 0.2s',
-                        transform: isOpen ? 'rotate(45deg)' : 'rotate(0deg)',
                       }}
                     >
                       +
-                    </span>
+                    </motion.span>
                   </button>
-                  {isOpen && (
-                    <div style={{ padding: '0 28px 24px 28px', fontSize: '15px', color: '#a3a3a3', lineHeight: 1.6 }}>
-                      {faq.a}
-                    </div>
-                  )}
-                </div>
+
+                  <AnimatePresence>
+                    {isOpen && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                        style={{ overflow: 'hidden' }}
+                      >
+                        <div style={{ padding: '0 28px 24px 28px', fontSize: '15px', color: '#a3a3a3', lineHeight: 1.6 }}>
+                          {faq.a}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -1332,7 +1442,11 @@ export default function Home() {
       <section style={{ padding: '100px 0', position: 'relative', overflow: 'hidden' }}>
         <div className="bg-ambient-cta" />
         <div className="container-custom" style={{ position: 'relative', zIndex: 1 }}>
-          <div
+          <motion.div
+            initial={{ opacity: 0, scale: 0.94, y: 40 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             className="glass-card glass-card-glow"
             style={{
               padding: '60px 40px',
@@ -1353,8 +1467,10 @@ export default function Home() {
               Book a 30-minute free growth strategy call with GDAs. We will audit your current ads and map out a step-by-step roadmap to scale.
             </p>
 
-            <button
+            <motion.button
               onClick={() => setModalOpen(true)}
+              whileHover={{ scale: 1.06 }}
+              whileTap={{ scale: 0.95 }}
               className="btn-primary"
               style={{ padding: '14px 36px', fontSize: '15px' }}
             >
@@ -1362,14 +1478,14 @@ export default function Home() {
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
-            </button>
+            </motion.button>
 
             <div style={{ marginTop: '24px', fontSize: '13px', color: '#777', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px', flexWrap: 'wrap' }}>
               <span>✓ 100% Free Strategy Call</span>
               <span>✓ No Long-Term Retainers</span>
               <span>✓ Actionable Growth Plan</span>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -1378,7 +1494,11 @@ export default function Home() {
       {/* ========================================================================= */}
       <footer style={{ borderTop: '1px solid rgba(255,255,255,0.08)', background: '#050505', padding: '60px 0 40px 0' }}>
         <div className="container-custom">
-          <div
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
@@ -1482,7 +1602,7 @@ export default function Home() {
                 </form>
               )}
             </div>
-          </div>
+          </motion.div>
 
           <div
             style={{
@@ -1509,214 +1629,243 @@ export default function Home() {
       {/* ========================================================================= */}
       {/* 13. VIDEO TESTIMONIAL MODAL POPUP */}
       {/* ========================================================================= */}
-      {videoModal && (
-        <div className="modal-overlay" onClick={() => setVideoModal(null)}>
-          <div
-            className="modal-content"
-            onClick={(e) => e.stopPropagation()}
-            style={{ maxWidth: '720px', padding: '24px' }}
+      <AnimatePresence>
+        {videoModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="modal-overlay"
+            onClick={() => setVideoModal(null)}
           >
-            <button
-              onClick={() => setVideoModal(null)}
-              style={{
-                position: 'absolute',
-                top: '16px',
-                right: '16px',
-                background: 'rgba(255,255,255,0.1)',
-                border: 'none',
-                color: '#fff',
-                width: '32px',
-                height: '32px',
-                borderRadius: '50%',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                fontSize: '16px',
-                zIndex: 10,
-              }}
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className="modal-content"
+              onClick={(e) => e.stopPropagation()}
+              style={{ maxWidth: '720px', padding: '24px' }}
             >
-              ✕
-            </button>
+              <button
+                onClick={() => setVideoModal(null)}
+                style={{
+                  position: 'absolute',
+                  top: '16px',
+                  right: '16px',
+                  background: 'rgba(255,255,255,0.1)',
+                  border: 'none',
+                  color: '#fff',
+                  width: '32px',
+                  height: '32px',
+                  borderRadius: '50%',
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '16px',
+                  zIndex: 10,
+                }}
+              >
+                ✕
+              </button>
 
-            <div style={{ marginBottom: '14px' }}>
-              <div style={{ fontSize: '12px', color: '#ff7766', fontWeight: 700, textTransform: 'uppercase' }}>
-                Client Story · {videoModal.role}
+              <div style={{ marginBottom: '14px' }}>
+                <div style={{ fontSize: '12px', color: '#ff7766', fontWeight: 700, textTransform: 'uppercase' }}>
+                  Client Story · {videoModal.role}
+                </div>
+                <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#fff', marginTop: '2px' }}>
+                  {videoModal.name} on working with GDAs
+                </h3>
               </div>
-              <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#fff', marginTop: '2px' }}>
-                {videoModal.name} on working with GDAs
-              </h3>
-            </div>
 
-            <div style={{ position: 'relative', width: '100%', borderRadius: '14px', overflow: 'hidden', backgroundColor: '#000', aspectRatio: '16/9' }}>
-              <video
-                src={videoModal.videoSrc}
-                controls
-                autoPlay
-                poster={videoModal.thumbnail}
-                style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-              />
-            </div>
+              <div style={{ position: 'relative', width: '100%', borderRadius: '14px', overflow: 'hidden', backgroundColor: '#000', aspectRatio: '16/9' }}>
+                <video
+                  src={videoModal.videoSrc}
+                  controls
+                  autoPlay
+                  poster={videoModal.thumbnail}
+                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
+                />
+              </div>
 
-            <p style={{ fontSize: '14px', color: '#d1d1d1', marginTop: '16px', fontStyle: 'italic', lineHeight: 1.6 }}>
-              &ldquo;{videoModal.quote}&rdquo;
-            </p>
-          </div>
-        </div>
-      )}
+              <p style={{ fontSize: '14px', color: '#d1d1d1', marginTop: '16px', fontStyle: 'italic', lineHeight: 1.6 }}>
+                &ldquo;{videoModal.quote}&rdquo;
+              </p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* ========================================================================= */}
       {/* 14. INTERACTIVE "BOOK A CALL" MODAL */}
       {/* ========================================================================= */}
-      {modalOpen && (
-        <div className="modal-overlay" onClick={() => setModalOpen(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <button
-              onClick={() => setModalOpen(false)}
-              style={{
-                position: 'absolute',
-                top: '20px',
-                right: '20px',
-                background: 'none',
-                border: 'none',
-                color: '#888',
-                cursor: 'pointer',
-                fontSize: '20px',
-              }}
+      <AnimatePresence>
+        {modalOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="modal-overlay"
+            onClick={() => setModalOpen(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className="modal-content"
+              onClick={(e) => e.stopPropagation()}
             >
-              ✕
-            </button>
+              <button
+                onClick={() => setModalOpen(false)}
+                style={{
+                  position: 'absolute',
+                  top: '20px',
+                  right: '20px',
+                  background: 'none',
+                  border: 'none',
+                  color: '#888',
+                  cursor: 'pointer',
+                  fontSize: '20px',
+                }}
+              >
+                ✕
+              </button>
 
-            {modalSubmitted ? (
-              <div style={{ textAlign: 'center', padding: '30px 10px' }}>
-                <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: 'rgba(255,69,51,0.15)', color: '#ff4533', fontSize: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px auto' }}>
-                  ✓
+              {modalSubmitted ? (
+                <div style={{ textAlign: 'center', padding: '30px 10px' }}>
+                  <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: 'rgba(255,69,51,0.15)', color: '#ff4533', fontSize: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px auto' }}>
+                    ✓
+                  </div>
+                  <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#fff', marginBottom: '8px' }}>Application Received!</h3>
+                  <p style={{ fontSize: '14px', color: '#a3a3a3', lineHeight: 1.6 }}>
+                    Our growth strategist will review your brand details and reach out within 2 hours to confirm your strategy call slot.
+                  </p>
                 </div>
-                <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#fff', marginBottom: '8px' }}>Application Received!</h3>
-                <p style={{ fontSize: '14px', color: '#a3a3a3', lineHeight: 1.6 }}>
-                  Our growth strategist will review your brand details and reach out within 2 hours to confirm your strategy call slot.
-                </p>
-              </div>
-            ) : (
-              <div>
-                <div className="pill-badge pill-badge-orange" style={{ marginBottom: '12px' }}>
-                  <span className="pulse-dot" />
-                  <span>Free 30-Min Strategy Call with GDAs</span>
-                </div>
-                <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#fff', marginBottom: '6px' }}>
-                  Book your <span className="serif-italic">Growth Session</span>
-                </h3>
-                <p style={{ fontSize: '13px', color: '#888', marginBottom: '22px' }}>
-                  Tell us about your brand so we can prepare actionable insights before we talk.
-                </p>
-
-                <form onSubmit={handleModalSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                  <div>
-                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#a3a3a3', marginBottom: '5px' }}>
-                      Your Full Name
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="e.g. Alex Morgan"
-                      value={modalForm.name}
-                      onChange={(e) => setModalForm({ ...modalForm, name: e.target.value })}
-                      style={{
-                        width: '100%',
-                        padding: '10px 14px',
-                        background: '#161616',
-                        border: '1px solid rgba(255,255,255,0.1)',
-                        borderRadius: '8px',
-                        color: '#fff',
-                        fontSize: '14px',
-                        outline: 'none',
-                      }}
-                    />
+              ) : (
+                <div>
+                  <div className="pill-badge pill-badge-orange" style={{ marginBottom: '12px' }}>
+                    <span className="pulse-dot" />
+                    <span>Free 30-Min Strategy Call with GDAs</span>
                   </div>
+                  <h3 style={{ fontSize: '24px', fontWeight: 700, color: '#fff', marginBottom: '6px' }}>
+                    Book your <span className="serif-italic">Growth Session</span>
+                  </h3>
+                  <p style={{ fontSize: '13px', color: '#888', marginBottom: '22px' }}>
+                    Tell us about your brand so we can prepare actionable insights before we talk.
+                  </p>
 
-                  <div>
-                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#a3a3a3', marginBottom: '5px' }}>
-                      Work Email
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      placeholder="alex@yourbrand.com"
-                      value={modalForm.email}
-                      onChange={(e) => setModalForm({ ...modalForm, email: e.target.value })}
-                      style={{
-                        width: '100%',
-                        padding: '10px 14px',
-                        background: '#161616',
-                        border: '1px solid rgba(255,255,255,0.1)',
-                        borderRadius: '8px',
-                        color: '#fff',
-                        fontSize: '14px',
-                        outline: 'none',
-                      }}
-                    />
-                  </div>
+                  <form onSubmit={handleModalSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                    <div>
+                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#a3a3a3', marginBottom: '5px' }}>
+                        Your Full Name
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        placeholder="e.g. Alex Morgan"
+                        value={modalForm.name}
+                        onChange={(e) => setModalForm({ ...modalForm, name: e.target.value })}
+                        style={{
+                          width: '100%',
+                          padding: '10px 14px',
+                          background: '#161616',
+                          border: '1px solid rgba(255,255,255,0.1)',
+                          borderRadius: '8px',
+                          color: '#fff',
+                          fontSize: '14px',
+                          outline: 'none',
+                        }}
+                      />
+                    </div>
 
-                  <div>
-                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#a3a3a3', marginBottom: '5px' }}>
-                      Website or Store URL
-                    </label>
-                    <input
-                      type="url"
-                      placeholder="https://yourbrand.com"
-                      value={modalForm.website}
-                      onChange={(e) => setModalForm({ ...modalForm, website: e.target.value })}
-                      style={{
-                        width: '100%',
-                        padding: '10px 14px',
-                        background: '#161616',
-                        border: '1px solid rgba(255,255,255,0.1)',
-                        borderRadius: '8px',
-                        color: '#fff',
-                        fontSize: '14px',
-                        outline: 'none',
-                      }}
-                    />
-                  </div>
+                    <div>
+                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#a3a3a3', marginBottom: '5px' }}>
+                        Work Email
+                      </label>
+                      <input
+                        type="email"
+                        required
+                        placeholder="alex@yourbrand.com"
+                        value={modalForm.email}
+                        onChange={(e) => setModalForm({ ...modalForm, email: e.target.value })}
+                        style={{
+                          width: '100%',
+                          padding: '10px 14px',
+                          background: '#161616',
+                          border: '1px solid rgba(255,255,255,0.1)',
+                          borderRadius: '8px',
+                          color: '#fff',
+                          fontSize: '14px',
+                          outline: 'none',
+                        }}
+                      />
+                    </div>
 
-                  <div>
-                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#a3a3a3', marginBottom: '5px' }}>
-                      Monthly Ad Spend
-                    </label>
-                    <select
-                      value={modalForm.spend}
-                      onChange={(e) => setModalForm({ ...modalForm, spend: e.target.value })}
-                      style={{
-                        width: '100%',
-                        padding: '10px 14px',
-                        background: '#161616',
-                        border: '1px solid rgba(255,255,255,0.1)',
-                        borderRadius: '8px',
-                        color: '#fff',
-                        fontSize: '14px',
-                        outline: 'none',
-                      }}
+                    <div>
+                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#a3a3a3', marginBottom: '5px' }}>
+                        Website or Store URL
+                      </label>
+                      <input
+                        type="url"
+                        placeholder="https://yourbrand.com"
+                        value={modalForm.website}
+                        onChange={(e) => setModalForm({ ...modalForm, website: e.target.value })}
+                        style={{
+                          width: '100%',
+                          padding: '10px 14px',
+                          background: '#161616',
+                          border: '1px solid rgba(255,255,255,0.1)',
+                          borderRadius: '8px',
+                          color: '#fff',
+                          fontSize: '14px',
+                          outline: 'none',
+                        }}
+                      />
+                    </div>
+
+                    <div>
+                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#a3a3a3', marginBottom: '5px' }}>
+                        Monthly Ad Spend
+                      </label>
+                      <select
+                        value={modalForm.spend}
+                        onChange={(e) => setModalForm({ ...modalForm, spend: e.target.value })}
+                        style={{
+                          width: '100%',
+                          padding: '10px 14px',
+                          background: '#161616',
+                          border: '1px solid rgba(255,255,255,0.1)',
+                          borderRadius: '8px',
+                          color: '#fff',
+                          fontSize: '14px',
+                          outline: 'none',
+                        }}
+                      >
+                        <option value="<$5k">&lt; $5k / month</option>
+                        <option value="$5k - $15k">$5k - $15k / month</option>
+                        <option value="$15k - $50k">$15k - $50k / month</option>
+                        <option value="$50k+">$50k+ / month</option>
+                      </select>
+                    </div>
+
+                    <motion.button
+                      type="submit"
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="btn-primary"
+                      style={{ marginTop: '8px', width: '100%', padding: '12px' }}
                     >
-                      <option value="<$5k">&lt; $5k / month</option>
-                      <option value="$5k - $15k">$5k - $15k / month</option>
-                      <option value="$15k - $50k">$15k - $50k / month</option>
-                      <option value="$50k+">$50k+ / month</option>
-                    </select>
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="btn-primary"
-                    style={{ marginTop: '8px', width: '100%', padding: '12px' }}
-                  >
-                    Confirm Call Request
-                  </button>
-                </form>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+                      Confirm Call Request
+                    </motion.button>
+                  </form>
+                </div>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Global Responsive Fix for Mobile Navigation */}
       <style jsx global>{`

@@ -1,9 +1,9 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'Conversion — Framer Website Template for Agencies | Paid Ads & Growth',
-  description: 'The Conversion Framer template is perfect for digital marketing agencies and freelancers who want a clean, modern, and sleek website that will convert visitors into leads and clients.',
-  keywords: 'paid ads agency, digital marketing, Meta ads, Google ads, TikTok ads, conversion agency',
+  title: 'GDAs — Performance Paid Ads Agency | Scale Your Brand',
+  description: 'GDAs (Ganesha Digital Ads) is a performance-driven paid acquisition agency helping DTC and high-growth brands scale with Meta, Google & TikTok ads.',
+  keywords: 'GDAs, Ganesha Digital Ads, paid ads agency, digital marketing, Meta ads, Google ads, TikTok ads, conversion agency',
 };
 
 export default function RootLayout({ children }) {

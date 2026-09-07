@@ -46,9 +46,10 @@ export default function Home() {
   });
   const [modalSubmitted, setModalSubmitted] = useState(false);
 
-  // Custom Cursor State
+  // Custom Animated Blinking Eyes Cursor State
   const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
   const [cursorHovered, setCursorHovered] = useState(false);
+  const [isBlinking, setIsBlinking] = useState(false);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
@@ -57,7 +58,26 @@ export default function Home() {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
     window.addEventListener('mousemove', updateMouse);
-    return () => window.removeEventListener('mousemove', updateMouse);
+
+    // Periodic organic Eye Blinking
+    const blinkInterval = setInterval(() => {
+      setIsBlinking(true);
+      setTimeout(() => {
+        setIsBlinking(false);
+        // Occasional playful double blink
+        if (Math.random() > 0.65) {
+          setTimeout(() => {
+            setIsBlinking(true);
+            setTimeout(() => setIsBlinking(false), 120);
+          }, 160);
+        }
+      }, 150);
+    }, 3600);
+
+    return () => {
+      window.removeEventListener('mousemove', updateMouse);
+      clearInterval(blinkInterval);
+    };
   }, []);
 
   // Performance Dashboard Data dictionary for 7D, 30D, 90D, 1Y
@@ -142,7 +162,7 @@ export default function Home() {
 
   const currentStats = timeframeData[activeTimeframe];
 
-  // Video Testimonials List (6 items for Carousel Navigation)
+  // Video Testimonials List
   const clientVideos = [
     {
       id: 1,
@@ -206,7 +226,7 @@ export default function Home() {
     },
   ];
 
-  // Extended Services List (6 items with Carousel Navigation)
+  // Extended Services List
   const servicesList = [
     {
       badge: 'META ADS',
@@ -343,53 +363,112 @@ export default function Home() {
       }}
     >
       {/* ========================================================================= */}
-      {/* CUSTOM CURSOR DOT & RING */}
+      {/* ANIMATED BLINKING GOOGLY EYES CURSOR */}
       {/* ========================================================================= */}
       {isClient && (
-        <>
+        <motion.div
+          className="custom-eyes-cursor"
+          animate={{
+            x: mousePosition.x - 17,
+            y: mousePosition.y - 14,
+            scale: cursorHovered ? 1.2 : 1,
+          }}
+          transition={{ type: 'spring', damping: 28, stiffness: 420, mass: 0.12 }}
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '3px',
+            pointerEvents: 'none',
+            zIndex: 99999,
+          }}
+        >
+          {/* Left Eye */}
           <motion.div
-            className="cursor-dot"
-            animate={{
-              x: mousePosition.x - 4,
-              y: mousePosition.y - 4,
-              scale: cursorHovered ? 1.6 : 1,
-            }}
-            transition={{ type: 'spring', damping: 30, stiffness: 450, mass: 0.1 }}
+            animate={{ scaleY: isBlinking ? 0.08 : 1 }}
+            transition={{ duration: 0.09, ease: 'easeInOut' }}
             style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              width: '8px',
-              height: '8px',
-              borderRadius: '50%',
-              backgroundColor: '#ff4533',
-              pointerEvents: 'none',
-              zIndex: 99999,
-              boxShadow: '0 0 12px #ff4533, 0 0 4px #ffffff',
+              width: '15px',
+              height: '24px',
+              backgroundColor: '#ffffff',
+              borderRadius: '12px',
+              position: 'relative',
+              overflow: 'hidden',
+              boxShadow: '0 3px 10px rgba(0,0,0,0.6)',
+              transformOrigin: 'center center',
             }}
-          />
+          >
+            {/* Pupil (Top-Left look matching reference image) */}
+            <div
+              style={{
+                position: 'absolute',
+                top: '3px',
+                left: '2px',
+                width: '10px',
+                height: '14px',
+                backgroundColor: '#000000',
+                borderRadius: '50%',
+              }}
+            >
+              {/* Eye Catchlight / Glint */}
+              <div
+                style={{
+                  position: 'absolute',
+                  bottom: '3px',
+                  right: '3px',
+                  width: '2.5px',
+                  height: '2.5px',
+                  backgroundColor: '#ffffff',
+                  borderRadius: '50%',
+                }}
+              />
+            </div>
+          </motion.div>
+
+          {/* Right Eye */}
           <motion.div
-            className="cursor-ring"
-            animate={{
-              x: mousePosition.x - 16,
-              y: mousePosition.y - 16,
-              scale: cursorHovered ? 1.4 : 1,
-              borderColor: cursorHovered ? '#ff4533' : 'rgba(255, 69, 51, 0.4)',
-            }}
-            transition={{ type: 'spring', damping: 24, stiffness: 220, mass: 0.2 }}
+            animate={{ scaleY: isBlinking ? 0.08 : 1 }}
+            transition={{ duration: 0.09, ease: 'easeInOut' }}
             style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              width: '32px',
-              height: '32px',
-              borderRadius: '50%',
-              border: '1.5px solid rgba(255, 69, 51, 0.4)',
-              pointerEvents: 'none',
-              zIndex: 99998,
+              width: '15px',
+              height: '24px',
+              backgroundColor: '#ffffff',
+              borderRadius: '12px',
+              position: 'relative',
+              overflow: 'hidden',
+              boxShadow: '0 3px 10px rgba(0,0,0,0.6)',
+              transformOrigin: 'center center',
             }}
-          />
-        </>
+          >
+            {/* Pupil (Top-Left look matching reference image) */}
+            <div
+              style={{
+                position: 'absolute',
+                top: '3px',
+                left: '2px',
+                width: '10px',
+                height: '14px',
+                backgroundColor: '#000000',
+                borderRadius: '50%',
+              }}
+            >
+              {/* Eye Catchlight / Glint */}
+              <div
+                style={{
+                  position: 'absolute',
+                  bottom: '3px',
+                  right: '3px',
+                  width: '2.5px',
+                  height: '2.5px',
+                  backgroundColor: '#ffffff',
+                  borderRadius: '50%',
+                }}
+              />
+            </div>
+          </motion.div>
+        </motion.div>
       )}
 
       {/* Top Ambient Glow */}
@@ -637,7 +716,7 @@ export default function Home() {
           </motion.div>
 
           {/* ========================================================================= */}
-          {/* DYNAMIC INTERACTIVE PERFORMANCE DASHBOARD (CLICKING 7D, 30D, 90D, 1Y UPDATES STATS & CHART!) */}
+          {/* INTERACTIVE PERFORMANCE DASHBOARD (7D, 30D, 90D, 1Y) */}
           {/* ========================================================================= */}
           <motion.div
             initial={{ opacity: 0, filter: 'blur(14px)', y: 40, scale: 0.96 }}
@@ -701,7 +780,7 @@ export default function Home() {
               </div>
             </div>
 
-            {/* 4 Stat Cards with Animated Values */}
+            {/* 4 Stat Cards */}
             <div
               style={{
                 display: 'grid',
@@ -779,7 +858,7 @@ export default function Home() {
               </AnimatePresence>
             </div>
 
-            {/* Glowing Chart Visual with Dynamic Path Transition */}
+            {/* Glowing Chart Visual */}
             <div style={{ position: 'relative', width: '100%', height: '160px' }}>
               <svg viewBox="0 0 800 160" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
                 <defs>
@@ -884,7 +963,7 @@ export default function Home() {
       </motion.section>
 
       {/* ========================================================================= */}
-      {/* 4. OUR CLIENTS VIDEO CAROUSEL WITH ARROW NAVIGATION (< and >) */}
+      {/* 4. OUR CLIENTS VIDEO CAROUSEL (< and >) */}
       {/* ========================================================================= */}
       <section className="section-spacing" id="client-videos" style={{ position: 'relative' }}>
         <div className="container-custom">
@@ -1063,7 +1142,7 @@ export default function Home() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 5. SERVICES SECTION WITH ARROW NAVIGATION (< and >) */}
+      {/* 5. SERVICES SECTION (< and >) */}
       {/* ========================================================================= */}
       <section className="section-spacing" id="services" style={{ background: 'linear-gradient(180deg, #000 0%, #080808 50%, #000 100%)' }}>
         <div className="container-custom">
@@ -1123,7 +1202,7 @@ export default function Home() {
                 gap: '20px',
               }}
             >
-              {servicesList.slice(serviceSliderIndex, serviceSliderIndex + 3).map((srv, idx) => (
+              {servicesList.slice(serviceSliderIndex, serviceSliderIndex + 3).map((srv) => (
                 <motion.div
                   key={srv.title}
                   initial={{ opacity: 0, filter: 'blur(8px)', scale: 0.96 }}
@@ -1844,7 +1923,7 @@ export default function Home() {
           }
         }
         @media (pointer: coarse) {
-          .cursor-dot, .cursor-ring {
+          .custom-eyes-cursor {
             display: none !important;
           }
         }

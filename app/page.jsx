@@ -68,22 +68,22 @@ export default function Home() {
 
       setMousePosition({ x: curX, y: curY });
 
-      // Dynamic gaze direction: shifts right on moving right, up on moving up, etc.
-      const moveNormX = Math.max(-1, Math.min(1, dx / 10));
-      const moveNormY = Math.max(-1, Math.min(1, dy / 10));
+      // Dynamic gaze direction: shifts all the way to the corner/edge when moving
+      const moveNormX = Math.max(-1, Math.min(1, dx / 6));
+      const moveNormY = Math.max(-1, Math.min(1, dy / 6));
 
       const vpNormX = ((curX / (window.innerWidth || 1)) - 0.5) * 2;
       const vpNormY = ((curY / (window.innerHeight || 1)) - 0.5) * 2;
 
       // Weighted combination of cursor movement vector & viewport position
-      const combinedX = Math.max(-1, Math.min(1, moveNormX * 0.7 + vpNormX * 0.3));
-      const combinedY = Math.max(-1, Math.min(1, moveNormY * 0.7 + vpNormY * 0.3));
+      const combinedX = Math.max(-1, Math.min(1, moveNormX * 0.75 + vpNormX * 0.45));
+      const combinedY = Math.max(-1, Math.min(1, moveNormY * 0.75 + vpNormY * 0.45));
 
-      // Range inside the 16x26 capsule (pupil is 10x14):
-      // Center is (3px, 6px) -> X range [0.8px, 5.2px], Y range [2px, 10px]
+      // Broad range reaching extreme corners and slightly outside white capsule edge
+      // Capsule is 16x26, Pupil is 11x15
       setPupilOffset({
-        x: 3 + combinedX * 2.2,
-        y: 6 + combinedY * 4,
+        x: 2.5 + combinedX * 4.8,
+        y: 5.5 + combinedY * 6.8,
       });
     };
     window.addEventListener('mousemove', updateMouse);
@@ -424,12 +424,11 @@ export default function Home() {
               backgroundColor: '#ffffff',
               borderRadius: '13px',
               position: 'relative',
-              overflow: 'hidden',
-              boxShadow: '0 3px 10px rgba(0,0,0,0.6)',
+              boxShadow: '0 3px 12px rgba(0,0,0,0.7)',
               transformOrigin: 'center center',
             }}
           >
-            {/* Pupil (Shifts dynamically when moving right/left/up/down) */}
+            {/* Pupil (Shifts dynamically all the way to the edge & corner) */}
             <motion.div
               animate={{
                 x: pupilOffset.x,
@@ -437,16 +436,16 @@ export default function Home() {
               }}
               transition={{
                 type: 'spring',
-                damping: 22,
-                stiffness: 380,
+                damping: 20,
+                stiffness: 400,
                 mass: 0.08,
               }}
               style={{
                 position: 'absolute',
                 top: 0,
                 left: 0,
-                width: '10px',
-                height: '14px',
+                width: '11px',
+                height: '15px',
                 backgroundColor: '#000000',
                 borderRadius: '50%',
               }}
@@ -476,12 +475,11 @@ export default function Home() {
               backgroundColor: '#ffffff',
               borderRadius: '13px',
               position: 'relative',
-              overflow: 'hidden',
-              boxShadow: '0 3px 10px rgba(0,0,0,0.6)',
+              boxShadow: '0 3px 12px rgba(0,0,0,0.7)',
               transformOrigin: 'center center',
             }}
           >
-            {/* Pupil (Shifts dynamically when moving right/left/up/down) */}
+            {/* Pupil (Shifts dynamically all the way to the edge & corner) */}
             <motion.div
               animate={{
                 x: pupilOffset.x,
@@ -489,16 +487,16 @@ export default function Home() {
               }}
               transition={{
                 type: 'spring',
-                damping: 22,
-                stiffness: 380,
+                damping: 20,
+                stiffness: 400,
                 mass: 0.08,
               }}
               style={{
                 position: 'absolute',
                 top: 0,
                 left: 0,
-                width: '10px',
-                height: '14px',
+                width: '11px',
+                height: '15px',
                 backgroundColor: '#000000',
                 borderRadius: '50%',
               }}

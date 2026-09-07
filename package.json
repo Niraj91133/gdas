@@ -1,0 +1,16 @@
+{
+  "name": "portfolio-clone",
+  "version": "1.0.0",
+  "description": "Portfolio clone",
+  "main": "server.js",
+  "scripts": {
+    "dev": "next dev -p 3001",
+    "build": "next build",
+    "start": "next start -p 3001"
+  },
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  }
+}

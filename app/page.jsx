@@ -48,14 +48,43 @@ export default function Home() {
 
   // Custom Animated Blinking Eyes Cursor State
   const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
+  const [pupilOffset, setPupilOffset] = useState({ x: 3, y: 6 });
   const [cursorHovered, setCursorHovered] = useState(false);
   const [isBlinking, setIsBlinking] = useState(false);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
+    let prevX = typeof window !== 'undefined' ? window.innerWidth / 2 : 0;
+    let prevY = typeof window !== 'undefined' ? window.innerHeight / 2 : 0;
+
     const updateMouse = (e) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+      const curX = e.clientX;
+      const curY = e.clientY;
+      const dx = curX - prevX;
+      const dy = curY - prevY;
+      prevX = curX;
+      prevY = curY;
+
+      setMousePosition({ x: curX, y: curY });
+
+      // Dynamic gaze direction: shifts right on moving right, up on moving up, etc.
+      const moveNormX = Math.max(-1, Math.min(1, dx / 10));
+      const moveNormY = Math.max(-1, Math.min(1, dy / 10));
+
+      const vpNormX = ((curX / (window.innerWidth || 1)) - 0.5) * 2;
+      const vpNormY = ((curY / (window.innerHeight || 1)) - 0.5) * 2;
+
+      // Weighted combination of cursor movement vector & viewport position
+      const combinedX = Math.max(-1, Math.min(1, moveNormX * 0.7 + vpNormX * 0.3));
+      const combinedY = Math.max(-1, Math.min(1, moveNormY * 0.7 + vpNormY * 0.3));
+
+      // Range inside the 16x26 capsule (pupil is 10x14):
+      // Center is (3px, 6px) -> X range [0.8px, 5.2px], Y range [2px, 10px]
+      setPupilOffset({
+        x: 3 + combinedX * 2.2,
+        y: 6 + combinedY * 4,
+      });
     };
     window.addEventListener('mousemove', updateMouse);
 
@@ -390,22 +419,32 @@ export default function Home() {
             animate={{ scaleY: isBlinking ? 0.08 : 1 }}
             transition={{ duration: 0.09, ease: 'easeInOut' }}
             style={{
-              width: '15px',
-              height: '24px',
+              width: '16px',
+              height: '26px',
               backgroundColor: '#ffffff',
-              borderRadius: '12px',
+              borderRadius: '13px',
               position: 'relative',
               overflow: 'hidden',
               boxShadow: '0 3px 10px rgba(0,0,0,0.6)',
               transformOrigin: 'center center',
             }}
           >
-            {/* Pupil (Top-Left look matching reference image) */}
-            <div
+            {/* Pupil (Shifts dynamically when moving right/left/up/down) */}
+            <motion.div
+              animate={{
+                x: pupilOffset.x,
+                y: pupilOffset.y,
+              }}
+              transition={{
+                type: 'spring',
+                damping: 22,
+                stiffness: 380,
+                mass: 0.08,
+              }}
               style={{
                 position: 'absolute',
-                top: '3px',
-                left: '2px',
+                top: 0,
+                left: 0,
                 width: '10px',
                 height: '14px',
                 backgroundColor: '#000000',
@@ -424,7 +463,7 @@ export default function Home() {
                   borderRadius: '50%',
                 }}
               />
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Right Eye */}
@@ -432,22 +471,32 @@ export default function Home() {
             animate={{ scaleY: isBlinking ? 0.08 : 1 }}
             transition={{ duration: 0.09, ease: 'easeInOut' }}
             style={{
-              width: '15px',
-              height: '24px',
+              width: '16px',
+              height: '26px',
               backgroundColor: '#ffffff',
-              borderRadius: '12px',
+              borderRadius: '13px',
               position: 'relative',
               overflow: 'hidden',
               boxShadow: '0 3px 10px rgba(0,0,0,0.6)',
               transformOrigin: 'center center',
             }}
           >
-            {/* Pupil (Top-Left look matching reference image) */}
-            <div
+            {/* Pupil (Shifts dynamically when moving right/left/up/down) */}
+            <motion.div
+              animate={{
+                x: pupilOffset.x,
+                y: pupilOffset.y,
+              }}
+              transition={{
+                type: 'spring',
+                damping: 22,
+                stiffness: 380,
+                mass: 0.08,
+              }}
               style={{
                 position: 'absolute',
-                top: '3px',
-                left: '2px',
+                top: 0,
+                left: 0,
                 width: '10px',
                 height: '14px',
                 backgroundColor: '#000000',
@@ -466,7 +515,7 @@ export default function Home() {
                   borderRadius: '50%',
                 }}
               />
-            </div>
+            </motion.div>
           </motion.div>
         </motion.div>
       )}

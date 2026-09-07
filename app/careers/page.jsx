@@ -179,15 +179,16 @@ export default function CareersPage() {
           <Link href="/" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: '#fff' }}>
             <div
               style={{
-                width: '32px',
-                height: '32px',
-                borderRadius: '8px',
-                background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+                width: '34px',
+                height: '34px',
+                borderRadius: '9px',
+                background: '#0d3899',
+                border: '1px solid rgba(59, 130, 246, 0.4)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                padding: '4px',
-                boxShadow: '0 2px 10px rgba(37, 99, 235, 0.35)',
+                overflow: 'hidden',
+                boxShadow: '0 2px 12px rgba(37, 99, 235, 0.4)',
               }}
             >
               <img
@@ -196,7 +197,7 @@ export default function CareersPage() {
                 style={{
                   width: '100%',
                   height: '100%',
-                  objectFit: 'contain',
+                  objectFit: 'cover',
                 }}
               />
             </div>
@@ -324,14 +325,15 @@ export default function CareersPage() {
             <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: '#fff' }}>
               <div
                 style={{
-                  width: '28px',
-                  height: '28px',
-                  borderRadius: '7px',
-                  background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+                  width: '30px',
+                  height: '30px',
+                  borderRadius: '8px',
+                  background: '#0d3899',
+                  border: '1px solid rgba(59, 130, 246, 0.4)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  padding: '3px',
+                  overflow: 'hidden',
                   boxShadow: '0 2px 8px rgba(37, 99, 235, 0.3)',
                 }}
               >
@@ -341,7 +343,7 @@ export default function CareersPage() {
                   style={{
                     width: '100%',
                     height: '100%',
-                    objectFit: 'contain',
+                    objectFit: 'cover',
                   }}
                 />
               </div>

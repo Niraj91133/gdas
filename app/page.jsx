@@ -35,8 +35,8 @@ export default function Home() {
   const [videoModal, setVideoModal] = useState(null);
   const [activeFaq, setActiveFaq] = useState(0);
   const [activeTimeframe, setActiveTimeframe] = useState('30D');
-  const [newsletterEmail, setNewsletterEmail] = useState('');
-  const [newsletterSubmitted, setNewsletterSubmitted] = useState(false);
+  const [videoSliderIndex, setVideoSliderIndex] = useState(0);
+  const [serviceSliderIndex, setServiceSliderIndex] = useState(0);
   const [modalForm, setModalForm] = useState({
     name: '',
     email: '',
@@ -60,7 +60,89 @@ export default function Home() {
     return () => window.removeEventListener('mousemove', updateMouse);
   }, []);
 
-  // Video Testimonials (Concise & Punchy)
+  // Performance Dashboard Data dictionary for 7D, 30D, 90D, 1Y
+  const timeframeData = {
+    '7D': {
+      revenue: '$48,250',
+      revenueGrowth: '↑ +38.4%',
+      roas: '6.12x',
+      roasTarget: 'Target: 3.50x',
+      spend: '$7,880',
+      spendChannels: 'Meta & Google',
+      orders: '650',
+      aov: 'Avg AOV $74.2',
+      peakRoas: '8.4x',
+      linePath: 'M0,135 Q100,115 200,90 T400,60 T600,25 T800,10',
+      areaPath: 'M0,135 Q100,115 200,90 T400,60 T600,25 T800,10 L800,160 L0,160 Z',
+      dots: [
+        { cx: 200, cy: 90 },
+        { cx: 400, cy: 60 },
+        { cx: 600, cy: 25 },
+        { cx: 800, cy: 10 },
+      ],
+    },
+    '30D': {
+      revenue: '$184,920',
+      revenueGrowth: '↑ +142.8%',
+      roas: '5.84x',
+      roasTarget: 'Target: 3.50x',
+      spend: '$31,650',
+      spendChannels: 'Meta & Google',
+      orders: '2,490',
+      aov: 'Avg AOV $74.2',
+      peakRoas: '7.2x',
+      linePath: 'M0,140 Q100,120 200,105 T400,75 T600,35 T800,15',
+      areaPath: 'M0,140 Q100,120 200,105 T400,75 T600,35 T800,15 L800,160 L0,160 Z',
+      dots: [
+        { cx: 200, cy: 105 },
+        { cx: 400, cy: 75 },
+        { cx: 600, cy: 35 },
+        { cx: 800, cy: 15 },
+      ],
+    },
+    '90D': {
+      revenue: '$592,400',
+      revenueGrowth: '↑ +210.5%',
+      roas: '5.45x',
+      roasTarget: 'Target: 3.50x',
+      spend: '$108,700',
+      spendChannels: 'Meta, Google & TikTok',
+      orders: '7,980',
+      aov: 'Avg AOV $74.2',
+      peakRoas: '6.8x',
+      linePath: 'M0,150 Q100,135 200,110 T400,65 T600,30 T800,8',
+      areaPath: 'M0,150 Q100,135 200,110 T400,65 T600,30 T800,8 L800,160 L0,160 Z',
+      dots: [
+        { cx: 200, cy: 110 },
+        { cx: 400, cy: 65 },
+        { cx: 600, cy: 30 },
+        { cx: 800, cy: 8 },
+      ],
+    },
+    '1Y': {
+      revenue: '$2,410,000',
+      revenueGrowth: '↑ +340.2%',
+      roas: '5.18x',
+      roasTarget: 'Target: 3.50x',
+      spend: '$465,000',
+      spendChannels: 'Multi-Channel Scale',
+      orders: '32,480',
+      aov: 'Avg AOV $74.2',
+      peakRoas: '6.4x',
+      linePath: 'M0,155 Q100,130 200,95 T400,50 T600,20 T800,5',
+      areaPath: 'M0,155 Q100,130 200,95 T400,50 T600,20 T800,5 L800,160 L0,160 Z',
+      dots: [
+        { cx: 200, cy: 95 },
+        { cx: 400, cy: 50 },
+        { cx: 600, cy: 20 },
+        { cx: 800, cy: 5 },
+      ],
+    },
+  };
+
+  const currentStats = timeframeData[activeTimeframe];
+
+  // Video Testimonials List (6 items for Carousel Navigation)
   const clientVideos = [
     {
       id: 1,
@@ -92,9 +174,125 @@ export default function Home() {
       role: 'CEO, Wednesday',
       videoSrc: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4',
     },
+    {
+      id: 4,
+      thumbnail: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&auto=format&fit=crop&q=80',
+      brandLogo: 'LUMINA',
+      brandType: 'bold',
+      quote: 'Scaling past $100k/mo felt seamless with the GDAs performance team.',
+      name: 'Sarah Chen',
+      role: 'CMO, Aura Skincare',
+      videoSrc: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+    },
+    {
+      id: 5,
+      thumbnail: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&auto=format&fit=crop&q=80',
+      brandLogo: 'WAVE',
+      brandType: 'bold',
+      quote: 'Their viral TikTok UGC doubled our customer acquisition at half the cost.',
+      name: 'David Keller',
+      role: 'Co-Founder, Wave Audio',
+      videoSrc: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+    },
+    {
+      id: 6,
+      thumbnail: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&auto=format&fit=crop&q=80',
+      brandLogo: 'KINETIX',
+      brandType: 'bold',
+      quote: 'Transparent dashboards and net profit focus. The best growth decision we made.',
+      name: 'Elena Rostova',
+      role: 'Director, Kinetix Gear',
+      videoSrc: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4',
+    },
   ];
 
-  // Concise FAQ Data
+  // Extended Services List (6 items with Carousel Navigation)
+  const servicesList = [
+    {
+      badge: 'META ADS',
+      title: 'Facebook & Instagram',
+      desc: 'Advantage+ scaling & creative hook testing for maximum revenue volume.',
+      features: ['Advantage+ Campaigns', 'UGC Creative Angles', 'CAPI Server Tracking'],
+    },
+    {
+      badge: 'GOOGLE ADS',
+      title: 'Search & PMax',
+      desc: 'Capture active buyer intent with targeted Search & Performance Max funnels.',
+      features: ['Performance Max Setup', 'High-Intent Keywords', 'YouTube Retargeting'],
+    },
+    {
+      badge: 'TIKTOK ADS',
+      title: 'TikTok & UGC',
+      desc: 'Creator Spark ads and viral hooks that convert views directly to buyers.',
+      features: ['Creator Spark Sourcing', 'First 3-Sec Hook Matrix', 'Native TikTok Edits'],
+    },
+    {
+      badge: 'OPTIMIZATION',
+      title: 'CRO & Creatives',
+      desc: 'High-converting landing pages & A/B testing to double checkout rates.',
+      features: ['Advertorial Landers', 'Checkout AOV Boost', 'Split Testing'],
+    },
+    {
+      badge: 'RETENTION',
+      title: 'Email & SMS Marketing',
+      desc: 'Klaviyo automated flows and SMS campaigns to maximize customer LTV.',
+      features: ['Abandoned Cart Flows', 'VIP Post-Purchase', 'Weekly Campaign Drops'],
+    },
+    {
+      badge: 'INFLUENCER',
+      title: 'Creator Whitelisting',
+      desc: 'Running dark ads through verified creator handles to boost ad trust.',
+      features: ['Creator Outreach', 'Contract & Rights', 'Spark Whitelisting'],
+    },
+  ];
+
+  // Auto-scrolling Review Testimonials
+  const reviewsMarquee = [
+    {
+      quote: 'GDAs scaled our Meta ads from $12k/mo to $95k/mo at 4.6x ROAS.',
+      name: 'Alex Vance',
+      role: 'CEO, Lumina',
+      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+      roas: '4.6x ROAS',
+    },
+    {
+      quote: 'They restructured our Google PMax campaigns and cut CPA by 43%.',
+      name: 'Marcus Sterling',
+      role: 'Growth Lead, Zenith',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
+      roas: '+184% Rev',
+    },
+    {
+      quote: 'Direct Slack channel with 5-minute response times. Game changer.',
+      name: 'Sophia Chen',
+      role: 'CMO, Aura Skincare',
+      avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&auto=format&fit=crop&q=80',
+      roas: '5.2x ROAS',
+    },
+    {
+      quote: 'Their viral TikTok UGC brought 1,200+ new buyers in the first month.',
+      name: 'David Keller',
+      role: 'Co-Founder, Wave',
+      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
+      roas: '1.2k Leads',
+    },
+    {
+      quote: 'Transparent dashboards and net profit focus. Best agency partner.',
+      name: 'Elena Rostova',
+      role: 'Director, Kinetix',
+      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80',
+      roas: '3.9x Blended',
+    },
+    {
+      quote: 'Doubled our store revenue in 60 days with hook variation testing.',
+      name: 'Ryan Patel',
+      role: 'Founder, Origin',
+      avatar: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=150&auto=format&fit=crop&q=80',
+      roas: '2.1x Growth',
+    },
+  ];
+
+  // FAQ Data
   const faqs = [
     {
       q: 'How fast do we see results?',
@@ -118,55 +316,6 @@ export default function Home() {
     },
   ];
 
-  // Concise Written Testimonials
-  const testimonials = [
-    {
-      quote: 'GDAs scaled our Meta ads from $12k/mo to $95k/mo at 4.6x ROAS.',
-      name: 'Alex Vance',
-      role: 'CEO, Lumina',
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
-      roas: '4.6x ROAS',
-    },
-    {
-      quote: 'They restructured our Google PMax campaigns and cut CPA by 43%.',
-      name: 'Marcus Sterling',
-      role: 'Growth Lead, Zenith',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
-      roas: '+184% Rev',
-    },
-    {
-      quote: 'Direct Slack communication with 5-minute response times. Game changer.',
-      name: 'Sophia Chen',
-      role: 'CMO, Aura Skincare',
-      avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&auto=format&fit=crop&q=80',
-      roas: '5.2x ROAS',
-    },
-  ];
-
-  // Team
-  const team = [
-    {
-      name: 'Hamza Ehsan',
-      role: 'Head of Growth',
-      image: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=400&auto=format&fit=crop&q=80',
-    },
-    {
-      name: 'Sarah Jenkins',
-      role: 'Lead Media Buyer',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&auto=format&fit=crop&q=80',
-    },
-    {
-      name: 'Julian Ross',
-      role: 'Google & Search Lead',
-      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&auto=format&fit=crop&q=80',
-    },
-    {
-      name: 'Maya Lin',
-      role: 'Creative Director',
-      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&auto=format&fit=crop&q=80',
-    },
-  ];
-
   // Brands list for marquee
   const brands = [
     'LUMINA', 'NEXUS DTC', 'AURA SKIN', 'VOLT WEAR', 'VORTEX', 'ELEVATE', 'KINETIX', 'ORIGIN', 'SYNAPSE', 'SOLARIS'
@@ -182,17 +331,6 @@ export default function Home() {
     }, 2500);
   };
 
-  const handleNewsletterSubmit = (e) => {
-    e.preventDefault();
-    if (newsletterEmail) {
-      setNewsletterSubmitted(true);
-      setTimeout(() => {
-        setNewsletterSubmitted(false);
-        setNewsletterEmail('');
-      }, 3000);
-    }
-  };
-
   return (
     <div
       onMouseEnter={() => setCursorHovered(false)}
@@ -205,11 +343,10 @@ export default function Home() {
       }}
     >
       {/* ========================================================================= */}
-      {/* INTERACTIVE CUSTOM CURSOR DOT & RING */}
+      {/* CUSTOM CURSOR DOT & RING */}
       {/* ========================================================================= */}
       {isClient && (
         <>
-          {/* Inner Glowing Cursor Dot */}
           <motion.div
             className="cursor-dot"
             animate={{
@@ -231,7 +368,6 @@ export default function Home() {
               boxShadow: '0 0 12px #ff4533, 0 0 4px #ffffff',
             }}
           />
-          {/* Outer Smooth Trailing Ring */}
           <motion.div
             className="cursor-ring"
             animate={{
@@ -322,20 +458,14 @@ export default function Home() {
           </motion.a>
 
           {/* Desktop Nav Links */}
-          <nav
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '28px',
-            }}
-            className="desktop-nav"
-          >
+          <nav style={{ display: 'flex', alignItems: 'center', gap: '28px' }} className="desktop-nav">
             {[
               { href: '#about', label: 'About' },
               { href: '#client-videos', label: 'Clients' },
               { href: '#services', label: 'Services' },
               { href: '#why-us', label: 'Why Us' },
               { href: '#process', label: 'Process' },
+              { href: '#reviews', label: 'Reviews' },
               { href: '#faq', label: 'FAQ' },
             ].map((link, i) => (
               <motion.a
@@ -368,26 +498,14 @@ export default function Home() {
               </svg>
             </motion.button>
 
-            {/* Mobile menu hamburger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              style={{
-                display: 'none',
-                background: 'none',
-                border: 'none',
-                color: '#fff',
-                cursor: 'pointer',
-                padding: '6px',
-              }}
+              style={{ display: 'none', background: 'none', border: 'none', color: '#fff', cursor: 'pointer', padding: '6px' }}
               className="mobile-toggle"
               aria-label="Toggle menu"
             >
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                {mobileMenuOpen ? (
-                  <path d="M18 6L6 18M6 6l12 12" />
-                ) : (
-                  <path d="M4 6h16M4 12h16M4 18h16" />
-                )}
+                {mobileMenuOpen ? <path d="M18 6L6 18M6 6l12 12" /> : <path d="M4 6h16M4 12h16M4 18h16" />}
               </svg>
             </button>
           </div>
@@ -402,20 +520,14 @@ export default function Home() {
               exit={{ opacity: 0, y: -10, scale: 0.95, filter: 'blur(8px)' }}
               transition={{ duration: 0.25 }}
               className="glass-card"
-              style={{
-                marginTop: '10px',
-                padding: '20px',
-                borderRadius: '20px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '16px',
-              }}
+              style={{ marginTop: '10px', padding: '20px', borderRadius: '20px', display: 'flex', flexDirection: 'column', gap: '16px' }}
             >
               <a href="#about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>About</a>
               <a href="#client-videos" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Clients</a>
               <a href="#services" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Services</a>
               <a href="#why-us" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Why Us</a>
               <a href="#process" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Process</a>
+              <a href="#reviews" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Reviews</a>
               <a href="#faq" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>FAQ</a>
             </motion.div>
           )}
@@ -450,7 +562,7 @@ export default function Home() {
             We generate results that <span className="serif-italic">matter.</span>
           </motion.h1>
 
-          {/* Subtext (Short & Punchy) */}
+          {/* Subtext */}
           <motion.p
             initial={{ opacity: 0, filter: 'blur(10px)', y: 25 }}
             animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
@@ -514,14 +626,7 @@ export default function Home() {
                   key={idx}
                   src={imgUrl}
                   alt="Client avatar"
-                  style={{
-                    width: '32px',
-                    height: '32px',
-                    borderRadius: '50%',
-                    border: '2px solid #000',
-                    marginLeft: '-8px',
-                    objectFit: 'cover',
-                  }}
+                  style={{ width: '32px', height: '32px', borderRadius: '50%', border: '2px solid #000', marginLeft: '-8px', objectFit: 'cover' }}
                 />
               ))}
             </div>
@@ -531,7 +636,9 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Interactive Hero Analytics Graphic */}
+          {/* ========================================================================= */}
+          {/* DYNAMIC INTERACTIVE PERFORMANCE DASHBOARD (CLICKING 7D, 30D, 90D, 1Y UPDATES STATS & CHART!) */}
+          {/* ========================================================================= */}
           <motion.div
             initial={{ opacity: 0, filter: 'blur(14px)', y: 40, scale: 0.96 }}
             animate={{ opacity: 1, filter: 'blur(0px)', y: 0, scale: 1 }}
@@ -562,37 +669,39 @@ export default function Home() {
                   Live Client Performance
                 </div>
                 <div style={{ fontSize: '18px', fontWeight: 700, color: '#ffffff', marginTop: '2px' }}>
-                  Portfolio Overview
+                  Portfolio Overview ({activeTimeframe})
                 </div>
               </div>
 
-              {/* Timeframe selector */}
+              {/* Timeframe selector (7D, 30D, 90D, 1Y) */}
               <div style={{ display: 'flex', background: 'rgba(255,255,255,0.05)', padding: '3px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.08)' }}>
                 {['7D', '30D', '90D', '1Y'].map((tf) => (
-                  <button
+                  <motion.button
                     key={tf}
+                    whileTap={{ scale: 0.92 }}
                     onClick={() => setActiveTimeframe(tf)}
                     onMouseEnter={() => setCursorHovered(true)}
                     onMouseLeave={() => setCursorHovered(false)}
                     style={{
-                      padding: '4px 10px',
+                      padding: '5px 12px',
                       fontSize: '12px',
-                      fontWeight: 600,
+                      fontWeight: 700,
                       borderRadius: '6px',
                       border: 'none',
                       cursor: 'pointer',
                       background: activeTimeframe === tf ? '#ff4533' : 'transparent',
-                      color: activeTimeframe === tf ? '#fff' : '#888',
-                      transition: 'all 0.2s',
+                      color: activeTimeframe === tf ? '#ffffff' : '#888888',
+                      boxShadow: activeTimeframe === tf ? '0 0 12px rgba(255, 69, 51, 0.4)' : 'none',
+                      transition: 'all 0.2s ease',
                     }}
                   >
                     {tf}
-                  </button>
+                  </motion.button>
                 ))}
               </div>
             </div>
 
-            {/* 4 Stat Cards */}
+            {/* 4 Stat Cards with Animated Values */}
             <div
               style={{
                 display: 'grid',
@@ -601,26 +710,76 @@ export default function Home() {
                 marginBottom: '24px',
               }}
             >
-              {[
-                { title: 'Revenue', val: '$184,920', sub: '↑ +142.8%', subColor: '#10b981' },
-                { title: 'ROAS', val: '5.84x', valColor: '#ff5533', sub: 'Target: 3.5x', subColor: '#10b981' },
-                { title: 'Ad Spend', val: '$31,650', sub: 'Meta & Google', subColor: '#a3a3a3' },
-                { title: 'Orders', val: '2,490', sub: 'Avg AOV $74', subColor: '#10b981' },
-              ].map((stat, i) => (
-                <div
-                  key={i}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`rev-${activeTimeframe}`}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25 }}
                   style={{ background: 'rgba(255,255,255,0.02)', padding: '14px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.06)' }}
                 >
-                  <div style={{ fontSize: '11px', color: '#888', marginBottom: '4px' }}>{stat.title}</div>
-                  <div style={{ fontSize: '22px', fontWeight: 800, color: stat.valColor || '#fff' }}>{stat.val}</div>
-                  <div style={{ fontSize: '11px', color: stat.subColor, fontWeight: 600, marginTop: '2px' }}>
-                    {stat.sub}
+                  <div style={{ fontSize: '11px', color: '#888', marginBottom: '4px' }}>Attributed Revenue</div>
+                  <div style={{ fontSize: '22px', fontWeight: 800, color: '#fff' }}>{currentStats.revenue}</div>
+                  <div style={{ fontSize: '11px', color: '#10b981', fontWeight: 600, marginTop: '2px' }}>
+                    {currentStats.revenueGrowth} vs prior
                   </div>
-                </div>
-              ))}
+                </motion.div>
+              </AnimatePresence>
+
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`roas-${activeTimeframe}`}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25 }}
+                  style={{ background: 'rgba(255,255,255,0.02)', padding: '14px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.06)' }}
+                >
+                  <div style={{ fontSize: '11px', color: '#888', marginBottom: '4px' }}>Blended ROAS</div>
+                  <div style={{ fontSize: '22px', fontWeight: 800, color: '#ff5533' }}>{currentStats.roas}</div>
+                  <div style={{ fontSize: '11px', color: '#10b981', fontWeight: 600, marginTop: '2px' }}>
+                    {currentStats.roasTarget}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`spend-${activeTimeframe}`}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25 }}
+                  style={{ background: 'rgba(255,255,255,0.02)', padding: '14px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.06)' }}
+                >
+                  <div style={{ fontSize: '11px', color: '#888', marginBottom: '4px' }}>Ad Spend</div>
+                  <div style={{ fontSize: '22px', fontWeight: 800, color: '#fff' }}>{currentStats.spend}</div>
+                  <div style={{ fontSize: '11px', color: '#a3a3a3', marginTop: '2px' }}>
+                    {currentStats.spendChannels}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={`orders-${activeTimeframe}`}
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.25 }}
+                  style={{ background: 'rgba(255,255,255,0.02)', padding: '14px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.06)' }}
+                >
+                  <div style={{ fontSize: '11px', color: '#888', marginBottom: '4px' }}>Qualified Orders</div>
+                  <div style={{ fontSize: '22px', fontWeight: 800, color: '#fff' }}>{currentStats.orders}</div>
+                  <div style={{ fontSize: '11px', color: '#10b981', fontWeight: 600, marginTop: '2px' }}>
+                    {currentStats.aov}
+                  </div>
+                </motion.div>
+              </AnimatePresence>
             </div>
 
-            {/* Glowing Chart Visual */}
+            {/* Glowing Chart Visual with Dynamic Path Transition */}
             <div style={{ position: 'relative', width: '100%', height: '160px' }}>
               <svg viewBox="0 0 800 160" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
                 <defs>
@@ -634,26 +793,37 @@ export default function Home() {
                 <line x1="0" y1="130" x2="800" y2="130" stroke="rgba(255,255,255,0.04)" strokeDasharray="4 4" />
 
                 <motion.path
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: 1, opacity: 1 }}
-                  transition={{ duration: 1.5, delay: 0.9, ease: 'easeInOut' }}
-                  d="M0,140 Q100,120 200,105 T400,75 T600,35 T800,15 L800,160 L0,160 Z"
+                  key={`area-${activeTimeframe}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1, d: currentStats.areaPath }}
+                  transition={{ duration: 0.5, ease: 'easeInOut' }}
                   fill="url(#chartGradient)"
                 />
                 <motion.path
+                  key={`line-${activeTimeframe}`}
                   initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ duration: 1.5, delay: 0.9, ease: 'easeInOut' }}
-                  d="M0,140 Q100,120 200,105 T400,75 T600,35 T800,15"
+                  animate={{ pathLength: 1, d: currentStats.linePath }}
+                  transition={{ duration: 0.7, ease: 'easeInOut' }}
                   fill="none"
                   stroke="#ff4533"
                   strokeWidth="3"
                   strokeLinecap="round"
                 />
-                <circle cx="200" cy="105" r="4" fill="#fff" stroke="#ff4533" strokeWidth="2" />
-                <circle cx="400" cy="75" r="4" fill="#fff" stroke="#ff4533" strokeWidth="2" />
-                <circle cx="600" cy="35" r="4" fill="#fff" stroke="#ff4533" strokeWidth="2" />
-                <circle cx="800" cy="15" r="5" fill="#ff4533" stroke="#fff" strokeWidth="2" />
+
+                {currentStats.dots.map((d, di) => (
+                  <motion.circle
+                    key={`dot-${activeTimeframe}-${di}`}
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.2 + di * 0.1 }}
+                    cx={d.cx}
+                    cy={d.cy}
+                    r={di === 3 ? 5 : 4}
+                    fill={di === 3 ? '#ff4533' : '#fff'}
+                    stroke={di === 3 ? '#fff' : '#ff4533'}
+                    strokeWidth="2"
+                  />
+                ))}
               </svg>
             </div>
 
@@ -672,9 +842,9 @@ export default function Home() {
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
                 <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10b981' }} />
-                <span>Live CAPI Sync</span>
+                <span>Live CAPI Sync Active ({activeTimeframe})</span>
               </div>
-              <div style={{ color: '#ff7766', fontWeight: 600 }}>Peak ROAS: 7.2x</div>
+              <div style={{ color: '#ff7766', fontWeight: 600 }}>Peak ROAS: {currentStats.peakRoas}</div>
             </div>
           </motion.div>
         </div>
@@ -714,48 +884,72 @@ export default function Home() {
       </motion.section>
 
       {/* ========================================================================= */}
-      {/* 4. HEAR IT DIRECTLY FROM OUR CLIENTS (VIDEO TESTIMONIALS) */}
+      {/* 4. OUR CLIENTS VIDEO CAROUSEL WITH ARROW NAVIGATION (< and >) */}
       {/* ========================================================================= */}
       <section className="section-spacing" id="client-videos" style={{ position: 'relative' }}>
         <div className="container-custom">
-          {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, filter: 'blur(10px)', y: 30 }}
-            whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.8 }}
-            className="section-header"
-            style={{ marginBottom: '40px' }}
+          {/* Header with Arrow Navigation Controls */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'flex-end',
+              justifyContent: 'space-between',
+              marginBottom: '32px',
+              flexWrap: 'wrap',
+              gap: '16px',
+            }}
           >
-            <div className="pill-badge" style={{ marginBottom: '8px' }}>
-              <span>Our Clients</span>
+            <div>
+              <div className="pill-badge" style={{ marginBottom: '8px' }}>
+                <span>Our Clients</span>
+              </div>
+              <h2 className="section-title" style={{ marginTop: '4px', textAlign: 'left' }}>
+                Hear it directly from <span className="serif-italic">our clients.</span>
+              </h2>
             </div>
-            <h2 className="section-title">
-              Hear it directly from <span className="serif-italic">our clients.</span>
-            </h2>
-            <p className="section-subtitle">
-              Real founders. Measurable growth.
-            </p>
-          </motion.div>
 
-          {/* Video Cards Grid */}
-          <div style={{ position: 'relative' }}>
+            {/* Left & Right Arrow Buttons */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <button
+                onClick={() => setVideoSliderIndex((prev) => (prev > 0 ? prev - 1 : clientVideos.length - 3))}
+                onMouseEnter={() => setCursorHovered(true)}
+                onMouseLeave={() => setCursorHovered(false)}
+                className="arrow-nav-btn"
+                aria-label="Previous video testimonial"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+              <button
+                onClick={() => setVideoSliderIndex((prev) => (prev + 1 <= clientVideos.length - 3 ? prev + 1 : 0))}
+                onMouseEnter={() => setCursorHovered(true)}
+                onMouseLeave={() => setCursorHovered(false)}
+                className="arrow-nav-btn"
+                aria-label="Next video testimonial"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {/* Video Cards Slider Display */}
+          <div style={{ position: 'relative', overflow: 'hidden' }}>
             <motion.div
-              variants={blurStagger}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-60px' }}
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
                 gap: '20px',
               }}
             >
-              {clientVideos.map((video, idx) => (
+              {clientVideos.slice(videoSliderIndex, videoSliderIndex + 3).map((video) => (
                 <motion.div
                   key={video.id}
-                  variants={blurFadeIn}
-                  custom={idx}
+                  initial={{ opacity: 0, filter: 'blur(8px)', scale: 0.96 }}
+                  animate={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
+                  transition={{ duration: 0.4 }}
                   whileHover={{ y: -6, transition: { duration: 0.25 } }}
                   onMouseEnter={() => setCursorHovered(true)}
                   onMouseLeave={() => setCursorHovered(false)}
@@ -784,11 +978,7 @@ export default function Home() {
                     <img
                       src={video.thumbnail}
                       alt={video.name}
-                      style={{
-                        width: '100%',
-                        height: '100%',
-                        objectFit: 'cover',
-                      }}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
                     <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%)' }} />
 
@@ -814,7 +1004,6 @@ export default function Home() {
                       </svg>
                     </div>
 
-                    {/* Player Control Bar */}
                     <div
                       style={{
                         position: 'absolute',
@@ -874,79 +1063,96 @@ export default function Home() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 5. SERVICES SECTION */}
+      {/* 5. SERVICES SECTION WITH ARROW NAVIGATION (< and >) */}
       {/* ========================================================================= */}
       <section className="section-spacing" id="services" style={{ background: 'linear-gradient(180deg, #000 0%, #080808 50%, #000 100%)' }}>
         <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, filter: 'blur(10px)', y: 30 }}
-            whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.8 }}
-            className="section-header"
-            style={{ marginBottom: '40px' }}
-          >
-            <div className="pill-badge pill-badge-orange">
-              <span>// SERVICES</span>
-            </div>
-            <h2 className="section-title">
-              What we <span className="serif-italic">do best.</span>
-            </h2>
-          </motion.div>
-
-          <motion.div
-            variants={blurStagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
+          {/* Header with Arrow Navigation Controls */}
+          <div
             style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-              gap: '20px',
+              display: 'flex',
+              alignItems: 'flex-end',
+              justifyContent: 'space-between',
+              marginBottom: '32px',
+              flexWrap: 'wrap',
+              gap: '16px',
             }}
           >
-            {[
-              {
-                badge: 'META ADS',
-                title: 'Facebook & Instagram',
-                desc: 'Advantage+ scaling & creative hook testing for maximum volume.',
-              },
-              {
-                badge: 'GOOGLE ADS',
-                title: 'Search & PMax',
-                desc: 'Capture active buyer intent with targeted Search & Performance Max.',
-              },
-              {
-                badge: 'TIKTOK ADS',
-                title: 'TikTok & UGC',
-                desc: 'Creator Spark ads and viral hooks that convert views to buyers.',
-              },
-              {
-                badge: 'OPTIMIZATION',
-                title: 'CRO & Creatives',
-                desc: 'High-converting landing pages & A/B testing to double checkout rates.',
-              },
-            ].map((srv, idx) => (
-              <motion.div
-                key={idx}
-                variants={blurFadeIn}
-                custom={idx}
-                whileHover={{ y: -6, transition: { duration: 0.25 } }}
+            <div>
+              <div className="pill-badge pill-badge-orange" style={{ marginBottom: '8px' }}>
+                <span>// SERVICES</span>
+              </div>
+              <h2 className="section-title" style={{ marginTop: '4px', textAlign: 'left' }}>
+                What we <span className="serif-italic">do best.</span>
+              </h2>
+            </div>
+
+            {/* Left & Right Arrow Navigation for Extra Services */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+              <button
+                onClick={() => setServiceSliderIndex((prev) => (prev > 0 ? prev - 1 : servicesList.length - 3))}
                 onMouseEnter={() => setCursorHovered(true)}
                 onMouseLeave={() => setCursorHovered(false)}
-                className="glass-card"
-                style={{ padding: '28px' }}
+                className="arrow-nav-btn"
+                aria-label="Previous services"
               >
-                <div style={{ display: 'inline-block', padding: '4px 10px', background: 'rgba(255,69,51,0.1)', borderRadius: '6px', fontSize: '11px', fontWeight: 700, color: '#ff7766', marginBottom: '16px' }}>
-                  {srv.badge}
-                </div>
-                <h3 style={{ fontSize: '19px', fontWeight: 700, marginBottom: '10px' }}>{srv.title}</h3>
-                <p style={{ fontSize: '14px', color: '#a3a3a3', lineHeight: 1.5 }}>
-                  {srv.desc}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+              </button>
+              <button
+                onClick={() => setServiceSliderIndex((prev) => (prev + 1 <= servicesList.length - 3 ? prev + 1 : 0))}
+                onMouseEnter={() => setCursorHovered(true)}
+                onMouseLeave={() => setCursorHovered(false)}
+                className="arrow-nav-btn"
+                aria-label="Next services"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M9 18l6-6-6-6" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          {/* Slider Services Display */}
+          <div style={{ position: 'relative', overflow: 'hidden' }}>
+            <motion.div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                gap: '20px',
+              }}
+            >
+              {servicesList.slice(serviceSliderIndex, serviceSliderIndex + 3).map((srv, idx) => (
+                <motion.div
+                  key={srv.title}
+                  initial={{ opacity: 0, filter: 'blur(8px)', scale: 0.96 }}
+                  animate={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
+                  transition={{ duration: 0.4 }}
+                  whileHover={{ y: -6, transition: { duration: 0.25 } }}
+                  onMouseEnter={() => setCursorHovered(true)}
+                  onMouseLeave={() => setCursorHovered(false)}
+                  className="glass-card"
+                  style={{ padding: '28px' }}
+                >
+                  <div style={{ display: 'inline-block', padding: '4px 10px', background: 'rgba(255,69,51,0.1)', borderRadius: '6px', fontSize: '11px', fontWeight: 700, color: '#ff7766', marginBottom: '16px' }}>
+                    {srv.badge}
+                  </div>
+                  <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '10px' }}>{srv.title}</h3>
+                  <p style={{ fontSize: '14px', color: '#a3a3a3', lineHeight: 1.5, marginBottom: '18px' }}>
+                    {srv.desc}
+                  </p>
+                  <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13px', color: '#d1d1d1' }}>
+                    {srv.features.map((f, fi) => (
+                      <li key={fi} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span style={{ color: '#ff4533' }}>✓</span> {f}
+                      </li>
+                    ))}
+                  </ul>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -1099,9 +1305,9 @@ export default function Home() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 8. CLIENT REVIEWS */}
+      {/* 8. AUTO-SCROLLING CLIENT REVIEWS MARQUEE (SLOW, PAUSES ON HOVER) */}
       {/* ========================================================================= */}
-      <section className="section-spacing" id="reviews">
+      <section className="section-spacing" id="reviews" style={{ overflow: 'hidden' }}>
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, filter: 'blur(10px)', y: 30 }}
@@ -1109,7 +1315,7 @@ export default function Home() {
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.8 }}
             className="section-header"
-            style={{ marginBottom: '40px' }}
+            style={{ marginBottom: '36px' }}
           >
             <div className="pill-badge">
               <span>// REVIEWS</span>
@@ -1117,29 +1323,33 @@ export default function Home() {
             <h2 className="section-title">
               Client <span className="serif-italic">results.</span>
             </h2>
+            <p className="section-subtitle">
+              Hover over any card to pause scrolling.
+            </p>
           </motion.div>
+        </div>
 
-          <motion.div
-            variants={blurStagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: '20px',
-            }}
-          >
-            {testimonials.map((item, idx) => (
-              <motion.div
+        {/* Continuous Auto-Scrolling Testimonial Carousel */}
+        <div
+          className="review-marquee-wrapper"
+          onMouseEnter={() => setCursorHovered(true)}
+          onMouseLeave={() => setCursorHovered(false)}
+        >
+          <div className="review-marquee-content">
+            {reviewsMarquee.concat(reviewsMarquee).map((item, idx) => (
+              <div
                 key={idx}
-                variants={blurFadeIn}
-                custom={idx}
-                whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                onMouseEnter={() => setCursorHovered(true)}
-                onMouseLeave={() => setCursorHovered(false)}
                 className="glass-card"
-                style={{ padding: '26px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+                style={{
+                  width: '340px',
+                  minWidth: '340px',
+                  padding: '24px',
+                  borderRadius: '18px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  cursor: 'pointer',
+                }}
               >
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
@@ -1164,9 +1374,9 @@ export default function Home() {
                     <div style={{ fontSize: '12px', color: '#777' }}>{item.role}</div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
 

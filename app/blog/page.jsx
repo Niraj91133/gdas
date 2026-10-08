@@ -3,191 +3,46 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
+import { blogPosts } from '../../lib/blogData';
 
 const blurFadeIn = {
-  hidden: { opacity: 0, filter: 'blur(10px)', y: 25 },
+  hidden: { opacity: 0, y: 18 },
   visible: (custom = 0) => ({
     opacity: 1,
-    filter: 'blur(0px)',
     y: 0,
     transition: {
-      duration: 0.75,
-      delay: custom * 0.08,
+      duration: 0.55,
+      delay: custom * 0.05,
       ease: [0.22, 1, 0.36, 1],
     },
   }),
 };
 
-export default function BlogPage() {
+export default function BlogIndexPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedArticle, setSelectedArticle] = useState(null);
+  const [quickReadPost, setQuickReadPost] = useState(null);
 
-  // Custom Animated Blinking Eyes Cursor State
-  const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
-  const [pupilOffset, setPupilOffset] = useState({ x: 3, y: 6 });
-  const [cursorHovered, setCursorHovered] = useState(false);
-  const [isBlinking, setIsBlinking] = useState(false);
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-    let prevX = typeof window !== 'undefined' ? window.innerWidth / 2 : 0;
-    let prevY = typeof window !== 'undefined' ? window.innerHeight / 2 : 0;
-
-    const updateMouse = (e) => {
-      const curX = e.clientX;
-      const curY = e.clientY;
-      const dx = curX - prevX;
-      const dy = curY - prevY;
-      prevX = curX;
-      prevY = curY;
-
-      setMousePosition({ x: curX, y: curY });
-
-      const moveNormX = Math.max(-1, Math.min(1, dx / 6));
-      const moveNormY = Math.max(-1, Math.min(1, dy / 6));
-
-      const vpNormX = ((curX / (window.innerWidth || 1)) - 0.5) * 2;
-      const vpNormY = ((curY / (window.innerHeight || 1)) - 0.5) * 2;
-
-      const combinedX = Math.max(-1, Math.min(1, moveNormX * 0.75 + vpNormX * 0.45));
-      const combinedY = Math.max(-1, Math.min(1, moveNormY * 0.75 + vpNormY * 0.45));
-
-      setPupilOffset({
-        x: 2.5 + combinedX * 4.8,
-        y: 5.5 + combinedY * 6.8,
-      });
-    };
-    window.addEventListener('mousemove', updateMouse);
-
-    const blinkInterval = setInterval(() => {
-      setIsBlinking(true);
-      setTimeout(() => {
-        setIsBlinking(false);
-        if (Math.random() > 0.65) {
-          setTimeout(() => {
-            setIsBlinking(true);
-            setTimeout(() => setIsBlinking(false), 120);
-          }, 160);
-        }
-      }, 150);
-    }, 3600);
-
-    return () => {
-      window.removeEventListener('mousemove', updateMouse);
-      clearInterval(blinkInterval);
-    };
-  }, []);
-
-  const blogCategories = ['All', 'Paid Ads Strategy', 'Meta Scaling', 'Creative UGC', 'Funnel CRO', 'Attribution & CAPI'];
-
-  const blogPosts = [
-    {
-      id: 1,
-      title: 'The 2026 Meta Ads Algorithm Playbook: How We Scale Brands Beyond $100k/Month',
-      category: 'Meta Scaling',
-      readTime: '6 min read',
-      date: 'Sept 4, 2026',
-      author: 'Niraj Sharma',
-      authorRole: 'Founder & Head of Growth',
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&auto=format&fit=crop&q=80',
-      excerpt: 'Broad targeting is dead without creative diversification. Discover the exact 3-tier Advantage+ campaign hierarchy that consistently delivers 5.2x+ ROAS in 2026.',
-      content: `The paid media landscape in 2026 demands a complete reimagining of campaign architectures. 
-
-Gone are the days of hyper-granular interest targeting and manual micro-adjustments. Today, machine learning algorithms thrive on broad creative signals, clean data feeds, and high-frequency creative iteration.
-
-### Key Takeaways from Our Live $250k/Month Ad Spend:
-1. **The Creative is the New Targeting**: Rather than guessing interest stacks, let your video hook define who stops and watches.
-2. **Dynamic Creative (DCT) Sprints**: Test 3 Hooks x 2 Bodies x 2 CTAs every Tuesday to identify viral winners.
-3. **CAPI Data Enrichment**: Send enhanced CRM data back to Meta to teach the algorithm your highest Lifetime Value (LTV) buyer profiles.`,
-    },
-    {
-      id: 2,
-      title: 'Direct-Response UGC Secrets: 7 Hook Formulas That Stop The Scroll Instantly',
-      category: 'Creative UGC',
-      readTime: '4 min read',
-      date: 'Aug 29, 2026',
-      author: 'Aryan Verma',
-      authorRole: 'Creative Director',
-      image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80',
-      excerpt: '80% of video ad drop-off happens within the first 2.5 seconds. Learn the psychological visual hooks our creators use to achieve 45%+ hook rates.',
-      content: `Your media buying cannot fix a boring 3-second hook. Direct-response creative is the #1 lever for lowering Cost Per Acquisition (CPA).
-
-### Our Top 3 Performing Hook Blueprints:
-- **The 'Polarizing Contrarian'**: "Stop buying X until you understand why 90% of brands hide this ingredient."
-- **The 'High-Velocity ASMR Demo'**: Immediate sound and motion without spoken intro to capture visual curiosity.
-- **The 'Problem-First Reframe'**: Start directly with the raw customer pain point in a phone-shot native UGC setting.`,
-    },
-    {
-      id: 3,
-      title: 'Server-Side CAPI: Why Browser Pixels Are Losing 35% of Your Purchases',
-      category: 'Attribution & CAPI',
-      readTime: '5 min read',
-      date: 'Aug 22, 2026',
-      author: 'Karan Mehra',
-      authorRole: 'Data Architect',
-      image: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=80',
-      excerpt: 'How ad-blockers and privacy updates blind your ad account—and the simple server-side setup to reclaim 100% attribution accuracy.',
-      content: `If your Meta pixel relies solely on client-side browser events, you are burning ad spend on blind optimizations.
-
-Ad blockers, iOS Safari ITP (Intelligent Tracking Prevention), and network latency wipe out nearly 30-40% of standard checkout events before they reach Meta's optimization engine.
-
-Deploying server-side Google Tag Manager (sGTM) with first-party cookie domains restores signal fidelity, leading to immediate 20-30% drops in blended CPA.`,
-    },
-    {
-      id: 4,
-      title: 'Landing Page Anatomy: How We Doubled a DTC Brand’s Conversion Rate from 1.8% to 4.1%',
-      category: 'Funnel CRO',
-      readTime: '7 min read',
-      date: 'Aug 14, 2026',
-      author: 'Devika Patel',
-      authorRole: 'Lead Media Buyer',
-      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80',
-      excerpt: 'A complete breakdown of our high-converting advertorial and listicle landing page layouts that turn skeptical cold traffic into buyers.',
-      content: `Doubling your conversion rate cuts your customer acquisition cost in half without spending an extra dime on ads.
-
-### Crucial Mobile CRO Adjustments:
-- **Sticky Buy Bar with Micro-Ratings**: Keep the add-to-cart CTA within thumb reach at all times.
-- **Visual Comparison Matrix**: Show clearly why your product defeats cheap alternatives.
-- **Pre-Purchase Friction Killers**: Free shipping countdowns, 60-day money-back guarantee badges, and instant checkout toggles.`,
-    },
-    {
-      id: 5,
-      title: 'Scaling from $10k to $150k/Month: The Unit Economics Framework Every Founder Needs',
-      category: 'Paid Ads Strategy',
-      readTime: '5 min read',
-      date: 'Aug 05, 2026',
-      author: 'Niraj Sharma',
-      authorRole: 'Founder & Head of Growth',
-      image: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&auto=format&fit=crop&q=80',
-      excerpt: 'Why most e-commerce brands break when scaling budgets and the contribution margin benchmarks you must monitor daily.',
-      content: `Scale is not about how high your frontend ROAS is; it is about how much net contribution margin remains after COGS, ad spend, and fulfillment.
-
-Before scaling past $500/day, ensure your Break-Even ROAS is mapped, Average Order Value (AOV) is optimized with bundles, and 60-day repeat purchase rate exceeds 25%.`,
-    },
-    {
-      id: 6,
-      title: 'Google PMax vs Search: When and How to Allocate Your Search Ad Budget',
-      category: 'Paid Ads Strategy',
-      readTime: '6 min read',
-      date: 'Jul 28, 2026',
-      author: 'Karan Mehra',
-      authorRole: 'Data Architect',
-      image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop&q=80',
-      excerpt: 'Performance Max can waste budget on brand search cannibalization unless configured properly with negative brand lists and asset groups.',
-      content: `Google Performance Max is exceptionally powerful, but only when fed clean audience signals and insulated against branded search cannibalization.
-
-Learn how to separate pure cold acquisition PMax campaigns from high-intent exact match search capture to maximize net new customer acquisition.`,
-    },
+  const categories = [
+    'All',
+    'Digital Marketing Strategy',
+    'Meta Ads & Paid Social',
+    'Performance Advertising',
+    'Search Engine Optimization',
+    'Business Growth & Agency Guide',
   ];
 
   const filteredPosts = blogPosts.filter((post) => {
     const matchesCat = activeCategory === 'All' || post.category === activeCategory;
-    const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch =
+      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.primaryKeyword.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCat && matchesSearch;
   });
+
+  const featuredPost = blogPosts[0];
 
   return (
     <div
@@ -200,37 +55,49 @@ Learn how to separate pure cold acquisition PMax campaigns from high-intent exac
         overflowX: 'hidden',
       }}
     >
-      {/* Animated Blinking Eyes Cursor */}
-      {isClient && (
-        <motion.div
-          className="custom-eyes-cursor"
-          animate={{ x: mousePosition.x - 17, y: mousePosition.y - 14, scale: cursorHovered ? 1.2 : 1 }}
-          transition={{ type: 'spring', damping: 28, stiffness: 420, mass: 0.12 }}
-          style={{ position: 'fixed', top: 0, left: 0, display: 'flex', alignItems: 'center', gap: '3px', pointerEvents: 'none', zIndex: 99999 }}
-        >
-          <motion.div animate={{ scaleY: isBlinking ? 0.08 : 1 }} transition={{ duration: 0.09 }} style={{ width: '16px', height: '26px', backgroundColor: '#fff', borderRadius: '13px', position: 'relative', boxShadow: '0 3px 12px rgba(0,0,0,0.7)' }}>
-            <motion.div animate={{ x: pupilOffset.x, y: pupilOffset.y }} transition={{ type: 'spring', damping: 20, stiffness: 400, mass: 0.08 }} style={{ position: 'absolute', top: 0, left: 0, width: '11px', height: '15px', backgroundColor: '#000', borderRadius: '50%' }}>
-              <div style={{ position: 'absolute', bottom: '3px', right: '3px', width: '2.5px', height: '2.5px', backgroundColor: '#fff', borderRadius: '50%' }} />
-            </motion.div>
-          </motion.div>
-          <motion.div animate={{ scaleY: isBlinking ? 0.08 : 1 }} transition={{ duration: 0.09 }} style={{ width: '16px', height: '26px', backgroundColor: '#fff', borderRadius: '13px', position: 'relative', boxShadow: '0 3px 12px rgba(0,0,0,0.7)' }}>
-            <motion.div animate={{ x: pupilOffset.x, y: pupilOffset.y }} transition={{ type: 'spring', damping: 20, stiffness: 400, mass: 0.08 }} style={{ position: 'absolute', top: 0, left: 0, width: '11px', height: '15px', backgroundColor: '#000', borderRadius: '50%' }}>
-              <div style={{ position: 'absolute', bottom: '3px', right: '3px', width: '2.5px', height: '2.5px', backgroundColor: '#fff', borderRadius: '50%' }} />
-            </motion.div>
-          </motion.div>
-        </motion.div>
-      )}
+      {/* Top Ambient Glow */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.2, ease: 'easeOut' }}
+        className="bg-ambient-top"
+      />
 
-      <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2 }} className="bg-ambient-top" />
-
-      {/* Floating Navbar */}
+      {/* ========================================================================= */}
+      {/* 1. FLOATING NAVIGATION BAR */}
+      {/* ========================================================================= */}
       <motion.header
-        initial={{ y: -50, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        style={{ position: 'fixed', top: '20px', left: 0, right: 0, margin: '0 auto', width: 'calc(100% - 40px)', maxWidth: '1100px', zIndex: 100 }}
+        initial={{ y: -50, opacity: 0, filter: 'blur(8px)' }}
+        animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        style={{
+          position: 'fixed',
+          top: '20px',
+          left: '0',
+          right: '0',
+          margin: '0 auto',
+          width: 'calc(100% - 40px)',
+          maxWidth: '1100px',
+          zIndex: 100,
+        }}
       >
-        <div className="glass-nav" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 24px', borderRadius: '9999px' }}>
-          <Link href="/" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: '#fff' }}>
+        <div
+          className="glass-nav"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: '12px 24px',
+            borderRadius: '9999px',
+          }}
+        >
+          {/* Logo */}
+          <Link
+            href="/"
+            onMouseEnter={() => setCursorHovered(true)}
+            onMouseLeave={() => setCursorHovered(false)}
+            style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: '#fff' }}
+          >
             <div
               style={{
                 width: '34px',
@@ -255,161 +122,486 @@ Learn how to separate pure cold acquisition PMax campaigns from high-intent exac
                 }}
               />
             </div>
-            <span style={{ fontWeight: 800, fontSize: '18px', color: '#fff', letterSpacing: '-0.02em' }}>GDAs<span style={{ color: '#3b82f6' }}>.</span></span>
+            <span style={{ fontWeight: 800, fontSize: '18px', letterSpacing: '-0.02em', color: '#ffffff' }}>
+              GDAs
+            </span>
           </Link>
 
+          {/* Desktop Nav Links */}
           <nav style={{ display: 'flex', alignItems: 'center', gap: '26px' }} className="desktop-nav">
             <Link href="/" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Home</Link>
             <Link href="/about" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>About</Link>
-            <Link href="/#services" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Services</Link>
+            <Link href="/services" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Services</Link>
             <Link href="/training" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Training</Link>
             <Link href="/blog" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 700, color: '#3b82f6', textDecoration: 'none' }}>Blog</Link>
-            <Link href="/careers" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Careers</Link>
           </nav>
 
-          <Link href="/#faq" className="btn btn-primary" style={{ padding: '8px 18px', fontSize: '12.5px', fontWeight: 700, textDecoration: 'none' }}>
-            Get in Touch →
-          </Link>
-        </div>
-      </motion.header>
+          {/* Right Action */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <Link
+              href="https://wa.me/919939862765"
+              target="_blank"
+              rel="noopener noreferrer"
+              onMouseEnter={() => setCursorHovered(true)}
+              onMouseLeave={() => setCursorHovered(false)}
+              className="btn btn-primary"
+              style={{ padding: '8px 18px', fontSize: '12.5px', fontWeight: 700, textDecoration: 'none' }}
+            >
+              Talk to Us →
+            </Link>
 
-      {/* Hero Section */}
-      <section style={{ paddingTop: '155px', paddingBottom: '50px', position: 'relative' }}>
-        <div className="container-custom" style={{ textAlign: 'center' }}>
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={blurFadeIn} style={{ display: 'inline-flex', marginBottom: '20px' }}>
-            <div className="pill-badge pill-badge-orange">
-              <span className="pulse-dot" />
-              <span>Agency Insights & Growth Playbooks</span>
-            </div>
-          </motion.div>
-
-          <motion.h1 initial="hidden" whileInView="visible" viewport={{ once: true }} variants={blurFadeIn} custom={1} style={{ fontSize: 'clamp(34px, 5vw, 62px)', fontWeight: 800, lineHeight: 1.1, letterSpacing: '-0.035em', maxWidth: '850px', margin: '0 auto 20px auto' }}>
-            Battle-tested strategies for <span className="serif-italic" style={{ color: '#3b82f6' }}>high-scaling brands</span>.
-          </motion.h1>
-
-          <motion.p initial="hidden" whileInView="visible" viewport={{ once: true }} variants={blurFadeIn} custom={2} style={{ fontSize: '16px', color: '#a3a3a3', maxWidth: '640px', margin: '0 auto 35px auto', lineHeight: 1.6 }}>
-            Direct-response creative formulas, media buying breakdowns, and CRO experiments written by the practitioners scaling 7-figure accounts daily.
-          </motion.p>
-
-          {/* Search & Category Filter Bar */}
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={blurFadeIn} custom={3} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px', maxWidth: '750px', margin: '0 auto' }}>
-            <div style={{ position: 'relative', width: '100%' }}>
-              <input
-                type="text"
-                placeholder="Search articles on Meta ads, UGC, CRO, CAPI..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                style={{
-                  width: '100%',
-                  background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(255,255,255,0.12)',
-                  borderRadius: '14px',
-                  padding: '14px 20px 14px 44px',
-                  color: '#fff',
-                  fontSize: '14px',
-                  outline: 'none',
-                }}
-              />
-              <span style={{ position: 'absolute', left: '16px', top: '50%', transform: 'translateY(-50%)', color: '#888' }}>🔍</span>
-            </div>
-
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', justifyContent: 'center' }}>
-              {blogCategories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  onMouseEnter={() => setCursorHovered(true)}
-                  onMouseLeave={() => setCursorHovered(false)}
-                  style={{
-                    background: activeCategory === cat ? '#2563eb' : 'rgba(255,255,255,0.04)',
-                    color: activeCategory === cat ? '#fff' : '#888',
-                    border: activeCategory === cat ? '1px solid #3b82f6' : '1px solid rgba(255,255,255,0.08)',
-                    borderRadius: '50px',
-                    padding: '6px 14px',
-                    fontSize: '12.5px',
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    transition: 'all 0.2s ease',
-                  }}
-                >
-                  {cat}
-                </button>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Blog Posts Grid */}
-      <section className="section-spacing" style={{ paddingTop: '20px', paddingBottom: '90px' }}>
-        <div className="container-custom">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '30px' }}>
-            {filteredPosts.map((post, idx) => (
-              <motion.article
-                key={post.id}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={blurFadeIn}
-                custom={idx}
-                whileHover={{ y: -6, borderColor: 'rgba(37,99,235,0.45)' }}
-                style={{
-                  background: '#0a0a0a',
-                  border: '1px solid rgba(255,255,255,0.08)',
-                  borderRadius: '20px',
-                  overflow: 'hidden',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  boxShadow: '0 15px 35px rgba(0,0,0,0.6)',
-                  cursor: 'pointer',
-                }}
-                onClick={() => setSelectedArticle(post)}
-                onMouseEnter={() => setCursorHovered(true)}
-                onMouseLeave={() => setCursorHovered(false)}
-              >
-                <div>
-                  <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', overflow: 'hidden' }}>
-                    <img src={post.image} alt={post.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    <div style={{ position: 'absolute', top: '12px', left: '12px', background: 'rgba(0,0,0,0.75)', backdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '50px', padding: '4px 12px', fontSize: '11px', fontWeight: 700, color: '#60a5fa', textTransform: 'uppercase' }}>
-                      {post.category}
-                    </div>
-                  </div>
-
-                  <div style={{ padding: '24px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '12px', color: '#666', marginBottom: '10px' }}>
-                      <span>{post.date}</span>
-                      <span>•</span>
-                      <span>{post.readTime}</span>
-                    </div>
-
-                    <h2 style={{ fontSize: '18px', fontWeight: 700, color: '#fff', lineHeight: 1.35, marginBottom: '12px' }}>
-                      {post.title}
-                    </h2>
-
-                    <p style={{ fontSize: '13.5px', color: '#888', lineHeight: 1.6 }}>
-                      {post.excerpt}
-                    </p>
-                  </div>
-                </div>
-
-                <div style={{ padding: '0 24px 24px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '16px' }}>
-                  <div>
-                    <div style={{ fontSize: '12px', fontWeight: 700, color: '#fff' }}>{post.author}</div>
-                    <div style={{ fontSize: '11px', color: '#666' }}>{post.authorRole}</div>
-                  </div>
-                  <span style={{ color: '#3b82f6', fontSize: '13px', fontWeight: 700 }}>Read Article →</span>
-                </div>
-              </motion.article>
-            ))}
+            {/* Mobile Hamburger */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="mobile-hamburger"
+              aria-label="Toggle Menu"
+              style={{
+                display: 'none',
+                background: 'none',
+                border: 'none',
+                color: '#fff',
+                cursor: 'pointer',
+                padding: '6px',
+              }}
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                {mobileMenuOpen ? <path d="M18 6L6 18M6 6l12 12" /> : <path d="M4 6h16M4 12h16M4 18h16" />}
+              </svg>
+            </button>
           </div>
         </div>
+
+        {/* Mobile Drawer */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.95 }}
+              style={{
+                marginTop: '10px',
+                background: 'rgba(10, 10, 10, 0.96)',
+                backdropFilter: 'blur(20px)',
+                border: '1px solid rgba(255,255,255,0.12)',
+                borderRadius: '16px',
+                padding: '20px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '14px',
+              }}
+            >
+              <Link href="/" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none' }}>Home</Link>
+              <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none' }}>About</Link>
+              <Link href="/services" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none' }}>Services</Link>
+              <Link href="/training" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none' }}>Training</Link>
+              <Link href="/blog" onClick={() => setMobileMenuOpen(false)} style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 700 }}>Blog</Link>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.header>
+
+      {/* ========================================================================= */}
+      {/* 2. HERO SECTION */}
+      {/* ========================================================================= */}
+      <section style={{ paddingTop: '160px', paddingBottom: '50px', position: 'relative' }}>
+        <div className="container-custom" style={{ textAlign: 'center' }}>
+          
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={blurFadeIn}
+            custom={0}
+            style={{ display: 'inline-flex', marginBottom: '18px' }}
+          >
+            <div className="pill-badge pill-badge-blue">
+              <span className="pulse-dot" />
+              <span>GANESHA DIGITAL ADS • GDAs EDITORIAL</span>
+            </div>
+          </motion.div>
+
+          <motion.h1
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={blurFadeIn}
+            custom={1}
+            style={{
+              fontSize: 'clamp(34px, 5.2vw, 62px)',
+              fontWeight: 900,
+              lineHeight: 1.1,
+              letterSpacing: '-0.03em',
+              maxWidth: '920px',
+              margin: '0 auto 16px auto',
+            }}
+          >
+            Practical Insights for{' '}
+            <span
+              style={{
+                background: 'linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #93c5fd 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+              }}
+            >
+              Modern Business Growth
+            </span>.
+          </motion.h1>
+
+          <motion.p
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={blurFadeIn}
+            custom={2}
+            style={{
+              fontSize: 'clamp(15px, 1.8vw, 18px)',
+              color: '#a3a3a3',
+              maxWidth: '720px',
+              margin: '0 auto 36px auto',
+              lineHeight: 1.6,
+            }}
+          >
+            In-depth guides on Digital Marketing, Meta Ads, Google Ads, SEO, Lead Generation, and Agency Strategies — written by real practitioners.
+          </motion.p>
+
+          {/* Live Search Input */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={blurFadeIn}
+            custom={3}
+            style={{
+              maxWidth: '540px',
+              margin: '0 auto 40px auto',
+              position: 'relative',
+            }}
+          >
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search guides (e.g. Meta Ads, SEO, Google Ads)..."
+              style={{
+                width: '100%',
+                padding: '14px 20px 14px 44px',
+                borderRadius: '9999px',
+                background: 'rgba(255,255,255,0.05)',
+                border: '1px solid rgba(255,255,255,0.12)',
+                color: '#fff',
+                fontSize: '14.5px',
+                outline: 'none',
+                boxShadow: '0 8px 30px rgba(0,0,0,0.5)',
+              }}
+            />
+            <span
+              style={{
+                position: 'absolute',
+                left: '18px',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                fontSize: '16px',
+                color: '#9ca3af',
+              }}
+            >
+              🔍
+            </span>
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                style={{
+                  position: 'absolute',
+                  right: '16px',
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  background: 'none',
+                  border: 'none',
+                  color: '#9ca3af',
+                  cursor: 'pointer',
+                  fontSize: '14px',
+                }}
+              >
+                ✕
+              </button>
+            )}
+          </motion.div>
+
+          {/* Category Filter Pills */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={blurFadeIn}
+            custom={4}
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              gap: '10px',
+              flexWrap: 'wrap',
+              marginBottom: '45px',
+            }}
+          >
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                onMouseEnter={() => setCursorHovered(true)}
+                onMouseLeave={() => setCursorHovered(false)}
+                style={{
+                  padding: '8px 18px',
+                  borderRadius: '9999px',
+                  fontSize: '13px',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  border: activeCategory === cat ? '1px solid #3b82f6' : '1px solid rgba(255,255,255,0.08)',
+                  background: activeCategory === cat ? 'rgba(59, 130, 246, 0.15)' : 'rgba(255,255,255,0.03)',
+                  color: activeCategory === cat ? '#60a5fa' : '#9ca3af',
+                  transition: 'all 0.2s ease',
+                }}
+              >
+                {cat}
+              </button>
+            ))}
+          </motion.div>
+        </div>
       </section>
 
-      {/* Footer */}
+      {/* ========================================================================= */}
+      {/* 3. FEATURED BLOG CARD */}
+      {/* ========================================================================= */}
+      {activeCategory === 'All' && !searchQuery && (
+        <section style={{ paddingBottom: '50px' }}>
+          <div className="container-custom">
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              variants={blurFadeIn}
+              style={{
+                borderRadius: '24px',
+                overflow: 'hidden',
+                background: 'linear-gradient(135deg, #0d1424 0%, #070a12 100%)',
+                border: '1px solid rgba(59, 130, 246, 0.35)',
+                boxShadow: '0 20px 50px rgba(0,0,0,0.8)',
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              }}
+            >
+              <div style={{ height: '360px', overflow: 'hidden' }}>
+                <img
+                  src={featuredPost.image}
+                  alt={featuredPost.title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </div>
+
+              <div style={{ padding: '36px 32px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                <div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
+                    <span className="pill-badge pill-badge-orange">
+                      <span className="pulse-dot" />
+                      <span>Featured Article</span>
+                    </span>
+                    <span style={{ fontSize: '12px', color: '#9ca3af' }}>{featuredPost.readTime}</span>
+                  </div>
+
+                  <h2 style={{ fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 800, lineHeight: 1.2, color: '#fff', marginBottom: '14px' }}>
+                    <Link
+                      href={`/blog/${featuredPost.slug}`}
+                      style={{ color: '#fff', textDecoration: 'none' }}
+                      onMouseEnter={() => setCursorHovered(true)}
+                      onMouseLeave={() => setCursorHovered(false)}
+                    >
+                      {featuredPost.title}
+                    </Link>
+                  </h2>
+
+                  <p style={{ fontSize: '14.5px', color: '#a3a3a3', lineHeight: 1.6, marginBottom: '20px' }}>
+                    {featuredPost.excerpt}
+                  </p>
+                </div>
+
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '14px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <img
+                      src={featuredPost.author.avatar}
+                      alt={featuredPost.author.name}
+                      style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover' }}
+                    />
+                    <div style={{ fontSize: '13px', fontWeight: 700, color: '#e5e7eb' }}>
+                      {featuredPost.author.name}
+                    </div>
+                  </div>
+
+                  <Link
+                    href={`/blog/${featuredPost.slug}`}
+                    className="btn btn-primary"
+                    onMouseEnter={() => setCursorHovered(true)}
+                    onMouseLeave={() => setCursorHovered(false)}
+                    style={{ padding: '9px 20px', fontSize: '13px', fontWeight: 700, textDecoration: 'none' }}
+                  >
+                    Read Full Guide →
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 4. BLOGS GRID (All 5 Structured Posts) */}
+      {/* ========================================================================= */}
+      <section style={{ paddingBottom: '90px' }}>
+        <div className="container-custom">
+          
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '30px' }}>
+            <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#fff' }}>
+              {activeCategory === 'All' ? 'All Guides & Articles' : activeCategory} ({filteredPosts.length})
+            </h3>
+          </div>
+
+          {filteredPosts.length === 0 ? (
+            <div style={{ textAlign: 'center', padding: '60px 0', color: '#9ca3af' }}>
+              <div style={{ fontSize: '36px', marginBottom: '10px' }}>🔍</div>
+              <p>No articles found matching &quot;{searchQuery}&quot;.</p>
+            </div>
+          ) : (
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fill, minmax(330px, 1fr))',
+                gap: '28px',
+              }}
+            >
+              {filteredPosts.map((post, idx) => (
+                <motion.article
+                  key={post.id}
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={blurFadeIn}
+                  custom={idx * 0.4}
+                  whileHover={{ y: -6, borderColor: 'rgba(59, 130, 246, 0.45)' }}
+                  style={{
+                    background: 'linear-gradient(135deg, #0b0b0b 0%, #121212 100%)',
+                    border: '1px solid rgba(255,255,255,0.08)',
+                    borderRadius: '22px',
+                    overflow: 'hidden',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    boxShadow: '0 15px 35px rgba(0,0,0,0.6)',
+                  }}
+                >
+                  <div>
+                    {/* Thumbnail Image */}
+                    <div style={{ height: '200px', width: '100%', overflow: 'hidden', position: 'relative' }}>
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                      />
+                      <span
+                        style={{
+                          position: 'absolute',
+                          top: '14px',
+                          left: '14px',
+                          background: 'rgba(0,0,0,0.75)',
+                          backdropFilter: 'blur(8px)',
+                          padding: '4px 10px',
+                          borderRadius: '999px',
+                          fontSize: '11px',
+                          fontWeight: 700,
+                          color: '#60a5fa',
+                          border: '1px solid rgba(255,255,255,0.1)',
+                        }}
+                      >
+                        {post.category}
+                      </span>
+                    </div>
+
+                    {/* Card Body */}
+                    <div style={{ padding: '24px 22px' }}>
+                      <div style={{ fontSize: '12px', color: '#9ca3af', marginBottom: '8px' }}>
+                        {post.readTime} • <span style={{ color: '#f59e0b' }}>{post.date}</span>
+                      </div>
+
+                      <h4 style={{ fontSize: '18px', fontWeight: 800, color: '#fff', lineHeight: 1.35, marginBottom: '12px' }}>
+                        <Link
+                          href={`/blog/${post.slug}`}
+                          style={{ color: '#fff', textDecoration: 'none' }}
+                          onMouseEnter={() => setCursorHovered(true)}
+                          onMouseLeave={() => setCursorHovered(false)}
+                        >
+                          {post.title}
+                        </Link>
+                      </h4>
+
+                      <p style={{ fontSize: '13.5px', color: '#9ca3af', lineHeight: 1.55, marginBottom: '16px' }}>
+                        {post.excerpt.slice(0, 130)}...
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Card Footer */}
+                  <div
+                    style={{
+                      padding: '16px 22px',
+                      borderTop: '1px solid rgba(255,255,255,0.06)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                      <img
+                        src={post.author.avatar}
+                        alt={post.author.name}
+                        style={{ width: '28px', height: '28px', borderRadius: '50%', objectFit: 'cover' }}
+                      />
+                      <span style={{ fontSize: '12px', fontWeight: 700, color: '#d1d5db' }}>
+                        {post.author.name}
+                      </span>
+                    </div>
+
+                    <Link
+                      href={`/blog/${post.slug}`}
+                      style={{
+                        fontSize: '12.5px',
+                        fontWeight: 800,
+                        color: '#3b82f6',
+                        textDecoration: 'none',
+                      }}
+                      onMouseEnter={() => setCursorHovered(true)}
+                      onMouseLeave={() => setCursorHovered(false)}
+                    >
+                      Read Guide →
+                    </Link>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 5. COMPREHENSIVE FOOTER */}
+      {/* ========================================================================= */}
       <footer style={{ borderTop: '1px solid rgba(255,255,255,0.08)', background: '#050505', padding: '50px 0 30px 0' }}>
         <div className="container-custom">
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '24px', paddingBottom: '30px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '24px',
+              paddingBottom: '30px',
+              borderBottom: '1px solid rgba(255,255,255,0.06)',
+            }}
+          >
             <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: '#fff' }}>
               <div
                 style={{
@@ -428,86 +620,50 @@ Learn how to separate pure cold acquisition PMax campaigns from high-intent exac
                 <img
                   src="/gda_logo.png"
                   alt="GDAs Logo"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                  }}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
               </div>
-              <span style={{ fontWeight: 800, fontSize: '16px' }}>GDAs<span style={{ color: '#3b82f6' }}>.</span></span>
+              <span style={{ fontWeight: 800, fontSize: '16px' }}>GDAs</span>
             </Link>
 
-            <div style={{ display: 'flex', gap: '20px', fontSize: '13px', flexWrap: 'wrap' }}>
-              <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>Home</Link>
-              <Link href="/about" style={{ color: '#888', textDecoration: 'none' }}>About</Link>
-              <Link href="/#services" style={{ color: '#888', textDecoration: 'none' }}>Services</Link>
-              <Link href="/training" style={{ color: '#888', textDecoration: 'none' }}>Training</Link>
-              <Link href="/blog" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 600 }}>Blog</Link>
-              <Link href="/careers" style={{ color: '#888', textDecoration: 'none' }}>Careers</Link>
-              <Link href="/privacy-policy" style={{ color: '#888', textDecoration: 'none' }}>Privacy Policy</Link>
-              <Link href="/refund-policy" style={{ color: '#888', textDecoration: 'none' }}>Refund Policy</Link>
-              <Link href="/terms-conditions" style={{ color: '#888', textDecoration: 'none' }}>Terms & Conditions</Link>
-              <Link href="/disclaimer" style={{ color: '#888', textDecoration: 'none' }}>Disclaimer</Link>
+            <div style={{ display: 'flex', gap: '22px', fontSize: '13.5px', flexWrap: 'wrap' }}>
+              <Link href="/" style={{ color: '#9ca3af', textDecoration: 'none' }}>Home</Link>
+              <Link href="/about" style={{ color: '#9ca3af', textDecoration: 'none' }}>About</Link>
+              <Link href="/services" style={{ color: '#9ca3af', textDecoration: 'none' }}>Services</Link>
+              <Link href="/training" style={{ color: '#9ca3af', textDecoration: 'none' }}>Training</Link>
+              <Link href="/blog" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 700 }}>Blog</Link>
+              <a
+                href="https://wa.me/919939862765"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: '#9ca3af', textDecoration: 'none' }}
+              >
+                WhatsApp (9939862765)
+              </a>
             </div>
           </div>
 
-          <div style={{ paddingTop: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '12px', color: '#555', flexWrap: 'wrap', gap: '10px' }}>
-            <div>© {new Date().getFullYear()} GDAs (Ganesha Digital Ads). All rights reserved.</div>
-            <div style={{ color: '#10b981', display: 'flex', alignItems: 'center', gap: '5px' }}>
-              <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#10b981' }} />
-              <span>All articles verified</span>
+          <div
+            style={{
+              paddingTop: '24px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '12px',
+              fontSize: '12.5px',
+              color: '#6b7280',
+            }}
+          >
+            <div>
+              © {new Date().getFullYear()} Ganesha Digital Ads (GDAs). All rights reserved.
+            </div>
+            <div style={{ color: '#9ca3af' }}>
+              <span style={{ color: '#f59e0b' }}>Digital Ka Saath, Aapke Business Ka Vikas.</span>
             </div>
           </div>
         </div>
       </footer>
-
-      {/* Article Reader Modal */}
-      <AnimatePresence>
-        {selectedArticle && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="modal-overlay" onClick={() => setSelectedArticle(null)}>
-            <motion.div initial={{ scale: 0.9, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.9, opacity: 0, y: 20 }} className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '750px', maxHeight: '85vh', overflowY: 'auto' }}>
-              <button onClick={() => setSelectedArticle(null)} style={{ position: 'absolute', top: '16px', right: '16px', background: 'none', border: 'none', color: '#888', cursor: 'pointer', fontSize: '20px' }}>✕</button>
-              
-              <div style={{ fontSize: '11px', color: '#60a5fa', fontWeight: 700, textTransform: 'uppercase', marginBottom: '8px' }}>{selectedArticle.category}</div>
-              <h2 style={{ fontSize: '24px', fontWeight: 800, color: '#fff', lineHeight: 1.3, marginBottom: '14px' }}>{selectedArticle.title}</h2>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '12px', color: '#888', marginBottom: '20px' }}>
-                <span>By {selectedArticle.author} ({selectedArticle.authorRole})</span>
-                <span>•</span>
-                <span>{selectedArticle.date}</span>
-                <span>•</span>
-                <span>{selectedArticle.readTime}</span>
-              </div>
-
-              <div style={{ width: '100%', borderRadius: '12px', overflow: 'hidden', marginBottom: '24px' }}>
-                <img src={selectedArticle.image} alt={selectedArticle.title} style={{ width: '100%', maxHeight: '300px', objectFit: 'cover' }} />
-              </div>
-
-              <div style={{ fontSize: '14.5px', color: '#ccc', lineHeight: 1.7, whiteSpace: 'pre-line' }}>
-                {selectedArticle.content}
-              </div>
-
-              <div style={{ marginTop: '30px', paddingTop: '20px', borderTop: '1px solid rgba(255,255,255,0.1)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Link href="/training" className="btn btn-primary" style={{ textDecoration: 'none', fontSize: '13px' }}>
-                  Learn Live Agency Strategies →
-                </Link>
-                <button onClick={() => setSelectedArticle(null)} className="btn btn-secondary" style={{ fontSize: '13px' }}>
-                  Close Reader
-                </button>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <style jsx global>{`
-        @media (max-width: 900px) {
-          .desktop-nav { display: none !important; }
-        }
-        @media (pointer: coarse) {
-          .custom-eyes-cursor { display: none !important; }
-        }
-      `}</style>
     </div>
   );
 }

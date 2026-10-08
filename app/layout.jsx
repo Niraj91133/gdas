@@ -1,9 +1,10 @@
 import './globals.css';
+import EyesCursor from '../components/EyesCursor';
 
 export const metadata = {
-  title: 'GDAs — Performance Paid Ads Agency | Scale Your Brand',
-  description: 'GDAs (Ganesha Digital Ads) is a performance-driven paid acquisition agency helping DTC and high-growth brands scale with Meta, Google & TikTok ads.',
-  keywords: 'GDAs, Ganesha Digital Ads, paid ads agency, digital marketing, Meta ads, Google ads, TikTok ads, conversion agency',
+  title: 'GDAs — One Platform. All Solutions. | Ganesha Digital Ads',
+  description: 'Digital Ka Saath, Aapke Business Ka Vikas. GDAs (Ganesha Digital Ads) helps businesses grow with Digital Marketing, Branding & Technology solutions all under one roof.',
+  keywords: 'GDAs, Ganesha Digital Ads, Digital Marketing, Branding, Website Development, SEO, Social Media Marketing, Business Growth India',
 };
 
 export default function RootLayout({ children }) {
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
         <meta name="theme-color" content="#000000" />
       </head>
       <body>
+        <EyesCursor />
         {children}
       </body>
     </html>

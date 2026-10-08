@@ -4,396 +4,137 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Framer-style "Blur to Normal" Scroll Animation variants
-const blurFadeIn = {
-  hidden: { opacity: 0, filter: 'blur(10px)', y: 25 },
-  visible: (custom = 0) => ({
-    opacity: 1,
-    filter: 'blur(0px)',
-    y: 0,
-    transition: {
-      duration: 0.75,
-      delay: custom * 0.08,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  }),
-};
-
 export default function AboutPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [activeValueTab, setActiveValueTab] = useState(0);
-  const [whatWeDoIndex, setWhatWeDoIndex] = useState(0);
-  const [testimonialIndex, setTestimonialIndex] = useState(0);
+  const [selectedCert, setSelectedCert] = useState(null);
 
-  const [modalForm, setModalForm] = useState({
+  // Form State
+  const [formData, setFormData] = useState({
     name: '',
-    email: '',
-    website: '',
-    spend: '$5k - $15k',
-    notes: '',
+    phone: '',
+    service: 'Digital Marketing',
+    message: '',
   });
-  const [modalSubmitted, setModalSubmitted] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
-  // Custom Animated Blinking Eyes Cursor State with dynamic pupil tracking
-  const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
-  const [pupilOffset, setPupilOffset] = useState({ x: 3, y: 6 });
-  const [cursorHovered, setCursorHovered] = useState(false);
-  const [isBlinking, setIsBlinking] = useState(false);
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-    let prevX = typeof window !== 'undefined' ? window.innerWidth / 2 : 0;
-    let prevY = typeof window !== 'undefined' ? window.innerHeight / 2 : 0;
-
-    const updateMouse = (e) => {
-      const curX = e.clientX;
-      const curY = e.clientY;
-      const dx = curX - prevX;
-      const dy = curY - prevY;
-      prevX = curX;
-      prevY = curY;
-
-      setMousePosition({ x: curX, y: curY });
-
-      // Dynamic gaze direction: shifts all the way to corner/edge when moving
-      const moveNormX = Math.max(-1, Math.min(1, dx / 6));
-      const moveNormY = Math.max(-1, Math.min(1, dy / 6));
-
-      const vpNormX = ((curX / (window.innerWidth || 1)) - 0.5) * 2;
-      const vpNormY = ((curY / (window.innerHeight || 1)) - 0.5) * 2;
-
-      const combinedX = Math.max(-1, Math.min(1, moveNormX * 0.75 + vpNormX * 0.45));
-      const combinedY = Math.max(-1, Math.min(1, moveNormY * 0.75 + vpNormY * 0.45));
-
-      setPupilOffset({
-        x: 2.5 + combinedX * 4.8,
-        y: 5.5 + combinedY * 6.8,
-      });
-    };
-    window.addEventListener('mousemove', updateMouse);
-
-    // Periodic organic Eye Blinking
-    const blinkInterval = setInterval(() => {
-      setIsBlinking(true);
-      setTimeout(() => {
-        setIsBlinking(false);
-        if (Math.random() > 0.65) {
-          setTimeout(() => {
-            setIsBlinking(true);
-            setTimeout(() => setIsBlinking(false), 120);
-          }, 160);
-        }
-      }, 150);
-    }, 3600);
-
-    return () => {
-      window.removeEventListener('mousemove', updateMouse);
-      clearInterval(blinkInterval);
-    };
-  }, []);
-
-  const handleModalSubmit = (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
-    setModalSubmitted(true);
-    setTimeout(() => {
-      setModalOpen(false);
-      setModalSubmitted(false);
-      setModalForm({ name: '', email: '', website: '', spend: '$5k - $15k', notes: '' });
-    }, 2500);
+    setFormSubmitted(true);
+    const waText = encodeURIComponent(
+      `Hello GDAs Team!\n\nName: ${formData.name}\nPhone: ${formData.phone}\nService: ${formData.service}\nDetails: ${formData.message || 'I want to know more about GDAs and scale my business.'}`
+    );
+    window.open(`https://wa.me/919939862765?text=${waText}`, '_blank');
   };
 
-  // What We Do Pillars
-  const whatWeDoList = [
+  // Certificates & Awards Data
+  const certificatesAndAwards = [
     {
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2">
-          <path d="M12 20V10M18 20V4M6 20v-4" />
-        </svg>
-      ),
-      title: 'Full-Funnel Meta Ads Scaling',
-      desc: 'High-converting creative testing, rapid scaling frameworks, and lookalike audience architecture that turns ad spend into profitable revenue.',
+      id: 'doc',
+      title: 'Honorary Doctorate Award',
+      institution: 'Hawkins University, Texas, USA',
+      year: '2026',
+      badge: 'Doctorate in Strategic Leadership & Digital Marketing',
+      certNo: 'HU2026476096',
+      image: '/cert_doctorate_hawkins.jpg',
+      desc: 'Conferred in Strategic Leadership & Professional Excellence in Digital Marketing by Hawkins University Board of Trustees.',
     },
     {
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2">
-          <circle cx="12" cy="12" r="10" />
-          <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20M2 12h20" />
-        </svg>
-      ),
-      title: 'Google & YouTube Search / PMax',
-      desc: 'Intent-driven keyword capture and high-converting YouTube video funnels capturing high-ticket buyers ready to convert.',
+      id: 'award',
+      title: 'Bharat Visionary Leader Award 2026',
+      institution: 'National Startup Conclave Season Awards (BNB)',
+      year: '2026',
+      badge: 'National Visionary Recognition',
+      certNo: 'BNB-2026-LEADER',
+      image: '/ram_gyan_award.jpg',
+      desc: 'Felicitated for groundbreaking contributions to the Indian digital advertising ecosystem and empowering SME growth.',
     },
     {
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2">
-          <path d="m15 18-6-6 6-6" />
-          <rect width="18" height="18" x="3" y="3" rx="2" />
-        </svg>
-      ),
-      title: 'High-Converting Creative UGC Lab',
-      desc: 'In-house scriptwriting, high-production UGC hooks, and motion graphic ads engineered specifically to drive CTR and lower CPA.',
+      id: 'iit',
+      title: 'Meta & Instagram Ads Mastery',
+      institution: 'IIT Delhi (Academic Outreach & World Technocon)',
+      year: '2025',
+      badge: 'IIT Delhi Certified',
+      certNo: 'DT2Q76HP3T2C232',
+      image: '/cert_iit_delhi_meta_ads.jpg',
+      desc: 'Completed on-campus specialized workshop program on Digital Marketing Mastery with Instagram & Facebook Ads at IIT Delhi.',
     },
     {
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2">
-          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-          <path d="M22 6l-10 7L2 6" />
-        </svg>
-      ),
-      title: 'Landing Page CRO & Funnel Architecture',
-      desc: 'Lightning-fast, mobile-optimized landing pages with psychological conversion triggers built to double your on-page conversion rates.',
-    },
-    {
-      icon: (
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" strokeWidth="2">
-          <path d="M18 20V10M12 20V4M6 20v-6" />
-        </svg>
-      ),
-      title: 'Server-Side CAPI & First-Party Attribution',
-      desc: 'Rock-solid conversion API setups bypassing iOS tracking loss, ensuring full algorithm signal accuracy and zero data leakage.',
+      id: 'vskills',
+      title: 'Vskills Certified Digital Marketing Master',
+      institution: 'Digital Vidya & Govt. of India Enterprise Venture',
+      year: '2019',
+      badge: 'Master Level Certified',
+      certNo: '1170ZXA190100615 / Code 39695',
+      image: '/cert_vskills_digital_vidya.jpg',
+      desc: 'Certified as Digital Marketing Master through comprehensive professional examination and industry coursework.',
     },
   ];
 
-  // Team Members
-  const teamMembers = [
+  // Comparison Matrix Data
+  const comparisonRows = [
     {
-      name: 'Niraj Sharma',
-      role: 'Founder & Head of Growth',
-      bio: 'Scaled $15M+ in paid ad revenue. Growth strategist specializing in direct-response creative frameworks.',
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&auto=format&fit=crop&q=80',
-      badge: 'Growth Architecture',
+      pillar: 'Strategy',
+      gdas: 'Business & growth-focused strategy tailored to unique unit economics',
+      traditional: 'Mostly task-focused and transactional checklist execution',
     },
     {
-      name: 'Aryan Verma',
-      role: 'Creative Director & UGC Lead',
-      bio: 'Directs top-performing video hooks, UGC creator networks, and psychological video editing.',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&auto=format&fit=crop&q=80',
-      badge: 'Creative Lab',
+      pillar: 'Performance',
+      gdas: 'Direct focus on qualified leads, conversions, and scalable revenue growth',
+      traditional: 'Focus often limited to vanity deliverables, clicks or impressions',
     },
     {
-      name: 'Devika Patel',
-      role: 'Lead Media Buyer (Meta & TikTok)',
-      bio: 'Manages $250k+/month in live ad spend with proprietary audience and bid scaling algorithms.',
-      avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&auto=format&fit=crop&q=80',
-      badge: 'Media Buying',
+      pillar: 'Marketing',
+      gdas: 'Omnichannel mastery: Meta Ads, Google Ads, YouTube, SEO & local rank',
+      traditional: 'Often limited to selected basic channels without holistic sync',
     },
     {
-      name: 'Karan Mehra',
-      role: 'Full-Stack CRO & Data Architect',
-      bio: 'Optimizes custom landing page funnels, CAPI pipelines, and first-party attribution tracking.',
-      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&auto=format&fit=crop&q=80',
-      badge: 'CRO & Tracking',
-    },
-  ];
-
-  // Testimonials
-  const testimonials = [
-    {
-      quote: "Working with GDAs was a game-changer for our brand. Their dedication to understanding our unit economics and crafting high-converting video creative took us from $20k to $140k/month seamlessly.",
-      name: 'Anthony Lumberg',
-      role: 'Founder, Volt Wear DTC',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
-      rating: 5,
+      pillar: 'Branding',
+      gdas: 'Branding + Marketing integrated together for maximum conversion pull',
+      traditional: 'Branding often handled separately by disconnected designers',
     },
     {
-      quote: "We partnered with GDAs for full-funnel paid media and landing page redesign. Their creative strategy and first-party tracking eliminated guesswork, delivering a 6.2x blended ROAS.",
-      name: 'Liza Rush',
-      role: 'Head of Marketing, Aura Skin',
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
-      rating: 5,
+      pillar: 'Technology',
+      gdas: 'Custom high-speed websites, Next.js tech, CAPI & WhatsApp AI automation',
+      traditional: 'Usually limited to generic templates without conversion optimization',
     },
     {
-      quote: "GDAs isn't just an agency; they operate like a dedicated in-house growth wing. Transparent reporting, daily slack syncs, and relentless execution.",
-      name: 'Marcus Vance',
-      role: 'CEO, Kinetix Apparel',
-      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
-      rating: 5,
-    },
-  ];
-
-  // Core Values Data
-  const coreValues = [
-    {
-      number: '01',
-      title: 'Collaborative Discovery',
-      desc: 'We start by tearing down your historical ad data, unit economics, customer avatars, and competitor funnels to build an airtight growth roadmap.',
+      pillar: 'Creative',
+      gdas: 'Strategy-led creative solutions, psychological hooks & viral content',
+      traditional: 'Mainly plain aesthetic design without direct response focus',
     },
     {
-      number: '02',
-      title: 'Uncompromising Excellence',
-      desc: 'Every creative asset, ad copy hook, and bidding adjustment is held to an elite conversion standard. No generic templates, only bespoke execution.',
+      pillar: 'Scalability',
+      gdas: 'Full-stack ecosystem built to seamlessly scale with your business',
+      traditional: 'Often constrained by bandwidth and rigid single-skill resources',
     },
     {
-      number: '03',
-      title: 'Agile Scale & Adaptability',
-      desc: 'When platform algorithms shift or creative fatigue hits, we pivot within 24 hours with fresh angles, new hooks, and dynamic audience pivots.',
-    },
-    {
-      number: '04',
-      title: 'Transparent Attribution',
-      desc: 'Zero inflated vanity metrics. We report directly on bankable attributed revenue, cash-on-cash ROAS, and net contribution margins.',
+      pillar: 'Partnership',
+      gdas: 'Long-term dedicated digital growth partner invested in your win',
+      traditional: 'Mostly short-term project vendor or transactional billing',
     },
   ];
 
   return (
-    <div
-      onMouseEnter={() => setCursorHovered(false)}
-      style={{
-        position: 'relative',
-        minHeight: '100vh',
-        backgroundColor: '#000000',
-        color: '#ffffff',
-        overflowX: 'hidden',
-      }}
-    >
-      {/* ========================================================================= */}
-      {/* ANIMATED BLINKING GOOGLY EYES CURSOR */}
-      {/* ========================================================================= */}
-      {isClient && (
-        <motion.div
-          className="custom-eyes-cursor"
-          animate={{
-            x: mousePosition.x - 17,
-            y: mousePosition.y - 14,
-            scale: cursorHovered ? 1.2 : 1,
-          }}
-          transition={{ type: 'spring', damping: 28, stiffness: 420, mass: 0.12 }}
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            display: 'flex',
-            alignItems: 'center',
-            gap: '3px',
-            pointerEvents: 'none',
-            zIndex: 99999,
-          }}
-        >
-          {/* Left Eye */}
-          <motion.div
-            animate={{ scaleY: isBlinking ? 0.08 : 1 }}
-            transition={{ duration: 0.09, ease: 'easeInOut' }}
-            style={{
-              width: '16px',
-              height: '26px',
-              backgroundColor: '#ffffff',
-              borderRadius: '13px',
-              position: 'relative',
-              boxShadow: '0 3px 12px rgba(0,0,0,0.7)',
-              transformOrigin: 'center center',
-            }}
-          >
-            <motion.div
-              animate={{
-                x: pupilOffset.x,
-                y: pupilOffset.y,
-              }}
-              transition={{
-                type: 'spring',
-                damping: 20,
-                stiffness: 400,
-                mass: 0.08,
-              }}
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '11px',
-                height: '15px',
-                backgroundColor: '#000000',
-                borderRadius: '50%',
-              }}
-            >
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: '3px',
-                  right: '3px',
-                  width: '2.5px',
-                  height: '2.5px',
-                  backgroundColor: '#ffffff',
-                  borderRadius: '50%',
-                }}
-              />
-            </motion.div>
-          </motion.div>
-
-          {/* Right Eye */}
-          <motion.div
-            animate={{ scaleY: isBlinking ? 0.08 : 1 }}
-            transition={{ duration: 0.09, ease: 'easeInOut' }}
-            style={{
-              width: '16px',
-              height: '26px',
-              backgroundColor: '#ffffff',
-              borderRadius: '13px',
-              position: 'relative',
-              boxShadow: '0 3px 12px rgba(0,0,0,0.7)',
-              transformOrigin: 'center center',
-            }}
-          >
-            <motion.div
-              animate={{
-                x: pupilOffset.x,
-                y: pupilOffset.y,
-              }}
-              transition={{
-                type: 'spring',
-                damping: 20,
-                stiffness: 400,
-                mass: 0.08,
-              }}
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '11px',
-                height: '15px',
-                backgroundColor: '#000000',
-                borderRadius: '50%',
-              }}
-            >
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: '3px',
-                  right: '3px',
-                  width: '2.5px',
-                  height: '2.5px',
-                  backgroundColor: '#ffffff',
-                  borderRadius: '50%',
-                }}
-              />
-            </motion.div>
-          </motion.div>
-        </motion.div>
-      )}
-
+    <div style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#000000', color: '#ffffff', overflowX: 'hidden' }}>
       {/* Top Ambient Glow */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2, ease: 'easeOut' }}
-        className="bg-ambient-top"
-      />
+      <div className="bg-ambient-top" />
 
       {/* ========================================================================= */}
-      {/* 1. FLOATING NAVIGATION BAR */}
+      {/* FLOATING NAVBAR (GDAs Without Dot) */}
       {/* ========================================================================= */}
       <motion.header
-        initial={{ y: -50, opacity: 0, filter: 'blur(8px)' }}
-        animate={{ y: 0, opacity: 1, filter: 'blur(0px)' }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8 }}
         style={{
           position: 'fixed',
-          top: '20px',
+          top: '18px',
           left: '0',
           right: '0',
           margin: '0 auto',
-          width: 'calc(100% - 40px)',
-          maxWidth: '1050px',
+          width: 'calc(100% - 36px)',
+          maxWidth: '1100px',
           zIndex: 100,
         }}
       >
@@ -405,1408 +146,1074 @@ export default function AboutPage() {
             justifyContent: 'space-between',
             padding: '12px 24px',
             borderRadius: '9999px',
+            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)',
           }}
         >
-          {/* Logo */}
           <Link
             href="/"
-            onMouseEnter={() => setCursorHovered(true)}
-            onMouseLeave={() => setCursorHovered(false)}
-            style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: '#fff' }}
+            style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}
           >
             <div
               style={{
-                width: '34px',
-                height: '34px',
-                borderRadius: '9px',
+                width: '36px',
+                height: '36px',
+                borderRadius: '10px',
                 background: '#0d3899',
                 border: '1px solid rgba(59, 130, 246, 0.4)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 overflow: 'hidden',
-                boxShadow: '0 2px 12px rgba(37, 99, 235, 0.4)',
               }}
             >
-              <img
-                src="/gda_logo.png"
-                alt="GDAs Logo"
-                style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'cover',
-                }}
-              />
+              <img src="/gda_logo.png" alt="GDAs Logo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
-            <span style={{ fontWeight: 800, fontSize: '18px', letterSpacing: '-0.02em', color: '#ffffff' }}>
-              GDAs<span style={{ color: '#3b82f6' }}>.</span>
+            <span style={{ fontWeight: 800, fontSize: '19px', color: '#ffffff', letterSpacing: '-0.02em' }}>
+              GDAs
             </span>
           </Link>
 
-          {/* Desktop Nav Links */}
           <nav style={{ display: 'flex', alignItems: 'center', gap: '26px' }} className="desktop-nav">
-            <Link href="/" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Home</Link>
-            <Link href="/about" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 700, color: '#3b82f6', textDecoration: 'none' }}>About</Link>
-            <Link href="/#services" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Services</Link>
-            <Link href="/training" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Training</Link>
-            <Link href="/blog" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Blog</Link>
-            <Link href="/careers" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Careers</Link>
+            <Link href="/" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Home</Link>
+            <Link href="/about" style={{ fontSize: '13.5px', fontWeight: 600, color: '#3b82f6', textDecoration: 'none' }}>About</Link>
+            <a href="/#services" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Services</a>
+            <a href="#leadership" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Leadership</a>
+            <a href="#awards" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Certificates & Awards</a>
+            <a href="#legacy" style={{ fontSize: '13.5px', fontWeight: 600, color: '#eab308', textDecoration: 'none' }}>Legacy ❤️</a>
+            <Link href="/training" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Training</Link>
+            <Link href="/blog" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Blog</Link>
           </nav>
 
-          {/* Right Action */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-            <motion.button
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.96 }}
-              onMouseEnter={() => setCursorHovered(true)}
-              onMouseLeave={() => setCursorHovered(false)}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <button
               onClick={() => setModalOpen(true)}
-              className="btn btn-primary"
-              style={{ padding: '8px 20px', fontSize: '13px', fontWeight: 600 }}
+              className="btn-primary"
+              style={{ padding: '9px 20px', fontSize: '13px' }}
             >
-              Book a call →
-            </motion.button>
-
-            {/* Mobile Hamburger */}
+              Talk to GDAs
+            </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="mobile-hamburger"
-              aria-label="Toggle Menu"
               style={{ display: 'none', background: 'none', border: 'none', color: '#fff', cursor: 'pointer', padding: '6px' }}
+              className="mobile-toggle"
+              aria-label="Toggle menu"
             >
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                {mobileMenuOpen ? (
-                  <path d="M18 6L6 18M6 6l12 12" strokeLinecap="round" />
-                ) : (
-                  <path d="M4 6h16M4 12h16M4 18h16" strokeLinecap="round" />
-                )}
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                {mobileMenuOpen ? <path d="M18 6L6 18M6 6l12 12" /> : <path d="M4 6h16M4 12h16M4 18h16" />}
               </svg>
             </button>
           </div>
         </div>
 
-        {/* Mobile Dropdown Drawer */}
+        {/* Mobile Dropdown */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              transition={{ duration: 0.2 }}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="glass-card"
               style={{
                 marginTop: '10px',
-                background: 'rgba(10, 10, 10, 0.95)',
-                backdropFilter: 'blur(20px)',
-                border: '1px solid rgba(255,255,255,0.12)',
-                borderRadius: '16px',
-                padding: '20px',
+                padding: '22px',
+                borderRadius: '20px',
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '14px',
               }}
             >
-              <Link href="/" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Home</Link>
-              <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#3b82f6', textDecoration: 'none', fontSize: '15px', fontWeight: 700 }}>About</Link>
-              <Link href="/#services" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Services</Link>
-              <Link href="/training" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Training</Link>
-              <Link href="/blog" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Blog</Link>
-              <Link href="/careers" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Careers</Link>
-              <button
-                onClick={() => { setMobileMenuOpen(false); setModalOpen(true); }}
-                className="btn btn-primary"
-                style={{ width: '100%', padding: '10px', marginTop: '6px' }}
-              >
-                Book a call →
-              </button>
+              <Link href="/" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none' }}>Home</Link>
+              <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#3b82f6', fontWeight: 600, textDecoration: 'none' }}>About GDAs</Link>
+              <a href="/#services" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none' }}>Services</a>
+              <a href="#leadership" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none' }}>Leadership</a>
+              <a href="#awards" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none' }}>Certificates & Awards</a>
+              <a href="#legacy" onClick={() => setMobileMenuOpen(false)} style={{ color: '#eab308', fontWeight: 600, textDecoration: 'none' }}>Our Legacy (Father Never Dies)</a>
+              <Link href="/training" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none' }}>Training</Link>
+              <Link href="/blog" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none' }}>Blog</Link>
             </motion.div>
           )}
         </AnimatePresence>
       </motion.header>
 
       {/* ========================================================================= */}
-      {/* 2. HERO SECTION (Alpha-Style Innovation & Strategy) */}
+      {/* 01. ABOUT HERO SECTION */}
       {/* ========================================================================= */}
-      <section style={{ paddingTop: '150px', paddingBottom: '70px', position: 'relative' }}>
-        <div className="container-custom" style={{ textAlign: 'center' }}>
-          
-          {/* Top Pill Badge */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={blurFadeIn}
-            custom={0}
-            style={{ display: 'inline-flex', marginBottom: '22px' }}
-          >
-            <div className="pill-badge pill-badge-orange">
-              <span className="pulse-dot" />
-              <span>What's new? Scaled $15M+ in Ad Revenue</span>
-              <span style={{ color: '#60a5fa', marginLeft: '6px' }}>Discover our story →</span>
-            </div>
-          </motion.div>
-
-          {/* Main Headline */}
-          <motion.h1
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={blurFadeIn}
-            custom={1}
-            style={{
-              fontSize: 'clamp(36px, 5.5vw, 68px)',
-              fontWeight: 800,
-              lineHeight: 1.08,
-              letterSpacing: '-0.035em',
-              maxWidth: '920px',
-              margin: '0 auto 22px auto',
-            }}
-          >
-            Innovation and digital excellence where <span className="serif-italic" style={{ color: '#3b82f6' }}>creativity</span> meets performance strategy.
-          </motion.h1>
-
-          {/* Subtitle */}
-          <motion.p
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={blurFadeIn}
-            custom={2}
-            style={{
-              fontSize: 'clamp(15px, 1.8vw, 18px)',
-              color: '#a3a3a3',
-              maxWidth: '680px',
-              margin: '0 auto 40px auto',
-              lineHeight: 1.6,
-            }}
-          >
-            Our expertise lies in strategic performance design, high-converting video creative engines, and first-party attribution infrastructure—ensuring your brand dominates the digital landscape.
-          </motion.p>
-
-          {/* 3-Image High-Impact Collage Grid (Matching Alpha Reference) */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={blurFadeIn}
-            custom={3}
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: '20px',
-              marginTop: '20px',
-            }}
-          >
-            {/* Image 1 */}
+      <section
+        style={{
+          paddingTop: '160px',
+          paddingBottom: '70px',
+          position: 'relative',
+        }}
+      >
+        <div className="container-custom">
+          <div style={{ textAlign: 'center', maxWidth: '860px', margin: '0 auto' }}>
+            {/* Small Eyebrow / Label */}
             <motion.div
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
-              style={{
-                borderRadius: '20px',
-                overflow: 'hidden',
-                position: 'relative',
-                aspectRatio: '4/3',
-                border: '1px solid rgba(255,255,255,0.1)',
-                boxShadow: '0 20px 40px rgba(0,0,0,0.8)',
-              }}
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              style={{ display: 'inline-flex', alignItems: 'center', marginBottom: '16px' }}
             >
-              <img
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop&q=80"
-                alt="Creative Collaboration"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
               <div
                 style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.8) 100%)',
-                  display: 'flex',
-                  alignItems: 'flex-end',
-                  padding: '20px',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  background: 'rgba(37, 99, 235, 0.1)',
+                  border: '1px solid rgba(59, 130, 246, 0.3)',
+                  borderRadius: '50px',
+                  padding: '6px 18px',
                 }}
               >
-                <div style={{ textAlign: 'left' }}>
-                  <div style={{ fontSize: '11px', color: '#60a5fa', fontWeight: 700, textTransform: 'uppercase' }}>CREATIVE LAB</div>
-                  <div style={{ fontSize: '16px', fontWeight: 700, color: '#fff' }}>Strategic Hook Sprints</div>
-                </div>
+                <span className="pulse-dot" />
+                <span style={{ fontSize: '12px', fontWeight: 700, letterSpacing: '0.1em', color: '#60a5fa', textTransform: 'uppercase' }}>
+                  About Ganesha Digital Ads
+                </span>
               </div>
             </motion.div>
 
-            {/* Image 2 (Centerpiece) */}
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
+            {/* Main Heading */}
+            <motion.h1
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.15 }}
               style={{
-                borderRadius: '20px',
-                overflow: 'hidden',
-                position: 'relative',
-                aspectRatio: '4/3',
-                border: '1px solid rgba(37, 99, 235, 0.4)',
-                boxShadow: '0 0 35px rgba(37, 99, 235, 0.25)',
+                fontSize: 'clamp(36px, 5.2vw, 64px)',
+                fontWeight: 800,
+                lineHeight: 1.1,
+                letterSpacing: '-0.03em',
+                marginBottom: '16px',
               }}
             >
-              <img
-                src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&auto=format&fit=crop&q=80"
-                alt="Media Buying & Analytics"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-              <div
+              One Platform.{' '}
+              <span
                 style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'linear-gradient(180deg, transparent 40%, rgba(0,0,0,0.85) 100%)',
-                  display: 'flex',
-                  alignItems: 'flex-end',
-                  padding: '20px',
+                  background: 'linear-gradient(135deg, #60a5fa 0%, #2563eb 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
                 }}
               >
-                <div style={{ textAlign: 'left' }}>
-                  <div style={{ fontSize: '11px', color: '#10b981', fontWeight: 700, textTransform: 'uppercase' }}>LIVE SCALE</div>
-                  <div style={{ fontSize: '16px', fontWeight: 700, color: '#fff' }}>Multi-Channel Ad Ops</div>
-                </div>
-              </div>
+                All Solutions.
+              </span>
+            </motion.h1>
+
+            {/* Tagline */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, delay: 0.25 }}
+              style={{
+                fontSize: 'clamp(19px, 2.4vw, 26px)',
+                fontWeight: 600,
+                color: '#e2e8f0',
+                marginBottom: '24px',
+              }}
+            >
+              Digital Ka Saath, <span style={{ color: '#3b82f6', fontWeight: 700 }}>Aapke Business Ka Vikas.</span>
             </motion.div>
 
-            {/* Image 3 */}
-            <motion.div
-              whileHover={{ scale: 1.02 }}
-              transition={{ duration: 0.3 }}
+            {/* Subtext */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, delay: 0.35 }}
               style={{
-                borderRadius: '20px',
-                overflow: 'hidden',
-                position: 'relative',
-                aspectRatio: '4/3',
-                border: '1px solid rgba(255,255,255,0.1)',
-                boxShadow: '0 20px 40px rgba(0,0,0,0.8)',
+                fontSize: '16.5px',
+                color: '#cbd5e1',
+                lineHeight: 1.7,
+                marginBottom: '16px',
               }}
             >
-              <img
-                src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&auto=format&fit=crop&q=80"
-                alt="Growth Architecture"
-                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-              />
-              <div
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.8) 100%)',
-                  display: 'flex',
-                  alignItems: 'flex-end',
-                  padding: '20px',
-                }}
-              >
-                <div style={{ textAlign: 'left' }}>
-                  <div style={{ fontSize: '11px', color: '#60a5fa', fontWeight: 700, textTransform: 'uppercase' }}>ATTRIBUTION</div>
-                  <div style={{ fontSize: '16px', fontWeight: 700, color: '#fff' }}>Unit Economics Precision</div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
+              Ganesha Digital Ads (GDAs) is a <strong>digital marketing agency</strong> helping businesses build strong brands, reach the right audience and achieve sustainable growth through <strong>Digital Marketing, Branding, Technology and Creative Solutions.</strong>
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, delay: 0.45 }}
+              style={{
+                fontSize: '15.5px',
+                color: '#94a3b8',
+                lineHeight: 1.7,
+              }}
+            >
+              We bring essential digital solutions together under one platform — helping businesses <strong>Build, Market and Grow</strong> in the digital world.
+            </motion.p>
+          </div>
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* 3. STORY & IMPACT TRACK RECORD STATS */}
+      {/* 02. MISSION & VISION SECTION */}
       {/* ========================================================================= */}
-      <section className="section-spacing" style={{ background: 'linear-gradient(180deg, #000 0%, #060606 100%)' }}>
+      <section style={{ padding: '60px 0', borderTop: '1px solid rgba(255, 255, 255, 0.08)', borderBottom: '1px solid rgba(255, 255, 255, 0.08)', background: '#050505' }}>
         <div className="container-custom">
-          
-          <div style={{ textAlign: 'center', maxWidth: '780px', margin: '0 auto 50px auto' }}>
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={blurFadeIn}
-              className="section-tag"
-            >
-              Our Story & Impact
-            </motion.div>
-            <motion.h2
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={blurFadeIn}
-              custom={1}
-              style={{ fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.15 }}
-            >
-              GDAs has been on a relentless pursuit of <span className="serif-italic" style={{ color: '#3b82f6' }}>excellence</span> since inception.
-            </motion.h2>
-            <motion.p
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={blurFadeIn}
-              custom={2}
-              style={{ fontSize: '16px', color: '#a3a3a3', marginTop: '16px', lineHeight: 1.6 }}
-            >
-              Born out of frustration with bloated agencies and vanity metrics, GDAs was built with a singular mission: engineering measurable, high-margin revenue through surgical paid acquisition.
-            </motion.p>
-          </div>
-
-          {/* 4 Bento Impact Stat Cards */}
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-              gap: '20px',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '28px',
             }}
           >
-            {[
-              { label: 'Attributed Client Revenue', value: '$15M+', sub: 'Generated globally across Meta & Google', color: '#3b82f6' },
-              { label: 'Average Blended ROAS', value: '5.84x', sub: 'Calculated on net customer acquisition', color: '#ffffff' },
-              { label: 'Client Retention Rate', value: '98.4%', sub: 'Long-term partnership focus', color: '#60a5fa' },
-              { label: 'Brands Scaled', value: '25+', sub: 'Category leaders in DTC, Tech & SaaS', color: '#ffffff' },
-            ].map((stat, idx) => (
-              <motion.div
-                key={idx}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={blurFadeIn}
-                custom={idx}
-                whileHover={{ y: -4, borderColor: 'rgba(37, 99, 235, 0.4)' }}
-                style={{
-                  background: '#0a0a0a',
-                  border: '1px solid rgba(255,255,255,0.08)',
-                  borderRadius: '18px',
-                  padding: '30px 24px',
-                  textAlign: 'left',
-                  transition: 'all 0.3s ease',
-                  position: 'relative',
-                  overflow: 'hidden',
-                }}
-              >
-                <div style={{ fontSize: '13px', color: '#888888', fontWeight: 600, marginBottom: '12px' }}>
-                  {stat.label}
+            {/* Our Mission Card */}
+            <motion.div
+              whileHover={{ y: -4 }}
+              className="glass-card"
+              style={{
+                padding: '36px 30px',
+                borderRadius: '24px',
+                background: 'linear-gradient(180deg, rgba(37, 99, 235, 0.08) 0%, rgba(15, 15, 15, 0.95) 100%)',
+                border: '1px solid rgba(59, 130, 246, 0.3)',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '16px' }}>
+                <div
+                  style={{
+                    width: '46px',
+                    height: '46px',
+                    borderRadius: '12px',
+                    background: 'rgba(37, 99, 235, 0.15)',
+                    border: '1px solid rgba(37, 99, 235, 0.35)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '22px',
+                  }}
+                >
+                  🎯
                 </div>
-                <div style={{ fontSize: '42px', fontWeight: 800, color: stat.color, letterSpacing: '-0.03em', lineHeight: 1 }}>
-                  {stat.value}
+                <h2 style={{ fontSize: '24px', fontWeight: 800, color: '#ffffff' }}>Our Mission</h2>
+              </div>
+              <p style={{ fontSize: '15.5px', color: '#d1d5db', lineHeight: 1.7 }}>
+                To empower businesses with the right <strong>Digital Marketing, Branding and Technology solutions</strong> that help them build a strong brand, connect with their audience and achieve sustainable growth.
+              </p>
+            </motion.div>
+
+            {/* Our Vision Card */}
+            <motion.div
+              whileHover={{ y: -4 }}
+              className="glass-card"
+              style={{
+                padding: '36px 30px',
+                borderRadius: '24px',
+                background: 'linear-gradient(180deg, rgba(139, 92, 246, 0.08) 0%, rgba(15, 15, 15, 0.95) 100%)',
+                border: '1px solid rgba(139, 92, 246, 0.3)',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '16px' }}>
+                <div
+                  style={{
+                    width: '46px',
+                    height: '46px',
+                    borderRadius: '12px',
+                    background: 'rgba(139, 92, 246, 0.15)',
+                    border: '1px solid rgba(139, 92, 246, 0.35)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '22px',
+                  }}
+                >
+                  🚀
                 </div>
-                <div style={{ fontSize: '12px', color: '#666', marginTop: '10px' }}>
-                  {stat.sub}
-                </div>
-              </motion.div>
-            ))}
+                <h2 style={{ fontSize: '24px', fontWeight: 800, color: '#ffffff' }}>Our Vision</h2>
+              </div>
+              <p style={{ fontSize: '15.5px', color: '#d1d5db', lineHeight: 1.7 }}>
+                To become a trusted <strong>digital growth partner</strong> for businesses by bringing <strong>Marketing, Branding and Technology</strong> together under one platform.
+              </p>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* 4. OUR MISSION & GROWTH STRATEGY */}
+      {/* 03. WHY GDAs? — 5 Core Pillars */}
       {/* ========================================================================= */}
       <section className="section-spacing" style={{ position: 'relative' }}>
         <div className="container-custom">
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-              gap: '40px',
-              alignItems: 'center',
-            }}
-          >
-            {/* Left Content */}
-            <div>
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={blurFadeIn}
-                className="section-tag"
-              >
-                Our Mission
-              </motion.div>
-
-              <motion.h2
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={blurFadeIn}
-                custom={1}
-                style={{ fontSize: 'clamp(28px, 3.8vw, 44px)', fontWeight: 800, letterSpacing: '-0.025em', lineHeight: 1.15, marginBottom: '20px' }}
-              >
-                Our mission is to empower ambitious brands to thrive in the <span className="serif-italic" style={{ color: '#3b82f6' }}>dynamic digital world</span>.
-              </motion.h2>
-
-              <motion.p
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={blurFadeIn}
-                custom={2}
-                style={{ fontSize: '15px', color: '#a3a3a3', lineHeight: 1.6, marginBottom: '16px' }}
-              >
-                We're dedicated to delivering bespoke growth solutions that not only meet but far exceed expectations. Our goal is to be a trusted scaling partner, driving sustainable customer acquisition and pioneering creative frameworks.
-              </motion.p>
-
-              <motion.p
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={blurFadeIn}
-                custom={3}
-                style={{ fontSize: '14px', color: '#777', lineHeight: 1.6, marginBottom: '28px' }}
-              >
-                By combining behavioral psychology with mathematical media buying and first-party attribution tracking, we turn ad spend into high-margin profit machines.
-              </motion.p>
-
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={blurFadeIn}
-                custom={4}
-                style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}
-              >
-                <Link
-                  href="/#services"
-                  className="btn btn-primary"
-                  onMouseEnter={() => setCursorHovered(true)}
-                  onMouseLeave={() => setCursorHovered(false)}
-                >
-                  Explore Services →
-                </Link>
-                <button
-                  onClick={() => setModalOpen(true)}
-                  className="btn btn-secondary"
-                  onMouseEnter={() => setCursorHovered(true)}
-                  onMouseLeave={() => setCursorHovered(false)}
-                >
-                  Book Discovery Call
-                </button>
-              </motion.div>
-            </div>
-
-            {/* Right Interactive Visual Card */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={blurFadeIn}
-              custom={2}
-              style={{
-                background: 'linear-gradient(135deg, #0d0d0d 0%, #141414 100%)',
-                border: '1px solid rgba(255,255,255,0.12)',
-                borderRadius: '24px',
-                padding: '36px',
-                boxShadow: '0 20px 50px rgba(0,0,0,0.8)',
-                position: 'relative',
-              }}
-            >
-              {/* Card Header Swatch */}
-              <div
-                style={{
-                  width: '100%',
-                  height: '140px',
-                  borderRadius: '16px',
-                  background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 70%, #1e3a8a 100%)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'flex-end',
-                  padding: '18px',
-                  marginBottom: '24px',
-                  boxShadow: '0 10px 25px rgba(37,99,235,0.3)',
-                }}
-              >
-                <div style={{ fontSize: '12px', color: '#fff', opacity: 0.85, fontWeight: 600 }}>GDAs PERFORMANCE SYSTEM</div>
-                <div style={{ fontSize: '20px', fontWeight: 800, color: '#fff' }}>Algorithm Dominance Suite</div>
-              </div>
-
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '12px' }}>
-                  <span style={{ fontSize: '13px', color: '#888' }}>Target ROAS Threshold</span>
-                  <span style={{ fontSize: '14px', fontWeight: 700, color: '#10b981' }}>3.50x — 6.50x Active</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '12px' }}>
-                  <span style={{ fontSize: '13px', color: '#888' }}>Creative Iteration Speed</span>
-                  <span style={{ fontSize: '14px', fontWeight: 700, color: '#fff' }}>Weekly 8+ UGC Angles</span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <span style={{ fontSize: '13px', color: '#888' }}>Attribution Loss Protection</span>
-                  <span style={{ fontSize: '14px', fontWeight: 700, color: '#3b82f6' }}>100% CAPI Integrated</span>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* 5. CORE VALUES & ORBITAL ECOSYSTEM (Alpha-Style What Drives Us) */}
-      {/* ========================================================================= */}
-      <section className="section-spacing" style={{ background: '#050505', position: 'relative' }}>
-        <div className="container-custom">
-          
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-              gap: '50px',
-              alignItems: 'center',
-            }}
-          >
-            {/* Left: Animated Orbital Graphic */}
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={blurFadeIn}
-              style={{
-                position: 'relative',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                minHeight: '380px',
-              }}
-            >
-              {/* Outer Orbital Ring */}
-              <div
-                style={{
-                  position: 'absolute',
-                  width: '320px',
-                  height: '320px',
-                  borderRadius: '50%',
-                  border: '1px dashed rgba(37, 99, 235, 0.3)',
-                  animation: 'spin 40s linear infinite',
-                }}
-              />
-
-              {/* Middle Orbital Ring */}
-              <div
-                style={{
-                  position: 'absolute',
-                  width: '230px',
-                  height: '230px',
-                  borderRadius: '50%',
-                  border: '1px solid rgba(255, 255, 255, 0.08)',
-                }}
-              />
-
-              {/* Inner Orbital Ring */}
-              <div
-                style={{
-                  position: 'absolute',
-                  width: '140px',
-                  height: '140px',
-                  borderRadius: '50%',
-                  border: '1px dashed rgba(37, 99, 235, 0.45)',
-                }}
-              />
-
-              {/* Center Core Logo */}
-              <motion.div
-                whileHover={{ scale: 1.1 }}
-                style={{
-                  width: '74px',
-                  height: '74px',
-                  borderRadius: '50%',
-                  background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  boxShadow: '0 0 40px rgba(37, 99, 235, 0.55)',
-                  zIndex: 2,
-                }}
-              >
-                <span style={{ fontWeight: 900, fontSize: '20px', color: '#fff' }}>GDAs</span>
-              </motion.div>
-
-              {/* Orbiting Satellite Nodes */}
-              {[
-                { label: 'Discovery', top: '25px', left: '140px', icon: '🔍' },
-                { label: 'Creative', top: '100px', right: '25px', icon: '🎨' },
-                { label: 'ROAS', bottom: '35px', right: '110px', icon: '📈' },
-                { label: 'CAPI Data', bottom: '110px', left: '20px', icon: '⚡' },
-                { label: 'Scale', top: '190px', left: '30px', icon: '🚀' },
-              ].map((node, idx) => (
-                <motion.div
-                  key={idx}
-                  animate={{ y: [0, -6, 0] }}
-                  transition={{ duration: 3 + idx, repeat: Infinity, ease: 'easeInOut' }}
-                  style={{
-                    position: 'absolute',
-                    top: node.top,
-                    bottom: node.bottom,
-                    left: node.left,
-                    right: node.right,
-                    background: 'rgba(20,20,20,0.9)',
-                    border: '1px solid rgba(255,255,255,0.15)',
-                    borderRadius: '50px',
-                    padding: '6px 14px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    fontSize: '12px',
-                    fontWeight: 600,
-                    boxShadow: '0 8px 20px rgba(0,0,0,0.6)',
-                  }}
-                >
-                  <span>{node.icon}</span>
-                  <span style={{ color: '#fff' }}>{node.label}</span>
-                </motion.div>
-              ))}
-            </motion.div>
-
-            {/* Right: Core Values List */}
-            <div>
-              <motion.div
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={blurFadeIn}
-                className="section-tag"
-              >
-                What drives us
-              </motion.div>
-
-              <motion.h2
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={blurFadeIn}
-                custom={1}
-                style={{ fontSize: 'clamp(28px, 3.8vw, 44px)', fontWeight: 800, letterSpacing: '-0.025em', lineHeight: 1.15, marginBottom: '16px' }}
-              >
-                We're driven by a set of <span className="serif-italic" style={{ color: '#3b82f6' }}>core values</span> that form the essence of our agency.
-              </motion.h2>
-
-              <motion.p
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={blurFadeIn}
-                custom={2}
-                style={{ fontSize: '14px', color: '#a3a3a3', lineHeight: 1.6, marginBottom: '28px' }}
-              >
-                We thrive on pushing boundaries and embracing creative iteration to bring fresh revenue perspectives to every brand partnership.
-              </motion.p>
-
-              {/* Interactive Values Accordion/List */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                {coreValues.map((val, idx) => {
-                  const isActive = activeValueTab === idx;
-                  return (
-                    <motion.div
-                      key={idx}
-                      onClick={() => setActiveValueTab(idx)}
-                      onMouseEnter={() => setCursorHovered(true)}
-                      onMouseLeave={() => setCursorHovered(false)}
-                      style={{
-                        padding: '16px 20px',
-                        borderRadius: '14px',
-                        background: isActive ? 'rgba(37, 99, 235, 0.1)' : 'rgba(255,255,255,0.02)',
-                        border: isActive ? '1px solid rgba(37, 99, 235, 0.4)' : '1px solid rgba(255,255,255,0.06)',
-                        cursor: 'pointer',
-                        transition: 'all 0.25s ease',
-                      }}
-                    >
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-                          <span style={{ fontSize: '13px', fontWeight: 800, color: isActive ? '#3b82f6' : '#666' }}>
-                            {val.number}.
-                          </span>
-                          <span style={{ fontSize: '16px', fontWeight: 700, color: '#fff' }}>
-                            {val.title}
-                          </span>
-                        </div>
-                        <span style={{ fontSize: '16px', color: isActive ? '#3b82f6' : '#666' }}>
-                          {isActive ? '−' : '+'}
-                        </span>
-                      </div>
-                      
-                      {isActive && (
-                        <motion.p
-                          initial={{ opacity: 0, height: 0 }}
-                          animate={{ opacity: 1, height: 'auto' }}
-                          exit={{ opacity: 0, height: 0 }}
-                          style={{ fontSize: '13px', color: '#a3a3a3', marginTop: '10px', lineHeight: 1.5, paddingLeft: '28px' }}
-                        >
-                          {val.desc}
-                        </motion.p>
-                      )}
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* 6. WHAT WE DO / CORE PILLARS SLIDER (Alpha-Style Carousel) */}
-      {/* ========================================================================= */}
-      <section className="section-spacing" style={{ background: '#000000' }}>
-        <div className="container-custom">
-          
-          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px', marginBottom: '40px' }}>
-            <div>
-              <div className="section-tag">What we do</div>
-              <h2 style={{ fontSize: 'clamp(28px, 3.8vw, 44px)', fontWeight: 800, letterSpacing: '-0.025em', lineHeight: 1.15 }}>
-                Elevating brands through <span className="serif-italic" style={{ color: '#3b82f6' }}>innovation & expertise</span>.
-              </h2>
-            </div>
-
-            {/* Slider Arrow Controls */}
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <button
-                onClick={() => setWhatWeDoIndex(Math.max(0, whatWeDoIndex - 1))}
-                disabled={whatWeDoIndex === 0}
-                onMouseEnter={() => setCursorHovered(true)}
-                onMouseLeave={() => setCursorHovered(false)}
-                style={{
-                  width: '42px',
-                  height: '42px',
-                  borderRadius: '50%',
-                  background: whatWeDoIndex === 0 ? 'rgba(255,255,255,0.03)' : 'rgba(255,255,255,0.1)',
-                  border: '1px solid rgba(255,255,255,0.1)',
-                  color: whatWeDoIndex === 0 ? '#444' : '#fff',
-                  cursor: whatWeDoIndex === 0 ? 'not-allowed' : 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '16px',
-                }}
-              >
-                ←
-              </button>
-              <button
-                onClick={() => setWhatWeDoIndex(Math.min(whatWeDoList.length - 2, whatWeDoIndex + 1))}
-                disabled={whatWeDoIndex >= whatWeDoList.length - 2}
-                onMouseEnter={() => setCursorHovered(true)}
-                onMouseLeave={() => setCursorHovered(false)}
-                style={{
-                  width: '42px',
-                  height: '42px',
-                  borderRadius: '50%',
-                  background: whatWeDoIndex >= whatWeDoList.length - 2 ? 'rgba(255,255,255,0.03)' : '#2563eb',
-                  border: '1px solid rgba(37,99,235,0.3)',
-                  color: '#fff',
-                  cursor: whatWeDoIndex >= whatWeDoList.length - 2 ? 'not-allowed' : 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '16px',
-                }}
-              >
-                →
-              </button>
-            </div>
-          </div>
-
-          {/* Service Cards Grid / Slider */}
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '24px',
-            }}
-          >
-            {whatWeDoList.slice(whatWeDoIndex, whatWeDoIndex + 2).map((item) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, filter: 'blur(8px)', scale: 0.96 }}
-                animate={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
-                transition={{ duration: 0.35 }}
-                whileHover={{ y: -6, borderColor: 'rgba(37,99,235,0.5)' }}
-                style={{
-                  background: 'linear-gradient(135deg, #0e0e0e 0%, #151515 100%)',
-                  border: '1px solid rgba(255,255,255,0.1)',
-                  borderRadius: '20px',
-                  padding: '36px 30px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  minHeight: '260px',
-                  boxShadow: '0 15px 35px rgba(0,0,0,0.6)',
-                }}
-              >
-                <div>
-                  <div
-                    style={{
-                      width: '46px',
-                      height: '46px',
-                      borderRadius: '12px',
-                      background: 'rgba(37,99,235,0.12)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      marginBottom: '20px',
-                    }}
-                  >
-                    {item.icon}
-                  </div>
-                  <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#fff', marginBottom: '12px' }}>
-                    {item.title}
-                  </h3>
-                  <p style={{ fontSize: '14px', color: '#a3a3a3', lineHeight: 1.6 }}>
-                    {item.desc}
-                  </p>
-                </div>
-
-                <div style={{ marginTop: '24px' }}>
-                  <button
-                    onClick={() => setModalOpen(true)}
-                    onMouseEnter={() => setCursorHovered(true)}
-                    onMouseLeave={() => setCursorHovered(false)}
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      color: '#3b82f6',
-                      fontSize: '13px',
-                      fontWeight: 700,
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '6px',
-                      padding: 0,
-                    }}
-                  >
-                    Get Started →
-                  </button>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* 6.5. WHY US / GDAS VS TRADITIONAL AGENCIES COMPARISON MATRIX */}
-      {/* ========================================================================= */}
-      <section id="why-us" className="section-spacing" style={{ background: '#070707', position: 'relative' }}>
-        <div className="container-custom">
-          
-          <div style={{ textAlign: 'center', maxWidth: '750px', margin: '0 auto 50px auto' }}>
-            <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={blurFadeIn} className="section-tag">
-              Why Us • The GDAs Advantage
-            </motion.div>
-            <motion.h2
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={blurFadeIn}
-              custom={1}
-              style={{ fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.15 }}
-            >
-              Why high-growth brands choose <span className="serif-italic" style={{ color: '#3b82f6' }}>GDAs over traditional agencies</span>.
-            </motion.h2>
-            <motion.p
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={blurFadeIn}
-              custom={2}
-              style={{ fontSize: '15px', color: '#a3a3a3', marginTop: '14px', lineHeight: 1.6 }}
-            >
-              Traditional agencies assign junior interns and report on vanity metrics. We engineer high-velocity creative funnels, server-side data pipelines, and pure bottom-line ROAS.
-            </motion.p>
-          </div>
-
-          {/* Comparison Table */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={blurFadeIn}
-            custom={3}
-            style={{
-              background: '#0d0d0d',
-              border: '1px solid rgba(255,255,255,0.08)',
-              borderRadius: '22px',
-              overflow: 'hidden',
-              boxShadow: '0 20px 50px rgba(0,0,0,0.6)',
-              marginBottom: '40px',
-            }}
-          >
-            <div style={{ overflowX: 'auto' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '650px' }}>
-                <thead>
-                  <tr style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.02)' }}>
-                    <th style={{ padding: '20px 24px', fontSize: '14px', fontWeight: 700, color: '#888', width: '34%' }}>Growth Pillar</th>
-                    <th style={{ padding: '20px 24px', fontSize: '15px', fontWeight: 800, color: '#60a5fa', width: '33%', background: 'rgba(37,99,235,0.08)' }}>
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }} />
-                        GDAs Performance Agency
-                      </div>
-                    </th>
-                    <th style={{ padding: '20px 24px', fontSize: '14px', fontWeight: 700, color: '#666', width: '33%' }}>Traditional Agencies / Freelancers</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    {
-                      pillar: 'Creative Velocity & UGC',
-                      gdas: '8+ High-converting UGC & Static hooks produced & tested weekly',
-                      others: '1-2 generic graphic ads per month with slow turnarounds',
-                    },
-                    {
-                      pillar: 'Target ROAS & Focus',
-                      gdas: 'Blended Cash-on-Cash ROAS, MER & Net Contribution Margins',
-                      others: 'Vanity clicks, impressions, and inflated platform metrics',
-                    },
-                    {
-                      pillar: 'Attribution & Signal Stack',
-                      gdas: '100% Server-side Meta CAPI & First-Party Custom Data Pipelines',
-                      others: 'Standard browser pixel losing 35-45% of conversion events',
-                    },
-                    {
-                      pillar: 'Optimization Frequency',
-                      gdas: 'Daily deep-dive bid adjustments, audience scaling & budget pacing',
-                      others: 'Bi-weekly or monthly automated checks without real strategy',
-                    },
-                    {
-                      pillar: 'Media Buying Seniority',
-                      gdas: 'Direct management by 7-figure performance specialists',
-                      others: 'Passed off to junior interns after contracts are signed',
-                    },
-                    {
-                      pillar: 'Team Communication',
-                      gdas: 'Dedicated live Slack channel + weekly async Loom video breakdowns',
-                      others: 'Support ticket queues with 48-72 hour response lags',
-                    },
-                    {
-                      pillar: 'Contract Terms',
-                      gdas: 'Month-to-month agility; we earn your business through results',
-                      others: 'Rigid 6 to 12-month lock-in retainers with high penalty fees',
-                    },
-                  ].map((row, rIdx) => (
-                    <tr
-                      key={rIdx}
-                      style={{
-                        borderBottom: rIdx < 6 ? '1px solid rgba(255,255,255,0.05)' : 'none',
-                        background: rIdx % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)',
-                      }}
-                    >
-                      <td style={{ padding: '18px 24px', fontSize: '14px', fontWeight: 600, color: '#fff' }}>
-                        {row.pillar}
-                      </td>
-                      <td style={{ padding: '18px 24px', fontSize: '13.5px', fontWeight: 600, color: '#e5e5e5', background: 'rgba(37,99,235,0.04)' }}>
-                        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
-                          <span style={{ color: '#10b981', fontWeight: 800 }}>✓</span>
-                          <span>{row.gdas}</span>
-                        </div>
-                      </td>
-                      <td style={{ padding: '18px 24px', fontSize: '13px', color: '#777' }}>
-                        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
-                          <span style={{ color: '#ef4444', fontWeight: 700 }}>✕</span>
-                          <span>{row.others}</span>
-                        </div>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </motion.div>
-
-          {/* 3 Bento Advantage Cards */}
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: '20px',
-            }}
-          >
-            {[
-              {
-                icon: '⚡',
-                title: 'High-Velocity Creative Studio',
-                desc: 'We write conversion copy, direct UGC creators, and edit 4K motion graphics in-house to crush ad fatigue before it starts.',
-              },
-              {
-                icon: '🛡️',
-                title: 'Server-Side Meta CAPI Moat',
-                desc: 'Our proprietary tracking architecture feeds Meta’s AI algorithm with 100% enriched purchase signals, unlocking lower CPAs.',
-              },
-              {
-                icon: '📈',
-                title: 'Predictable Revenue Scaling',
-                desc: 'We treat ad spend as calculated capital investment, scaling winning campaigns systematically while pruning underperformers.',
-              },
-            ].map((card, cIdx) => (
-              <motion.div
-                key={cIdx}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={blurFadeIn}
-                custom={cIdx * 0.5}
-                whileHover={{ y: -5, borderColor: 'rgba(37,99,235,0.4)' }}
-                style={{
-                  background: 'linear-gradient(135deg, #0e0e0e 0%, #151515 100%)',
-                  border: '1px solid rgba(255,255,255,0.08)',
-                  borderRadius: '18px',
-                  padding: '28px 24px',
-                  transition: 'all 0.3s ease',
-                }}
-              >
-                <div style={{ fontSize: '24px', marginBottom: '14px' }}>{card.icon}</div>
-                <h3 style={{ fontSize: '17px', fontWeight: 700, color: '#fff', marginBottom: '8px' }}>{card.title}</h3>
-                <p style={{ fontSize: '13px', color: '#888', lineHeight: 1.6 }}>{card.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* 7. LEADERSHIP & TEAM SHOWCASE */}
-      {/* ========================================================================= */}
-      <section className="section-spacing" style={{ background: '#050505' }}>
-        <div className="container-custom">
-          
-          <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 50px auto' }}>
-            <div className="section-tag">The Minds Behind GDAs</div>
-            <h2 style={{ fontSize: 'clamp(28px, 4vw, 46px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.15 }}>
-              Meet our <span className="serif-italic" style={{ color: '#3b82f6' }}>Growth Architects</span>.
+          <div className="section-header">
+            <div className="section-tag">The GDAs Foundation</div>
+            <h2 className="section-title">
+              Why <span className="serif-italic">GDAs?</span>
             </h2>
-            <p style={{ fontSize: '15px', color: '#a3a3a3', marginTop: '12px' }}>
-              Direct-response media buyers, creative directors, and data engineers with proven track records scaling 7-figure brands.
+            <p className="section-subtitle">
+              One Platform. Multiple Solutions. One Goal — Growth.
             </p>
           </div>
 
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
               gap: '24px',
             }}
           >
-            {teamMembers.map((member, idx) => (
+            {[
+              {
+                icon: '🎯',
+                title: 'Business-Focused',
+                desc: 'Every strategy starts with understanding your business and its goals.',
+                color: '#3b82f6',
+              },
+              {
+                icon: '📈',
+                title: 'Growth-Focused',
+                desc: 'We focus on solutions that help your business reach more people, generate leads and grow digitally.',
+                color: '#10b981',
+              },
+              {
+                icon: '💡',
+                title: 'Creative & Professional',
+                desc: 'From branding to advertising creatives, we combine creativity with professional execution.',
+                color: '#8b5cf6',
+              },
+              {
+                icon: '⚡',
+                title: 'Complete Digital Solutions',
+                desc: 'Digital Marketing, Branding, SEO, Social Media, Websites, Technology and more — all under one platform.',
+                color: '#06b6d4',
+              },
+              {
+                icon: '🤝',
+                title: 'Long-Term Partnership',
+                desc: 'We aim to build lasting digital value rather than just completing individual projects.',
+                color: '#eab308',
+              },
+            ].map((item, idx) => (
               <motion.div
                 key={idx}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={blurFadeIn}
-                custom={idx}
-                whileHover={{ y: -6, borderColor: 'rgba(37,99,235,0.4)' }}
+                whileHover={{ y: -5 }}
+                className="glass-card"
                 style={{
-                  background: '#0a0a0a',
-                  border: '1px solid rgba(255,255,255,0.08)',
-                  borderRadius: '20px',
-                  overflow: 'hidden',
-                  transition: 'all 0.3s ease',
+                  padding: '30px 24px',
+                  borderRadius: '22px',
+                  background: 'rgba(15, 15, 15, 0.8)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
                 }}
               >
-                <div style={{ position: 'relative', width: '100%', aspectRatio: '1/1', overflow: 'hidden' }}>
+                <div
+                  style={{
+                    fontSize: '30px',
+                    width: '56px',
+                    height: '56px',
+                    borderRadius: '16px',
+                    background: `${item.color}18`,
+                    border: `1px solid ${item.color}35`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '18px',
+                  }}
+                >
+                  {item.icon}
+                </div>
+                <h3 style={{ fontSize: '19px', fontWeight: 700, color: '#ffffff', marginBottom: '8px' }}>
+                  {item.title}
+                </h3>
+                <p style={{ fontSize: '14.5px', color: '#a3a3a3', lineHeight: 1.6 }}>
+                  {item.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 04. WHY HIGH-GROWTH BRANDS CHOOSE GDAs (Comparison Matrix) */}
+      {/* ========================================================================= */}
+      <section style={{ padding: '80px 0', background: '#050505', borderTop: '1px solid rgba(255, 255, 255, 0.08)', borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}>
+        <div className="container-custom">
+          <div className="section-header">
+            <div className="section-tag">Comparison Matrix</div>
+            <h2 className="section-title">
+              Why High-Growth Brands <span className="serif-italic">Choose GDAs</span>
+            </h2>
+            <p className="section-subtitle">
+              How our integrated growth model compares to fragmented agency & freelancer approaches.
+            </p>
+          </div>
+
+          {/* Responsive Table Container */}
+          <div
+            className="glass-card"
+            style={{
+              borderRadius: '24px',
+              overflow: 'hidden',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              background: '#0a0a0a',
+              marginBottom: '36px',
+            }}
+          >
+            <div style={{ overflowX: 'auto' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '680px' }}>
+                <thead>
+                  <tr style={{ background: 'rgba(255, 255, 255, 0.04)', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                    <th style={{ padding: '18px 24px', fontSize: '13px', fontWeight: 700, color: '#60a5fa', textTransform: 'uppercase', letterSpacing: '0.08em', width: '22%' }}>
+                      Growth Pillar
+                    </th>
+                    <th style={{ padding: '18px 24px', fontSize: '14px', fontWeight: 800, color: '#ffffff', background: 'rgba(37, 99, 235, 0.15)', borderLeft: '1px solid rgba(59, 130, 246, 0.3)', borderRight: '1px solid rgba(59, 130, 246, 0.3)', width: '42%' }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                        <span>⚡ GDAs — Growth-Focused Digital Agency</span>
+                      </div>
+                    </th>
+                    <th style={{ padding: '18px 24px', fontSize: '13px', fontWeight: 600, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.06em', width: '36%' }}>
+                      Traditional Agency / Freelancer
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparisonRows.map((row, rIdx) => (
+                    <tr
+                      key={rIdx}
+                      style={{
+                        borderBottom: rIdx === comparisonRows.length - 1 ? 'none' : '1px solid rgba(255, 255, 255, 0.06)',
+                        background: rIdx % 2 === 0 ? 'rgba(255, 255, 255, 0.01)' : 'transparent',
+                      }}
+                    >
+                      <td style={{ padding: '16px 24px', fontSize: '14.5px', fontWeight: 700, color: '#ffffff' }}>
+                        {row.pillar}
+                      </td>
+                      <td
+                        style={{
+                          padding: '16px 24px',
+                          fontSize: '14px',
+                          color: '#e2e8f0',
+                          lineHeight: 1.5,
+                          background: 'rgba(37, 99, 235, 0.06)',
+                          borderLeft: '1px solid rgba(59, 130, 246, 0.25)',
+                          borderRight: '1px solid rgba(59, 130, 246, 0.25)',
+                        }}
+                      >
+                        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                          <span style={{ color: '#3b82f6', fontWeight: 700 }}>✓</span>
+                          <span>{row.gdas}</span>
+                        </div>
+                      </td>
+                      <td style={{ padding: '16px 24px', fontSize: '13.5px', color: '#737373', lineHeight: 1.5 }}>
+                        {row.traditional}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* The GDAs Difference Banner */}
+          <div
+            className="glass-card glass-card-glow"
+            style={{
+              padding: '28px 32px',
+              borderRadius: '20px',
+              textAlign: 'center',
+              border: '1px solid rgba(59, 130, 246, 0.35)',
+            }}
+          >
+            <div style={{ fontSize: '12px', fontWeight: 800, color: '#60a5fa', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '6px' }}>
+              The GDAs Difference
+            </div>
+            <div style={{ fontSize: 'clamp(20px, 2.6vw, 26px)', fontWeight: 800, color: '#ffffff', marginBottom: '6px' }}>
+              Strategy + Performance + Branding + Technology
+            </div>
+            <div style={{ fontSize: '15px', color: '#93c5fd', fontWeight: 600 }}>
+              One Platform. All Solutions. One Goal — Growth.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 05. LEADERSHIP & RECOGNITION (Mr. Ram Gyan) */}
+      {/* ========================================================================= */}
+      <section id="leadership" className="section-spacing" style={{ position: 'relative' }}>
+        <div className="container-custom">
+          <div className="section-header">
+            <div className="section-tag">Executive Leadership</div>
+            <h2 className="section-title">
+              Leadership & <span className="serif-italic">Recognition</span>
+            </h2>
+            <p className="section-subtitle">
+              Guided by relentless dedication, certified mastery, and a forward-looking digital vision.
+            </p>
+          </div>
+
+          <div
+            className="glass-card"
+            style={{
+              padding: 'clamp(32px, 5vw, 48px)',
+              borderRadius: '28px',
+              background: 'linear-gradient(180deg, rgba(37, 99, 235, 0.08) 0%, rgba(12, 12, 12, 0.95) 100%)',
+              border: '1px solid rgba(59, 130, 246, 0.35)',
+              marginBottom: '48px',
+            }}
+          >
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                gap: '40px',
+                alignItems: 'center',
+              }}
+            >
+              {/* Leader Photo & Award Stage Frame */}
+              <div>
+                <div
+                  style={{
+                    position: 'relative',
+                    borderRadius: '24px',
+                    overflow: 'hidden',
+                    border: '2px solid rgba(59, 130, 246, 0.5)',
+                    boxShadow: '0 16px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(37, 99, 235, 0.25)',
+                  }}
+                >
                   <img
-                    src={member.avatar}
-                    alt={member.name}
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                    src="/ram_gyan_award.jpg"
+                    alt="Mr. Ram Gyan - Co-Founder & CEO GDAs"
+                    style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
                   />
                   <div
                     style={{
                       position: 'absolute',
-                      top: '12px',
-                      left: '12px',
-                      background: 'rgba(0,0,0,0.7)',
-                      backdropFilter: 'blur(8px)',
-                      border: '1px solid rgba(255,255,255,0.1)',
-                      borderRadius: '50px',
-                      padding: '4px 10px',
-                      fontSize: '10px',
-                      fontWeight: 700,
-                      color: '#60a5fa',
-                      textTransform: 'uppercase',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      padding: '16px 20px',
+                      background: 'linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 70%, transparent 100%)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      flexWrap: 'wrap',
+                      gap: '8px',
                     }}
                   >
-                    {member.badge}
+                    <div>
+                      <div style={{ fontSize: '17px', fontWeight: 800, color: '#ffffff' }}>
+                        Mr. Ram Gyan
+                      </div>
+                      <div style={{ fontSize: '12px', color: '#93c5fd' }}>
+                        Co-Founder & CEO, GDAs
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: '11px',
+                        fontWeight: 700,
+                        background: 'rgba(37, 99, 235, 0.4)',
+                        padding: '4px 10px',
+                        borderRadius: '20px',
+                        border: '1px solid rgba(59, 130, 246, 0.6)',
+                        color: '#ffffff',
+                      }}
+                    >
+                      Bharat Visionary Leader 2026
+                    </span>
                   </div>
                 </div>
-
-                <div style={{ padding: '22px' }}>
-                  <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#fff', marginBottom: '4px' }}>
-                    {member.name}
-                  </h3>
-                  <div style={{ fontSize: '12px', color: '#60a5fa', fontWeight: 600, marginBottom: '10px' }}>
-                    {member.role}
-                  </div>
-                  <p style={{ fontSize: '13px', color: '#888', lineHeight: 1.5 }}>
-                    {member.bio}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* 8. TESTIMONIALS SLIDER (Alpha-Style Reviews) */}
-      {/* ========================================================================= */}
-      <section className="section-spacing" style={{ background: '#000000' }}>
-        <div className="container-custom">
-          
-          <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', flexWrap: 'wrap', gap: '20px', marginBottom: '40px' }}>
-            <div>
-              <div className="section-tag">Testimonials</div>
-              <h2 style={{ fontSize: 'clamp(28px, 3.8vw, 44px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.15 }}>
-                Hear from our <span className="serif-italic" style={{ color: '#3b82f6' }}>happy partners</span>.
-              </h2>
-            </div>
-
-            {/* Slider Controls */}
-            <div style={{ display: 'flex', gap: '10px' }}>
-              <button
-                onClick={() => setTestimonialIndex(Math.max(0, testimonialIndex - 1))}
-                disabled={testimonialIndex === 0}
-                onMouseEnter={() => setCursorHovered(true)}
-                onMouseLeave={() => setCursorHovered(false)}
-                style={{
-                  width: '42px',
-                  height: '42px',
-                  borderRadius: '50%',
-                  background: testimonialIndex === 0 ? 'rgba(255,255,255,0.03)' : 'rgba(255,255,255,0.1)',
-                  border: '1px solid rgba(255,255,255,0.1)',
-                  color: testimonialIndex === 0 ? '#444' : '#fff',
-                  cursor: testimonialIndex === 0 ? 'not-allowed' : 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '16px',
-                }}
-              >
-                ←
-              </button>
-              <button
-                onClick={() => setTestimonialIndex(Math.min(testimonials.length - 2, testimonialIndex + 1))}
-                disabled={testimonialIndex >= testimonials.length - 2}
-                onMouseEnter={() => setCursorHovered(true)}
-                onMouseLeave={() => setCursorHovered(false)}
-                style={{
-                  width: '42px',
-                  height: '42px',
-                  borderRadius: '50%',
-                  background: testimonialIndex >= testimonials.length - 2 ? 'rgba(255,255,255,0.03)' : '#2563eb',
-                  border: '1px solid rgba(37,99,235,0.3)',
-                  color: '#fff',
-                  cursor: testimonialIndex >= testimonials.length - 2 ? 'not-allowed' : 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '16px',
-                }}
-              >
-                →
-              </button>
-            </div>
-          </div>
-
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '24px',
-            }}
-          >
-            {testimonials.slice(testimonialIndex, testimonialIndex + 2).map((item) => (
-              <motion.div
-                key={item.name}
-                initial={{ opacity: 0, filter: 'blur(8px)', scale: 0.96 }}
-                animate={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
-                transition={{ duration: 0.35 }}
-                style={{
-                  background: '#0c0c0c',
-                  border: '1px solid rgba(255,255,255,0.08)',
-                  borderRadius: '20px',
-                  padding: '36px 30px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  boxShadow: '0 15px 35px rgba(0,0,0,0.5)',
-                }}
-              >
-                <div>
-                  <div style={{ color: '#ffb703', fontSize: '15px', marginBottom: '16px', letterSpacing: '2px' }}>
-                    ★★★★★
-                  </div>
-                  <p style={{ fontSize: '15px', color: '#e5e5e5', lineHeight: 1.6, fontStyle: 'italic', marginBottom: '24px' }}>
-                    "{item.quote}"
-                  </p>
-                </div>
-
-                <div style={{ display: 'flex', alignItems: 'center', gap: '14px', borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '18px' }}>
-                  <img
-                    src={item.avatar}
-                    alt={item.name}
-                    style={{ width: '42px', height: '42px', borderRadius: '50%', objectFit: 'cover' }}
-                  />
-                  <div>
-                    <div style={{ fontSize: '14px', fontWeight: 700, color: '#fff' }}>{item.name}</div>
-                    <div style={{ fontSize: '12px', color: '#888' }}>{item.role}</div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* 9. BOTTOM HIGH-IMPACT CTA BANNER (Alpha-Style) */}
-      {/* ========================================================================= */}
-      <section className="section-spacing" style={{ paddingTop: '40px', paddingBottom: '90px' }}>
-        <div className="container-custom">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={blurFadeIn}
-            style={{
-              borderRadius: '28px',
-              padding: 'clamp(40px, 6vw, 70px) clamp(24px, 4vw, 50px)',
-              background: 'linear-gradient(135deg, #0a0a0a 0%, #0c1a30 50%, #172554 100%)',
-              border: '1px solid rgba(37, 99, 235, 0.35)',
-              boxShadow: '0 0 60px rgba(37, 99, 235, 0.2)',
-              position: 'relative',
-              overflow: 'hidden',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              flexWrap: 'wrap',
-              gap: '30px',
-            }}
-          >
-            {/* Grid Pattern overlay */}
-            <div
-              style={{
-                position: 'absolute',
-                inset: 0,
-                backgroundImage: 'radial-gradient(rgba(37, 99, 235, 0.18) 1px, transparent 1px)',
-                backgroundSize: '24px 24px',
-                pointerEvents: 'none',
-              }}
-            />
-
-            <div style={{ position: 'relative', zIndex: 1, maxWidth: '600px' }}>
-              <div className="pill-badge pill-badge-orange" style={{ marginBottom: '14px' }}>
-                <span className="pulse-dot" />
-                <span>Q3 Client Scaling Intake Active</span>
               </div>
-              <h2 style={{ fontSize: 'clamp(28px, 4.2vw, 48px)', fontWeight: 800, letterSpacing: '-0.03em', lineHeight: 1.1, color: '#fff' }}>
-                Get started toward <span className="serif-italic" style={{ color: '#3b82f6' }}>scalable growth</span>.
-              </h2>
-              <p style={{ fontSize: '15px', color: '#a3a3a3', marginTop: '12px' }}>
-                Partner with GDAs to engineer predictable, hyper-profitable customer acquisition funnels for your brand.
+
+              {/* Leader Details & Education Credentials */}
+              <div>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: '#60a5fa', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '6px' }}>
+                  Co-Founder & CEO
+                </div>
+                <h3 style={{ fontSize: 'clamp(28px, 3.4vw, 38px)', fontWeight: 800, color: '#ffffff', marginBottom: '6px' }}>
+                  Mr. Ram Gyan
+                </h3>
+                <div style={{ fontSize: '15px', color: '#94a3b8', fontWeight: 600, marginBottom: '18px' }}>
+                  Building in Digital Marketing Since 2019
+                </div>
+
+                <div
+                  style={{
+                    background: 'rgba(37, 99, 235, 0.1)',
+                    borderLeft: '4px solid #3b82f6',
+                    padding: '14px 18px',
+                    borderRadius: '0 12px 12px 0',
+                    fontSize: '16px',
+                    fontWeight: 700,
+                    color: '#93c5fd',
+                    marginBottom: '20px',
+                  }}
+                >
+                  "Learn. Build. Grow."
+                </div>
+
+                <p style={{ fontSize: '15px', color: '#cbd5e1', lineHeight: 1.7, marginBottom: '24px' }}>
+                  Mr. Ram Gyan leads GDAs with a vision to help businesses grow through <strong>Digital Marketing, Branding, Technology and AI-driven solutions.</strong>
+                </p>
+
+                {/* Education & Professional Recognition List */}
+                <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.1)', paddingTop: '20px' }}>
+                  <div style={{ fontSize: '13px', fontWeight: 700, color: '#ffffff', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '14px' }}>
+                    Education & Professional Recognition
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '10px' }}>
+                    {[
+                      'PG — Political Science, Magadh University',
+                      'PGDCA — IGNOU',
+                      'Meta Ads Training — IIT Delhi (CEP)',
+                      'AI/ML Training — IIT Patna',
+                      'VSkills Certified Digital Marketing Master',
+                      'Honorary Doctorate — Hawkins University, USA',
+                      'Bharat Visionary Leader Award 2026',
+                      'Recognition in Digital Advertising',
+                    ].map((item, idx) => (
+                      <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '13.5px', color: '#e2e8f0' }}>
+                        <span style={{ color: '#3b82f6', fontSize: '14px' }}>◆</span>
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ========================================================================= */}
+          {/* CERTIFICATES & AWARDS GALLERY */}
+          {/* ========================================================================= */}
+          <div id="awards">
+            <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+              <h3 style={{ fontSize: '28px', fontWeight: 800, color: '#ffffff', marginBottom: '8px' }}>
+                Certificates & Awards
+              </h3>
+              <p style={{ fontSize: '14.5px', color: '#94a3b8' }}>
+                Click on any certificate or award to view the full resolution document.
               </p>
             </div>
 
-            <div style={{ position: 'relative', zIndex: 1 }}>
-              <motion.button
-                whileHover={{ scale: 1.05, boxShadow: '0 0 35px rgba(37, 99, 235, 0.6)' }}
-                whileTap={{ scale: 0.96 }}
-                onClick={() => setModalOpen(true)}
-                onMouseEnter={() => setCursorHovered(true)}
-                onMouseLeave={() => setCursorHovered(false)}
-                className="btn btn-primary"
-                style={{ padding: '16px 36px', fontSize: '16px', fontWeight: 700 }}
-              >
-                Book Discovery Call →
-              </motion.button>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+                gap: '24px',
+              }}
+            >
+              {certificatesAndAwards.map((item) => (
+                <motion.div
+                  key={item.id}
+                  whileHover={{ y: -6 }}
+                  onClick={() => setSelectedCert(item)}
+                  className="glass-card"
+                  style={{
+                    borderRadius: '20px',
+                    overflow: 'hidden',
+                    background: '#0d0d0d',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <div style={{ height: '220px', overflow: 'hidden', position: 'relative', background: '#111' }}>
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.4s ease' }}
+                      onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
+                      onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+                    />
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: '12px',
+                        left: '12px',
+                        background: 'rgba(0, 0, 0, 0.8)',
+                        backdropFilter: 'blur(8px)',
+                        padding: '4px 10px',
+                        borderRadius: '20px',
+                        fontSize: '11px',
+                        fontWeight: 700,
+                        color: '#60a5fa',
+                        border: '1px solid rgba(59, 130, 246, 0.3)',
+                      }}
+                    >
+                      {item.year}
+                    </div>
+                  </div>
+
+                  <div style={{ padding: '20px' }}>
+                    <div style={{ fontSize: '11px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', marginBottom: '4px' }}>
+                      {item.institution}
+                    </div>
+                    <h4 style={{ fontSize: '17px', fontWeight: 800, color: '#ffffff', marginBottom: '6px' }}>
+                      {item.title}
+                    </h4>
+                    <p style={{ fontSize: '13px', color: '#a3a3a3', lineHeight: 1.5, marginBottom: '14px' }}>
+                      {item.desc}
+                    </p>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '12px', color: '#3b82f6', fontWeight: 600 }}>
+                      <span>View Full Certificate</span>
+                      <span>🔍</span>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 06. THE LEGACY BEHIND GDAs ❤️ (Late Mr. Ganesh Ram) */}
+      {/* ========================================================================= */}
+      <section id="legacy" className="section-spacing" style={{ position: 'relative', background: '#050505' }}>
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="legacy-card"
+            style={{
+              padding: 'clamp(36px, 6vw, 64px)',
+              borderRadius: '32px',
+            }}
+          >
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                gap: '48px',
+                alignItems: 'center',
+              }}
+            >
+              {/* Left Column: Story & Tribute */}
+              <div>
+                <div
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '6px 16px',
+                    borderRadius: '50px',
+                    background: 'rgba(234, 179, 8, 0.12)',
+                    border: '1px solid rgba(234, 179, 8, 0.35)',
+                    color: '#fde047',
+                    fontSize: '12px',
+                    fontWeight: 700,
+                    letterSpacing: '0.08em',
+                    textTransform: 'uppercase',
+                    marginBottom: '20px',
+                  }}
+                >
+                  <span>❤️</span>
+                  <span>The Legacy Behind GDAs</span>
+                </div>
+
+                <h2 style={{ fontSize: 'clamp(28px, 3.6vw, 42px)', fontWeight: 800, color: '#ffffff', lineHeight: 1.15, marginBottom: '6px' }}>
+                  Mr. Ganesh Ram
+                </h2>
+                <div style={{ fontSize: '16px', color: '#facc15', fontWeight: 700, marginBottom: '4px' }}>
+                  Ex-Senior Controller, JSEB
+                </div>
+                <div style={{ fontSize: '13.5px', color: '#cbd5e1', marginBottom: '22px' }}>
+                  Patratu Thermal Power Station, Patratu
+                </div>
+
+                <div style={{ fontSize: '18px', fontWeight: 700, color: '#ffffff', marginBottom: '10px' }}>
+                  Inspired by a Legacy. Built for the Future.
+                </div>
+
+                <p style={{ fontSize: '15px', color: '#e2e8f0', lineHeight: 1.7, marginBottom: '22px' }}>
+                  The values of <strong>discipline, dedication, responsibility and perseverance</strong> continue to inspire the journey of GDAs.
+                </p>
+
+                <div
+                  style={{
+                    background: 'rgba(234, 179, 8, 0.08)',
+                    borderLeft: '4px solid #eab308',
+                    padding: '18px 22px',
+                    borderRadius: '0 16px 16px 0',
+                    marginBottom: '28px',
+                  }}
+                >
+                  <div style={{ fontSize: '20px', fontWeight: 800, color: '#fde047', marginBottom: '8px' }}>
+                    Father Never Dies.
+                  </div>
+                  <div style={{ fontSize: '14.5px', color: '#fef08a', lineHeight: 1.6, fontStyle: 'italic' }}>
+                    His values live on.<br />
+                    His vision moves forward.<br />
+                    His legacy continues through GDAs.
+                  </div>
+                </div>
+
+                <button
+                  onClick={() => setModalOpen(true)}
+                  className="btn-primary"
+                  style={{
+                    padding: '12px 28px',
+                    fontSize: '14px',
+                    background: 'linear-gradient(135deg, #eab308 0%, #ca8a04 100%)',
+                    boxShadow: '0 4px 20px rgba(234, 179, 8, 0.4)',
+                    color: '#000000',
+                    fontWeight: 800,
+                  }}
+                >
+                  Talk to GDAs →
+                </button>
+              </div>
+
+              {/* Right Column: Original Founder Mr. Ganesh Ji Frame */}
+              <div style={{ textAlign: 'center' }}>
+                <div
+                  style={{
+                    display: 'inline-block',
+                    padding: '14px',
+                    borderRadius: '26px',
+                    background: 'radial-gradient(ellipse at center, rgba(234, 179, 8, 0.2) 0%, rgba(15, 15, 15, 0.85) 75%)',
+                    border: '1px solid rgba(234, 179, 8, 0.4)',
+                    boxShadow: '0 16px 48px rgba(0, 0, 0, 0.9), 0 0 40px rgba(234, 179, 8, 0.2)',
+                    maxWidth: '420px',
+                    width: '100%',
+                  }}
+                >
+                  <div
+                    style={{
+                      borderRadius: '20px',
+                      overflow: 'hidden',
+                      position: 'relative',
+                    }}
+                  >
+                    <img
+                      src="/ganesh_ji_legacy.jpg"
+                      alt="Founder Mr. Ganesh Ji - Late Mr. Ganesh Ram"
+                      style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* 10. COMPREHENSIVE AGENCY FOOTER */}
+      {/* 07. LET'S GROW TOGETHER (Final Section) */}
       {/* ========================================================================= */}
-      <footer style={{ borderTop: '1px solid rgba(255,255,255,0.08)', background: '#050505', padding: '50px 0 30px 0' }}>
+      <section
+        style={{
+          padding: '90px 0',
+          position: 'relative',
+          overflow: 'hidden',
+          background: 'radial-gradient(ellipse at center, rgba(37, 99, 235, 0.18) 0%, rgba(0, 0, 0, 0.95) 75%)',
+        }}
+      >
+        <div className="container-custom">
+          <div
+            className="glass-card glass-card-glow"
+            style={{
+              padding: 'clamp(40px, 6vw, 70px) 30px',
+              borderRadius: '32px',
+              textAlign: 'center',
+              maxWidth: '920px',
+              margin: '0 auto',
+            }}
+          >
+            <div style={{ fontSize: '12px', fontWeight: 800, color: '#60a5fa', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '14px' }}>
+              Let's Grow Together
+            </div>
+
+            <h2
+              style={{
+                fontSize: 'clamp(30px, 4.4vw, 50px)',
+                fontWeight: 800,
+                color: '#ffffff',
+                lineHeight: 1.15,
+                marginBottom: '16px',
+                letterSpacing: '-0.02em',
+              }}
+            >
+              Your Business. Your Vision.{' '}
+              <span
+                style={{
+                  background: 'linear-gradient(135deg, #60a5fa 0%, #2563eb 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                }}
+              >
+                Our Digital Expertise.
+              </span>
+            </h2>
+
+            <p
+              style={{
+                fontSize: '16px',
+                color: '#cbd5e1',
+                lineHeight: 1.7,
+                maxWidth: '680px',
+                margin: '0 auto 20px auto',
+              }}
+            >
+              From <strong>Digital Marketing and Branding to Technology and Creative Solutions</strong>, GDAs is here to help your business build a stronger digital presence and move forward with confidence.
+            </p>
+
+            <div style={{ fontSize: '18px', fontWeight: 700, color: '#93c5fd', marginBottom: '32px' }}>
+              Digital Ka Saath, Aapke Business Ka Vikas.
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
+              <button
+                onClick={() => setModalOpen(true)}
+                className="btn-primary"
+                style={{ padding: '14px 36px', fontSize: '15.5px', fontWeight: 700 }}
+              >
+                <span>Talk to GDAs →</span>
+              </button>
+
+              <a
+                href="https://wa.me/919939862765?text=Hello%20GDAs%20Team%2C%20I%20want%20to%20grow%20my%20business%20digitally"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+                style={{ padding: '14px 28px', fontSize: '15px', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+              >
+                <span>WhatsApp Us</span>
+                <span>💬</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* FOOTER */}
+      {/* ========================================================================= */}
+      <footer
+        style={{
+          borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+          background: '#040404',
+          padding: '60px 0 30px 0',
+        }}
+      >
         <div className="container-custom">
           <div
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              flexWrap: 'wrap',
-              gap: '24px',
-              paddingBottom: '30px',
-              borderBottom: '1px solid rgba(255,255,255,0.06)',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+              gap: '40px',
+              marginBottom: '40px',
             }}
           >
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: '#fff' }}>
-              <div
-                style={{
-                  width: '30px',
-                  height: '30px',
-                  borderRadius: '8px',
-                  background: '#0d3899',
-                  border: '1px solid rgba(59, 130, 246, 0.4)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  overflow: 'hidden',
-                  boxShadow: '0 2px 8px rgba(37, 99, 235, 0.3)',
-                }}
-              >
-                <img
-                  src="/gda_logo.png"
-                  alt="GDAs Logo"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                  }}
-                />
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '12px' }}>
+                <div style={{ width: '34px', height: '34px', borderRadius: '8px', background: '#0d3899', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
+                  <img src="/gda_logo.png" alt="GDAs Logo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                </div>
+                <span style={{ fontWeight: 800, fontSize: '18px', color: '#ffffff' }}>GDAs</span>
               </div>
-              <span style={{ fontWeight: 800, fontSize: '16px' }}>
-                GDAs<span style={{ color: '#3b82f6' }}>.</span>
-              </span>
-            </Link>
+              <div style={{ fontSize: '13px', fontWeight: 700, color: '#60a5fa', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '8px' }}>
+                GANESHA DIGITAL ADS
+              </div>
+              <p style={{ fontSize: '14px', color: '#cbd5e1', marginBottom: '12px' }}>
+                Digital Ka Saath, Aapke Business Ka Vikas.
+              </p>
+              <p style={{ fontSize: '12.5px', color: '#737373' }}>
+                Built with a Vision. Driven by a Legacy. Father Never Dies.
+              </p>
+            </div>
 
-            <div style={{ display: 'flex', gap: '20px', fontSize: '13px', flexWrap: 'wrap' }}>
-              <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>Home</Link>
-              <Link href="/about" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 600 }}>About</Link>
-              <Link href="/#services" style={{ color: '#888', textDecoration: 'none' }}>Services</Link>
-              <Link href="/#client-videos" style={{ color: '#888', textDecoration: 'none' }}>Clients</Link>
-              <Link href="/training" style={{ color: '#888', textDecoration: 'none' }}>Training</Link>
-              <Link href="/blog" style={{ color: '#888', textDecoration: 'none' }}>Blog</Link>
-              <Link href="/careers" style={{ color: '#888', textDecoration: 'none' }}>Careers</Link>
-              <Link href="/privacy-policy" style={{ color: '#888', textDecoration: 'none' }}>Privacy Policy</Link>
-              <Link href="/refund-policy" style={{ color: '#888', textDecoration: 'none' }}>Refund Policy</Link>
-              <Link href="/terms-conditions" style={{ color: '#888', textDecoration: 'none' }}>Terms & Conditions</Link>
-              <Link href="/disclaimer" style={{ color: '#888', textDecoration: 'none' }}>Disclaimer</Link>
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
+                Quick Links
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px' }}>
+                <Link href="/" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Home</Link>
+                <Link href="/about" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 600 }}>About</Link>
+                <a href="/#services" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Services</a>
+                <Link href="/training" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Training</Link>
+                <Link href="/blog" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Blog</Link>
+              </div>
+            </div>
+
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
+                Contact
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px' }}>
+                <a href="tel:9939862765" style={{ color: '#a3a3a3', textDecoration: 'none' }}>📞 9939862765</a>
+                <a href="https://ganeshadigiads.in" target="_blank" rel="noopener noreferrer" style={{ color: '#a3a3a3', textDecoration: 'none' }}>🌐 ganeshadigiads.in</a>
+              </div>
             </div>
           </div>
 
-          <div
-            style={{
-              paddingTop: '20px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              fontSize: '12px',
-              color: '#555',
-              flexWrap: 'wrap',
-              gap: '10px',
-            }}
-          >
-            <div>© {new Date().getFullYear()} GDAs (Ganesha Digital Ads). All rights reserved.</div>
-            <div style={{ color: '#10b981', display: 'flex', alignItems: 'center', gap: '5px' }}>
-              <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#10b981' }} />
-              <span>All agency systems live</span>
+          <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.06)', paddingTop: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', fontSize: '13px', color: '#737373' }}>
+            <div>© 2026 GDAs Ganesha Digital Ads. All Rights Reserved.</div>
+            <div style={{ display: 'flex', gap: '16px' }}>
+              <Link href="/privacy-policy" style={{ color: '#737373', textDecoration: 'none' }}>Privacy Policy</Link>
+              <Link href="/terms-conditions" style={{ color: '#737373', textDecoration: 'none' }}>Terms & Conditions</Link>
+              <Link href="/refund-policy" style={{ color: '#737373', textDecoration: 'none' }}>Refund Policy</Link>
             </div>
           </div>
         </div>
       </footer>
 
       {/* ========================================================================= */}
-      {/* 11. BOOK A CALL MODAL */}
+      {/* CERTIFICATE LIGHTBOX MODAL */}
+      {/* ========================================================================= */}
+      <AnimatePresence>
+        {selectedCert && (
+          <div className="modal-overlay" onClick={() => setSelectedCert(null)}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="modal-content"
+              style={{ maxWidth: '820px', padding: '24px' }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setSelectedCert(null)}
+                style={{
+                  position: 'absolute',
+                  top: '16px',
+                  right: '16px',
+                  background: 'rgba(255, 255, 255, 0.1)',
+                  border: 'none',
+                  color: '#ffffff',
+                  borderRadius: '50%',
+                  width: '32px',
+                  height: '32px',
+                  cursor: 'pointer',
+                  fontSize: '16px',
+                }}
+              >
+                ✕
+              </button>
+
+              <div style={{ marginBottom: '16px' }}>
+                <div style={{ fontSize: '11px', fontWeight: 700, color: '#60a5fa', textTransform: 'uppercase' }}>
+                  {selectedCert.institution} • {selectedCert.year}
+                </div>
+                <h3 style={{ fontSize: '20px', fontWeight: 800, color: '#ffffff', marginTop: '2px' }}>
+                  {selectedCert.title}
+                </h3>
+                <div style={{ fontSize: '12px', color: '#94a3b8' }}>
+                  Certificate ID: {selectedCert.certNo}
+                </div>
+              </div>
+
+              <div style={{ borderRadius: '16px', overflow: 'hidden', border: '1px solid rgba(255, 255, 255, 0.12)', maxHeight: '70vh', display: 'flex', alignItems: 'center', justifyContent: 'center', background: '#000' }}>
+                <img
+                  src={selectedCert.image}
+                  alt={selectedCert.title}
+                  style={{ width: '100%', height: 'auto', maxHeight: '70vh', objectFit: 'contain' }}
+                />
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* ========================================================================= */}
+      {/* LEAD MODAL */}
       {/* ========================================================================= */}
       <AnimatePresence>
         {modalOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="modal-overlay"
-            onClick={() => setModalOpen(false)}
-          >
+          <div className="modal-overlay" onClick={() => setModalOpen(false)}>
             <motion.div
-              initial={{ scale: 0.9, opacity: 0, y: 20, filter: 'blur(10px)' }}
-              animate={{ scale: 1, opacity: 1, y: 0, filter: 'blur(0px)' }}
-              exit={{ scale: 0.9, opacity: 0, y: 20, filter: 'blur(10px)' }}
-              transition={{ duration: 0.25 }}
+              initial={{ opacity: 0, scale: 0.94 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.94 }}
               className="modal-content"
               onClick={(e) => e.stopPropagation()}
             >
@@ -1814,170 +1221,83 @@ export default function AboutPage() {
                 onClick={() => setModalOpen(false)}
                 style={{
                   position: 'absolute',
-                  top: '20px',
-                  right: '20px',
-                  background: 'none',
+                  top: '18px',
+                  right: '18px',
+                  background: 'rgba(255, 255, 255, 0.08)',
                   border: 'none',
-                  color: '#888',
+                  color: '#a3a3a3',
+                  borderRadius: '50%',
+                  width: '32px',
+                  height: '32px',
                   cursor: 'pointer',
-                  fontSize: '20px',
                 }}
               >
                 ✕
               </button>
 
-              {modalSubmitted ? (
-                <div style={{ textAlign: 'center', padding: '30px 10px' }}>
-                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(37,99,235,0.15)', color: '#3b82f6', fontSize: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 14px auto' }}>
-                    ✓
-                  </div>
-                  <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#fff', marginBottom: '6px' }}>Request Received!</h3>
-                  <p style={{ fontSize: '13px', color: '#a3a3a3' }}>
-                    We will review your brand and confirm your strategy session shortly.
-                  </p>
+              <div style={{ marginBottom: '20px' }}>
+                <div style={{ fontSize: '11px', fontWeight: 800, color: '#60a5fa', textTransform: 'uppercase' }}>
+                  Connect with GDAs
                 </div>
-              ) : (
+                <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#ffffff', marginTop: '4px' }}>
+                  Talk to Our Growth Team
+                </h3>
+              </div>
+
+              <form onSubmit={handleFormSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                 <div>
-                  <div className="pill-badge pill-badge-orange" style={{ marginBottom: '10px' }}>
-                    <span className="pulse-dot" />
-                    <span>Free 30-Min Strategy Call</span>
-                  </div>
-                  <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#fff', marginBottom: '4px' }}>
-                    Book your <span className="serif-italic">Growth Session</span>
-                  </h3>
-                  <p style={{ fontSize: '13px', color: '#888', marginBottom: '18px' }}>
-                    Tell us about your brand before our call.
-                  </p>
-
-                  <form onSubmit={handleModalSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                    <div>
-                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#a3a3a3', marginBottom: '4px' }}>
-                        Full Name
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="e.g. Alex Morgan"
-                        value={modalForm.name}
-                        onChange={(e) => setModalForm({ ...modalForm, name: e.target.value })}
-                        style={{
-                          width: '100%',
-                          background: '#141414',
-                          border: '1px solid rgba(255,255,255,0.1)',
-                          borderRadius: '8px',
-                          padding: '10px 14px',
-                          color: '#fff',
-                          fontSize: '13px',
-                          outline: 'none',
-                        }}
-                      />
-                    </div>
-
-                    <div>
-                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#a3a3a3', marginBottom: '4px' }}>
-                        Work Email
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        placeholder="alex@yourbrand.com"
-                        value={modalForm.email}
-                        onChange={(e) => setModalForm({ ...modalForm, email: e.target.value })}
-                        style={{
-                          width: '100%',
-                          background: '#141414',
-                          border: '1px solid rgba(255,255,255,0.1)',
-                          borderRadius: '8px',
-                          padding: '10px 14px',
-                          color: '#fff',
-                          fontSize: '13px',
-                          outline: 'none',
-                        }}
-                      />
-                    </div>
-
-                    <div>
-                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#a3a3a3', marginBottom: '4px' }}>
-                        Website URL
-                      </label>
-                      <input
-                        type="url"
-                        placeholder="https://yourbrand.com"
-                        value={modalForm.website}
-                        onChange={(e) => setModalForm({ ...modalForm, website: e.target.value })}
-                        style={{
-                          width: '100%',
-                          background: '#141414',
-                          border: '1px solid rgba(255,255,255,0.1)',
-                          borderRadius: '8px',
-                          padding: '10px 14px',
-                          color: '#fff',
-                          fontSize: '13px',
-                          outline: 'none',
-                        }}
-                      />
-                    </div>
-
-                    <div>
-                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#a3a3a3', marginBottom: '4px' }}>
-                        Monthly Ad Spend
-                      </label>
-                      <select
-                        value={modalForm.spend}
-                        onChange={(e) => setModalForm({ ...modalForm, spend: e.target.value })}
-                        style={{
-                          width: '100%',
-                          background: '#141414',
-                          border: '1px solid rgba(255,255,255,0.1)',
-                          borderRadius: '8px',
-                          padding: '10px 14px',
-                          color: '#fff',
-                          fontSize: '13px',
-                          outline: 'none',
-                        }}
-                      >
-                        <option value="Under $5k">Under $5k / mo</option>
-                        <option value="$5k - $15k">$5k - $15k / mo</option>
-                        <option value="$15k - $50k">$15k - $50k / mo</option>
-                        <option value="$50k+">$50k+ / mo</option>
-                      </select>
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="btn btn-primary"
-                      style={{ marginTop: '8px', padding: '12px', fontSize: '14px', fontWeight: 700 }}
-                    >
-                      Confirm Session →
-                    </button>
-                  </form>
+                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>Your Name *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="Your Name"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    style={{ width: '100%', padding: '11px 14px', background: '#141414', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '10px', color: '#fff', fontSize: '14px', outline: 'none' }}
+                  />
                 </div>
-              )}
+                <div>
+                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>Phone / WhatsApp *</label>
+                  <input
+                    type="tel"
+                    required
+                    placeholder="+91 9939862765"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    style={{ width: '100%', padding: '11px 14px', background: '#141414', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '10px', color: '#fff', fontSize: '14px', outline: 'none' }}
+                  />
+                </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>Service Required</label>
+                  <select
+                    value={formData.service}
+                    onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                    style={{ width: '100%', padding: '11px 14px', background: '#141414', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '10px', color: '#fff', fontSize: '14px', outline: 'none' }}
+                  >
+                    <option value="Digital Marketing">Digital Marketing (Meta & Google Ads)</option>
+                    <option value="Branding & Creative">Branding & Creative Design</option>
+                    <option value="Website & Technology">Website & Technology Development</option>
+                    <option value="Complete All-in-One Growth">Complete All-in-One Growth Suite</option>
+                  </select>
+                </div>
+                <div>
+                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>Message (Optional)</label>
+                  <textarea
+                    rows={3}
+                    placeholder="Tell us about your business requirements..."
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    style={{ width: '100%', padding: '11px 14px', background: '#141414', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '10px', color: '#fff', fontSize: '14px', outline: 'none', resize: 'none' }}
+                  />
+                </div>
+                <button type="submit" className="btn-primary" style={{ width: '100%', padding: '13px', fontSize: '15px', fontWeight: 700, marginTop: '6px' }}>
+                  Connect on WhatsApp →
+                </button>
+              </form>
             </motion.div>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
-
-      {/* Global CSS Media Queries and Keyframes */}
-      <style jsx global>{`
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        @media (max-width: 900px) {
-          .desktop-nav {
-            display: none !important;
-          }
-          .mobile-hamburger {
-            display: block !important;
-          }
-        }
-        @media (pointer: coarse) {
-          .custom-eyes-cursor {
-            display: none !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }

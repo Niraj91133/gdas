@@ -4,16 +4,15 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Signature Framer "Blur to Normal" Scroll Animations
+// Optimized Hardware-Accelerated Animation Variants
 const blurFadeIn = {
-  hidden: { opacity: 0, filter: 'blur(10px)', y: 25 },
+  hidden: { opacity: 0, y: 18 },
   visible: (custom = 0) => ({
     opacity: 1,
-    filter: 'blur(0px)',
     y: 0,
     transition: {
-      duration: 0.75,
-      delay: custom * 0.08,
+      duration: 0.55,
+      delay: custom * 0.05,
       ease: [0.22, 1, 0.36, 1],
     },
   }),
@@ -24,8 +23,8 @@ const blurStagger = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.05,
+      staggerChildren: 0.08,
+      delayChildren: 0.04,
     },
   },
 };
@@ -33,502 +32,292 @@ const blurStagger = {
 export default function Home() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
-  const [videoModal, setVideoModal] = useState(null);
   const [activeFaq, setActiveFaq] = useState(0);
-  const [activeTimeframe, setActiveTimeframe] = useState('30D');
-  const [videoSliderIndex, setVideoSliderIndex] = useState(0);
-  const [serviceSliderIndex, setServiceSliderIndex] = useState(0);
-  const [modalForm, setModalForm] = useState({
+  const [activePortfolioCategory, setActivePortfolioCategory] = useState('All');
+
+  // Lead / Consultation Modal State
+  const [formData, setFormData] = useState({
     name: '',
+    phone: '',
     email: '',
-    website: '',
-    spend: '$5k - $15k',
-    notes: '',
+    service: 'Digital Marketing',
+    businessName: '',
+    message: '',
   });
-  const [modalSubmitted, setModalSubmitted] = useState(false);
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
-  // Custom Animated Blinking Eyes Cursor State
-  const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
-  const [pupilOffset, setPupilOffset] = useState({ x: 3, y: 6 });
-  const [cursorHovered, setCursorHovered] = useState(false);
-  const [isBlinking, setIsBlinking] = useState(false);
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-    let prevX = typeof window !== 'undefined' ? window.innerWidth / 2 : 0;
-    let prevY = typeof window !== 'undefined' ? window.innerHeight / 2 : 0;
-
-    const updateMouse = (e) => {
-      const curX = e.clientX;
-      const curY = e.clientY;
-      const dx = curX - prevX;
-      const dy = curY - prevY;
-      prevX = curX;
-      prevY = curY;
-
-      setMousePosition({ x: curX, y: curY });
-
-      // Dynamic gaze direction: shifts all the way to the corner/edge when moving
-      const moveNormX = Math.max(-1, Math.min(1, dx / 6));
-      const moveNormY = Math.max(-1, Math.min(1, dy / 6));
-
-      const vpNormX = ((curX / (window.innerWidth || 1)) - 0.5) * 2;
-      const vpNormY = ((curY / (window.innerHeight || 1)) - 0.5) * 2;
-
-      // Weighted combination of cursor movement vector & viewport position
-      const combinedX = Math.max(-1, Math.min(1, moveNormX * 0.75 + vpNormX * 0.45));
-      const combinedY = Math.max(-1, Math.min(1, moveNormY * 0.75 + vpNormY * 0.45));
-
-      // Broad range reaching extreme corners and slightly outside white capsule edge
-      // Capsule is 16x26, Pupil is 11x15
-      setPupilOffset({
-        x: 2.5 + combinedX * 4.8,
-        y: 5.5 + combinedY * 6.8,
-      });
-    };
-    window.addEventListener('mousemove', updateMouse);
-
-    // Periodic organic Eye Blinking
-    const blinkInterval = setInterval(() => {
-      setIsBlinking(true);
-      setTimeout(() => {
-        setIsBlinking(false);
-        // Occasional playful double blink
-        if (Math.random() > 0.65) {
-          setTimeout(() => {
-            setIsBlinking(true);
-            setTimeout(() => setIsBlinking(false), 120);
-          }, 160);
-        }
-      }, 150);
-    }, 3600);
-
-    return () => {
-      window.removeEventListener('mousemove', updateMouse);
-      clearInterval(blinkInterval);
-    };
-  }, []);
-
-  // Performance Dashboard Data dictionary for 7D, 30D, 90D, 1Y
-  const timeframeData = {
-    '7D': {
-      revenue: '$48,250',
-      revenueGrowth: '↑ +38.4%',
-      roas: '6.12x',
-      roasTarget: 'Target: 3.50x',
-      spend: '$7,880',
-      spendChannels: 'Meta & Google',
-      orders: '650',
-      aov: 'Avg AOV $74.2',
-      peakRoas: '8.4x',
-      linePath: 'M0,135 Q100,115 200,90 T400,60 T600,25 T800,10',
-      areaPath: 'M0,135 Q100,115 200,90 T400,60 T600,25 T800,10 L800,160 L0,160 Z',
-      dots: [
-        { cx: 200, cy: 90 },
-        { cx: 400, cy: 60 },
-        { cx: 600, cy: 25 },
-        { cx: 800, cy: 10 },
-      ],
-    },
-    '30D': {
-      revenue: '$184,920',
-      revenueGrowth: '↑ +142.8%',
-      roas: '5.84x',
-      roasTarget: 'Target: 3.50x',
-      spend: '$31,650',
-      spendChannels: 'Meta & Google',
-      orders: '2,490',
-      aov: 'Avg AOV $74.2',
-      peakRoas: '7.2x',
-      linePath: 'M0,140 Q100,120 200,105 T400,75 T600,35 T800,15',
-      areaPath: 'M0,140 Q100,120 200,105 T400,75 T600,35 T800,15 L800,160 L0,160 Z',
-      dots: [
-        { cx: 200, cy: 105 },
-        { cx: 400, cy: 75 },
-        { cx: 600, cy: 35 },
-        { cx: 800, cy: 15 },
-      ],
-    },
-    '90D': {
-      revenue: '$592,400',
-      revenueGrowth: '↑ +210.5%',
-      roas: '5.45x',
-      roasTarget: 'Target: 3.50x',
-      spend: '$108,700',
-      spendChannels: 'Meta, Google & TikTok',
-      orders: '7,980',
-      aov: 'Avg AOV $74.2',
-      peakRoas: '6.8x',
-      linePath: 'M0,150 Q100,135 200,110 T400,65 T600,30 T800,8',
-      areaPath: 'M0,150 Q100,135 200,110 T400,65 T600,30 T800,8 L800,160 L0,160 Z',
-      dots: [
-        { cx: 200, cy: 110 },
-        { cx: 400, cy: 65 },
-        { cx: 600, cy: 30 },
-        { cx: 800, cy: 8 },
-      ],
-    },
-    '1Y': {
-      revenue: '$2,410,000',
-      revenueGrowth: '↑ +340.2%',
-      roas: '5.18x',
-      roasTarget: 'Target: 3.50x',
-      spend: '$465,000',
-      spendChannels: 'Multi-Channel Scale',
-      orders: '32,480',
-      aov: 'Avg AOV $74.2',
-      peakRoas: '6.4x',
-      linePath: 'M0,155 Q100,130 200,95 T400,50 T600,20 T800,5',
-      areaPath: 'M0,155 Q100,130 200,95 T400,50 T600,20 T800,5 L800,160 L0,160 Z',
-      dots: [
-        { cx: 200, cy: 95 },
-        { cx: 400, cy: 50 },
-        { cx: 600, cy: 20 },
-        { cx: 800, cy: 5 },
-      ],
-    },
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    setFormSubmitted(true);
+    // WhatsApp prefilled lead generation redirect
+    const waText = encodeURIComponent(
+      `Hello GDAs Team!\n\nName: ${formData.name}\nPhone: ${formData.phone}\nBusiness: ${formData.businessName || 'N/A'}\nService: ${formData.service}\nDetails: ${formData.message || 'I want to scale my business digitally.'}`
+    );
+    window.open(`https://wa.me/919939862765?text=${waText}`, '_blank');
   };
 
-  const currentStats = timeframeData[activeTimeframe];
+  // 04. Services Data
+  const services = [
+    {
+      num: '01',
+      title: 'Digital Marketing (Meta & Google Ads)',
+      tagline: 'Meta Ads • Google Ads • Lead Generation • Performance Scaling',
+      desc: 'High-performing ad campaigns across Facebook, Instagram, Google Search & YouTube engineered to generate qualified business leads and scalable customer acquisition.',
+      icon: (
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M12 20V10M18 20V4M6 20v-4" />
+        </svg>
+      ),
+      tags: ['Meta Ads', 'Google Search Ads', 'Lead Generation', 'Performance Media'],
+      highlightColor: '#3b82f6',
+    },
+    {
+      num: '02',
+      title: 'WhatsApp Bulk Marketing',
+      tagline: 'Official API • Green Tick • Bulk Broadcasts • Catalogs',
+      desc: 'Direct verified WhatsApp messaging with 98% open rates, automated quick-reply buttons, interactive product catalogs, and high-conversion bulk broadcast campaigns.',
+      icon: (
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+          <path d="M8 10h.01M12 10h.01M16 10h.01" />
+        </svg>
+      ),
+      tags: ['Official WhatsApp API', 'Bulk Broadcasts', 'Green Tick Support', 'Catalog Sharing'],
+      highlightColor: '#22c55e',
+    },
+    {
+      num: '03',
+      title: 'IVR Calling Service',
+      tagline: 'Voice Broadcasting • Multi-Level IVR • Smart Call Routing',
+      desc: 'Cloud-based IVR calling and automated voice broadcasting (OBD) to reach thousands of customers instantly, capture lead responses, and qualify calls automatically.',
+      icon: (
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+        </svg>
+      ),
+      tags: ['Cloud IVR Menu', 'Bulk Voice OBD', 'Missed Call Leads', 'Live Call Recording'],
+      highlightColor: '#0ea5e9',
+    },
+    {
+      num: '04',
+      title: 'GMB Setup & Ranking',
+      tagline: 'Google Maps Top 3 • Local SEO • Verified Profile Setup',
+      desc: 'Dominate local Google Search and Google Maps in your target city to drive daily walk-ins, phone inquiries, and local dominance over competitors.',
+      icon: (
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+          <path d="M11 8v6M8 11h6" />
+        </svg>
+      ),
+      tags: ['Google Maps 3-Pack', 'GMB Verification', 'Review Management', 'Local Citations'],
+      highlightColor: '#10b981',
+    },
+    {
+      num: '05',
+      title: 'Digital Political Campaigning',
+      tagline: 'War Room • Constituency Geo Ads • Voter Outreach',
+      desc: 'Strategic political campaign management, constituency digital war rooms, booth-level geo-targeted video ads, WhatsApp networks, and perception narrative building.',
+      icon: (
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+          <line x1="16" y1="2" x2="16" y2="6" />
+          <line x1="8" y1="2" x2="8" y2="6" />
+          <line x1="3" y1="10" x2="21" y2="10" />
+        </svg>
+      ),
+      tags: ['Constituency Geo Ads', 'Digital War Room', 'Speech & Reel Clips', 'Voter Sentiment'],
+      highlightColor: '#f97316',
+    },
+    {
+      num: '06',
+      title: 'Business Growth Management',
+      tagline: 'Go-To-Market • Scale Architecture • Revenue Acceleration',
+      desc: 'End-to-end strategic growth consulting covering product positioning, CAC reduction, omnichannel budget allocation, and full-funnel conversion rate optimization.',
+      icon: (
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+        </svg>
+      ),
+      tags: ['GTM Strategy', 'Unit Economics', 'Full-Funnel CRO', 'Dedicated Director'],
+      highlightColor: '#eab308',
+    },
+    {
+      num: '07',
+      title: 'CRM, ERP & Business Automation',
+      tagline: 'Lead Pipelines • ERP Workflows • Multi-Channel Sync',
+      desc: 'Custom CRM pipelines, automated lead scoring, ERP operational workflows, and invoice automation that unify sales, operations, and databases into one dashboard.',
+      icon: (
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <circle cx="12" cy="12" r="3" />
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
+        </svg>
+      ),
+      tags: ['Custom CRM Setup', 'ERP Integration', 'Lead Routing', 'Automated Invoicing'],
+      highlightColor: '#6366f1',
+    },
+    {
+      num: '08',
+      title: 'Branding & Creative',
+      tagline: 'Logo Design • Brand Identity • Graphic Design • Content',
+      desc: 'Distinctive visual identities, bespoke logo suites, brand books, and scroll-stopping graphic assets that establish trust and differentiate your business.',
+      icon: (
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M12 19l7-7 3 3-7 7-3-3z" />
+          <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
+          <path d="M2 2l7.586 7.586" />
+          <circle cx="11" cy="11" r="2" />
+        </svg>
+      ),
+      tags: ['Visual Identity', 'Logo Suite', 'Brand Guidelines', 'Creative Direction'],
+      highlightColor: '#8b5cf6',
+    },
+    {
+      num: '09',
+      title: 'Website & Technology',
+      tagline: 'Website Development • Landing Pages • Business Websites',
+      desc: 'Ultra-fast, mobile-first websites and conversion-focused landing pages engineered for high speed, search engines, and seamless user experiences.',
+      icon: (
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <polyline points="16 18 22 12 16 6" />
+          <polyline points="8 6 2 12 8 18" />
+        </svg>
+      ),
+      tags: ['Custom Websites', 'Next.js & React', 'High-Converting Funnels', 'Mobile Responsive'],
+      highlightColor: '#06b6d4',
+    },
+  ];
 
-  // Video Testimonials List
-  const clientVideos = [
+  // 07. Portfolio / Our Work Data
+  const portfolioItems = [
     {
       id: 1,
-      thumbnail: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&auto=format&fit=crop&q=80',
-      brandLogo: 'theo',
-      brandType: 'script',
-      quote: 'Our results and online presence went through the roof overnight!',
-      name: 'Malik Shkraba',
-      role: 'COO, Friday',
-      videoSrc: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+      title: 'Aura Luxury Living',
+      category: 'Branding',
+      subCategory: 'Brand Identity & Packaging',
+      description: 'Complete brand visual identity, premium packaging design, and visual brand playbook.',
+      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&auto=format&fit=crop&q=80',
+      badge: 'Brand Revamp',
     },
     {
       id: 2,
-      thumbnail: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=600&auto=format&fit=crop&q=80',
-      brandLogo: 'Amsterdam',
-      brandType: 'icon',
-      quote: 'We saw massive ROI from month one. If you want to scale, look no further.',
-      name: 'Tony Gomez',
-      role: 'Founder, Thursday',
-      videoSrc: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+      title: 'Elite Health & Wellness',
+      category: 'Meta Ads',
+      subCategory: 'Lead Generation Campaign',
+      description: 'High-converting Meta ad campaigns delivering 420+ qualified customer enquiries per month.',
+      image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&auto=format&fit=crop&q=80',
+      badge: 'Lead Scaling',
     },
     {
       id: 3,
-      thumbnail: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80',
-      brandLogo: 'SAVANNAH',
-      brandType: 'bold',
-      quote: 'GDAs completely outperformed every agency we previously hired.',
-      name: 'Naomi Campbell',
-      role: 'CEO, Wednesday',
-      videoSrc: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4',
+      title: 'Apex Tech Solutions',
+      category: 'Websites',
+      subCategory: 'Modern Web Platform',
+      description: 'High-speed Next.js corporate website with interactive service demos and lead booking.',
+      image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80',
+      badge: 'Website Tech',
     },
     {
       id: 4,
-      thumbnail: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&auto=format&fit=crop&q=80',
-      brandLogo: 'LUMINA',
-      brandType: 'bold',
-      quote: 'Scaling past $100k/mo felt seamless with the GDAs performance team.',
-      name: 'Sarah Chen',
-      role: 'CMO, Aura Skincare',
-      videoSrc: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4',
+      title: 'Velvet Cafe & Roastery',
+      category: 'Social Media',
+      subCategory: 'Reels & Viral Social',
+      description: 'Organic video reels and Instagram brand strategy driving 2.4M organic local views.',
+      image: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&auto=format&fit=crop&q=80',
+      badge: 'Viral Reach',
     },
     {
       id: 5,
-      thumbnail: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&auto=format&fit=crop&q=80',
-      brandLogo: 'WAVE',
-      brandType: 'bold',
-      quote: 'Their viral TikTok UGC doubled our customer acquisition at half the cost.',
-      name: 'David Keller',
-      role: 'Co-Founder, Wave Audio',
-      videoSrc: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4',
+      title: 'Nivaan Jewels',
+      category: 'Creatives',
+      subCategory: 'Graphic & Ad Creatives',
+      description: 'Festive digital ad creative catalog, promotional flyers, and social billboard designs.',
+      image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&auto=format&fit=crop&q=80',
+      badge: 'Ad Creatives',
     },
     {
       id: 6,
-      thumbnail: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&auto=format&fit=crop&q=80',
-      brandLogo: 'KINETIX',
-      brandType: 'bold',
-      quote: 'Transparent dashboards and net profit focus. The best growth decision we made.',
-      name: 'Elena Rostova',
-      role: 'Director, Kinetix Gear',
-      videoSrc: 'https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyBlazes.mp4',
+      title: 'Kavya Dental Care',
+      category: 'Meta Ads',
+      subCategory: 'Local Patient Growth',
+      description: 'Hyper-local Meta Ads and Google Maps SEO generating 180+ monthly patient appointments.',
+      image: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&auto=format&fit=crop&q=80',
+      badge: 'Local Growth',
     },
   ];
 
-  // Extended Services List
-  const servicesList = [
+  const filteredPortfolio =
+    activePortfolioCategory === 'All'
+      ? portfolioItems
+      : portfolioItems.filter((item) => item.category === activePortfolioCategory);
+
+  // 10. Testimonials
+  const testimonials = [
     {
-      badge: 'META ADS',
-      title: 'Facebook & Instagram',
-      desc: 'Advantage+ scaling & creative hook testing for maximum revenue volume.',
-      features: ['Advantage+ Campaigns', 'UGC Creative Angles', 'CAPI Server Tracking'],
+      name: 'Rajesh Singhania',
+      role: 'Director, Singhania Retail Group',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80',
+      content:
+        'GDAs transformed our business from struggling to find digital leads to having an overwhelming influx of daily genuine customers. Their branding and Meta Ads strategy is simply unmatched.',
+      rating: 5,
     },
     {
-      badge: 'GOOGLE ADS',
-      title: 'Search & PMax',
-      desc: 'Capture active buyer intent with targeted Search & Performance Max funnels.',
-      features: ['Performance Max Setup', 'High-Intent Keywords', 'YouTube Retargeting'],
+      name: 'Pooja Aggarwal',
+      role: 'Founder, Nectar Organic Skincare',
+      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80',
+      content:
+        'Finding an agency that handles our branding, website, and digital marketing together saved us so much time and money. GDAs is a genuine growth partner who actually cares about our success.',
+      rating: 5,
     },
     {
-      badge: 'TIKTOK ADS',
-      title: 'TikTok & UGC',
-      desc: 'Creator Spark ads and viral hooks that convert views directly to buyers.',
-      features: ['Creator Spark Sourcing', 'First 3-Sec Hook Matrix', 'Native TikTok Edits'],
+      name: 'Vikram Mehta',
+      role: 'Co-Founder, EduBridge Academy',
+      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&auto=format&fit=crop&q=80',
+      content:
+        'Their WhatsApp automation and lead generation campaigns completely modernized our student admissions process. Dedicated, responsive, and deeply strategic team.',
+      rating: 5,
     },
     {
-      badge: 'OPTIMIZATION',
-      title: 'CRO & Creatives',
-      desc: 'High-converting landing pages & A/B testing to double checkout rates.',
-      features: ['Advertorial Landers', 'Checkout AOV Boost', 'Split Testing'],
-    },
-    {
-      badge: 'RETENTION',
-      title: 'Email & SMS Marketing',
-      desc: 'Klaviyo automated flows and SMS campaigns to maximize customer LTV.',
-      features: ['Abandoned Cart Flows', 'VIP Post-Purchase', 'Weekly Campaign Drops'],
-    },
-    {
-      badge: 'INFLUENCER',
-      title: 'Creator Whitelisting',
-      desc: 'Running dark ads through verified creator handles to boost ad trust.',
-      features: ['Creator Outreach', 'Contract & Rights', 'Spark Whitelisting'],
+      name: 'Anjali Verma',
+      role: 'Creative Head, Urban Loom Studio',
+      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&auto=format&fit=crop&q=80',
+      content:
+        'The branding work GDAs delivered gave our brand a premium, high-trust visual identity. Working with Niraj and the GDAs team has been our best business decision this year.',
+      rating: 5,
     },
   ];
 
-  // Auto-scrolling Review Testimonials
-  const reviewsMarquee = [
-    {
-      quote: 'GDAs scaled our Meta ads from $12k/mo to $95k/mo at 4.6x ROAS.',
-      name: 'Alex Vance',
-      role: 'CEO, Lumina',
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
-      roas: '4.6x ROAS',
-    },
-    {
-      quote: 'They restructured our Google PMax campaigns and cut CPA by 43%.',
-      name: 'Marcus Sterling',
-      role: 'Growth Lead, Zenith',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
-      roas: '+184% Rev',
-    },
-    {
-      quote: 'Direct Slack channel with 5-minute response times. Game changer.',
-      name: 'Sophia Chen',
-      role: 'CMO, Aura Skincare',
-      avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=150&auto=format&fit=crop&q=80',
-      roas: '5.2x ROAS',
-    },
-    {
-      quote: 'Their viral TikTok UGC brought 1,200+ new buyers in the first month.',
-      name: 'David Keller',
-      role: 'Co-Founder, Wave',
-      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
-      roas: '1.2k Leads',
-    },
-    {
-      quote: 'Transparent dashboards and net profit focus. Best agency partner.',
-      name: 'Elena Rostova',
-      role: 'Director, Kinetix',
-      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80',
-      roas: '3.9x Blended',
-    },
-    {
-      quote: 'Doubled our store revenue in 60 days with hook variation testing.',
-      name: 'Ryan Patel',
-      role: 'Founder, Origin',
-      avatar: 'https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=150&auto=format&fit=crop&q=80',
-      roas: '2.1x Growth',
-    },
-  ];
-
-  // FAQ Data
+  // 11. FAQ Data
   const faqs = [
     {
-      q: 'How fast do we see results?',
-      a: 'After our 48-hour onboarding, test campaigns launch within 5 days. Most brands see profitable ROAS growth within 14 days.',
+      q: 'What services does GDAs provide?',
+      a: 'GDAs (Ganesha Digital Ads) provides end-to-end Digital Marketing (Meta Ads, Google Ads, Lead Gen), Branding & Creative Design (Logos, Visual Identity), Website & Technology Development, Local SEO & Google Business Profile optimization, Social Media Management, and WhatsApp/AI Business Automation.',
     },
     {
-      q: 'What makes GDAs different?',
-      a: 'No junior managers. You get senior media buyers, weekly creative iterations, real-time attribution dashboards, and a direct Slack channel.',
+      q: 'Does GDAs work with small businesses?',
+      a: 'Yes! We proudly work with businesses at all stages — from early-stage startups and local service providers to established retail brands and growing enterprises looking to scale.',
     },
     {
-      q: 'What is the required monthly ad spend?',
-      a: 'We work best with brands spending $3k to $50k+/mo across Meta, Google, or TikTok.',
+      q: 'Can I hire GDAs for only one service?',
+      a: 'Yes, absolutely. You can hire GDAs for an individual service (such as only Website Development, Logo & Branding, or Meta Ads) or choose our full-suite digital growth package for comprehensive business acceleration.',
     },
     {
-      q: 'Do you create the ad videos and designs?',
-      a: 'Yes. We handle end-to-end creative strategy, UGC sourcing, video editing, and copywriting.',
+      q: 'How can I get started?',
+      a: 'Getting started is simple! Click the "Grow My Business" button or reach out to our team via WhatsApp/Call at 9939862765. We will schedule a quick discovery discussion, understand your goals, and share a tailored roadmap for your business within 24 to 48 hours.',
     },
     {
-      q: 'Are there long-term contracts?',
-      a: 'No. We work month-to-month. We earn your business through consistent profit.',
+      q: 'What makes GDAs different from traditional agencies?',
+      a: 'Unlike traditional agencies that offer generic advice or fragment your work across disconnected vendors, GDAs is a unified growth partner. We combine creative brand storytelling with technical performance marketing and custom web technology under one roof.',
     },
   ];
-
-  // Brands list for marquee
-  const brands = [
-    'LUMINA', 'NEXUS DTC', 'AURA SKIN', 'VOLT WEAR', 'VORTEX', 'ELEVATE', 'KINETIX', 'ORIGIN', 'SYNAPSE', 'SOLARIS'
-  ];
-
-  const handleModalSubmit = (e) => {
-    e.preventDefault();
-    setModalSubmitted(true);
-    setTimeout(() => {
-      setModalSubmitted(false);
-      setModalOpen(false);
-      setModalForm({ name: '', email: '', website: '', spend: '$5k - $15k', notes: '' });
-    }, 2500);
-  };
 
   return (
-    <div
-      onMouseEnter={() => setCursorHovered(false)}
-      style={{
-        position: 'relative',
-        minHeight: '100vh',
-        backgroundColor: '#000000',
-        color: '#ffffff',
-        overflowX: 'hidden',
-      }}
-    >
-      {/* ========================================================================= */}
-      {/* ANIMATED BLINKING GOOGLY EYES CURSOR */}
-      {/* ========================================================================= */}
-      {isClient && (
-        <motion.div
-          className="custom-eyes-cursor"
-          animate={{
-            x: mousePosition.x - 17,
-            y: mousePosition.y - 14,
-            scale: cursorHovered ? 1.2 : 1,
-          }}
-          transition={{ type: 'spring', damping: 28, stiffness: 420, mass: 0.12 }}
-          style={{
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            display: 'flex',
-            alignItems: 'center',
-            gap: '3px',
-            pointerEvents: 'none',
-            zIndex: 99999,
-          }}
-        >
-          {/* Left Eye */}
-          <motion.div
-            animate={{ scaleY: isBlinking ? 0.08 : 1 }}
-            transition={{ duration: 0.09, ease: 'easeInOut' }}
-            style={{
-              width: '16px',
-              height: '26px',
-              backgroundColor: '#ffffff',
-              borderRadius: '13px',
-              position: 'relative',
-              boxShadow: '0 3px 12px rgba(0,0,0,0.7)',
-              transformOrigin: 'center center',
-            }}
-          >
-            {/* Pupil (Shifts dynamically all the way to the edge & corner) */}
-            <motion.div
-              animate={{
-                x: pupilOffset.x,
-                y: pupilOffset.y,
-              }}
-              transition={{
-                type: 'spring',
-                damping: 20,
-                stiffness: 400,
-                mass: 0.08,
-              }}
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '11px',
-                height: '15px',
-                backgroundColor: '#000000',
-                borderRadius: '50%',
-              }}
-            >
-              {/* Eye Catchlight / Glint */}
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: '3px',
-                  right: '3px',
-                  width: '2.5px',
-                  height: '2.5px',
-                  backgroundColor: '#ffffff',
-                  borderRadius: '50%',
-                }}
-              />
-            </motion.div>
-          </motion.div>
-
-          {/* Right Eye */}
-          <motion.div
-            animate={{ scaleY: isBlinking ? 0.08 : 1 }}
-            transition={{ duration: 0.09, ease: 'easeInOut' }}
-            style={{
-              width: '16px',
-              height: '26px',
-              backgroundColor: '#ffffff',
-              borderRadius: '13px',
-              position: 'relative',
-              boxShadow: '0 3px 12px rgba(0,0,0,0.7)',
-              transformOrigin: 'center center',
-            }}
-          >
-            {/* Pupil (Shifts dynamically all the way to the edge & corner) */}
-            <motion.div
-              animate={{
-                x: pupilOffset.x,
-                y: pupilOffset.y,
-              }}
-              transition={{
-                type: 'spring',
-                damping: 20,
-                stiffness: 400,
-                mass: 0.08,
-              }}
-              style={{
-                position: 'absolute',
-                top: 0,
-                left: 0,
-                width: '11px',
-                height: '15px',
-                backgroundColor: '#000000',
-                borderRadius: '50%',
-              }}
-            >
-              {/* Eye Catchlight / Glint */}
-              <div
-                style={{
-                  position: 'absolute',
-                  bottom: '3px',
-                  right: '3px',
-                  width: '2.5px',
-                  height: '2.5px',
-                  backgroundColor: '#ffffff',
-                  borderRadius: '50%',
-                }}
-              />
-            </motion.div>
-          </motion.div>
-        </motion.div>
-      )}
-
+    <div style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#000000', color: '#ffffff', overflowX: 'hidden' }}>
       {/* Top Ambient Glow */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2, ease: 'easeOut' }}
-        className="bg-ambient-top"
-      />
+      <div className="bg-ambient-top" />
 
       {/* ========================================================================= */}
-      {/* 1. FLOATING NAVIGATION BAR */}
+      {/* FLOATING HEADER / NAVBAR (GDAs Without Dot) */}
       {/* ========================================================================= */}
       <motion.header
         initial={{ y: -50, opacity: 0, filter: 'blur(8px)' }}
@@ -536,12 +325,12 @@ export default function Home() {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         style={{
           position: 'fixed',
-          top: '20px',
+          top: '18px',
           left: '0',
           right: '0',
           margin: '0 auto',
-          width: 'calc(100% - 40px)',
-          maxWidth: '1050px',
+          width: 'calc(100% - 36px)',
+          maxWidth: '1100px',
           zIndex: 100,
         }}
       >
@@ -553,9 +342,10 @@ export default function Home() {
             justifyContent: 'space-between',
             padding: '12px 24px',
             borderRadius: '9999px',
+            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.5)',
           }}
         >
-          {/* Logo */}
+          {/* Logo — GDAs without Dot */}
           <Link
             href="/"
             onMouseEnter={() => setCursorHovered(true)}
@@ -564,16 +354,16 @@ export default function Home() {
           >
             <div
               style={{
-                width: '34px',
-                height: '34px',
-                borderRadius: '9px',
+                width: '36px',
+                height: '36px',
+                borderRadius: '10px',
                 background: '#0d3899',
                 border: '1px solid rgba(59, 130, 246, 0.4)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 overflow: 'hidden',
-                boxShadow: '0 2px 12px rgba(37, 99, 235, 0.4)',
+                boxShadow: '0 2px 14px rgba(37, 99, 235, 0.45)',
               }}
             >
               <img
@@ -582,21 +372,24 @@ export default function Home() {
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </div>
-            <span style={{ fontWeight: 800, fontSize: '18px', color: '#fff', letterSpacing: '-0.02em' }}>
-              GDAs<span style={{ color: '#3b82f6' }}>.</span>
+            <span style={{ fontWeight: 800, fontSize: '19px', color: '#ffffff', letterSpacing: '-0.02em' }}>
+              GDAs
             </span>
           </Link>
 
           {/* Desktop Nav Links */}
-          <nav style={{ display: 'flex', alignItems: 'center', gap: '28px' }} className="desktop-nav">
+          <nav style={{ display: 'flex', alignItems: 'center', gap: '26px' }} className="desktop-nav">
             {[
               { href: '/about', label: 'About' },
-              { href: '#services', label: 'Services' },
+              { href: '/services', label: 'Services' },
+              { href: '#why-gdas', label: 'Why GDAs' },
+              { href: '#how-it-works', label: 'Process' },
+              { href: '#portfolio', label: 'Our Work' },
+              { href: '#legacy', label: 'Our Legacy' },
               { href: '/training', label: 'Training' },
               { href: '/blog', label: 'Blog' },
-              { href: '/careers', label: 'Careers' },
             ].map((link, i) => (
-              <motion.a
+              <Link
                 key={i}
                 href={link.href}
                 onMouseEnter={() => setCursorHovered(true)}
@@ -607,27 +400,27 @@ export default function Home() {
                   fontWeight: 500,
                   color: '#a3a3a3',
                   textDecoration: 'none',
+                  transition: 'color 0.2s ease',
                 }}
-                whileHover={{ color: '#ffffff' }}
               >
                 {link.label}
-              </motion.a>
+              </Link>
             ))}
           </nav>
 
-          {/* Right Action */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          {/* Action Buttons */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <motion.button
-              onClick={() => setBookingModal(true)}
+              onClick={() => setModalOpen(true)}
               onMouseEnter={() => setCursorHovered(true)}
               onMouseLeave={() => setCursorHovered(false)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
               className="btn-primary"
               style={{ padding: '9px 20px', fontSize: '13px' }}
             >
-              Book a call
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <span>Grow My Business</span>
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </motion.button>
@@ -638,1103 +431,1566 @@ export default function Home() {
               className="mobile-toggle"
               aria-label="Toggle menu"
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 {mobileMenuOpen ? <path d="M18 6L6 18M6 6l12 12" /> : <path d="M4 6h16M4 12h16M4 18h16" />}
               </svg>
             </button>
           </div>
         </div>
 
-        {/* Mobile Dropdown Menu */}
+        {/* Mobile Nav Dropdown */}
         <AnimatePresence>
           {mobileMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -10, scale: 0.95, filter: 'blur(8px)' }}
+              initial={{ opacity: 0, y: -10, scale: 0.96, filter: 'blur(8px)' }}
               animate={{ opacity: 1, y: 0, scale: 1, filter: 'blur(0px)' }}
-              exit={{ opacity: 0, y: -10, scale: 0.95, filter: 'blur(8px)' }}
-              transition={{ duration: 0.25 }}
+              exit={{ opacity: 0, y: -10, scale: 0.96, filter: 'blur(8px)' }}
+              transition={{ duration: 0.22 }}
               className="glass-card"
-              style={{ marginTop: '10px', padding: '20px', borderRadius: '20px', display: 'flex', flexDirection: 'column', gap: '16px' }}
+              style={{
+                marginTop: '10px',
+                padding: '22px',
+                borderRadius: '20px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '14px',
+              }}
             >
-              <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>About</Link>
+              <a href="#about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>About GDAs</a>
               <a href="#services" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Services</a>
-              <Link href="/training" onClick={() => setMobileMenuOpen(false)} style={{ color: '#3b82f6', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}>Training (Demo Class)</Link>
-              <Link href="/blog" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Blog</Link>
-              <Link href="/careers" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Careers</Link>
+              <a href="#why-gdas" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Why GDAs</a>
+              <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>How We Work</a>
+              <a href="#portfolio" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Our Work</a>
+              <a href="#legacy" onClick={() => setMobileMenuOpen(false)} style={{ color: '#eab308', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}>Our Legacy (Father Never Dies)</a>
+              <Link href="/training" onClick={() => setMobileMenuOpen(false)} style={{ color: '#3b82f6', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}>Training Hub</Link>
+              <Link href="/blog" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Blog & Insights</Link>
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  setModalOpen(true);
+                }}
+                className="btn-primary"
+                style={{ width: '100%', marginTop: '6px' }}
+              >
+                Grow My Business
+              </button>
             </motion.div>
           )}
         </AnimatePresence>
       </motion.header>
 
       {/* ========================================================================= */}
-      {/* 2. HERO SECTION */}
+      {/* 01. HERO SECTION — Complete Visual Hierarchy */}
       {/* ========================================================================= */}
-      <section className="hero-wrapper" id="about" style={{ paddingTop: '155px', paddingBottom: '60px', position: 'relative' }}>
-        <div className="container-custom">
-          {/* Top Badge */}
-          <motion.div
-            initial={{ opacity: 0, filter: 'blur(10px)', y: 20 }}
-            animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-            transition={{ duration: 0.7, delay: 0.15 }}
-            style={{ display: 'inline-flex', alignItems: 'center', marginBottom: '26px' }}
-          >
-            <div
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '10px',
-                background: 'rgba(255, 255, 255, 0.05)',
-                border: '1px solid rgba(255, 255, 255, 0.12)',
-                borderRadius: '50px',
-                padding: '5px 16px 5px 6px',
-                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.4)',
-              }}
-            >
-              <div
-                style={{
-                  background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
-                  color: '#ffffff',
-                  fontSize: '11px',
-                  fontWeight: 800,
-                  padding: '3px 8px',
-                  borderRadius: '50px',
-                  letterSpacing: '0.04em',
-                  boxShadow: '0 2px 8px rgba(37, 99, 235, 0.5)',
-                }}
-              >
-                #1
-              </div>
-              <span
-                style={{
-                  fontSize: '11.5px',
-                  fontWeight: 700,
-                  letterSpacing: '0.08em',
-                  color: '#ffffff',
-                  textTransform: 'uppercase',
-                }}
-              >
-                Performance Paid Ads & Growth Agency
-              </span>
-            </div>
-          </motion.div>
-
-          {/* Main Headline */}
-          <motion.h1
-            initial={{ opacity: 0, filter: 'blur(12px)', y: 30 }}
-            animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-            transition={{ duration: 0.85, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            style={{
-              fontSize: 'clamp(38px, 6.2vw, 76px)',
-              fontWeight: 800,
-              lineHeight: 1.08,
-              letterSpacing: '-0.035em',
-              maxWidth: '960px',
-              margin: '0 auto 22px auto',
-              textAlign: 'center',
-              color: '#ffffff',
-            }}
-          >
-            The Best{' '}
-            <span
-              style={{
-                display: 'inline-block',
-                position: 'relative',
-                background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
-                color: '#ffffff',
-                padding: '2px 18px 6px 18px',
-                borderRadius: '12px',
-                boxShadow: '0 8px 30px rgba(37, 99, 235, 0.4)',
-                transform: 'rotate(-2deg)',
-                margin: '0 6px',
-                border: '1px solid rgba(255, 255, 255, 0.2)',
-              }}
-            >
-              Digital
-            </span>
-            <br />
-            Marketing{' '}
-            <span
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                width: 'clamp(44px, 5.5vw, 66px)',
-                height: 'clamp(44px, 5.5vw, 66px)',
-                borderRadius: '50%',
-                background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
-                verticalAlign: 'middle',
-                margin: '0 8px',
-                boxShadow: '0 6px 24px rgba(37, 99, 235, 0.45)',
-                transform: 'rotate(10deg)',
-                border: '2px solid rgba(255, 255, 255, 0.25)',
-              }}
-            >
-              <svg width="58%" height="58%" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M11 5L6 9H2v6h4l5 4V5z" />
-                <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-                <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-              </svg>
-            </span>
-            Agency.
-          </motion.h1>
-
-          {/* Subtext */}
-          <motion.p
-            initial={{ opacity: 0, filter: 'blur(10px)', y: 25 }}
-            animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-            transition={{ duration: 0.75, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            style={{
-              fontSize: '16.5px',
-              color: '#a3a3a3',
-              maxWidth: '680px',
-              margin: '0 auto 34px auto',
-              lineHeight: 1.65,
-              textAlign: 'center',
-            }}
-          >
-            We believe in combining innovative design, sustainable practices, and exceptional craftsmanship to bring your vision to life.
-          </motion.p>
-
-          {/* Primary CTA Button */}
-          <motion.div
-            initial={{ opacity: 0, filter: 'blur(8px)', y: 20 }}
-            animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-            transition={{ duration: 0.65, delay: 0.55 }}
-            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap', marginBottom: '34px' }}
-          >
-            <motion.button
-              onClick={() => setBookingModal(true)}
-              onMouseEnter={() => setCursorHovered(true)}
-              onMouseLeave={() => setCursorHovered(false)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              style={{
-                background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
-                color: '#ffffff',
-                fontSize: '14px',
-                fontWeight: 700,
-                letterSpacing: '0.04em',
-                textTransform: 'uppercase',
-                padding: '14px 34px',
-                borderRadius: '50px',
-                border: 'none',
-                cursor: 'pointer',
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '12px',
-                boxShadow: '0 6px 28px rgba(37, 99, 235, 0.45)',
-                transition: 'all 0.25s ease',
-              }}
-            >
-              <span>GET AUDIT</span>
-              <span
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  width: '20px',
-                  height: '20px',
-                  borderRadius: '50%',
-                  background: 'rgba(255, 255, 255, 0.2)',
-                }}
-              >
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </span>
-            </motion.button>
-          </motion.div>
-
-          {/* Social Proof Trust Bar */}
-          <motion.div
-            initial={{ opacity: 0, filter: 'blur(8px)', scale: 0.94 }}
-            animate={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.65 }}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: '18px',
-              flexWrap: 'wrap',
-            }}
-          >
-            {/* 5 Overlapping Avatars */}
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              {[
-                'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=80&auto=format&fit=crop&q=80',
-                'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&auto=format&fit=crop&q=80',
-                'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=80&auto=format&fit=crop&q=80',
-                'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&auto=format&fit=crop&q=80',
-                'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=80&auto=format&fit=crop&q=80',
-              ].map((imgUrl, idx) => (
-                <img
-                  key={idx}
-                  src={imgUrl}
-                  alt="Verified client avatar"
-                  style={{
-                    width: '38px',
-                    height: '38px',
-                    borderRadius: '50%',
-                    border: '2.5px solid #000000',
-                    marginLeft: idx === 0 ? '0' : '-10px',
-                    objectFit: 'cover',
-                    boxShadow: '0 2px 8px rgba(0,0,0,0.5)',
-                  }}
-                />
-              ))}
-            </div>
-
-            {/* Rating & Review Count */}
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', textAlign: 'left' }}>
-              <div style={{ display: 'flex', gap: '4px', color: '#3b82f6', fontSize: '15px' }}>
-                <span>✦</span>
-                <span>✦</span>
-                <span>✦</span>
-                <span>✦</span>
-                <span>✦</span>
-              </div>
-              <span style={{ fontSize: '12px', fontWeight: 800, color: '#ffffff', letterSpacing: '0.06em', textTransform: 'uppercase', marginTop: '2px' }}>
-                2000+ 5 Star Reviews
-              </span>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* 3. LOGO MARQUEE */}
-      {/* ========================================================================= */}
-      <motion.section
-        initial={{ opacity: 0, filter: 'blur(8px)' }}
-        whileInView={{ opacity: 1, filter: 'blur(0px)' }}
-        viewport={{ once: true, margin: '-40px' }}
-        transition={{ duration: 0.8 }}
-        style={{ padding: '36px 0 46px 0', borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)', background: '#020202' }}
+      <section
+        className="hero-wrapper"
+        style={{
+          paddingTop: '160px',
+          paddingBottom: '80px',
+          position: 'relative',
+        }}
       >
-        <div className="marquee-wrapper">
-          <div className="marquee-content">
-            {brands.concat(brands).map((brand, i) => (
-              <div
-                key={i}
-                style={{
-                  fontSize: '18px',
-                  fontWeight: 800,
-                  letterSpacing: '0.12em',
-                  color: 'rgba(255, 255, 255, 0.35)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '10px',
-                }}
-              >
-                <span>◆</span>
-                <span>{brand}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </motion.section>
-
-      {/* ========================================================================= */}
-      {/* 4. LIVE CLIENT PERFORMANCE DASHBOARD (Moved below hero and marquee) */}
-      {/* ========================================================================= */}
-      <section id="live-performance" className="section-spacing" style={{ paddingTop: '70px', paddingBottom: '90px', position: 'relative' }}>
         <div className="container-custom">
-          {/* Section Header */}
-          <div className="section-header">
-            <div className="section-tag">Real-Time Data</div>
-            <h2 className="section-title">
-              Live Client <span className="serif-italic">Performance.</span>
-            </h2>
-            <p className="section-subtitle">
-              Direct server-side CAPI telemetry tracking blended ROAS, ad spend, and revenue generation in real-time.
-            </p>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, filter: 'blur(14px)', y: 40, scale: 0.96 }}
-            whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0, scale: 1 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.95, ease: [0.16, 1, 0.3, 1] }}
-            className="glass-card glass-card-glow"
+          <div
             style={{
-              maxWidth: '960px',
-              margin: '0 auto',
-              padding: '28px',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '48px',
+              alignItems: 'center',
               textAlign: 'left',
             }}
           >
-            {/* Top Toolbar */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                flexWrap: 'wrap',
-                gap: '12px',
-                borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
-                paddingBottom: '16px',
-                marginBottom: '20px',
-              }}
-            >
-              <div>
-                <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.08em', color: '#60a5fa', fontWeight: 700 }}>
-                  Live Client Performance
-                </div>
-                <div style={{ fontSize: '18px', fontWeight: 700, color: '#ffffff', marginTop: '2px' }}>
-                  Portfolio Overview ({activeTimeframe})
-                </div>
-              </div>
-
-              {/* Timeframe selector (7D, 30D, 90D, 1Y) */}
-              <div style={{ display: 'flex', background: 'rgba(255,255,255,0.05)', padding: '3px', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.08)' }}>
-                {['7D', '30D', '90D', '1Y'].map((tf) => (
-                  <motion.button
-                    key={tf}
-                    whileTap={{ scale: 0.92 }}
-                    onClick={() => setActiveTimeframe(tf)}
-                    onMouseEnter={() => setCursorHovered(true)}
-                    onMouseLeave={() => setCursorHovered(false)}
-                    style={{
-                      padding: '5px 12px',
-                      fontSize: '12px',
-                      fontWeight: 700,
-                      borderRadius: '6px',
-                      border: 'none',
-                      cursor: 'pointer',
-                      background: activeTimeframe === tf ? '#2563eb' : 'transparent',
-                      color: activeTimeframe === tf ? '#ffffff' : '#888888',
-                      boxShadow: activeTimeframe === tf ? '0 0 12px rgba(37, 99, 235, 0.5)' : 'none',
-                      transition: 'all 0.2s ease',
-                    }}
-                  >
-                    {tf}
-                  </motion.button>
-                ))}
-              </div>
-            </div>
-
-            {/* 4 Stat Cards */}
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))',
-                gap: '12px',
-                marginBottom: '24px',
-              }}
-            >
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={`rev-${activeTimeframe}`}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.25 }}
-                  style={{ background: 'rgba(255,255,255,0.02)', padding: '14px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.06)' }}
-                >
-                  <div style={{ fontSize: '11px', color: '#888', marginBottom: '4px' }}>Attributed Revenue</div>
-                  <div style={{ fontSize: '22px', fontWeight: 800, color: '#fff' }}>{currentStats.revenue}</div>
-                  <div style={{ fontSize: '11px', color: '#10b981', fontWeight: 600, marginTop: '2px' }}>
-                    {currentStats.revenueGrowth} vs prior
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={`roas-${activeTimeframe}`}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.25 }}
-                  style={{ background: 'rgba(255,255,255,0.02)', padding: '14px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.06)' }}
-                >
-                  <div style={{ fontSize: '11px', color: '#888', marginBottom: '4px' }}>Blended ROAS</div>
-                  <div style={{ fontSize: '22px', fontWeight: 800, color: '#60a5fa' }}>{currentStats.roas}</div>
-                  <div style={{ fontSize: '11px', color: '#10b981', fontWeight: 600, marginTop: '2px' }}>
-                    {currentStats.roasTarget}
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={`spend-${activeTimeframe}`}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.25 }}
-                  style={{ background: 'rgba(255,255,255,0.02)', padding: '14px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.06)' }}
-                >
-                  <div style={{ fontSize: '11px', color: '#888', marginBottom: '4px' }}>Ad Spend</div>
-                  <div style={{ fontSize: '22px', fontWeight: 800, color: '#fff' }}>{currentStats.spend}</div>
-                  <div style={{ fontSize: '11px', color: '#a3a3a3', marginTop: '2px' }}>
-                    {currentStats.spendChannels}
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={`orders-${activeTimeframe}`}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.25 }}
-                  style={{ background: 'rgba(255,255,255,0.02)', padding: '14px', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.06)' }}
-                >
-                  <div style={{ fontSize: '11px', color: '#888', marginBottom: '4px' }}>Qualified Orders</div>
-                  <div style={{ fontSize: '22px', fontWeight: 800, color: '#fff' }}>{currentStats.orders}</div>
-                  <div style={{ fontSize: '11px', color: '#10b981', fontWeight: 600, marginTop: '2px' }}>
-                    {currentStats.aov}
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            {/* Glowing Chart Visual */}
-            <div style={{ position: 'relative', width: '100%', height: '160px' }}>
-              <svg viewBox="0 0 800 160" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
-                <defs>
-                  <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.4" />
-                    <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.0" />
-                  </linearGradient>
-                </defs>
-                <line x1="0" y1="30" x2="800" y2="30" stroke="rgba(255,255,255,0.04)" strokeDasharray="4 4" />
-                <line x1="0" y1="80" x2="800" y2="80" stroke="rgba(255,255,255,0.04)" strokeDasharray="4 4" />
-                <line x1="0" y1="130" x2="800" y2="130" stroke="rgba(255,255,255,0.04)" strokeDasharray="4 4" />
-
-                <motion.path
-                  key={`area-${activeTimeframe}`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1, d: currentStats.areaPath }}
-                  transition={{ duration: 0.5, ease: 'easeInOut' }}
-                  fill="url(#chartGradient)"
-                />
-                <motion.path
-                  key={`line-${activeTimeframe}`}
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1, d: currentStats.linePath }}
-                  transition={{ duration: 0.7, ease: 'easeInOut' }}
-                  fill="none"
-                  stroke="#3b82f6"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                />
-
-                {currentStats.dots.map((d, di) => (
-                  <motion.circle
-                    key={`dot-${activeTimeframe}-${di}`}
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ delay: 0.2 + di * 0.1 }}
-                    cx={d.cx}
-                    cy={d.cy}
-                    r={di === 3 ? 5 : 4}
-                    fill={di === 3 ? '#3b82f6' : '#fff'}
-                    stroke={di === 3 ? '#fff' : '#3b82f6'}
-                    strokeWidth="2"
-                  />
-                ))}
-              </svg>
-            </div>
-
-            {/* Bottom Status Ticker */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                marginTop: '12px',
-                paddingTop: '12px',
-                borderTop: '1px solid rgba(255, 255, 255, 0.06)',
-                fontSize: '11px',
-                color: '#888',
-              }}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#10b981' }} />
-                <span>Live CAPI Sync Active ({activeTimeframe})</span>
-              </div>
-              <div style={{ color: '#60a5fa', fontWeight: 600 }}>Peak ROAS: {currentStats.peakRoas}</div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* 4. OUR CLIENTS VIDEO CAROUSEL (< and >) */}
-      {/* ========================================================================= */}
-      <section className="section-spacing" id="client-videos" style={{ position: 'relative' }}>
-        <div className="container-custom">
-          {/* Header with Arrow Navigation Controls */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'flex-end',
-              justifyContent: 'space-between',
-              marginBottom: '32px',
-              flexWrap: 'wrap',
-              gap: '16px',
-            }}
-          >
+            {/* Left Content — Strict Hierarchy */}
             <div>
-              <div className="pill-badge" style={{ marginBottom: '8px' }}>
-                <span>Our Clients</span>
-              </div>
-              <h2 className="section-title" style={{ marginTop: '4px', textAlign: 'left' }}>
-                Hear it directly from <span className="serif-italic">our clients.</span>
-              </h2>
-            </div>
-
-            {/* Left & Right Arrow Buttons */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <button
-                onClick={() => setVideoSliderIndex((prev) => (prev > 0 ? prev - 1 : clientVideos.length - 3))}
-                onMouseEnter={() => setCursorHovered(true)}
-                onMouseLeave={() => setCursorHovered(false)}
-                className="arrow-nav-btn"
-                aria-label="Previous video testimonial"
+              {/* 1. Small Eyebrow / Label */}
+              <motion.div
+                initial={{ opacity: 0, filter: 'blur(8px)', y: 15 }}
+                animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+                transition={{ duration: 0.65, delay: 0.1 }}
+                style={{ display: 'inline-flex', alignItems: 'center', marginBottom: '18px' }}
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M15 18l-6-6 6-6" />
-                </svg>
-              </button>
-              <button
-                onClick={() => setVideoSliderIndex((prev) => (prev + 1 <= clientVideos.length - 3 ? prev + 1 : 0))}
-                onMouseEnter={() => setCursorHovered(true)}
-                onMouseLeave={() => setCursorHovered(false)}
-                className="arrow-nav-btn"
-                aria-label="Next video testimonial"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M9 18l6-6-6-6" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          {/* Video Cards Slider Display */}
-          <div style={{ position: 'relative', overflow: 'hidden' }}>
-            <motion.div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                gap: '20px',
-              }}
-            >
-              {clientVideos.slice(videoSliderIndex, videoSliderIndex + 3).map((video) => (
-                <motion.div
-                  key={video.id}
-                  initial={{ opacity: 0, filter: 'blur(8px)', scale: 0.96 }}
-                  animate={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
-                  transition={{ duration: 0.4 }}
-                  whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                  onMouseEnter={() => setCursorHovered(true)}
-                  onMouseLeave={() => setCursorHovered(false)}
-                  className="glass-card"
+                <div
                   style={{
-                    padding: '14px',
-                    borderRadius: '20px',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '10px',
+                    background: 'rgba(37, 99, 235, 0.1)',
+                    border: '1px solid rgba(59, 130, 246, 0.3)',
+                    borderRadius: '50px',
+                    padding: '6px 16px',
+                    boxShadow: '0 4px 20px rgba(37, 99, 235, 0.2)',
                   }}
                 >
-                  {/* Thumbnail Box */}
-                  <div
-                    onClick={() => setVideoModal(video)}
+                  <span className="pulse-dot" />
+                  <span
                     style={{
-                      position: 'relative',
-                      width: '100%',
-                      height: '220px',
-                      borderRadius: '14px',
-                      overflow: 'hidden',
-                      cursor: 'pointer',
-                      backgroundColor: '#111',
+                      fontSize: '12px',
+                      fontWeight: 700,
+                      letterSpacing: '0.1em',
+                      color: '#60a5fa',
+                      textTransform: 'uppercase',
+                    }}
+                  >
+                    GANESHA DIGITAL ADS • GDAs
+                  </span>
+                </div>
+              </motion.div>
+
+              {/* 2. Main Heading — Sabse Bada */}
+              <motion.h1
+                initial={{ opacity: 0, filter: 'blur(12px)', y: 25 }}
+                animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+                transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                style={{
+                  fontSize: 'clamp(40px, 5.2vw, 68px)',
+                  fontWeight: 800,
+                  lineHeight: 1.08,
+                  letterSpacing: '-0.035em',
+                  color: '#ffffff',
+                  marginBottom: '16px',
+                }}
+              >
+                One Platform.{' '}
+                <span
+                  style={{
+                    background: 'linear-gradient(135deg, #60a5fa 0%, #2563eb 100%)',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    display: 'inline-block',
+                  }}
+                >
+                  All Solutions.
+                </span>
+              </motion.h1>
+
+              {/* 3. Main GDAs Tagline — Second Biggest */}
+              <motion.div
+                initial={{ opacity: 0, filter: 'blur(10px)', y: 20 }}
+                animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+                transition={{ duration: 0.75, delay: 0.3 }}
+                style={{
+                  fontSize: 'clamp(20px, 2.6vw, 28px)',
+                  fontWeight: 600,
+                  color: '#e2e8f0',
+                  lineHeight: 1.3,
+                  letterSpacing: '-0.015em',
+                  marginBottom: '18px',
+                }}
+              >
+                Digital Ka Saath,{' '}
+                <span style={{ color: '#3b82f6', fontWeight: 700 }}>Aapke Business Ka Vikas.</span>
+              </motion.div>
+
+              {/* Supporting Text */}
+              <motion.p
+                initial={{ opacity: 0, filter: 'blur(8px)', y: 20 }}
+                animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+                transition={{ duration: 0.75, delay: 0.4 }}
+                style={{
+                  fontSize: '16px',
+                  color: '#a3a3a3',
+                  lineHeight: 1.65,
+                  maxWidth: '560px',
+                  marginBottom: '20px',
+                }}
+              >
+                We help businesses grow with Digital Marketing, Branding & Technology solutions — all under one roof.
+              </motion.p>
+
+              {/* 4. Services Line */}
+              <motion.div
+                initial={{ opacity: 0, filter: 'blur(6px)', y: 15 }}
+                animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+                transition={{ duration: 0.65, delay: 0.48 }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  flexWrap: 'wrap',
+                  fontSize: '14px',
+                  fontWeight: 600,
+                  color: '#93c5fd',
+                  marginBottom: '30px',
+                }}
+              >
+                <span style={{ background: 'rgba(59, 130, 246, 0.15)', padding: '4px 12px', borderRadius: '20px', border: '1px solid rgba(59, 130, 246, 0.25)' }}>
+                  Digital Marketing
+                </span>
+                <span style={{ color: 'rgba(255, 255, 255, 0.4)' }}>•</span>
+                <span style={{ background: 'rgba(59, 130, 246, 0.15)', padding: '4px 12px', borderRadius: '20px', border: '1px solid rgba(59, 130, 246, 0.25)' }}>
+                  Branding
+                </span>
+                <span style={{ color: 'rgba(255, 255, 255, 0.4)' }}>•</span>
+                <span style={{ background: 'rgba(59, 130, 246, 0.15)', padding: '4px 12px', borderRadius: '20px', border: '1px solid rgba(59, 130, 246, 0.25)' }}>
+                  Technology
+                </span>
+              </motion.div>
+
+              {/* 5. CTA Buttons */}
+              <motion.div
+                initial={{ opacity: 0, filter: 'blur(8px)', y: 20 }}
+                animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
+                transition={{ duration: 0.7, delay: 0.55 }}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '14px',
+                  flexWrap: 'wrap',
+                  marginBottom: '32px',
+                }}
+              >
+                <motion.button
+                  onClick={() => setModalOpen(true)}
+                  onMouseEnter={() => setCursorHovered(true)}
+                  onMouseLeave={() => setCursorHovered(false)}
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.96 }}
+                  className="btn-primary"
+                  style={{
+                    padding: '13px 30px',
+                    fontSize: '14.5px',
+                    fontWeight: 700,
+                  }}
+                >
+                  <span>Grow My Business</span>
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </motion.button>
+
+                <motion.a
+                  href="https://wa.me/919939862765?text=Hello%20GDAs%20Team%2C%20I%20want%20to%20grow%20my%20business%20digitally"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onMouseEnter={() => setCursorHovered(true)}
+                  onMouseLeave={() => setCursorHovered(false)}
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.96 }}
+                  className="btn-secondary"
+                  style={{
+                    padding: '13px 26px',
+                    fontSize: '14.5px',
+                    fontWeight: 600,
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                  }}
+                >
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                  <span>Talk to GDAs</span>
+                </motion.a>
+              </motion.div>
+
+              {/* 6. Father Never Dies — Sabse Subtle */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1, delay: 0.7 }}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '8px',
+                  borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+                  paddingTop: '16px',
+                }}
+              >
+                <a
+                  href="#legacy"
+                  style={{
+                    color: 'rgba(255, 255, 255, 0.5)',
+                    fontSize: '12.5px',
+                    textDecoration: 'none',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    transition: 'color 0.2s ease',
+                  }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#eab308')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255, 255, 255, 0.5)')}
+                >
+                  <span style={{ color: '#eab308' }}>✦</span>
+                  <span>Built with a Vision. Driven by a Legacy.</span>
+                  <strong style={{ color: 'rgba(255, 255, 255, 0.75)', fontWeight: 600 }}>Father Never Dies.</strong>
+                </a>
+              </motion.div>
+            </div>
+
+            {/* Right Side — Modern Growth Visual (No Fake Numbers) */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.94, filter: 'blur(12px)' }}
+              animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+              transition={{ duration: 0.9, delay: 0.3 }}
+              style={{ position: 'relative' }}
+            >
+              {/* Central Glowing Shield / Visual Hub */}
+              <div
+                className="glass-card glass-card-glow"
+                style={{
+                  padding: '36px 28px',
+                  borderRadius: '28px',
+                  position: 'relative',
+                  border: '1px solid rgba(59, 130, 246, 0.3)',
+                  background: 'linear-gradient(180deg, rgba(13, 56, 153, 0.2) 0%, rgba(10, 10, 10, 0.95) 100%)',
+                }}
+              >
+                {/* Central Emblem Badge */}
+                <div style={{ textAlign: 'center', marginBottom: '24px' }}>
+                  <div
+                    style={{
+                      width: '74px',
+                      height: '74px',
+                      borderRadius: '20px',
+                      background: 'radial-gradient(circle, #1d4ed8 0%, #0a2566 100%)',
+                      border: '2px solid rgba(59, 130, 246, 0.6)',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      boxShadow: '0 0 35px rgba(37, 99, 235, 0.5)',
+                      marginBottom: '12px',
                     }}
                   >
                     <img
-                      src={video.thumbnail}
-                      alt={video.name}
+                      src="/gda_logo.png"
+                      alt="GDAs Emblem"
+                      style={{ width: '85%', height: '85%', objectFit: 'contain' }}
+                    />
+                  </div>
+                  <div style={{ fontSize: '18px', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.01em' }}>
+                    GDAs Unified Growth System
+                  </div>
+                  <div style={{ fontSize: '12px', color: '#94a3b8', marginTop: '2px' }}>
+                    Creative • Marketing • Tech Stack
+                  </div>
+                </div>
+
+                {/* 4 Multi-Tier Ecosystem Elements */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
+                  <div
+                    className="glass-card"
+                    style={{
+                      padding: '16px',
+                      borderRadius: '16px',
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      border: '1px solid rgba(255, 255, 255, 0.07)',
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
+                      <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }} />
+                      <span style={{ fontSize: '13px', fontWeight: 700, color: '#ffffff' }}>Performance Ads</span>
+                    </div>
+                    <div style={{ fontSize: '11.5px', color: '#a3a3a3' }}>Meta, Google & Targeted Lead Flow</div>
+                  </div>
+
+                  <div
+                    className="glass-card"
+                    style={{
+                      padding: '16px',
+                      borderRadius: '16px',
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      border: '1px solid rgba(255, 255, 255, 0.07)',
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
+                      <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#8b5cf6' }} />
+                      <span style={{ fontSize: '13px', fontWeight: 700, color: '#ffffff' }}>Brand Identity</span>
+                    </div>
+                    <div style={{ fontSize: '11.5px', color: '#a3a3a3' }}>Distinctive Logos, Visuals & Assets</div>
+                  </div>
+
+                  <div
+                    className="glass-card"
+                    style={{
+                      padding: '16px',
+                      borderRadius: '16px',
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      border: '1px solid rgba(255, 255, 255, 0.07)',
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
+                      <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#06b6d4' }} />
+                      <span style={{ fontSize: '13px', fontWeight: 700, color: '#ffffff' }}>Web & Tech</span>
+                    </div>
+                    <div style={{ fontSize: '11.5px', color: '#a3a3a3' }}>Fast, High-Converting Pages</div>
+                  </div>
+
+                  <div
+                    className="glass-card"
+                    style={{
+                      padding: '16px',
+                      borderRadius: '16px',
+                      background: 'rgba(255, 255, 255, 0.03)',
+                      border: '1px solid rgba(255, 255, 255, 0.07)',
+                    }}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
+                      <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }} />
+                      <span style={{ fontSize: '13px', fontWeight: 700, color: '#ffffff' }}>Social & Growth</span>
+                    </div>
+                    <div style={{ fontSize: '11.5px', color: '#a3a3a3' }}>Viral Reels & Active Reach</div>
+                  </div>
+                </div>
+
+                {/* Bottom Trust Badge */}
+                <div
+                  style={{
+                    marginTop: '18px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    padding: '10px 16px',
+                    background: 'rgba(37, 99, 235, 0.12)',
+                    borderRadius: '12px',
+                    border: '1px solid rgba(37, 99, 235, 0.25)',
+                  }}
+                >
+                  <span style={{ fontSize: '12px', color: '#bfdbfe', fontWeight: 600 }}>
+                    🎯 Dedicated Business Growth
+                  </span>
+                  <span style={{ fontSize: '11.5px', color: '#60a5fa', fontWeight: 700 }}>
+                    100% Focused
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 02. TRUST / INTRO STRIP */}
+      {/* ========================================================================= */}
+      <section
+        style={{
+          padding: '60px 0',
+          borderTop: '1px solid rgba(255, 255, 255, 0.07)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.07)',
+          background: 'linear-gradient(180deg, #050505 0%, #0a0a0a 100%)',
+          position: 'relative',
+        }}
+      >
+        <div className="container-custom">
+          <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 40px auto' }}>
+            <h2 style={{ fontSize: 'clamp(26px, 3.2vw, 36px)', fontWeight: 700, color: '#ffffff', marginBottom: '12px' }}>
+              Everything Your Business Needs to Go Digital.
+            </h2>
+            <p style={{ fontSize: '15.5px', color: '#a3a3a3', lineHeight: 1.6 }}>
+              From building your brand identity to generating leads and growing your online presence, GDAs brings the essential digital solutions together in one place.
+            </p>
+          </div>
+
+          {/* 3 Small Highlights */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+              gap: '20px',
+            }}
+          >
+            <motion.div
+              whileHover={{ y: -4 }}
+              className="glass-card"
+              style={{
+                padding: '24px 22px',
+                borderRadius: '18px',
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: '16px',
+                background: 'rgba(255, 255, 255, 0.02)',
+              }}
+            >
+              <div
+                style={{
+                  fontSize: '26px',
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '12px',
+                  background: 'rgba(37, 99, 235, 0.15)',
+                  border: '1px solid rgba(37, 99, 235, 0.3)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}
+              >
+                🎯
+              </div>
+              <div>
+                <div style={{ fontSize: '17px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
+                  Strategy
+                </div>
+                <div style={{ fontSize: '13.5px', color: '#94a3b8', lineHeight: 1.5 }}>
+                  Right strategy for your business tailored to your target audience.
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              whileHover={{ y: -4 }}
+              className="glass-card"
+              style={{
+                padding: '24px 22px',
+                borderRadius: '18px',
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: '16px',
+                background: 'rgba(255, 255, 255, 0.02)',
+              }}
+            >
+              <div
+                style={{
+                  fontSize: '26px',
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '12px',
+                  background: 'rgba(16, 185, 129, 0.15)',
+                  border: '1px solid rgba(16, 185, 129, 0.3)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}
+              >
+                📈
+              </div>
+              <div>
+                <div style={{ fontSize: '17px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
+                  Growth
+                </div>
+                <div style={{ fontSize: '13.5px', color: '#94a3b8', lineHeight: 1.5 }}>
+                  Focused on measurable business growth and high-intent customer acquisition.
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              whileHover={{ y: -4 }}
+              className="glass-card"
+              style={{
+                padding: '24px 22px',
+                borderRadius: '18px',
+                display: 'flex',
+                alignItems: 'flex-start',
+                gap: '16px',
+                background: 'rgba(255, 255, 255, 0.02)',
+              }}
+            >
+              <div
+                style={{
+                  fontSize: '26px',
+                  width: '48px',
+                  height: '48px',
+                  borderRadius: '12px',
+                  background: 'rgba(234, 179, 8, 0.15)',
+                  border: '1px solid rgba(234, 179, 8, 0.3)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                }}
+              >
+                🤝
+              </div>
+              <div>
+                <div style={{ fontSize: '17px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
+                  Support
+                </div>
+                <div style={{ fontSize: '13.5px', color: '#94a3b8', lineHeight: 1.5 }}>
+                  A dedicated digital partner for your journey from day one.
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 03. ABOUT GDAs (With Founder Pic & Details) */}
+      {/* ========================================================================= */}
+      <section id="about" className="section-spacing" style={{ position: 'relative' }}>
+        <div className="container-custom">
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '48px',
+              alignItems: 'center',
+            }}
+          >
+            {/* Left Content */}
+            <div>
+              <div className="section-tag">About GDAs</div>
+              <h2
+                style={{
+                  fontSize: 'clamp(28px, 3.6vw, 44px)',
+                  fontWeight: 700,
+                  lineHeight: 1.2,
+                  color: '#ffffff',
+                  marginBottom: '20px',
+                  letterSpacing: '-0.02em',
+                }}
+              >
+                More Than a Digital Agency.{' '}
+                <span style={{ color: '#3b82f6', display: 'block' }}>
+                  We're Your Digital Growth Partner.
+                </span>
+              </h2>
+
+              <p style={{ fontSize: '16px', color: '#d1d5db', lineHeight: 1.7, marginBottom: '16px' }}>
+                Ganesha Digital Ads (GDAs) is a digital growth company helping businesses build their brand, reach the right audience and grow online.
+              </p>
+
+              <p style={{ fontSize: '15px', color: '#9ca3af', lineHeight: 1.7, marginBottom: '28px' }}>
+                From Marketing and Branding to Websites and Technology, we bring multiple digital solutions together so you don't have to manage everything separately.
+              </p>
+
+              <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
+                <Link
+                  href="/about"
+                  className="btn-primary"
+                  style={{ textDecoration: 'none', padding: '12px 26px', fontSize: '14px' }}
+                >
+                  <span>Know More About GDAs</span>
+                  <span>→</span>
+                </Link>
+
+                <button
+                  onClick={() => setModalOpen(true)}
+                  className="btn-secondary"
+                  style={{ padding: '12px 24px', fontSize: '14px' }}
+                >
+                  Contact Our Team
+                </button>
+              </div>
+            </div>
+
+            {/* Right Content: Founder Pic & Details */}
+            <div>
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+                className="glass-card"
+                style={{
+                  padding: '24px',
+                  borderRadius: '24px',
+                  background: 'linear-gradient(180deg, rgba(37, 99, 235, 0.08) 0%, rgba(15, 15, 15, 0.95) 100%)',
+                  border: '1px solid rgba(59, 130, 246, 0.35)',
+                  boxShadow: '0 20px 50px rgba(0,0,0,0.6)',
+                }}
+              >
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '18px',
+                    marginBottom: '18px',
+                    flexWrap: 'wrap',
+                  }}
+                >
+                  <div
+                    style={{
+                      width: '90px',
+                      height: '90px',
+                      borderRadius: '20px',
+                      overflow: 'hidden',
+                      border: '2px solid rgba(59, 130, 246, 0.5)',
+                      boxShadow: '0 8px 24px rgba(37, 99, 235, 0.35)',
+                      flexShrink: 0,
+                    }}
+                  >
+                    <img
+                      src="/ram_gyan_award.jpg"
+                      alt="Mr. Ram Gyan - Co-Founder & CEO GDAs"
                       style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                     />
-                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.6) 100%)' }} />
+                  </div>
 
-                    {/* Blue Play Button */}
+                  <div>
                     <div
                       style={{
-                        position: 'absolute',
-                        top: '50%',
-                        left: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        width: '50px',
-                        height: '50px',
-                        borderRadius: '50%',
-                        background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+                        display: 'inline-block',
+                        fontSize: '11px',
+                        fontWeight: 700,
+                        color: '#60a5fa',
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.08em',
+                        marginBottom: '4px',
+                      }}
+                    >
+                      Co-Founder & CEO
+                    </div>
+                    <div style={{ fontSize: '20px', fontWeight: 800, color: '#ffffff' }}>
+                      Mr. Ram Gyan
+                    </div>
+                    <div style={{ fontSize: '13px', color: '#a3a3a3' }}>
+                      Building in Digital Marketing Since 2019
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  style={{
+                    background: 'rgba(37, 99, 235, 0.08)',
+                    borderLeft: '3px solid #3b82f6',
+                    padding: '12px 16px',
+                    borderRadius: '0 12px 12px 0',
+                    fontSize: '13.5px',
+                    color: '#93c5fd',
+                    fontWeight: 700,
+                    marginBottom: '14px',
+                  }}
+                >
+                  "Learn. Build. Grow."
+                </div>
+
+                <div
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.03)',
+                    padding: '14px 16px',
+                    borderRadius: '14px',
+                    border: '1px solid rgba(255, 255, 255, 0.06)',
+                    fontSize: '13px',
+                    color: '#e2e8f0',
+                    lineHeight: 1.6,
+                  }}
+                >
+                  Honorary Doctorate (USA) • Bharat Visionary Leader 2026 • IIT Delhi & IIT Patna Trained • Vskills Certified Master
+                </div>
+
+                <div
+                  style={{
+                    marginTop: '16px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    fontSize: '12px',
+                    color: '#94a3b8',
+                  }}
+                >
+                  <Link href="/about#leadership" style={{ color: '#60a5fa', fontWeight: 600, textDecoration: 'none' }}>
+                    View Certifications & Awards →
+                  </Link>
+                  <span style={{ color: '#22c55e', fontWeight: 600 }}>● Available</span>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 04. SERVICES SECTION */}
+      {/* ========================================================================= */}
+      <section id="services" className="section-spacing" style={{ background: '#050505', position: 'relative' }}>
+        <div className="container-custom">
+          {/* Section Header */}
+          <div className="section-header">
+            <div className="section-tag">Our Digital Ecosystem</div>
+            <h2 className="section-title">
+              Everything You Need to <span className="serif-italic">Grow Digitally</span>
+            </h2>
+            <p className="section-subtitle">
+              One platform. Multiple solutions. One goal — your business growth.
+            </p>
+          </div>
+
+          {/* 6 Service Cards Grid */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '24px',
+              marginBottom: '46px',
+            }}
+          >
+            {services.map((srv, idx) => (
+              <motion.div
+                key={srv.num}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.6, delay: idx * 0.08 }}
+                className="glass-card service-card"
+                style={{
+                  padding: '30px 26px',
+                  borderRadius: '22px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  background: 'rgba(15, 15, 15, 0.7)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                }}
+              >
+                <div>
+                  {/* Top Bar */}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
+                    <span
+                      style={{
+                        fontSize: '13px',
+                        fontWeight: 800,
+                        color: srv.highlightColor,
+                        letterSpacing: '0.08em',
+                      }}
+                    >
+                      {srv.num}
+                    </span>
+                    <div
+                      style={{
+                        width: '46px',
+                        height: '46px',
+                        borderRadius: '12px',
+                        background: `${srv.highlightColor}18`,
+                        border: `1px solid ${srv.highlightColor}40`,
+                        color: srv.highlightColor,
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        boxShadow: '0 0 20px rgba(37, 99, 235, 0.6)',
                       }}
                     >
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="#ffffff">
-                        <polygon points="5 3 19 12 5 21 5 3" />
-                      </svg>
-                    </div>
-
-                    <div
-                      style={{
-                        position: 'absolute',
-                        bottom: '10px',
-                        left: '12px',
-                        right: '12px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        fontSize: '11px',
-                        color: '#fff',
-                        fontWeight: 600,
-                      }}
-                    >
-                      <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                        <span>00:00</span>
-                        <div style={{ width: '35px', height: '3px', background: 'rgba(255,255,255,0.4)', borderRadius: '2px' }}>
-                          <div style={{ width: '10px', height: '100%', background: '#3b82f6' }} />
-                        </div>
-                      </div>
+                      {srv.icon}
                     </div>
                   </div>
 
-                  {/* Info */}
-                  <div style={{ padding: '18px 6px 8px 6px' }}>
-                    <div style={{ height: '28px', display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-                      {video.brandType === 'script' && (
-                        <span style={{ fontFamily: 'Georgia, serif', fontStyle: 'italic', fontSize: '24px', fontWeight: 700, color: '#ffffff' }}>
-                          theo
-                        </span>
-                      )}
-                      {video.brandType === 'icon' && (
-                        <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                          <span style={{ width: '12px', height: '12px', borderRadius: '50%', background: '#fff' }} />
-                          <span style={{ fontSize: '20px', fontWeight: 800, color: '#ffffff' }}>Amsterdam</span>
-                        </div>
-                      )}
-                      {video.brandType === 'bold' && (
-                        <span style={{ fontSize: '20px', fontWeight: 900, color: '#ffffff' }}>{video.brandLogo}</span>
-                      )}
-                    </div>
-
-                    <p style={{ fontSize: '14px', color: '#a3a3a3', lineHeight: 1.5, marginBottom: '16px', minHeight: '44px' }}>
-                      &ldquo;{video.quote}&rdquo;
-                    </p>
-
-                    <div style={{ borderTop: '1px solid rgba(255,255,255,0.06)', paddingTop: '12px' }}>
-                      <div style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff' }}>{video.name}</div>
-                      <div style={{ fontSize: '12px', color: '#777' }}>{video.role}</div>
-                    </div>
+                  {/* Title & Tagline */}
+                  <h3 style={{ fontSize: '21px', fontWeight: 700, color: '#ffffff', marginBottom: '8px' }}>
+                    {srv.title}
+                  </h3>
+                  <div
+                    style={{
+                      fontSize: '12.5px',
+                      fontWeight: 600,
+                      color: srv.highlightColor,
+                      marginBottom: '14px',
+                      lineHeight: 1.4,
+                    }}
+                  >
+                    {srv.tagline}
                   </div>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
-      {/* ========================================================================= */}
-      {/* 5. SERVICES SECTION (< and >) */}
-      {/* ========================================================================= */}
-      <section className="section-spacing" id="services" style={{ background: 'linear-gradient(180deg, #000 0%, #080808 50%, #000 100%)' }}>
-        <div className="container-custom">
-          {/* Header with Arrow Navigation Controls */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'flex-end',
-              justifyContent: 'space-between',
-              marginBottom: '32px',
-              flexWrap: 'wrap',
-              gap: '16px',
-            }}
-          >
-            <div>
-              <div className="pill-badge pill-badge-orange" style={{ marginBottom: '8px' }}>
-                <span>// SERVICES</span>
-              </div>
-              <h2 className="section-title" style={{ marginTop: '4px', textAlign: 'left' }}>
-                What we <span className="serif-italic">do best.</span>
-              </h2>
-            </div>
-
-            {/* Left & Right Arrow Navigation for Extra Services */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-              <button
-                onClick={() => setServiceSliderIndex((prev) => (prev > 0 ? prev - 1 : servicesList.length - 3))}
-                onMouseEnter={() => setCursorHovered(true)}
-                onMouseLeave={() => setCursorHovered(false)}
-                className="arrow-nav-btn"
-                aria-label="Previous services"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M15 18l-6-6 6-6" />
-                </svg>
-              </button>
-              <button
-                onClick={() => setServiceSliderIndex((prev) => (prev + 1 <= servicesList.length - 3 ? prev + 1 : 0))}
-                onMouseEnter={() => setCursorHovered(true)}
-                onMouseLeave={() => setCursorHovered(false)}
-                className="arrow-nav-btn"
-                aria-label="Next services"
-              >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M9 18l6-6-6-6" />
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          {/* Slider Services Display */}
-          <div style={{ position: 'relative', overflow: 'hidden' }}>
-            <motion.div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-                gap: '20px',
-              }}
-            >
-              {servicesList.slice(serviceSliderIndex, serviceSliderIndex + 3).map((srv) => (
-                <motion.div
-                  key={srv.title}
-                  initial={{ opacity: 0, filter: 'blur(8px)', scale: 0.96 }}
-                  animate={{ opacity: 1, filter: 'blur(0px)', scale: 1 }}
-                  transition={{ duration: 0.4 }}
-                  whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                  onMouseEnter={() => setCursorHovered(true)}
-                  onMouseLeave={() => setCursorHovered(false)}
-                  className="glass-card"
-                  style={{ padding: '28px' }}
-                >
-                  <div style={{ display: 'inline-block', padding: '4px 10px', background: 'rgba(37,99,235,0.12)', borderRadius: '6px', fontSize: '11px', fontWeight: 700, color: '#60a5fa', marginBottom: '16px' }}>
-                    {srv.badge}
-                  </div>
-                  <h3 style={{ fontSize: '20px', fontWeight: 700, marginBottom: '10px' }}>{srv.title}</h3>
-                  <p style={{ fontSize: '14px', color: '#a3a3a3', lineHeight: 1.5, marginBottom: '18px' }}>
+                  {/* Description */}
+                  <p style={{ fontSize: '14px', color: '#a3a3a3', lineHeight: 1.6, marginBottom: '20px' }}>
                     {srv.desc}
                   </p>
-                  <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '8px', fontSize: '13px', color: '#d1d1d1' }}>
-                    {srv.features.map((f, fi) => (
-                      <li key={fi} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                        <span style={{ color: '#3b82f6' }}>✓</span> {f}
-                      </li>
+                </div>
+
+                <div>
+                  {/* Feature Tags */}
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '20px' }}>
+                    {srv.tags.map((tag, tIdx) => (
+                      <span
+                        key={tIdx}
+                        style={{
+                          fontSize: '11px',
+                          fontWeight: 500,
+                          background: 'rgba(255, 255, 255, 0.04)',
+                          border: '1px solid rgba(255, 255, 255, 0.08)',
+                          color: '#cbd5e1',
+                          padding: '3px 9px',
+                          borderRadius: '6px',
+                        }}
+                      >
+                        {tag}
+                      </span>
                     ))}
-                  </ul>
-                </motion.div>
-              ))}
-            </motion.div>
+                  </div>
+
+                  {/* Card Action */}
+                  <button
+                    onClick={() => {
+                      setFormData({ ...formData, service: srv.title });
+                      setModalOpen(true);
+                    }}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: '#ffffff',
+                      fontSize: '13px',
+                      fontWeight: 600,
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      padding: 0,
+                    }}
+                  >
+                    <span>Get Started with {srv.title}</span>
+                    <span style={{ color: srv.highlightColor }}>→</span>
+                  </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Explore All Services CTA */}
+          <div style={{ textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
+            <Link
+              href="/services"
+              className="btn-primary"
+              style={{ padding: '13px 32px', fontSize: '15px', textDecoration: 'none' }}
+            >
+              <span>Explore All Services</span>
+              <span>→</span>
+            </Link>
+            <button
+              onClick={() => setModalOpen(true)}
+              className="btn-secondary"
+              style={{ padding: '13px 28px', fontSize: '15px' }}
+            >
+              Get Custom Quote
+            </button>
           </div>
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* 6. COMPARISON MATRIX ("WHY WORK WITH GDAs?") */}
+      {/* 05. WHY GDAs? */}
       {/* ========================================================================= */}
-      <section className="section-spacing" id="why-us">
+      <section id="why-gdas" className="section-spacing" style={{ position: 'relative' }}>
         <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, filter: 'blur(10px)', y: 30 }}
-            whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.8 }}
-            className="section-header"
-            style={{ marginBottom: '40px' }}
-          >
-            <div className="pill-badge">
-              <span>// THE DIFFERENCE</span>
-            </div>
+          <div className="section-header">
+            <div className="section-tag">The GDAs Advantage</div>
             <h2 className="section-title">
-              Why choose <span className="serif-italic">GDAs?</span>
+              Why Businesses <span className="serif-italic">Choose GDAs</span>
             </h2>
-          </motion.div>
+            <p className="section-subtitle">
+              One Partner. Complete Digital Solutions.
+            </p>
+          </div>
 
+          {/* 4 Cards Grid */}
           <div
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '24px',
-              maxWidth: '920px',
-              margin: '0 auto',
-            }}
-          >
-            {/* Traditional Agency */}
-            <motion.div
-              initial={{ opacity: 0, filter: 'blur(10px)', x: -30 }}
-              whileInView={{ opacity: 1, filter: 'blur(0px)', x: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.8 }}
-              className="glass-card"
-              style={{ padding: '32px', background: '#080808' }}
-            >
-              <div style={{ fontSize: '13px', fontWeight: 700, color: '#ef4444', textTransform: 'uppercase', marginBottom: '16px' }}>
-                Other Agencies
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                {[
-                  'Junior account managers learning on your ad budget',
-                  'Vague monthly PDF reports with vanity clicks',
-                  'Slow 3-week turnaround for new creatives',
-                  'Locked into rigid 6-12 month contracts',
-                ].map((item, idx) => (
-                  <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '14px', color: '#777' }}>
-                    <span style={{ color: '#ef4444', fontWeight: 700 }}>✕</span>
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* GDAs Framework */}
-            <motion.div
-              initial={{ opacity: 0, filter: 'blur(10px)', x: 30 }}
-              whileInView={{ opacity: 1, filter: 'blur(0px)', x: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.8 }}
-              whileHover={{ y: -4 }}
-              onMouseEnter={() => setCursorHovered(true)}
-              onMouseLeave={() => setCursorHovered(false)}
-              className="glass-card glass-card-glow"
-              style={{ padding: '32px' }}
-            >
-              <div style={{ fontSize: '13px', fontWeight: 700, color: '#60a5fa', textTransform: 'uppercase', marginBottom: '16px' }}>
-                GDAs Framework
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
-                {[
-                  'Senior media buyers who have scaled $10M+ profitably',
-                  'Live 24/7 custom dashboard with transparent ROAS',
-                  'Fresh creative iterations delivered every week',
-                  'No lock-in contracts — month to month partnership',
-                ].map((item, idx) => (
-                  <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '14px', color: '#ffffff' }}>
-                    <span style={{ color: '#3b82f6', fontWeight: 700 }}>✓</span>
-                    <span style={{ fontWeight: 500 }}>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* 7. 3-STEP PROCESS SECTION */}
-      {/* ========================================================================= */}
-      <section className="section-spacing" id="process" style={{ background: '#050505' }}>
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, filter: 'blur(10px)', y: 30 }}
-            whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.8 }}
-            className="section-header"
-            style={{ marginBottom: '40px' }}
-          >
-            <div className="pill-badge pill-badge-orange">
-              <span>// PROCESS</span>
-            </div>
-            <h2 className="section-title">
-              Our 3-step roadmap to <span className="serif-italic">scale.</span>
-            </h2>
-          </motion.div>
-
-          <motion.div
-            variants={blurStagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
               gap: '24px',
             }}
           >
             {[
-              { num: '01', title: 'Funnel Audit', desc: 'We audit past campaigns, pixels, and checkout leaks to identify immediate revenue opportunities.' },
-              { num: '02', title: 'Creative Build', desc: 'We produce fresh UGC hooks, static designs, and construct scalable campaign architectures.' },
-              { num: '03', title: 'Scale Profit', desc: 'We aggressively pump budget into winners while keeping acquisition costs low.' },
-            ].map((step, idx) => (
+              {
+                emoji: '🎯',
+                title: 'Business-Focused',
+                desc: "We don't just create campaigns. We focus on helping your business move forward.",
+                accent: '#3b82f6',
+              },
+              {
+                emoji: '💡',
+                title: 'Creative + Strategy',
+                desc: 'Creative ideas backed by practical digital strategy that delivers tangible business impact.',
+                accent: '#8b5cf6',
+              },
+              {
+                emoji: '⚡',
+                title: 'One Platform',
+                desc: 'Marketing, branding, technology and digital solutions under one cohesive roof.',
+                accent: '#06b6d4',
+              },
+              {
+                emoji: '🤝',
+                title: 'Long-Term Partnership',
+                desc: 'We aim to grow with your business, not just complete a one-time project.',
+                accent: '#10b981',
+              },
+            ].map((card, i) => (
               <motion.div
-                key={idx}
-                variants={blurFadeIn}
-                custom={idx}
-                whileHover={{ y: -6, transition: { duration: 0.25 } }}
-                onMouseEnter={() => setCursorHovered(true)}
-                onMouseLeave={() => setCursorHovered(false)}
-                className="glass-card"
-                style={{ padding: '30px' }}
-              >
-                <div style={{ fontSize: '38px', fontFamily: 'var(--font-serif)', fontStyle: 'italic', color: '#3b82f6', marginBottom: '12px' }}>
-                  {step.num}
-                </div>
-                <h3 style={{ fontSize: '18px', fontWeight: 700, marginBottom: '8px' }}>{step.title}</h3>
-                <p style={{ fontSize: '14px', color: '#a3a3a3', lineHeight: 1.5 }}>{step.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ========================================================================= */}
-      {/* 8. AUTO-SCROLLING CLIENT REVIEWS MARQUEE (SLOW, PAUSES ON HOVER) */}
-      {/* ========================================================================= */}
-      <section className="section-spacing" id="reviews" style={{ overflow: 'hidden' }}>
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, filter: 'blur(10px)', y: 30 }}
-            whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.8 }}
-            className="section-header"
-            style={{ marginBottom: '36px' }}
-          >
-            <div className="pill-badge">
-              <span>// REVIEWS</span>
-            </div>
-            <h2 className="section-title">
-              Client <span className="serif-italic">results.</span>
-            </h2>
-            <p className="section-subtitle">
-              Hover over any card to pause scrolling.
-            </p>
-          </motion.div>
-        </div>
-
-        {/* Continuous Auto-Scrolling Testimonial Carousel */}
-        <div
-          className="review-marquee-wrapper"
-          onMouseEnter={() => setCursorHovered(true)}
-          onMouseLeave={() => setCursorHovered(false)}
-        >
-          <div className="review-marquee-content">
-            {reviewsMarquee.concat(reviewsMarquee).map((item, idx) => (
-              <div
-                key={idx}
+                key={i}
+                whileHover={{ y: -6 }}
                 className="glass-card"
                 style={{
-                  width: '340px',
-                  minWidth: '340px',
-                  padding: '24px',
-                  borderRadius: '18px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  cursor: 'pointer',
+                  padding: '32px 26px',
+                  borderRadius: '22px',
+                  background: 'rgba(15, 15, 15, 0.8)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
                 }}
               >
-                <div>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
-                    <div style={{ color: '#ffb703', fontSize: '13px' }}>★★★★★</div>
-                    <span style={{ fontSize: '11px', fontWeight: 700, color: '#60a5fa', background: 'rgba(37,99,235,0.12)', padding: '2px 6px', borderRadius: '4px' }}>
-                      {item.roas}
-                    </span>
-                  </div>
-                  <p style={{ fontSize: '14px', color: '#d1d1d1', lineHeight: 1.5, fontStyle: 'italic', marginBottom: '20px' }}>
-                    &ldquo;{item.quote}&rdquo;
-                  </p>
+                <div
+                  style={{
+                    fontSize: '32px',
+                    width: '60px',
+                    height: '60px',
+                    borderRadius: '16px',
+                    background: `${card.accent}18`,
+                    border: `1px solid ${card.accent}35`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '20px',
+                  }}
+                >
+                  {card.emoji}
                 </div>
-
-                <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <img
-                    src={item.avatar}
-                    alt={item.name}
-                    style={{ width: '36px', height: '36px', borderRadius: '50%', objectFit: 'cover' }}
-                  />
-                  <div>
-                    <div style={{ fontSize: '14px', fontWeight: 700, color: '#fff' }}>{item.name}</div>
-                    <div style={{ fontSize: '12px', color: '#777' }}>{item.role}</div>
-                  </div>
-                </div>
-              </div>
+                <h3 style={{ fontSize: '19px', fontWeight: 700, color: '#ffffff', marginBottom: '10px' }}>
+                  {card.title}
+                </h3>
+                <p style={{ fontSize: '14.5px', color: '#a3a3a3', lineHeight: 1.6 }}>
+                  {card.desc}
+                </p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* 9. FAQ ACCORDION */}
+      {/* 06. HOW GDAs WORKS (Horizontal 4-Step Timeline) */}
       {/* ========================================================================= */}
-      <section className="section-spacing" id="faq">
+      <section id="how-it-works" className="section-spacing" style={{ background: '#050505', position: 'relative' }}>
         <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, filter: 'blur(10px)', y: 30 }}
-            whileInView={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.8 }}
-            className="section-header"
-            style={{ marginBottom: '36px' }}
-          >
-            <div className="pill-badge">
-              <span>// FAQ</span>
-            </div>
+          <div className="section-header">
+            <div className="section-tag">Simple 4-Step Process</div>
             <h2 className="section-title">
-              Common <span className="serif-italic">questions.</span>
+              From Idea to Growth — <span className="serif-italic">We Make It Simple</span>
             </h2>
-          </motion.div>
+            <p className="section-subtitle">
+              A transparent, structured methodology that turns your business vision into measurable momentum.
+            </p>
+          </div>
 
-          <motion.div
-            variants={blurStagger}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
-            style={{ maxWidth: '760px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '12px' }}
+          {/* 4 Steps Horizontal Grid */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+              gap: '24px',
+              position: 'relative',
+            }}
           >
-            {faqs.map((faq, index) => {
-              const isOpen = activeFaq === index;
-              return (
+            {[
+              {
+                step: '01',
+                title: 'Understand',
+                desc: 'We understand your business, goals, target audience, and current challenges.',
+                color: '#3b82f6',
+              },
+              {
+                step: '02',
+                title: 'Strategize',
+                desc: 'We create a tailored digital strategy and marketing roadmap according to your needs.',
+                color: '#8b5cf6',
+              },
+              {
+                step: '03',
+                title: 'Create',
+                desc: 'We build your brand identity, content, high-converting ad campaigns and digital assets.',
+                color: '#06b6d4',
+              },
+              {
+                step: '04',
+                title: 'Grow',
+                desc: 'We optimize, improve performance, and scale what delivers real business growth.',
+                color: '#10b981',
+              },
+            ].map((step, idx) => (
+              <motion.div
+                key={step.step}
+                whileHover={{ y: -4 }}
+                className="glass-card"
+                style={{
+                  padding: '28px 24px',
+                  borderRadius: '20px',
+                  background: 'rgba(15, 15, 15, 0.75)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  position: 'relative',
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: '28px',
+                    fontWeight: 800,
+                    color: step.color,
+                    letterSpacing: '-0.02em',
+                    marginBottom: '12px',
+                    fontFamily: 'var(--font-sans)',
+                  }}
+                >
+                  {step.step}.
+                </div>
+                <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#ffffff', marginBottom: '8px' }}>
+                  {step.title}
+                </h3>
+                <p style={{ fontSize: '14px', color: '#a3a3a3', lineHeight: 1.6 }}>
+                  {step.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 07. OUR WORK / PORTFOLIO */}
+      {/* ========================================================================= */}
+      <section id="portfolio" className="section-spacing" style={{ position: 'relative' }}>
+        <div className="container-custom">
+          <div className="section-header">
+            <div className="section-tag">Case Studies & Showcase</div>
+            <h2 className="section-title">
+              Ideas We've Turned Into <span className="serif-italic">Digital Experiences</span>
+            </h2>
+            <p className="section-subtitle">
+              Explore some of the branding, marketing and digital work created by GDAs.
+            </p>
+          </div>
+
+          {/* Filter Categories */}
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '8px',
+              flexWrap: 'wrap',
+              marginBottom: '36px',
+            }}
+          >
+            {['All', 'Branding', 'Social Media', 'Meta Ads', 'Websites', 'Creatives'].map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActivePortfolioCategory(cat)}
+                style={{
+                  padding: '8px 18px',
+                  borderRadius: '50px',
+                  fontSize: '13px',
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  border: '1px solid',
+                  borderColor: activePortfolioCategory === cat ? '#3b82f6' : 'rgba(255, 255, 255, 0.1)',
+                  background: activePortfolioCategory === cat ? '#2563eb' : 'rgba(255, 255, 255, 0.03)',
+                  color: activePortfolioCategory === cat ? '#ffffff' : '#a3a3a3',
+                  transition: 'all 0.2s ease',
+                }}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          {/* Portfolio Grid */}
+          <motion.div
+            layout
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+              gap: '26px',
+            }}
+          >
+            <AnimatePresence>
+              {filteredPortfolio.map((item) => (
                 <motion.div
-                  key={index}
-                  variants={blurFadeIn}
-                  custom={index}
+                  layout
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.35 }}
+                  key={item.id}
                   className="glass-card"
                   style={{
-                    borderRadius: '14px',
-                    borderColor: isOpen ? 'rgba(37, 99, 235, 0.4)' : 'rgba(255, 255, 255, 0.08)',
+                    borderRadius: '22px',
+                    overflow: 'hidden',
+                    background: '#0d0d0d',
+                    border: '1px solid rgba(255, 255, 255, 0.08)',
+                  }}
+                >
+                  <div style={{ height: '220px', width: '100%', overflow: 'hidden', position: 'relative' }}>
+                    <img
+                      src={item.image}
+                      alt={item.title}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        transition: 'transform 0.4s ease',
+                      }}
+                      onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
+                      onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+                    />
+                    <div
+                      style={{
+                        position: 'absolute',
+                        top: '14px',
+                        left: '14px',
+                        background: 'rgba(0, 0, 0, 0.75)',
+                        backdropFilter: 'blur(8px)',
+                        padding: '4px 12px',
+                        borderRadius: '50px',
+                        fontSize: '11px',
+                        fontWeight: 700,
+                        color: '#60a5fa',
+                        border: '1px solid rgba(59, 130, 246, 0.3)',
+                      }}
+                    >
+                      {item.badge}
+                    </div>
+                  </div>
+
+                  <div style={{ padding: '22px' }}>
+                    <div style={{ fontSize: '11.5px', color: '#94a3b8', fontWeight: 600, marginBottom: '4px' }}>
+                      {item.subCategory}
+                    </div>
+                    <h3 style={{ fontSize: '19px', fontWeight: 700, color: '#ffffff', marginBottom: '8px' }}>
+                      {item.title}
+                    </h3>
+                    <p style={{ fontSize: '13.5px', color: '#a3a3a3', lineHeight: 1.55 }}>
+                      {item.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 08. RESULTS / PROOF */}
+      {/* ========================================================================= */}
+      <section
+        style={{
+          padding: '70px 0',
+          background: 'linear-gradient(180deg, #050505 0%, #0c0c0c 100%)',
+          borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+          borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+          position: 'relative',
+        }}
+      >
+        <div className="container-custom">
+          <div className="section-header" style={{ marginBottom: '36px' }}>
+            <div className="section-tag">Milestones & Impact</div>
+            <h2 className="section-title">
+              Results That <span className="serif-italic">Matter.</span>
+            </h2>
+            <p className="section-subtitle">
+              Authentic dedication delivering tangible milestones for every business we partner with.
+            </p>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+              gap: '20px',
+              textAlign: 'center',
+            }}
+          >
+            {[
+              { num: '50+', label: 'Clients Served', sub: 'Growing businesses empowered', color: '#3b82f6' },
+              { num: '120+', label: 'Projects Delivered', sub: 'From branding to websites', color: '#8b5cf6' },
+              { num: '300+', label: 'Campaigns Managed', sub: 'Performance ad executions', color: '#06b6d4' },
+              { num: '100%', label: 'Businesses Supported', sub: 'Hands-on dedicated partner', color: '#10b981' },
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ y: -4 }}
+                className="glass-card"
+                style={{
+                  padding: '28px 20px',
+                  borderRadius: '20px',
+                  background: 'rgba(255, 255, 255, 0.02)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: 'clamp(36px, 4vw, 48px)',
+                    fontWeight: 800,
+                    color: stat.color,
+                    letterSpacing: '-0.02em',
+                    lineHeight: 1,
+                    marginBottom: '8px',
+                  }}
+                >
+                  {stat.num}
+                </div>
+                <div style={{ fontSize: '16px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
+                  {stat.label}
+                </div>
+                <div style={{ fontSize: '12.5px', color: '#94a3b8' }}>
+                  {stat.sub}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 09. GDAs LEGACY SECTION ❤️ (Father Never Dies Tribute) */}
+      {/* ========================================================================= */}
+      <section id="legacy" className="section-spacing" style={{ position: 'relative' }}>
+        <div className="container-custom">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.8 }}
+            className="legacy-card"
+            style={{
+              padding: 'clamp(32px, 5vw, 60px)',
+              borderRadius: '30px',
+              position: 'relative',
+              overflow: 'hidden',
+            }}
+          >
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+                gap: '40px',
+                alignItems: 'center',
+              }}
+            >
+              {/* Left Column: Legacy Story Narrative */}
+              <div>
+                <div
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    padding: '5px 14px',
+                    borderRadius: '50px',
+                    background: 'rgba(234, 179, 8, 0.12)',
+                    border: '1px solid rgba(234, 179, 8, 0.3)',
+                    color: '#fde047',
+                    fontSize: '12px',
+                    fontWeight: 700,
+                    letterSpacing: '0.08em',
+                    textTransform: 'uppercase',
+                    marginBottom: '16px',
+                  }}
+                >
+                  <span>❤️</span>
+                  <span>The Legacy Behind GDAs</span>
+                </div>
+
+                <h2
+                  style={{
+                    fontSize: 'clamp(28px, 3.6vw, 42px)',
+                    fontWeight: 800,
+                    color: '#ffffff',
+                    lineHeight: 1.15,
+                    marginBottom: '4px',
+                    letterSpacing: '-0.02em',
+                  }}
+                >
+                  Mr. Ganesh Ram
+                </h2>
+                <div style={{ fontSize: '15px', color: '#facc15', fontWeight: 700, marginBottom: '2px' }}>
+                  Ex-Senior Controller, JSEB
+                </div>
+                <div style={{ fontSize: '13px', color: '#cbd5e1', marginBottom: '18px' }}>
+                  Patratu Thermal Power Station, Patratu
+                </div>
+
+                <div style={{ fontSize: '17px', fontWeight: 700, color: '#ffffff', marginBottom: '8px' }}>
+                  Inspired by a Legacy. Built for the Future.
+                </div>
+
+                <p style={{ fontSize: '15px', color: '#e2e8f0', lineHeight: 1.7, marginBottom: '18px' }}>
+                  The values of <strong>discipline, dedication, responsibility and perseverance</strong> continue to inspire the journey of GDAs.
+                </p>
+
+                <div
+                  style={{
+                    background: 'rgba(234, 179, 8, 0.08)',
+                    borderLeft: '4px solid #eab308',
+                    padding: '16px 20px',
+                    borderRadius: '0 14px 14px 0',
+                    marginBottom: '24px',
+                  }}
+                >
+                  <div style={{ fontSize: '20px', fontWeight: 800, color: '#fde047', marginBottom: '6px' }}>
+                    Father Never Dies.
+                  </div>
+                  <div style={{ fontSize: '14px', color: '#fef08a', lineHeight: 1.6, fontStyle: 'italic' }}>
+                    His values live on.<br />
+                    His vision moves forward.<br />
+                    His legacy continues through GDAs.
+                  </div>
+                </div>
+
+                <Link
+                  href="/about#legacy"
+                  className="btn-secondary"
+                  style={{
+                    padding: '12px 26px',
+                    fontSize: '14px',
+                    textDecoration: 'none',
+                    borderColor: 'rgba(234, 179, 8, 0.4)',
+                    color: '#fef08a',
+                  }}
+                >
+                  <span>Read Full Story</span>
+                  <span>→</span>
+                </Link>
+              </div>
+
+              {/* Right Column: Genuine Father Tribute Visual Frame */}
+              <div style={{ textAlign: 'center' }}>
+                <div
+                  style={{
+                    display: 'inline-block',
+                    padding: '12px',
+                    borderRadius: '26px',
+                    background: 'radial-gradient(ellipse at center, rgba(234, 179, 8, 0.2) 0%, rgba(15, 15, 15, 0.85) 75%)',
+                    border: '1px solid rgba(234, 179, 8, 0.4)',
+                    boxShadow: '0 16px 48px rgba(0, 0, 0, 0.9), 0 0 40px rgba(234, 179, 8, 0.2)',
+                    maxWidth: '420px',
+                    width: '100%',
+                  }}
+                >
+                  <div
+                    style={{
+                      borderRadius: '20px',
+                      overflow: 'hidden',
+                      position: 'relative',
+                    }}
+                  >
+                    <img
+                      src="/ganesh_ji_legacy.jpg"
+                      alt="Founder Mr. Ganesh Ji - Late Mr. Ganesh Ram"
+                      style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 10. TESTIMONIALS */}
+      {/* ========================================================================= */}
+      <section id="testimonials" className="section-spacing" style={{ background: '#050505', position: 'relative' }}>
+        <div className="container-custom">
+          <div className="section-header">
+            <div className="section-tag">Client Reviews</div>
+            <h2 className="section-title">
+              What Our <span className="serif-italic">Clients Say</span>
+            </h2>
+            <p className="section-subtitle">
+              Authentic experiences shared by business leaders and founders partnering with GDAs.
+            </p>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))',
+              gap: '24px',
+            }}
+          >
+            {testimonials.map((t, idx) => (
+              <motion.div
+                key={idx}
+                whileHover={{ y: -5 }}
+                className="glass-card"
+                style={{
+                  padding: '28px 24px',
+                  borderRadius: '22px',
+                  background: 'rgba(15, 15, 15, 0.8)',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                }}
+              >
+                <div>
+                  {/* Rating Stars */}
+                  <div style={{ display: 'flex', gap: '3px', color: '#facc15', fontSize: '16px', marginBottom: '14px' }}>
+                    {'★★★★★'}
+                  </div>
+                  {/* Testimonial Quote */}
+                  <p style={{ fontSize: '14.5px', color: '#d1d5db', lineHeight: 1.65, marginBottom: '22px' }}>
+                    "{t.content}"
+                  </p>
+                </div>
+
+                {/* Author Info */}
+                <div style={{ display: 'flex', alignItems: 'center', gap: '14px', borderTop: '1px solid rgba(255, 255, 255, 0.06)', paddingTop: '16px' }}>
+                  <img
+                    src={t.avatar}
+                    alt={t.name}
+                    style={{
+                      width: '44px',
+                      height: '44px',
+                      borderRadius: '50%',
+                      objectFit: 'cover',
+                      border: '1.5px solid rgba(59, 130, 246, 0.4)',
+                    }}
+                  />
+                  <div>
+                    <div style={{ fontSize: '15px', fontWeight: 700, color: '#ffffff' }}>
+                      {t.name}
+                    </div>
+                    <div style={{ fontSize: '12px', color: '#94a3b8' }}>
+                      {t.role}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 11. FAQ SECTION */}
+      {/* ========================================================================= */}
+      <section id="faq" className="section-spacing" style={{ position: 'relative' }}>
+        <div className="container-custom">
+          <div className="section-header">
+            <div className="section-tag">Got Questions?</div>
+            <h2 className="section-title">
+              Frequently Asked <span className="serif-italic">Questions</span>
+            </h2>
+            <p className="section-subtitle">
+              Clear answers to help you make informed decisions for your business growth.
+            </p>
+          </div>
+
+          <div style={{ maxWidth: '820px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+            {faqs.map((faq, i) => {
+              const isOpen = activeFaq === i;
+              return (
+                <div
+                  key={i}
+                  className="glass-card"
+                  style={{
+                    borderRadius: '16px',
+                    border: '1px solid rgba(255, 255, 255, 0.08)',
+                    overflow: 'hidden',
                   }}
                 >
                   <button
-                    onClick={() => setActiveFaq(isOpen ? -1 : index)}
-                    onMouseEnter={() => setCursorHovered(true)}
-                    onMouseLeave={() => setCursorHovered(false)}
+                    onClick={() => setActiveFaq(isOpen ? -1 : i)}
                     style={{
                       width: '100%',
-                      padding: '18px 22px',
+                      textAlign: 'left',
+                      padding: '20px 24px',
                       background: 'none',
                       border: 'none',
+                      color: '#ffffff',
+                      fontSize: '16px',
+                      fontWeight: 600,
+                      cursor: 'pointer',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
-                      cursor: 'pointer',
-                      textAlign: 'left',
-                      color: '#ffffff',
+                      gap: '16px',
                     }}
                   >
-                    <span style={{ fontSize: '15px', fontWeight: 600 }}>{faq.q}</span>
-                    <motion.span
-                      animate={{ rotate: isOpen ? 45 : 0 }}
+                    <span>{faq.q}</span>
+                    <span
                       style={{
-                        width: '24px',
-                        height: '24px',
-                        borderRadius: '50%',
-                        background: isOpen ? '#2563eb' : 'rgba(255,255,255,0.06)',
-                        color: '#fff',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: '16px',
-                        flexShrink: 0,
+                        transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
+                        transition: 'transform 0.25s ease',
+                        color: '#3b82f6',
+                        fontSize: '18px',
                       }}
                     >
-                      +
-                    </motion.span>
+                      ▾
+                    </span>
                   </button>
 
                   <AnimatePresence>
@@ -1744,404 +2000,557 @@ export default function Home() {
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.25 }}
-                        style={{ overflow: 'hidden' }}
                       >
-                        <div style={{ padding: '0 22px 20px 22px', fontSize: '14px', color: '#a3a3a3', lineHeight: 1.5 }}>
+                        <div
+                          style={{
+                            padding: '0 24px 20px 24px',
+                            fontSize: '14.5px',
+                            color: '#9ca3af',
+                            lineHeight: 1.65,
+                            borderTop: '1px solid rgba(255, 255, 255, 0.04)',
+                            paddingTop: '14px',
+                          }}
+                        >
                           {faq.a}
                         </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
-                </motion.div>
+                </div>
               );
             })}
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* 10. FINAL CTA BANNER */}
+      {/* 12. FINAL CTA — VERY IMPORTANT 🔥 */}
       {/* ========================================================================= */}
-      <section style={{ padding: '80px 0', position: 'relative', overflow: 'hidden' }}>
-        <div className="bg-ambient-cta" />
-        <div className="container-custom" style={{ position: 'relative', zIndex: 1 }}>
+      <section
+        style={{
+          padding: '90px 0',
+          position: 'relative',
+          overflow: 'hidden',
+          background: 'radial-gradient(ellipse at center, rgba(37, 99, 235, 0.15) 0%, rgba(0, 0, 0, 0.95) 75%)',
+        }}
+      >
+        <div className="container-custom">
           <motion.div
-            initial={{ opacity: 0, filter: 'blur(14px)', scale: 0.94, y: 30 }}
-            whileInView={{ opacity: 1, filter: 'blur(0px)', scale: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.8 }}
+            initial={{ opacity: 0, scale: 0.96 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
             className="glass-card glass-card-glow"
             style={{
-              padding: '50px 32px',
+              padding: 'clamp(40px, 6vw, 70px) 30px',
+              borderRadius: '32px',
               textAlign: 'center',
-              borderRadius: '24px',
-              maxWidth: '880px',
+              maxWidth: '920px',
               margin: '0 auto',
+              position: 'relative',
             }}
           >
-            <div className="pill-badge pill-badge-orange" style={{ marginBottom: '14px' }}>
-              <span className="pulse-dot" />
-              <span>LIMITED ONBOARDING SLOTS</span>
+            <div
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '6px 16px',
+                borderRadius: '50px',
+                background: 'rgba(59, 130, 246, 0.15)',
+                border: '1px solid rgba(59, 130, 246, 0.3)',
+                color: '#60a5fa',
+                fontSize: '12px',
+                fontWeight: 700,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase',
+                marginBottom: '20px',
+              }}
+            >
+              <span>🔥</span>
+              <span>Take Your Business To The Next Level</span>
             </div>
-            <h2 style={{ fontSize: '40px', fontWeight: 700, lineHeight: 1.15, maxWidth: '600px', margin: '0 auto 14px auto' }}>
-              Ready to scale to <span className="serif-italic">new heights?</span>
+
+            <h2
+              style={{
+                fontSize: 'clamp(32px, 4.8vw, 54px)',
+                fontWeight: 800,
+                color: '#ffffff',
+                lineHeight: 1.12,
+                letterSpacing: '-0.03em',
+                marginBottom: '16px',
+              }}
+            >
+              Ready to Grow Your Business{' '}
+              <span
+                style={{
+                  background: 'linear-gradient(135deg, #60a5fa 0%, #2563eb 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                }}
+              >
+                Digitally?
+              </span>
             </h2>
-            <p style={{ fontSize: '16px', color: '#a3a3a3', maxWidth: '480px', margin: '0 auto 30px auto', lineHeight: 1.5 }}>
-              Book a 30-minute free growth audit. We will show you exactly how to scale your ROAS.
+
+            <p
+              style={{
+                fontSize: '16.5px',
+                color: '#cbd5e1',
+                lineHeight: 1.6,
+                maxWidth: '620px',
+                margin: '0 auto 34px auto',
+              }}
+            >
+              Let's build your brand, reach your audience and take your business to the next level with GDAs.
             </p>
 
-            <motion.button
-              onClick={() => setModalOpen(true)}
-              onMouseEnter={() => setCursorHovered(true)}
-              onMouseLeave={() => setCursorHovered(false)}
-              whileHover={{ scale: 1.06 }}
-              whileTap={{ scale: 0.95 }}
-              className="btn-primary"
-              style={{ padding: '13px 32px', fontSize: '14px' }}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '16px',
+                flexWrap: 'wrap',
+              }}
             >
-              Book your free call
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </motion.button>
+              <button
+                onClick={() => setModalOpen(true)}
+                className="btn-primary"
+                style={{
+                  padding: '14px 36px',
+                  fontSize: '15.5px',
+                  fontWeight: 700,
+                }}
+              >
+                <span>Start Your Digital Journey</span>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              <a
+                href="https://wa.me/919939862765?text=Hello%20GDAs%20Team%2C%20I%20want%20to%20grow%20my%20business%20digitally"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary"
+                style={{
+                  padding: '14px 28px',
+                  fontSize: '15px',
+                  fontWeight: 600,
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '10px',
+                  borderColor: 'rgba(34, 197, 94, 0.4)',
+                }}
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.2">
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
+                <span>Call / WhatsApp GDAs</span>
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>
 
       {/* ========================================================================= */}
-      {/* 11. FOOTER */}
+      {/* 13. FOOTER (GDAs Without Dot) */}
       {/* ========================================================================= */}
-      <footer style={{ borderTop: '1px solid rgba(255,255,255,0.08)', background: '#050505', padding: '50px 0 30px 0' }}>
+      <footer
+        style={{
+          borderTop: '1px solid rgba(255, 255, 255, 0.08)',
+          background: '#040404',
+          padding: '70px 0 30px 0',
+          position: 'relative',
+        }}
+      >
         <div className="container-custom">
           <div
             style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              flexWrap: 'wrap',
-              gap: '24px',
-              paddingBottom: '30px',
-              borderBottom: '1px solid rgba(255,255,255,0.06)',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+              gap: '40px',
+              marginBottom: '50px',
             }}
           >
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none' }}>
-              <div
-                style={{
-                  width: '30px',
-                  height: '30px',
-                  borderRadius: '8px',
-                  background: '#0d3899',
-                  border: '1px solid rgba(59, 130, 246, 0.4)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  overflow: 'hidden',
-                  boxShadow: '0 2px 8px rgba(37, 99, 235, 0.3)',
-                }}
-              >
-                <img
-                  src="/gda_logo.png"
-                  alt="GDAs Logo"
+            {/* Brand Column */}
+            <div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
+                <div
                   style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
+                    width: '34px',
+                    height: '34px',
+                    borderRadius: '8px',
+                    background: '#0d3899',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    overflow: 'hidden',
                   }}
-                />
+                >
+                  <img src="/gda_logo.png" alt="GDAs Logo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                </div>
+                <span style={{ fontWeight: 800, fontSize: '18px', color: '#ffffff' }}>GDAs</span>
               </div>
-              <span style={{ fontWeight: 800, fontSize: '16px', color: '#fff', letterSpacing: '-0.02em' }}>
-                GDAs<span style={{ color: '#3b82f6' }}>.</span>
-              </span>
-            </Link>
+              <div style={{ fontSize: '13px', fontWeight: 700, color: '#60a5fa', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '8px' }}>
+                GANESHA DIGITAL ADS
+              </div>
+              <p style={{ fontSize: '14px', color: '#cbd5e1', fontWeight: 500, marginBottom: '16px' }}>
+                Digital Ka Saath, Aapke Business Ka Vikas.
+              </p>
+              <p style={{ fontSize: '12.5px', color: '#737373', lineHeight: 1.5 }}>
+                Built with a Vision. Driven by a Legacy. Father Never Dies.
+              </p>
+            </div>
 
-            <div style={{ display: 'flex', gap: '20px', fontSize: '13px', flexWrap: 'wrap' }}>
-              <Link href="/about" style={{ color: '#888', textDecoration: 'none' }}>About</Link>
-              <a href="#services" style={{ color: '#888', textDecoration: 'none' }}>Services</a>
-              <a href="#client-videos" style={{ color: '#888', textDecoration: 'none' }}>Clients</a>
-              <Link href="/training" style={{ color: '#888', textDecoration: 'none' }}>Training</Link>
-              <Link href="/blog" style={{ color: '#888', textDecoration: 'none' }}>Blog</Link>
-              <Link href="/careers" style={{ color: '#888', textDecoration: 'none' }}>Careers</Link>
-              <Link href="/privacy-policy" style={{ color: '#888', textDecoration: 'none' }}>Privacy Policy</Link>
-              <Link href="/refund-policy" style={{ color: '#888', textDecoration: 'none' }}>Refund Policy</Link>
-              <Link href="/terms-conditions" style={{ color: '#888', textDecoration: 'none' }}>Terms & Conditions</Link>
-              <Link href="/disclaimer" style={{ color: '#888', textDecoration: 'none' }}>Disclaimer</Link>
+            {/* Quick Links */}
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
+                Quick Links
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px' }}>
+                <Link href="/" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Home</Link>
+                <Link href="/about" style={{ color: '#a3a3a3', textDecoration: 'none' }}>About</Link>
+                <a href="#services" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Services</a>
+                <Link href="/training" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Training</Link>
+                <a href="#portfolio" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Portfolio</a>
+                <Link href="/blog" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Blog</Link>
+              </div>
+            </div>
+
+            {/* Services */}
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
+                Services
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px', color: '#a3a3a3' }}>
+                <span>Digital Marketing</span>
+                <span>Branding</span>
+                <span>Website</span>
+                <span>SEO</span>
+                <span>Social Media</span>
+                <span>Automation</span>
+              </div>
+            </div>
+
+            {/* Contact & Socials */}
+            <div>
+              <div style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
+                Contact
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px', marginBottom: '20px' }}>
+                <a href="tel:9939862765" style={{ color: '#a3a3a3', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span>📞</span> <span>9939862765</span>
+                </a>
+                <a href="https://ganeshadigiads.in" target="_blank" rel="noopener noreferrer" style={{ color: '#a3a3a3', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span>🌐</span> <span>ganeshadigiads.in</span>
+                </a>
+              </div>
+
+              {/* Social Icons */}
+              <div style={{ display: 'flex', gap: '10px' }}>
+                {['Instagram', 'Facebook', 'LinkedIn', 'X', 'YouTube'].map((soc, i) => (
+                  <a
+                    key={i}
+                    href={`https://${soc.toLowerCase()}.com`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={soc}
+                    style={{
+                      width: '34px',
+                      height: '34px',
+                      borderRadius: '8px',
+                      background: 'rgba(255, 255, 255, 0.05)',
+                      border: '1px solid rgba(255, 255, 255, 0.1)',
+                      color: '#a3a3a3',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontSize: '11px',
+                      fontWeight: 700,
+                      textDecoration: 'none',
+                    }}
+                  >
+                    {soc[0]}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
 
+          {/* Bottom Copyright */}
           <div
             style={{
-              paddingTop: '20px',
+              borderTop: '1px solid rgba(255, 255, 255, 0.06)',
+              paddingTop: '24px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
-              fontSize: '12px',
-              color: '#555',
               flexWrap: 'wrap',
-              gap: '10px',
+              gap: '14px',
+              fontSize: '13px',
+              color: '#737373',
             }}
           >
-            <div>© {new Date().getFullYear()} GDAs (Ganesha Digital Ads). All rights reserved.</div>
-            <div style={{ color: '#10b981', display: 'flex', alignItems: 'center', gap: '5px' }}>
-              <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#10b981' }} />
-              <span>All systems live</span>
+            <div>© 2026 GDAs Ganesha Digital Ads. All Rights Reserved.</div>
+            <div style={{ display: 'flex', gap: '18px' }}>
+              <Link href="/privacy-policy" style={{ color: '#737373', textDecoration: 'none' }}>Privacy Policy</Link>
+              <Link href="/terms-conditions" style={{ color: '#737373', textDecoration: 'none' }}>Terms & Conditions</Link>
+              <Link href="/refund-policy" style={{ color: '#737373', textDecoration: 'none' }}>Refund Policy</Link>
+              <Link href="/disclaimer" style={{ color: '#737373', textDecoration: 'none' }}>Disclaimer</Link>
             </div>
           </div>
         </div>
       </footer>
 
       {/* ========================================================================= */}
-      {/* 12. VIDEO MODAL */}
+      {/* FLOATING WHATSAPP BUTTON (Direct Conversion) */}
       {/* ========================================================================= */}
-      <AnimatePresence>
-        {videoModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="modal-overlay"
-            onClick={() => setVideoModal(null)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0, y: 20, filter: 'blur(10px)' }}
-              animate={{ scale: 1, opacity: 1, y: 0, filter: 'blur(0px)' }}
-              exit={{ scale: 0.9, opacity: 0, y: 20, filter: 'blur(10px)' }}
-              transition={{ duration: 0.25 }}
-              className="modal-content"
-              onClick={(e) => e.stopPropagation()}
-              style={{ maxWidth: '700px', padding: '20px' }}
-            >
-              <button
-                onClick={() => setVideoModal(null)}
-                style={{
-                  position: 'absolute',
-                  top: '14px',
-                  right: '14px',
-                  background: 'rgba(255,255,255,0.1)',
-                  border: 'none',
-                  color: '#fff',
-                  width: '28px',
-                  height: '28px',
-                  borderRadius: '50%',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '14px',
-                  zIndex: 10,
-                }}
-              >
-                ✕
-              </button>
-
-              <div style={{ marginBottom: '12px' }}>
-                <div style={{ fontSize: '11px', color: '#60a5fa', fontWeight: 700, textTransform: 'uppercase' }}>
-                  {videoModal.role}
-                </div>
-                <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#fff' }}>
-                  {videoModal.name} on GDAs
-                </h3>
-              </div>
-
-              <div style={{ position: 'relative', width: '100%', borderRadius: '12px', overflow: 'hidden', backgroundColor: '#000', aspectRatio: '16/9' }}>
-                <video
-                  src={videoModal.videoSrc}
-                  controls
-                  autoPlay
-                  poster={videoModal.thumbnail}
-                  style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-                />
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <a
+        href="https://wa.me/919939862765?text=Hello%20GDAs%20Team%2C%20I%20want%20to%20grow%20my%20business%20digitally"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat on WhatsApp"
+        style={{
+          position: 'fixed',
+          bottom: '24px',
+          right: '24px',
+          zIndex: 999,
+          width: '54px',
+          height: '54px',
+          borderRadius: '50%',
+          backgroundColor: '#22c55e',
+          color: '#ffffff',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 8px 25px rgba(34, 197, 94, 0.5)',
+          transition: 'transform 0.25s ease',
+        }}
+        onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
+        onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+      >
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+        </svg>
+      </a>
 
       {/* ========================================================================= */}
-      {/* 13. BOOK A CALL MODAL */}
+      {/* LEAD GENERATION & CONSULTATION MODAL */}
       {/* ========================================================================= */}
       <AnimatePresence>
         {modalOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="modal-overlay"
-            onClick={() => setModalOpen(false)}
-          >
+          <div className="modal-overlay" onClick={() => setModalOpen(false)}>
             <motion.div
-              initial={{ scale: 0.9, opacity: 0, y: 20, filter: 'blur(10px)' }}
-              animate={{ scale: 1, opacity: 1, y: 0, filter: 'blur(0px)' }}
-              exit={{ scale: 0.9, opacity: 0, y: 20, filter: 'blur(10px)' }}
+              initial={{ opacity: 0, scale: 0.94, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.94, y: 20 }}
               transition={{ duration: 0.25 }}
               className="modal-content"
               onClick={(e) => e.stopPropagation()}
             >
+              {/* Close Button */}
               <button
                 onClick={() => setModalOpen(false)}
                 style={{
                   position: 'absolute',
-                  top: '20px',
-                  right: '20px',
-                  background: 'none',
+                  top: '18px',
+                  right: '18px',
+                  background: 'rgba(255, 255, 255, 0.08)',
                   border: 'none',
-                  color: '#888',
+                  color: '#a3a3a3',
+                  borderRadius: '50%',
+                  width: '32px',
+                  height: '32px',
                   cursor: 'pointer',
-                  fontSize: '20px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  fontSize: '16px',
                 }}
               >
                 ✕
               </button>
 
-              {modalSubmitted ? (
+              <div style={{ marginBottom: '20px' }}>
+                <div style={{ fontSize: '11px', fontWeight: 800, color: '#60a5fa', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '4px' }}>
+                  Grow With GDAs
+                </div>
+                <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#ffffff' }}>
+                  Let's Discuss Your Business
+                </h3>
+                <p style={{ fontSize: '13px', color: '#9ca3af', marginTop: '4px' }}>
+                  Fill in your details below and our team will get in touch with a customized digital growth plan.
+                </p>
+              </div>
+
+              {formSubmitted ? (
                 <div style={{ textAlign: 'center', padding: '30px 10px' }}>
-                  <div style={{ width: '50px', height: '50px', borderRadius: '50%', background: 'rgba(37,99,235,0.15)', color: '#3b82f6', fontSize: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 14px auto' }}>
-                    ✓
-                  </div>
-                  <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#fff', marginBottom: '6px' }}>Request Received!</h3>
-                  <p style={{ fontSize: '13px', color: '#a3a3a3' }}>
-                    We will review your brand and confirm your strategy session shortly.
+                  <div style={{ fontSize: '42px', marginBottom: '12px' }}>✅</div>
+                  <h4 style={{ fontSize: '20px', fontWeight: 700, color: '#ffffff', marginBottom: '8px' }}>
+                    Request Sent Successfully!
+                  </h4>
+                  <p style={{ fontSize: '14px', color: '#a3a3a3', marginBottom: '20px' }}>
+                    Our growth team will review your business details and connect with you shortly.
                   </p>
+                  <button
+                    onClick={() => {
+                      setFormSubmitted(false);
+                      setModalOpen(false);
+                    }}
+                    className="btn-primary"
+                    style={{ width: '100%' }}
+                  >
+                    Done
+                  </button>
                 </div>
               ) : (
-                <div>
-                  <div className="pill-badge pill-badge-orange" style={{ marginBottom: '10px' }}>
-                    <span className="pulse-dot" />
-                    <span>Free 30-Min Strategy Call</span>
+                <form onSubmit={handleFormSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>
+                      Your Name *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Rahul Sharma"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      style={{
+                        width: '100%',
+                        padding: '11px 14px',
+                        background: '#141414',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        borderRadius: '10px',
+                        color: '#ffffff',
+                        fontSize: '14px',
+                        outline: 'none',
+                      }}
+                    />
                   </div>
-                  <h3 style={{ fontSize: '22px', fontWeight: 700, color: '#fff', marginBottom: '4px' }}>
-                    Book your <span className="serif-italic">Growth Session</span>
-                  </h3>
-                  <p style={{ fontSize: '13px', color: '#888', marginBottom: '18px' }}>
-                    Tell us about your brand before our call.
-                  </p>
 
-                  <form onSubmit={handleModalSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                    <div>
-                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#a3a3a3', marginBottom: '4px' }}>
-                        Full Name
-                      </label>
-                      <input
-                        type="text"
-                        required
-                        placeholder="e.g. Alex Morgan"
-                        value={modalForm.name}
-                        onChange={(e) => setModalForm({ ...modalForm, name: e.target.value })}
-                        style={{
-                          width: '100%',
-                          padding: '9px 12px',
-                          background: '#161616',
-                          border: '1px solid rgba(255,255,255,0.1)',
-                          borderRadius: '8px',
-                          color: '#fff',
-                          fontSize: '13px',
-                          outline: 'none',
-                        }}
-                      />
-                    </div>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>
+                      Phone / WhatsApp Number *
+                    </label>
+                    <input
+                      type="tel"
+                      required
+                      placeholder="+91 9939862765"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      style={{
+                        width: '100%',
+                        padding: '11px 14px',
+                        background: '#141414',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        borderRadius: '10px',
+                        color: '#ffffff',
+                        fontSize: '14px',
+                        outline: 'none',
+                      }}
+                    />
+                  </div>
 
-                    <div>
-                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#a3a3a3', marginBottom: '4px' }}>
-                        Email Address
-                      </label>
-                      <input
-                        type="email"
-                        required
-                        placeholder="alex@yourbrand.com"
-                        value={modalForm.email}
-                        onChange={(e) => setModalForm({ ...modalForm, email: e.target.value })}
-                        style={{
-                          width: '100%',
-                          padding: '9px 12px',
-                          background: '#161616',
-                          border: '1px solid rgba(255,255,255,0.1)',
-                          borderRadius: '8px',
-                          color: '#fff',
-                          fontSize: '13px',
-                          outline: 'none',
-                        }}
-                      />
-                    </div>
+                  <div>
+                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>
+                      Business Name or Industry
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="e.g. Retail, Real Estate, Healthcare, D2C"
+                      value={formData.businessName}
+                      onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
+                      style={{
+                        width: '100%',
+                        padding: '11px 14px',
+                        background: '#141414',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        borderRadius: '10px',
+                        color: '#ffffff',
+                        fontSize: '14px',
+                        outline: 'none',
+                      }}
+                    />
+                  </div>
 
-                    <div>
-                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#a3a3a3', marginBottom: '4px' }}>
-                        Website URL
-                      </label>
-                      <input
-                        type="url"
-                        placeholder="https://yourbrand.com"
-                        value={modalForm.website}
-                        onChange={(e) => setModalForm({ ...modalForm, website: e.target.value })}
-                        style={{
-                          width: '100%',
-                          padding: '9px 12px',
-                          background: '#161616',
-                          border: '1px solid rgba(255,255,255,0.1)',
-                          borderRadius: '8px',
-                          color: '#fff',
-                          fontSize: '13px',
-                          outline: 'none',
-                        }}
-                      />
-                    </div>
-
-                    <div>
-                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#a3a3a3', marginBottom: '4px' }}>
-                        Monthly Spend
-                      </label>
-                      <select
-                        value={modalForm.spend}
-                        onChange={(e) => setModalForm({ ...modalForm, spend: e.target.value })}
-                        style={{
-                          width: '100%',
-                          padding: '9px 12px',
-                          background: '#161616',
-                          border: '1px solid rgba(255,255,255,0.1)',
-                          borderRadius: '8px',
-                          color: '#fff',
-                          fontSize: '13px',
-                          outline: 'none',
-                        }}
-                      >
-                        <option value="<$5k">&lt; $5k / mo</option>
-                        <option value="$5k - $15k">$5k - $15k / mo</option>
-                        <option value="$15k - $50k">$15k - $50k / mo</option>
-                        <option value="$50k+">$50k+ / mo</option>
-                      </select>
-                    </div>
-
-                    <motion.button
-                      type="submit"
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      className="btn-primary"
-                      style={{ marginTop: '6px', width: '100%', padding: '11px' }}
+                  <div>
+                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>
+                      Service Required
+                    </label>
+                    <select
+                      value={formData.service}
+                      onChange={(e) => setFormData({ ...formData, service: e.target.value })}
+                      style={{
+                        width: '100%',
+                        padding: '11px 14px',
+                        background: '#141414',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        borderRadius: '10px',
+                        color: '#ffffff',
+                        fontSize: '14px',
+                        outline: 'none',
+                      }}
                     >
-                      Confirm Booking
-                    </motion.button>
-                  </form>
-                </div>
+                      <option value="Digital Marketing (Meta & Google Ads)">Digital Marketing (Meta & Google Ads)</option>
+                      <option value="WhatsApp Bulk Marketing">WhatsApp Bulk Marketing (Official API & Broadcasts)</option>
+                      <option value="IVR Calling Service">IVR Calling Service (Smart OBD & Voice Broadcast)</option>
+                      <option value="GMB Setup & Ranking">GMB Setup & Local Google Maps Ranking</option>
+                      <option value="Digital Political Campaigning">Digital Political Campaigning (War Room & Geo Ads)</option>
+                      <option value="Business Growth Management">Business Growth Management (Scale & GTM)</option>
+                      <option value="CRM, ERP & Business Automation">CRM, ERP & Business Process Automation</option>
+                      <option value="Branding & Creative">Branding & Creative Design (Logo, Visuals)</option>
+                      <option value="Website & Technology">Website Development & Next.js Funnels</option>
+                      <option value="SEO Services">SEO Services (Organic Search & Technical SEO)</option>
+                      <option value="Social Media">Social Media Management & Viral Reels</option>
+                      <option value="Automation & AI">AI & Workflow Automation</option>
+                      <option value="Complete All-in-One Solution">Complete All-in-One Growth Suite</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>
+                      Message or Requirements (Optional)
+                    </label>
+                    <textarea
+                      rows={3}
+                      placeholder="Tell us about your goals and current challenges..."
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      style={{
+                        width: '100%',
+                        padding: '11px 14px',
+                        background: '#141414',
+                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        borderRadius: '10px',
+                        color: '#ffffff',
+                        fontSize: '14px',
+                        outline: 'none',
+                        resize: 'none',
+                      }}
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="btn-primary"
+                    style={{
+                      width: '100%',
+                      padding: '13px',
+                      fontSize: '15px',
+                      fontWeight: 700,
+                      marginTop: '6px',
+                    }}
+                  >
+                    Submit & Connect on WhatsApp
+                  </button>
+                </form>
               )}
             </motion.div>
-          </motion.div>
+          </div>
         )}
       </AnimatePresence>
-
-      {/* Global Responsive Fix for Mobile Navigation */}
-      <style jsx global>{`
-        @media (max-width: 860px) {
-          .desktop-nav {
-            display: none !important;
-          }
-          .mobile-toggle {
-            display: block !important;
-          }
-        }
-        @media (pointer: coarse) {
-          .custom-eyes-cursor {
-            display: none !important;
-          }
-        }
-      `}</style>
     </div>
   );
 }

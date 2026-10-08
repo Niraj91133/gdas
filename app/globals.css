@@ -452,10 +452,10 @@ body {
     padding: 100px 0 40px 0;
   }
   .hero-h1 {
-    font-size: 36px;
+    font-size: 34px;
   }
   .hero-h1 span.serif-italic {
-    font-size: 44px;
+    font-size: 40px;
   }
   .hero-subtext {
     font-size: 15px;
@@ -469,4 +469,53 @@ body {
   .section-title span.serif-italic {
     font-size: 34px;
   }
+  .desktop-nav {
+    display: none !important;
+  }
+  .mobile-toggle {
+    display: block !important;
+  }
 }
+
+/* Float Animations */
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes floatReverse {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(8px); }
+}
+
+.animate-float {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-float-delay {
+  animation: floatReverse 7s ease-in-out 1s infinite;
+}
+
+/* Legacy Card Aura */
+.legacy-card {
+  background: radial-gradient(ellipse at top left, rgba(234, 179, 8, 0.08) 0%, rgba(15, 15, 15, 0.95) 60%);
+  border: 1px solid rgba(234, 179, 8, 0.25);
+  box-shadow: 0 0 40px rgba(234, 179, 8, 0.08);
+}
+
+.legacy-card:hover {
+  border-color: rgba(234, 179, 8, 0.45);
+  box-shadow: 0 12px 40px rgba(234, 179, 8, 0.15);
+}
+
+/* Service Card Hover */
+.service-card {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.service-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(37, 99, 235, 0.15);
+}
+

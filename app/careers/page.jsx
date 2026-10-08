@@ -5,14 +5,13 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const blurFadeIn = {
-  hidden: { opacity: 0, filter: 'blur(10px)', y: 25 },
+  hidden: { opacity: 0, y: 18 },
   visible: (custom = 0) => ({
     opacity: 1,
-    filter: 'blur(0px)',
     y: 0,
     transition: {
-      duration: 0.75,
-      delay: custom * 0.08,
+      duration: 0.55,
+      delay: custom * 0.05,
       ease: [0.22, 1, 0.36, 1],
     },
   }),
@@ -32,63 +31,6 @@ export default function CareersPage() {
     coverNote: '',
   });
   const [applySubmitted, setApplySubmitted] = useState(false);
-
-  // Custom Animated Blinking Eyes Cursor State
-  const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
-  const [pupilOffset, setPupilOffset] = useState({ x: 3, y: 6 });
-  const [cursorHovered, setCursorHovered] = useState(false);
-  const [isBlinking, setIsBlinking] = useState(false);
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-    let prevX = typeof window !== 'undefined' ? window.innerWidth / 2 : 0;
-    let prevY = typeof window !== 'undefined' ? window.innerHeight / 2 : 0;
-
-    const updateMouse = (e) => {
-      const curX = e.clientX;
-      const curY = e.clientY;
-      const dx = curX - prevX;
-      const dy = curY - prevY;
-      prevX = curX;
-      prevY = curY;
-
-      setMousePosition({ x: curX, y: curY });
-
-      const moveNormX = Math.max(-1, Math.min(1, dx / 6));
-      const moveNormY = Math.max(-1, Math.min(1, dy / 6));
-
-      const vpNormX = ((curX / (window.innerWidth || 1)) - 0.5) * 2;
-      const vpNormY = ((curY / (window.innerHeight || 1)) - 0.5) * 2;
-
-      const combinedX = Math.max(-1, Math.min(1, moveNormX * 0.75 + vpNormX * 0.45));
-      const combinedY = Math.max(-1, Math.min(1, moveNormY * 0.75 + vpNormY * 0.45));
-
-      setPupilOffset({
-        x: 2.5 + combinedX * 4.8,
-        y: 5.5 + combinedY * 6.8,
-      });
-    };
-    window.addEventListener('mousemove', updateMouse);
-
-    const blinkInterval = setInterval(() => {
-      setIsBlinking(true);
-      setTimeout(() => {
-        setIsBlinking(false);
-        if (Math.random() > 0.65) {
-          setTimeout(() => {
-            setIsBlinking(true);
-            setTimeout(() => setIsBlinking(false), 120);
-          }, 160);
-        }
-      }, 150);
-    }, 3600);
-
-    return () => {
-      window.removeEventListener('mousemove', updateMouse);
-      clearInterval(blinkInterval);
-    };
-  }, []);
 
   const openRoles = [
     {
@@ -146,27 +88,6 @@ export default function CareersPage() {
         overflowX: 'hidden',
       }}
     >
-      {/* Animated Blinking Eyes Cursor */}
-      {isClient && (
-        <motion.div
-          className="custom-eyes-cursor"
-          animate={{ x: mousePosition.x - 17, y: mousePosition.y - 14, scale: cursorHovered ? 1.2 : 1 }}
-          transition={{ type: 'spring', damping: 28, stiffness: 420, mass: 0.12 }}
-          style={{ position: 'fixed', top: 0, left: 0, display: 'flex', alignItems: 'center', gap: '3px', pointerEvents: 'none', zIndex: 99999 }}
-        >
-          <motion.div animate={{ scaleY: isBlinking ? 0.08 : 1 }} transition={{ duration: 0.09 }} style={{ width: '16px', height: '26px', backgroundColor: '#fff', borderRadius: '13px', position: 'relative', boxShadow: '0 3px 12px rgba(0,0,0,0.7)' }}>
-            <motion.div animate={{ x: pupilOffset.x, y: pupilOffset.y }} transition={{ type: 'spring', damping: 20, stiffness: 400, mass: 0.08 }} style={{ position: 'absolute', top: 0, left: 0, width: '11px', height: '15px', backgroundColor: '#000', borderRadius: '50%' }}>
-              <div style={{ position: 'absolute', bottom: '3px', right: '3px', width: '2.5px', height: '2.5px', backgroundColor: '#fff', borderRadius: '50%' }} />
-            </motion.div>
-          </motion.div>
-          <motion.div animate={{ scaleY: isBlinking ? 0.08 : 1 }} transition={{ duration: 0.09 }} style={{ width: '16px', height: '26px', backgroundColor: '#fff', borderRadius: '13px', position: 'relative', boxShadow: '0 3px 12px rgba(0,0,0,0.7)' }}>
-            <motion.div animate={{ x: pupilOffset.x, y: pupilOffset.y }} transition={{ type: 'spring', damping: 20, stiffness: 400, mass: 0.08 }} style={{ position: 'absolute', top: 0, left: 0, width: '11px', height: '15px', backgroundColor: '#000', borderRadius: '50%' }}>
-              <div style={{ position: 'absolute', bottom: '3px', right: '3px', width: '2.5px', height: '2.5px', backgroundColor: '#fff', borderRadius: '50%' }} />
-            </motion.div>
-          </motion.div>
-        </motion.div>
-      )}
-
       <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.2 }} className="bg-ambient-top" />
 
       {/* Floating Navbar */}
@@ -201,7 +122,7 @@ export default function CareersPage() {
                 }}
               />
             </div>
-            <span style={{ fontWeight: 800, fontSize: '18px', color: '#fff', letterSpacing: '-0.02em' }}>GDAs<span style={{ color: '#3b82f6' }}>.</span></span>
+            <span style={{ fontWeight: 800, fontSize: '18px', color: '#fff', letterSpacing: '-0.02em' }}>GDAs</span>
           </Link>
 
           <nav style={{ display: 'flex', alignItems: 'center', gap: '26px' }} className="desktop-nav">
@@ -347,7 +268,7 @@ export default function CareersPage() {
                   }}
                 />
               </div>
-              <span style={{ fontWeight: 800, fontSize: '16px' }}>GDAs<span style={{ color: '#3b82f6' }}>.</span></span>
+              <span style={{ fontWeight: 800, fontSize: '16px' }}>GDAs</span>
             </Link>
 
             <div style={{ display: 'flex', gap: '20px', fontSize: '13px', flexWrap: 'wrap' }}>

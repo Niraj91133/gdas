@@ -2269,6 +2269,7 @@ export default function Home() {
               <Link href="/terms-conditions" style={{ color: '#737373', textDecoration: 'none' }}>Terms & Conditions</Link>
               <Link href="/refund-policy" style={{ color: '#737373', textDecoration: 'none' }}>Refund Policy</Link>
               <Link href="/disclaimer" style={{ color: '#737373', textDecoration: 'none' }}>Disclaimer</Link>
+              <Link href="/admin" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 600 }}>🔒 Admin Portal</Link>
             </div>
           </div>
         </div>

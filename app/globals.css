@@ -947,6 +947,43 @@ html.light-theme body {
   box-shadow: 0 0 16px rgba(59, 130, 246, 0.35);
 }
 
+/* Table Row Hover */
+.table-row-hover:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+[data-theme="light"] .table-row-hover:hover {
+  background: #f1f5f9 !important;
+}
+
+/* =========================================================
+   PRINT STYLING FOR INVOICES (PDF / PRINTER)
+   ========================================================= */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .invoice-printable-container,
+  .invoice-printable-container * {
+    visibility: visible;
+  }
+  .invoice-printable-container {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 20px !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
+
 
 
 

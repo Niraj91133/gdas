@@ -383,6 +383,7 @@ export default function Home() {
               { href: '#legacy', label: 'Our Legacy' },
               { href: '/training', label: 'Training' },
               { href: '/blog', label: 'Blog' },
+              { href: '/careers', label: 'Careers' },
             ].map((link, i) => (
               <Link
                 key={i}
@@ -452,14 +453,15 @@ export default function Home() {
                 gap: '14px',
               }}
             >
-              <a href="#about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>About GDAs</a>
-              <a href="#services" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Services</a>
+              <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>About GDAs</Link>
+              <Link href="/services" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Services</Link>
               <a href="#why-gdas" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Why GDAs</a>
               <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>How We Work</a>
               <a href="#portfolio" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Our Work</a>
               <a href="#legacy" onClick={() => setMobileMenuOpen(false)} style={{ color: '#eab308', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}>Our Legacy (Father Never Dies)</a>
               <Link href="/training" onClick={() => setMobileMenuOpen(false)} style={{ color: '#3b82f6', textDecoration: 'none', fontSize: '15px', fontWeight: 600 }}>Training Hub</Link>
               <Link href="/blog" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Blog & Insights</Link>
+              <Link href="/careers" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Careers</Link>
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
@@ -753,10 +755,10 @@ export default function Home() {
                       style={{ width: '85%', height: '85%', objectFit: 'contain' }}
                     />
                   </div>
-                  <div style={{ fontSize: '18px', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.01em' }}>
+                  <div style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-white)', letterSpacing: '-0.01em' }}>
                     GDAs Unified Growth System
                   </div>
-                  <div style={{ fontSize: '12px', color: '#94a3b8', marginTop: '2px' }}>
+                  <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '2px' }}>
                     Creative • Marketing • Tech Stack
                   </div>
                 </div>
@@ -774,9 +776,9 @@ export default function Home() {
                   >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
                       <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }} />
-                      <span style={{ fontSize: '13px', fontWeight: 700, color: '#ffffff' }}>Performance Ads</span>
+                      <span style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-white)' }}>Performance Ads</span>
                     </div>
-                    <div style={{ fontSize: '11.5px', color: '#a3a3a3' }}>Meta, Google & Targeted Lead Flow</div>
+                    <div style={{ fontSize: '11.5px', color: 'var(--text-secondary)' }}>Meta, Google & Targeted Lead Flow</div>
                   </div>
 
                   <div
@@ -790,9 +792,9 @@ export default function Home() {
                   >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
                       <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#8b5cf6' }} />
-                      <span style={{ fontSize: '13px', fontWeight: 700, color: '#ffffff' }}>Brand Identity</span>
+                      <span style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-white)' }}>Brand Identity</span>
                     </div>
-                    <div style={{ fontSize: '11.5px', color: '#a3a3a3' }}>Distinctive Logos, Visuals & Assets</div>
+                    <div style={{ fontSize: '11.5px', color: 'var(--text-secondary)' }}>Distinctive Logos, Visuals & Assets</div>
                   </div>
 
                   <div
@@ -806,9 +808,9 @@ export default function Home() {
                   >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
                       <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#06b6d4' }} />
-                      <span style={{ fontSize: '13px', fontWeight: 700, color: '#ffffff' }}>Web & Tech</span>
+                      <span style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-white)' }}>Web & Tech</span>
                     </div>
-                    <div style={{ fontSize: '11.5px', color: '#a3a3a3' }}>Fast, High-Converting Pages</div>
+                    <div style={{ fontSize: '11.5px', color: 'var(--text-secondary)' }}>Fast, High-Converting Pages</div>
                   </div>
 
                   <div
@@ -822,9 +824,9 @@ export default function Home() {
                   >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
                       <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }} />
-                      <span style={{ fontSize: '13px', fontWeight: 700, color: '#ffffff' }}>Social & Growth</span>
+                      <span style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-white)' }}>Social & Growth</span>
                     </div>
-                    <div style={{ fontSize: '11.5px', color: '#a3a3a3' }}>Viral Reels & Active Reach</div>
+                    <div style={{ fontSize: '11.5px', color: 'var(--text-secondary)' }}>Viral Reels & Active Reach</div>
                   </div>
                 </div>
 
@@ -1116,10 +1118,10 @@ export default function Home() {
                     >
                       Co-Founder & CEO
                     </div>
-                    <div style={{ fontSize: '20px', fontWeight: 800, color: '#ffffff' }}>
+                    <div style={{ fontSize: '20px', fontWeight: 800, color: 'var(--text-white)' }}>
                       Mr. Ram Gyan
                     </div>
-                    <div style={{ fontSize: '13px', color: '#a3a3a3' }}>
+                    <div style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
                       Building in Digital Marketing Since 2019
                     </div>
                   </div>
@@ -1132,7 +1134,7 @@ export default function Home() {
                     padding: '12px 16px',
                     borderRadius: '0 12px 12px 0',
                     fontSize: '13.5px',
-                    color: '#93c5fd',
+                    color: '#2563eb',
                     fontWeight: 700,
                     marginBottom: '14px',
                   }}
@@ -1147,7 +1149,7 @@ export default function Home() {
                     borderRadius: '14px',
                     border: '1px solid rgba(255, 255, 255, 0.06)',
                     fontSize: '13px',
-                    color: '#e2e8f0',
+                    color: 'var(--text-secondary)',
                     lineHeight: 1.6,
                   }}
                 >
@@ -2208,10 +2210,11 @@ export default function Home() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px' }}>
                 <Link href="/" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Home</Link>
                 <Link href="/about" style={{ color: '#a3a3a3', textDecoration: 'none' }}>About</Link>
-                <a href="#services" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Services</a>
+                <Link href="/services" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Services</Link>
                 <Link href="/training" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Training</Link>
                 <a href="#portfolio" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Portfolio</a>
                 <Link href="/blog" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Blog</Link>
+                <Link href="/careers" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Careers</Link>
               </div>
             </div>
 

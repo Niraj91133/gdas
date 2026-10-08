@@ -19,6 +19,21 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
         <meta name="theme-color" content="#000000" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                const theme = localStorage.getItem('gdas-theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', theme);
+                if (theme === 'light') {
+                  document.documentElement.classList.add('light-theme');
+                } else {
+                  document.documentElement.classList.add('dark-theme');
+                }
+              } catch (e) {}
+            `,
+          }}
+        />
       </head>
       <body>
         <ThemeProvider>

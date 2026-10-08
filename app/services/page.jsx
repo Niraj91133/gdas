@@ -369,6 +369,7 @@ export default function ServicesPage() {
             <a href="#who-we-serve" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Who We Serve</a>
             <Link href="/training" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Training</Link>
             <Link href="/blog" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Blog</Link>
+            <Link href="/careers" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Careers</Link>
           </nav>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -409,6 +410,8 @@ export default function ServicesPage() {
               <a href="#process" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none' }}>Growth Process</a>
               <a href="#who-we-serve" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none' }}>Who We Serve</a>
               <Link href="/training" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none' }}>Training Hub</Link>
+              <Link href="/blog" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none' }}>Blog</Link>
+              <Link href="/careers" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none' }}>Careers</Link>
             </motion.div>
           )}
         </AnimatePresence>
@@ -1006,6 +1009,7 @@ export default function ServicesPage() {
                 <Link href="/services" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 600 }}>Services</Link>
                 <Link href="/training" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Training</Link>
                 <Link href="/blog" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Blog</Link>
+                <Link href="/careers" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Careers</Link>
               </div>
             </div>
 
@@ -1026,6 +1030,7 @@ export default function ServicesPage() {
               <Link href="/privacy-policy" style={{ color: '#737373', textDecoration: 'none' }}>Privacy Policy</Link>
               <Link href="/terms-conditions" style={{ color: '#737373', textDecoration: 'none' }}>Terms & Conditions</Link>
               <Link href="/refund-policy" style={{ color: '#737373', textDecoration: 'none' }}>Refund Policy</Link>
+              <Link href="/disclaimer" style={{ color: '#737373', textDecoration: 'none' }}>Disclaimer</Link>
             </div>
           </div>
         </div>

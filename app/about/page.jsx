@@ -179,12 +179,13 @@ export default function AboutPage() {
           <nav style={{ display: 'flex', alignItems: 'center', gap: '26px' }} className="desktop-nav">
             <Link href="/" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Home</Link>
             <Link href="/about" style={{ fontSize: '13.5px', fontWeight: 600, color: '#3b82f6', textDecoration: 'none' }}>About</Link>
-            <a href="/#services" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Services</a>
+            <Link href="/services" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Services</Link>
             <a href="#leadership" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Leadership</a>
             <a href="#awards" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Certificates & Awards</a>
-            <a href="#legacy" style={{ fontSize: '13.5px', fontWeight: 600, color: '#eab308', textDecoration: 'none' }}>Legacy ❤️</a>
+            <a href="/#legacy" style={{ fontSize: '13.5px', fontWeight: 600, color: '#eab308', textDecoration: 'none' }}>Legacy ❤️</a>
             <Link href="/training" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Training</Link>
             <Link href="/blog" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Blog</Link>
+            <Link href="/careers" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Careers</Link>
           </nav>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -228,12 +229,13 @@ export default function AboutPage() {
             >
               <Link href="/" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none' }}>Home</Link>
               <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#3b82f6', fontWeight: 600, textDecoration: 'none' }}>About GDAs</Link>
-              <a href="/#services" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none' }}>Services</a>
+              <Link href="/services" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none' }}>Services</Link>
               <a href="#leadership" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none' }}>Leadership</a>
               <a href="#awards" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none' }}>Certificates & Awards</a>
-              <a href="#legacy" onClick={() => setMobileMenuOpen(false)} style={{ color: '#eab308', fontWeight: 600, textDecoration: 'none' }}>Our Legacy (Father Never Dies)</a>
+              <a href="/#legacy" onClick={() => setMobileMenuOpen(false)} style={{ color: '#eab308', fontWeight: 600, textDecoration: 'none' }}>Our Legacy (Father Never Dies)</a>
               <Link href="/training" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none' }}>Training</Link>
               <Link href="/blog" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none' }}>Blog</Link>
+              <Link href="/careers" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none' }}>Careers</Link>
             </motion.div>
           )}
         </AnimatePresence>
@@ -1123,9 +1125,10 @@ export default function AboutPage() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px' }}>
                 <Link href="/" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Home</Link>
                 <Link href="/about" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 600 }}>About</Link>
-                <a href="/#services" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Services</a>
+                <Link href="/services" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Services</Link>
                 <Link href="/training" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Training</Link>
                 <Link href="/blog" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Blog</Link>
+                <Link href="/careers" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Careers</Link>
               </div>
             </div>
 
@@ -1146,6 +1149,7 @@ export default function AboutPage() {
               <Link href="/privacy-policy" style={{ color: '#737373', textDecoration: 'none' }}>Privacy Policy</Link>
               <Link href="/terms-conditions" style={{ color: '#737373', textDecoration: 'none' }}>Terms & Conditions</Link>
               <Link href="/refund-policy" style={{ color: '#737373', textDecoration: 'none' }}>Refund Policy</Link>
+              <Link href="/disclaimer" style={{ color: '#737373', textDecoration: 'none' }}>Disclaimer</Link>
             </div>
           </div>
         </div>

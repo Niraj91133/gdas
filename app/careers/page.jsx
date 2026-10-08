@@ -131,7 +131,7 @@ export default function CareersPage() {
           <nav style={{ display: 'flex', alignItems: 'center', gap: '26px' }} className="desktop-nav">
             <Link href="/" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Home</Link>
             <Link href="/about" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>About</Link>
-            <Link href="/#services" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Services</Link>
+            <Link href="/services" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Services</Link>
             <Link href="/training" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Training</Link>
             <Link href="/blog" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Blog</Link>
             <Link href="/careers" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 700, color: '#3b82f6', textDecoration: 'none' }}>Careers</Link>
@@ -280,7 +280,7 @@ export default function CareersPage() {
             <div style={{ display: 'flex', gap: '20px', fontSize: '13px', flexWrap: 'wrap', alignItems: 'center' }}>
               <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>Home</Link>
               <Link href="/about" style={{ color: '#888', textDecoration: 'none' }}>About</Link>
-              <Link href="/#services" style={{ color: '#888', textDecoration: 'none' }}>Services</Link>
+              <Link href="/services" style={{ color: '#888', textDecoration: 'none' }}>Services</Link>
               <Link href="/training" style={{ color: '#888', textDecoration: 'none' }}>Training</Link>
               <Link href="/blog" style={{ color: '#888', textDecoration: 'none' }}>Blog</Link>
               <Link href="/careers" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 600 }}>Careers</Link>
@@ -290,9 +290,11 @@ export default function CareersPage() {
 
           <div style={{ paddingTop: '20px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '12px', color: '#555', flexWrap: 'wrap', gap: '10px' }}>
             <div>© {new Date().getFullYear()} GDAs (Ganesha Digital Ads). All rights reserved.</div>
-            <div style={{ color: '#10b981', display: 'flex', alignItems: 'center', gap: '5px' }}>
-              <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#10b981' }} />
-              <span>Hiring portals active</span>
+            <div style={{ display: 'flex', gap: '16px' }}>
+              <Link href="/privacy-policy" style={{ color: '#737373', textDecoration: 'none' }}>Privacy Policy</Link>
+              <Link href="/terms-conditions" style={{ color: '#737373', textDecoration: 'none' }}>Terms & Conditions</Link>
+              <Link href="/refund-policy" style={{ color: '#737373', textDecoration: 'none' }}>Refund Policy</Link>
+              <Link href="/disclaimer" style={{ color: '#737373', textDecoration: 'none' }}>Disclaimer</Link>
             </div>
           </div>
         </div>

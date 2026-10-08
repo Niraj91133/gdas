@@ -443,6 +443,22 @@ export default function TrainingPage() {
             >
               Training
             </Link>
+            <Link
+              href="/blog"
+              onMouseEnter={() => setCursorHovered(true)}
+              onMouseLeave={() => setCursorHovered(false)}
+              style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}
+            >
+              Blog
+            </Link>
+            <Link
+              href="/careers"
+              onMouseEnter={() => setCursorHovered(true)}
+              onMouseLeave={() => setCursorHovered(false)}
+              style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}
+            >
+              Careers
+            </Link>
           </nav>
 
           {/* Right Action */}
@@ -504,6 +520,8 @@ export default function TrainingPage() {
               <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>About</Link>
               <Link href="/services" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Services</Link>
               <Link href="/training" onClick={() => setMobileMenuOpen(false)} style={{ color: '#3b82f6', textDecoration: 'none', fontSize: '15px', fontWeight: 700 }}>Training</Link>
+              <Link href="/blog" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Blog</Link>
+              <Link href="/careers" onClick={() => setMobileMenuOpen(false)} style={{ color: '#fff', textDecoration: 'none', fontSize: '15px' }}>Careers</Link>
               <button
                 onClick={() => {
                   setMobileMenuOpen(false);
@@ -1916,6 +1934,8 @@ export default function TrainingPage() {
               <Link href="/about" style={{ color: '#9ca3af', textDecoration: 'none' }}>About</Link>
               <Link href="/services" style={{ color: '#9ca3af', textDecoration: 'none' }}>Services</Link>
               <Link href="/training" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 700 }}>Training</Link>
+              <Link href="/blog" style={{ color: '#9ca3af', textDecoration: 'none' }}>Blog</Link>
+              <Link href="/careers" style={{ color: '#9ca3af', textDecoration: 'none' }}>Careers</Link>
               <SocialLinks size={32} />
             </div>
           </div>
@@ -1935,8 +1955,11 @@ export default function TrainingPage() {
             <div>
               © {new Date().getFullYear()} Ganesha Digital Ads (GDAs). All rights reserved.
             </div>
-            <div style={{ color: '#9ca3af' }}>
-              <span style={{ color: '#f59e0b' }}>Digital Ka Saath, Aapke Business Ka Vikas.</span>
+            <div style={{ display: 'flex', gap: '16px' }}>
+              <Link href="/privacy-policy" style={{ color: '#737373', textDecoration: 'none' }}>Privacy Policy</Link>
+              <Link href="/terms-conditions" style={{ color: '#737373', textDecoration: 'none' }}>Terms & Conditions</Link>
+              <Link href="/refund-policy" style={{ color: '#737373', textDecoration: 'none' }}>Refund Policy</Link>
+              <Link href="/disclaimer" style={{ color: '#737373', textDecoration: 'none' }}>Disclaimer</Link>
             </div>
           </div>
         </div>

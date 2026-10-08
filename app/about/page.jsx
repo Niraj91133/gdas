@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
+import ThemeToggle from '../../components/ThemeToggle';
+import SocialLinks from '../../components/SocialLinks';
 
 export default function AboutPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -186,6 +188,7 @@ export default function AboutPage() {
           </nav>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <ThemeToggle />
             <button
               onClick={() => setModalOpen(true)}
               className="btn-primary"
@@ -1128,12 +1131,12 @@ export default function AboutPage() {
 
             <div>
               <div style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
-                Contact
+                Contact & Connect
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px' }}>
-                <a href="tel:9939862765" style={{ color: '#a3a3a3', textDecoration: 'none' }}>📞 9939862765</a>
-                <a href="https://ganeshadigiads.in" target="_blank" rel="noopener noreferrer" style={{ color: '#a3a3a3', textDecoration: 'none' }}>🌐 ganeshadigiads.in</a>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px', marginBottom: '16px' }}>
+                <a href="tel:9939862765" style={{ color: '#a3a3a3', textDecoration: 'none' }}>📞 +91 9939862765</a>
               </div>
+              <SocialLinks />
             </div>
           </div>
 

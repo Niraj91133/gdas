@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { blogPosts } from '../../../lib/blogData';
+import ThemeToggle from '../../../components/ThemeToggle';
+import SocialLinks from '../../../components/SocialLinks';
 
 const blurFadeIn = {
   hidden: { opacity: 0, y: 18 },
@@ -136,6 +138,7 @@ export default function BlogPostDetail({ params }) {
 
           {/* Right Action */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <ThemeToggle />
             <Link
               href="https://wa.me/919939862765"
               target="_blank"
@@ -656,20 +659,13 @@ export default function BlogPostDetail({ params }) {
               <span style={{ fontWeight: 800, fontSize: '16px' }}>GDAs</span>
             </Link>
 
-            <div style={{ display: 'flex', gap: '22px', fontSize: '13.5px', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: '22px', fontSize: '13.5px', flexWrap: 'wrap', alignItems: 'center' }}>
               <Link href="/" style={{ color: '#9ca3af', textDecoration: 'none' }}>Home</Link>
               <Link href="/about" style={{ color: '#9ca3af', textDecoration: 'none' }}>About</Link>
               <Link href="/services" style={{ color: '#9ca3af', textDecoration: 'none' }}>Services</Link>
               <Link href="/training" style={{ color: '#9ca3af', textDecoration: 'none' }}>Training</Link>
               <Link href="/blog" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 700 }}>Blog</Link>
-              <a
-                href="https://wa.me/919939862765"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ color: '#9ca3af', textDecoration: 'none' }}
-              >
-                WhatsApp (9939862765)
-              </a>
+              <SocialLinks size={32} />
             </div>
           </div>
 

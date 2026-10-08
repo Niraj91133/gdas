@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
+import ThemeToggle from '../components/ThemeToggle';
+import SocialLinks from '../components/SocialLinks';
 
 // Optimized Hardware-Accelerated Animation Variants
 const blurFadeIn = {
@@ -252,38 +254,30 @@ export default function Home() {
       ? portfolioItems
       : portfolioItems.filter((item) => item.category === activePortfolioCategory);
 
-  // 10. Testimonials
+  // 10. Testimonials — Authentic Client Reviews
   const testimonials = [
     {
-      name: 'Rajesh Singhania',
-      role: 'Director, Singhania Retail Group',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80',
-      content:
-        'GDAs transformed our business from struggling to find digital leads to having an overwhelming influx of daily genuine customers. Their branding and Meta Ads strategy is simply unmatched.',
-      rating: 5,
-    },
-    {
-      name: 'Pooja Aggarwal',
-      role: 'Founder, Nectar Organic Skincare',
-      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80',
-      content:
-        'Finding an agency that handles our branding, website, and digital marketing together saved us so much time and money. GDAs is a genuine growth partner who actually cares about our success.',
-      rating: 5,
-    },
-    {
-      name: 'Vikram Mehta',
-      role: 'Co-Founder, EduBridge Academy',
-      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&auto=format&fit=crop&q=80',
-      content:
-        'Their WhatsApp automation and lead generation campaigns completely modernized our student admissions process. Dedicated, responsive, and deeply strategic team.',
-      rating: 5,
-    },
-    {
-      name: 'Anjali Verma',
-      role: 'Creative Head, Urban Loom Studio',
+      name: 'Kumud Kundan',
+      role: 'Makeup Artist • Professional Makeup & Hairstyling Academy',
       avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&auto=format&fit=crop&q=80',
       content:
-        'The branding work GDAs delivered gave our brand a premium, high-trust visual identity. Working with Niraj and the GDAs team has been our best business decision this year.',
+        "Excellent experience with Ganesha Digital Ads (GDAs)! We ran a Meta Lead Generation campaign for our Professional Makeup & Hairstyling Academy, and within just 1 day we started receiving genuine leads. Their audience targeting, campaign setup, and optimization were excellent. If you're looking for the best digital marketing agency in Gaya for Meta Ads, Facebook Ads, Instagram Ads, or Lead Generation, I highly recommend GDAs. Thank you for delivering great results and professional support!",
+      rating: 5,
+    },
+    {
+      name: 'Ravi Kumar Tiwari',
+      role: 'Business Owner • Gaya, Bihar & Patratu, Ramgarh Jharkhand',
+      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80',
+      content:
+        'Agar aap apne business ke liye online leads aur promotion chahte hain, then Ganesha Digital Ads is a great choice. They provide professional Meta Ads and digital marketing services in Gaya, Bihar, & Patratu Ramgarh Jharkhand Highly recommended!',
+      rating: 5,
+    },
+    {
+      name: 'Tanisha Choudhary',
+      role: 'E-Commerce & Website Client',
+      avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80',
+      content:
+        'maine inse apna website bnwaya ...mujhe Ab tk ka sbse best kam lga inlog ka ..inke wjh se acha conversion aya ...maine audit karwaya to pata chala mere websit m kha problem tha...thanks You Gdas',
       rating: 5,
     },
   ];
@@ -409,8 +403,9 @@ export default function Home() {
             ))}
           </nav>
 
-          {/* Action Buttons */}
+          {/* Action Buttons & Theme Toggle */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <ThemeToggle />
             <motion.button
               onClick={() => setModalOpen(true)}
               onMouseEnter={() => setCursorHovered(true)}
@@ -2238,45 +2233,16 @@ export default function Home() {
             {/* Contact & Socials */}
             <div>
               <div style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
-                Contact
+                Contact & Connect
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px', marginBottom: '20px' }}>
                 <a href="tel:9939862765" style={{ color: '#a3a3a3', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span>📞</span> <span>9939862765</span>
-                </a>
-                <a href="https://ganeshadigiads.in" target="_blank" rel="noopener noreferrer" style={{ color: '#a3a3a3', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span>🌐</span> <span>ganeshadigiads.in</span>
+                  <span>📞</span> <span>+91 9939862765</span>
                 </a>
               </div>
 
-              {/* Social Icons */}
-              <div style={{ display: 'flex', gap: '10px' }}>
-                {['Instagram', 'Facebook', 'LinkedIn', 'X', 'YouTube'].map((soc, i) => (
-                  <a
-                    key={i}
-                    href={`https://${soc.toLowerCase()}.com`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={soc}
-                    style={{
-                      width: '34px',
-                      height: '34px',
-                      borderRadius: '8px',
-                      background: 'rgba(255, 255, 255, 0.05)',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
-                      color: '#a3a3a3',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontSize: '11px',
-                      fontWeight: 700,
-                      textDecoration: 'none',
-                    }}
-                  >
-                    {soc[0]}
-                  </a>
-                ))}
-              </div>
+              {/* Official Social Links */}
+              <SocialLinks />
             </div>
           </div>
 

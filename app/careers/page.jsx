@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
+import ThemeToggle from '../../components/ThemeToggle';
+import SocialLinks from '../../components/SocialLinks';
 
 const blurFadeIn = {
   hidden: { opacity: 0, y: 18 },
@@ -135,9 +137,12 @@ export default function CareersPage() {
             <Link href="/careers" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ fontSize: '13.5px', fontWeight: 700, color: '#3b82f6', textDecoration: 'none' }}>Careers</Link>
           </nav>
 
-          <a href="#open-roles" className="btn btn-primary" style={{ padding: '8px 18px', fontSize: '12.5px', fontWeight: 700, textDecoration: 'none' }}>
-            View Roles →
-          </a>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <ThemeToggle />
+            <a href="#open-roles" className="btn btn-primary" style={{ padding: '8px 18px', fontSize: '12.5px', fontWeight: 700, textDecoration: 'none' }}>
+              View Roles →
+            </a>
+          </div>
         </div>
       </motion.header>
 
@@ -272,17 +277,14 @@ export default function CareersPage() {
               <span style={{ fontWeight: 800, fontSize: '16px' }}>GDAs</span>
             </Link>
 
-            <div style={{ display: 'flex', gap: '20px', fontSize: '13px', flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: '20px', fontSize: '13px', flexWrap: 'wrap', alignItems: 'center' }}>
               <Link href="/" style={{ color: '#888', textDecoration: 'none' }}>Home</Link>
               <Link href="/about" style={{ color: '#888', textDecoration: 'none' }}>About</Link>
               <Link href="/#services" style={{ color: '#888', textDecoration: 'none' }}>Services</Link>
               <Link href="/training" style={{ color: '#888', textDecoration: 'none' }}>Training</Link>
               <Link href="/blog" style={{ color: '#888', textDecoration: 'none' }}>Blog</Link>
               <Link href="/careers" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 600 }}>Careers</Link>
-              <Link href="/privacy-policy" style={{ color: '#888', textDecoration: 'none' }}>Privacy Policy</Link>
-              <Link href="/refund-policy" style={{ color: '#888', textDecoration: 'none' }}>Refund Policy</Link>
-              <Link href="/terms-conditions" style={{ color: '#888', textDecoration: 'none' }}>Terms & Conditions</Link>
-              <Link href="/disclaimer" style={{ color: '#888', textDecoration: 'none' }}>Disclaimer</Link>
+              <SocialLinks size={30} />
             </div>
           </div>
 

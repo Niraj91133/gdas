@@ -2,13 +2,17 @@
 
 import React from 'react';
 import Link from 'next/link';
+import ThemeToggle from '../../components/ThemeToggle';
 
 export default function PrivacyPolicyPage() {
   return (
-    <div style={{ backgroundColor: '#000000', color: '#ffffff', minHeight: '100vh', padding: '120px 20px 60px 20px' }}>
+    <div style={{ minHeight: '100vh', padding: '120px 20px 60px 20px' }}>
       <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-        <Link href="/" style={{ color: '#3b82f6', textDecoration: 'none', fontSize: '14px', fontWeight: 600 }}>← Back to GDAs Home</Link>
-        <h1 style={{ fontSize: '36px', fontWeight: 800, marginTop: '20px', marginBottom: '8px' }}>Privacy Policy</h1>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
+          <Link href="/" style={{ color: '#3b82f6', textDecoration: 'none', fontSize: '14px', fontWeight: 600 }}>← Back to GDAs Home</Link>
+          <ThemeToggle />
+        </div>
+        <h1 style={{ fontSize: '36px', fontWeight: 800, marginBottom: '8px' }}>Privacy Policy</h1>
         <p style={{ color: '#888', fontSize: '13px', marginBottom: '30px' }}>Last updated: September 2026</p>
 
         <div style={{ color: '#bbb', fontSize: '15px', lineHeight: 1.7, display: 'flex', flexDirection: 'column', gap: '24px' }}>

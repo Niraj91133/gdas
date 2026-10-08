@@ -8,6 +8,7 @@ export default function AboutPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedCert, setSelectedCert] = useState(null);
+  const setCursorHovered = () => {};
 
   // Form State
   const [formData, setFormData] = useState({

@@ -21,6 +21,7 @@ export default function CareersPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedRole, setSelectedRole] = useState(null);
   const [applyModalOpen, setApplyModalOpen] = useState(false);
+  const setCursorHovered = () => {};
 
   const [applyForm, setApplyForm] = useState({
     name: '',

@@ -9,6 +9,7 @@ export default function ServicesPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedServiceForModal, setSelectedServiceForModal] = useState('Digital Marketing Services');
   const [activeTab, setActiveTab] = useState('all');
+  const setCursorHovered = () => {};
 
   // Form State
   const [formData, setFormData] = useState({

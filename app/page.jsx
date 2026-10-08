@@ -34,6 +34,7 @@ export default function Home() {
   const [modalOpen, setModalOpen] = useState(false);
   const [activeFaq, setActiveFaq] = useState(0);
   const [activePortfolioCategory, setActivePortfolioCategory] = useState('All');
+  const setCursorHovered = () => {};
 
   // Lead / Consultation Modal State
   const [formData, setFormData] = useState({

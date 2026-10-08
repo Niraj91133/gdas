@@ -22,6 +22,7 @@ export default function TrainingPage() {
   const [enrollModalOpen, setEnrollModalOpen] = useState(false);
   const [selectedProgramForModal, setSelectedProgramForModal] = useState('Digital Marketing Training');
   const [selectedCert, setSelectedCert] = useState(null);
+  const setCursorHovered = () => {};
 
   // Enrollment Form State
   const [enrollForm, setEnrollForm] = useState({

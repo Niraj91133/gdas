@@ -30,6 +30,7 @@ export default function BlogPostDetail({ params }) {
 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [copied, setCopied] = useState(false);
+  const setCursorHovered = () => {};
 
   const handleCopyLink = () => {
     if (typeof window !== 'undefined') {

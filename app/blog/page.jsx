@@ -23,6 +23,7 @@ export default function BlogIndexPage() {
   const [activeCategory, setActiveCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [quickReadPost, setQuickReadPost] = useState(null);
+  const setCursorHovered = () => {};
 
   const categories = [
     'All',

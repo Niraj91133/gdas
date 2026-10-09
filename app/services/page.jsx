@@ -877,17 +877,10 @@ export default function ServicesPage() {
       {/* ========================================================================= */}
       {/* 06. FINAL CTA — LET'S GROW YOUR BUSINESS DIGITALLY */}
       {/* ========================================================================= */}
-      <section
-        style={{
-          padding: '90px 0',
-          position: 'relative',
-          overflow: 'hidden',
-          background: 'radial-gradient(ellipse at center, rgba(37, 99, 235, 0.18) 0%, rgba(0, 0, 0, 0.95) 75%)',
-        }}
-      >
+      <section className="cta-banner-section">
         <div className="container-custom">
           <div
-            className="glass-card glass-card-glow"
+            className="cta-banner-card"
             style={{
               padding: 'clamp(40px, 6vw, 70px) 30px',
               borderRadius: '32px',
@@ -896,8 +889,9 @@ export default function ServicesPage() {
               margin: '0 auto',
             }}
           >
-            <div style={{ fontSize: '12px', fontWeight: 800, color: '#60a5fa', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '14px' }}>
-              Let's Grow Your Business Digitally
+            <div className="cta-badge">
+              <span>🚀</span>
+              <span>Let's Grow Your Business Digitally</span>
             </div>
 
             <h2
@@ -923,10 +917,8 @@ export default function ServicesPage() {
             </h2>
 
             <p
+              className="cta-desc"
               style={{
-                fontSize: '16px',
-                color: '#cbd5e1',
-                lineHeight: 1.7,
                 maxWidth: '720px',
                 margin: '0 auto 20px auto',
               }}
@@ -934,7 +926,7 @@ export default function ServicesPage() {
               Whether you need <strong>Meta Ads, Google Ads, IVR Calling, WhatsApp Bulk Marketing, GMB Ranking, Political Campaigns, Business Growth Management, CRM/ERP Automation, Branding or Website Development</strong>, GDAs is here to help you build a stronger digital presence.
             </p>
 
-            <div style={{ fontSize: '18px', fontWeight: 700, color: '#93c5fd', marginBottom: '32px' }}>
+            <div className="cta-highlight" style={{ marginBottom: '32px' }}>
               One Platform. All Solutions. • Digital Ka Saath, Aapke Business Ka Vikas.
             </div>
 

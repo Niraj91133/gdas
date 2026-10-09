@@ -709,9 +709,8 @@ export default function TrainingPage() {
             ].map((item, idx) => (
               <div
                 key={idx}
+                className="glass-card"
                 style={{
-                  background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid rgba(255,255,255,0.08)',
                   borderRadius: '16px',
                   padding: '20px 18px',
                   textAlign: 'left',
@@ -719,8 +718,8 @@ export default function TrainingPage() {
                 }}
               >
                 <div style={{ fontSize: '24px', marginBottom: '8px' }}>{item.icon}</div>
-                <div style={{ fontSize: '15px', fontWeight: 700, color: '#fff', marginBottom: '4px' }}>{item.title}</div>
-                <div style={{ fontSize: '12.5px', color: '#9ca3af' }}>{item.desc}</div>
+                <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '4px' }}>{item.title}</div>
+                <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)' }}>{item.desc}</div>
               </div>
             ))}
           </motion.div>
@@ -933,12 +932,11 @@ export default function TrainingPage() {
               viewport={{ once: true }}
               variants={blurFadeIn}
               custom={0}
+              className="glass-card"
               style={{
-                background: 'linear-gradient(135deg, #0d1322 0%, #080c14 100%)',
-                border: '1px solid rgba(59, 130, 246, 0.3)',
                 borderRadius: '26px',
                 padding: '36px 30px',
-                boxShadow: '0 20px 45px rgba(0,0,0,0.7)',
+                border: '1px solid rgba(59, 130, 246, 0.3)',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
@@ -981,7 +979,7 @@ export default function TrainingPage() {
                     >
                       Digital Marketing Trainer
                     </span>
-                    <h3 style={{ fontSize: '26px', fontWeight: 900, color: '#fff', marginTop: '6px', marginBottom: '4px' }}>
+                    <h3 style={{ fontSize: '26px', fontWeight: 900, color: 'var(--text-white)', marginTop: '6px', marginBottom: '4px' }}>
                       Ram Gyan
                     </h3>
                     <div style={{ fontSize: '12.5px', color: '#f59e0b', fontWeight: 700 }}>
@@ -991,13 +989,13 @@ export default function TrainingPage() {
                 </div>
 
                 {/* Trainer Bio */}
-                <p style={{ fontSize: '14.5px', color: '#d1d5db', lineHeight: 1.65, marginBottom: '20px' }}>
+                <p style={{ fontSize: '14.5px', color: 'var(--text-secondary)', lineHeight: 1.65, marginBottom: '20px' }}>
                   Ram Gyan brings practical experience in{' '}
-                  <strong style={{ color: '#fff' }}>Digital Marketing, Digital Advertising, Branding and Business Growth.</strong>
+                  <strong style={{ color: 'var(--text-white)' }}>Digital Marketing, Digital Advertising, Branding and Business Growth.</strong>
                 </p>
-                <p style={{ fontSize: '14px', color: '#9ca3af', lineHeight: 1.6, marginBottom: '24px' }}>
+                <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '24px' }}>
                   He trains students in{' '}
-                  <strong style={{ color: '#60a5fa' }}>
+                  <strong style={{ color: '#2563eb' }}>
                     Digital Marketing, Meta Ads, Google Ads, SEO, Lead Generation, Performance Marketing, Social Media and AI Marketing.
                   </strong>
                 </p>
@@ -1019,11 +1017,11 @@ export default function TrainingPage() {
                         key={cIdx}
                         style={{
                           fontSize: '12.5px',
-                          color: '#e5e7eb',
-                          background: 'rgba(255,255,255,0.04)',
+                          color: 'var(--text-white)',
+                          background: 'var(--pill-bg)',
                           padding: '7px 12px',
                           borderRadius: '8px',
-                          border: '1px solid rgba(255,255,255,0.06)',
+                          border: '1px solid var(--border-subtle)',
                           display: 'flex',
                           alignItems: 'center',
                           gap: '8px',
@@ -1038,7 +1036,7 @@ export default function TrainingPage() {
 
                 {/* Certificates Lightbox Clickables */}
                 <div style={{ marginBottom: '15px' }}>
-                  <div style={{ fontSize: '11.5px', fontWeight: 700, color: '#9ca3af', marginBottom: '8px' }}>
+                  <div style={{ fontSize: '11.5px', fontWeight: 700, color: 'var(--text-dim)', marginBottom: '8px' }}>
                     Click to view Verified Certificates:
                   </div>
                   <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
@@ -1055,7 +1053,7 @@ export default function TrainingPage() {
                         style={{
                           background: 'rgba(59, 130, 246, 0.1)',
                           border: '1px solid rgba(59, 130, 246, 0.3)',
-                          color: '#93c5fd',
+                          color: '#2563eb',
                           padding: '5px 10px',
                           borderRadius: '6px',
                           fontSize: '11px',
@@ -1071,7 +1069,7 @@ export default function TrainingPage() {
               </div>
 
               {/* Bottom Action */}
-              <div style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+              <div style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid var(--border-subtle)' }}>
                 <button
                   onClick={() => openProgramModal('Marketing Mentorship with Ram Gyan')}
                   onMouseEnter={() => setCursorHovered(true)}
@@ -1091,12 +1089,11 @@ export default function TrainingPage() {
               viewport={{ once: true }}
               variants={blurFadeIn}
               custom={1}
+              className="glass-card"
               style={{
-                background: 'linear-gradient(135deg, #11140e 0%, #0a0e08 100%)',
-                border: '1px solid rgba(249, 115, 22, 0.3)',
                 borderRadius: '26px',
                 padding: '36px 30px',
-                boxShadow: '0 20px 45px rgba(0,0,0,0.7)',
+                border: '1px solid rgba(249, 115, 22, 0.3)',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
@@ -1139,7 +1136,7 @@ export default function TrainingPage() {
                     >
                       Website Development Trainer
                     </span>
-                    <h3 style={{ fontSize: '26px', fontWeight: 900, color: '#fff', marginTop: '6px', marginBottom: '4px' }}>
+                    <h3 style={{ fontSize: '26px', fontWeight: 900, color: 'var(--text-white)', marginTop: '6px', marginBottom: '4px' }}>
                       Neeraj Kumar
                     </h3>
                     <div style={{ fontSize: '12.5px', color: '#fb923c', fontWeight: 700 }}>
@@ -1149,8 +1146,8 @@ export default function TrainingPage() {
                 </div>
 
                 {/* Trainer Bio */}
-                <p style={{ fontSize: '14.5px', color: '#d1d5db', lineHeight: 1.65, marginBottom: '20px' }}>
-                  Neeraj Kumar has <strong style={{ color: '#fff' }}>5+ years of professional experience</strong> in Website Development and helps learners understand how modern websites are designed, developed and optimized for real business requirements.
+                <p style={{ fontSize: '14.5px', color: 'var(--text-secondary)', lineHeight: 1.65, marginBottom: '20px' }}>
+                  Neeraj Kumar has <strong style={{ color: 'var(--text-white)' }}>5+ years of professional experience</strong> in Website Development and helps learners understand how modern websites are designed, developed and optimized for real business requirements.
                 </p>
 
                 {/* Expertise Badges */}
@@ -1173,11 +1170,11 @@ export default function TrainingPage() {
                         style={{
                           fontSize: '12.5px',
                           fontWeight: 600,
-                          background: 'rgba(255, 255, 255, 0.04)',
+                          background: 'var(--pill-bg)',
                           border: '1px solid rgba(249, 115, 22, 0.25)',
                           padding: '6px 12px',
                           borderRadius: '8px',
-                          color: '#ffedd5',
+                          color: 'var(--text-white)',
                         }}
                       >
                         ⚡ {exp}
@@ -1188,7 +1185,7 @@ export default function TrainingPage() {
 
                 {/* Highlights List */}
                 <div style={{ marginBottom: '15px' }}>
-                  <div style={{ fontSize: '11.5px', fontWeight: 700, color: '#9ca3af', marginBottom: '8px' }}>
+                  <div style={{ fontSize: '11.5px', fontWeight: 700, color: 'var(--text-dim)', marginBottom: '8px' }}>
                     Teaching Highlights:
                   </div>
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -1197,7 +1194,7 @@ export default function TrainingPage() {
                       'Live deployment of e-commerce stores & custom landing pages',
                       'Conversion rate optimization and ultra-fast page speeds',
                     ].map((item, i) => (
-                      <div key={i} style={{ fontSize: '12.5px', color: '#cbd5e1', display: 'flex', gap: '8px' }}>
+                      <div key={i} style={{ fontSize: '12.5px', color: 'var(--text-secondary)', display: 'flex', gap: '8px' }}>
                         <span style={{ color: '#f97316' }}>•</span>
                         <span>{item}</span>
                       </div>
@@ -1207,7 +1204,7 @@ export default function TrainingPage() {
               </div>
 
               {/* Bottom Action */}
-              <div style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+              <div style={{ marginTop: '20px', paddingTop: '16px', borderTop: '1px solid var(--border-subtle)' }}>
                 <button
                   onClick={() => openProgramModal('Web Dev Mentorship with Neeraj Kumar')}
                   onMouseEnter={() => setCursorHovered(true)}
@@ -1272,9 +1269,8 @@ export default function TrainingPage() {
                 variants={blurFadeIn}
                 custom={idx}
                 whileHover={{ y: -5 }}
+                className="glass-card"
                 style={{
-                  background: '#0a0a0a',
-                  border: '1px solid rgba(255,255,255,0.08)',
                   borderRadius: '20px',
                   padding: '30px 24px',
                   display: 'flex',
@@ -1287,8 +1283,8 @@ export default function TrainingPage() {
                     width: '46px',
                     height: '46px',
                     borderRadius: '12px',
-                    background: 'rgba(255,255,255,0.05)',
-                    border: '1px solid rgba(255,255,255,0.1)',
+                    background: 'rgba(59, 130, 246, 0.1)',
+                    border: '1px solid rgba(59, 130, 246, 0.25)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -1298,11 +1294,11 @@ export default function TrainingPage() {
                   {pillar.icon}
                 </div>
 
-                <h3 style={{ fontSize: '19px', fontWeight: 800, color: '#fff' }}>
+                <h3 style={{ fontSize: '19px', fontWeight: 800, color: 'var(--text-white)' }}>
                   {pillar.title}
                 </h3>
 
-                <p style={{ fontSize: '14px', color: '#9ca3af', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                   {pillar.desc}
                 </p>
               </motion.div>
@@ -1349,9 +1345,8 @@ export default function TrainingPage() {
                 viewport={{ once: true }}
                 variants={blurFadeIn}
                 custom={idx}
+                className="glass-card"
                 style={{
-                  background: 'linear-gradient(135deg, #0c0c0c 0%, #141414 100%)',
-                  border: '1px solid rgba(255,255,255,0.08)',
                   borderRadius: '20px',
                   padding: '30px 24px',
                 }}
@@ -1360,10 +1355,10 @@ export default function TrainingPage() {
                   <span style={{ fontSize: '26px' }}>{reason.icon}</span>
                   <span style={{ fontSize: '12px', fontWeight: 800, color: '#3b82f6' }}>0{idx + 1}</span>
                 </div>
-                <h3 style={{ fontSize: '18px', fontWeight: 800, color: '#fff', marginBottom: '10px' }}>
+                <h3 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-white)', marginBottom: '10px' }}>
                   {reason.title}
                 </h3>
-                <p style={{ fontSize: '14px', color: '#9ca3af', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                   {reason.desc}
                 </p>
               </motion.div>
@@ -1435,19 +1430,18 @@ export default function TrainingPage() {
                 viewport={{ once: true }}
                 variants={blurFadeIn}
                 custom={idx * 0.4}
+                className="glass-card"
                 style={{
-                  background: '#0a0a0a',
-                  border: '1px solid rgba(255,255,255,0.07)',
                   borderRadius: '16px',
                   padding: '22px 18px',
                   textAlign: 'left',
                 }}
               >
                 <div style={{ fontSize: '24px', marginBottom: '8px' }}>{aud.icon}</div>
-                <div style={{ fontSize: '16px', fontWeight: 800, color: '#fff', marginBottom: '6px' }}>
+                <div style={{ fontSize: '16px', fontWeight: 800, color: 'var(--text-white)', marginBottom: '6px' }}>
                   {aud.title}
                 </div>
-                <div style={{ fontSize: '12.5px', color: '#9ca3af', lineHeight: 1.5 }}>
+                <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
                   {aud.desc}
                 </div>
               </motion.div>
@@ -1466,10 +1460,10 @@ export default function TrainingPage() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={blurFadeIn}
+            className="cta-banner-card"
             style={{
               borderRadius: '28px',
               padding: 'clamp(40px, 6vw, 75px) clamp(24px, 4vw, 55px)',
-              background: 'linear-gradient(135deg, #091224 0%, #0d1b38 50%, #172a54 100%)',
               border: '1px solid rgba(59, 130, 246, 0.4)',
               boxShadow: '0 0 60px rgba(37, 99, 235, 0.25)',
               position: 'relative',
@@ -1490,14 +1484,14 @@ export default function TrainingPage() {
                   fontWeight: 900,
                   letterSpacing: '-0.03em',
                   lineHeight: 1.1,
-                  color: '#fff',
+                  color: 'var(--text-white)',
                   marginBottom: '16px',
                 }}
               >
                 Build Skills.{' '}
                 <span
                   style={{
-                    background: 'linear-gradient(135deg, #60a5fa 0%, #93c5fd 100%)',
+                    background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                   }}
@@ -1509,7 +1503,7 @@ export default function TrainingPage() {
               <p
                 style={{
                   fontSize: 'clamp(15px, 1.8vw, 17px)',
-                  color: '#cbd5e1',
+                  color: 'var(--text-secondary)',
                   lineHeight: 1.65,
                   maxWidth: '740px',
                   margin: '0 auto 26px auto',
@@ -1528,7 +1522,7 @@ export default function TrainingPage() {
                   flexWrap: 'wrap',
                   marginBottom: '32px',
                   fontSize: '13px',
-                  color: '#93c5fd',
+                  color: '#2563eb',
                   fontWeight: 600,
                 }}
               >

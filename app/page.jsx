@@ -2024,21 +2024,14 @@ export default function Home() {
       {/* ========================================================================= */}
       {/* 12. FINAL CTA — VERY IMPORTANT 🔥 */}
       {/* ========================================================================= */}
-      <section
-        style={{
-          padding: '90px 0',
-          position: 'relative',
-          overflow: 'hidden',
-          background: 'radial-gradient(ellipse at center, rgba(37, 99, 235, 0.15) 0%, rgba(0, 0, 0, 0.95) 75%)',
-        }}
-      >
+      <section className="cta-banner-section">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="glass-card glass-card-glow"
+            className="cta-banner-card"
             style={{
               padding: 'clamp(40px, 6vw, 70px) 30px',
               borderRadius: '32px',
@@ -2048,23 +2041,7 @@ export default function Home() {
               position: 'relative',
             }}
           >
-            <div
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '8px',
-                padding: '6px 16px',
-                borderRadius: '50px',
-                background: 'rgba(59, 130, 246, 0.15)',
-                border: '1px solid rgba(59, 130, 246, 0.3)',
-                color: '#60a5fa',
-                fontSize: '12px',
-                fontWeight: 700,
-                letterSpacing: '0.08em',
-                textTransform: 'uppercase',
-                marginBottom: '20px',
-              }}
-            >
+            <div className="cta-badge">
               <span>🔥</span>
               <span>Take Your Business To The Next Level</span>
             </div>
@@ -2092,10 +2069,8 @@ export default function Home() {
             </h2>
 
             <p
+              className="cta-desc"
               style={{
-                fontSize: '16.5px',
-                color: '#cbd5e1',
-                lineHeight: 1.6,
                 maxWidth: '620px',
                 margin: '0 auto 34px auto',
               }}

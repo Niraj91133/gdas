@@ -994,17 +994,10 @@ export default function AboutPage() {
       {/* ========================================================================= */}
       {/* 07. LET'S GROW TOGETHER (Final Section) */}
       {/* ========================================================================= */}
-      <section
-        style={{
-          padding: '90px 0',
-          position: 'relative',
-          overflow: 'hidden',
-          background: 'radial-gradient(ellipse at center, rgba(37, 99, 235, 0.18) 0%, rgba(0, 0, 0, 0.95) 75%)',
-        }}
-      >
+      <section className="cta-banner-section">
         <div className="container-custom">
           <div
-            className="glass-card glass-card-glow"
+            className="cta-banner-card"
             style={{
               padding: 'clamp(40px, 6vw, 70px) 30px',
               borderRadius: '32px',
@@ -1013,15 +1006,16 @@ export default function AboutPage() {
               margin: '0 auto',
             }}
           >
-            <div style={{ fontSize: '12px', fontWeight: 800, color: '#60a5fa', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '14px' }}>
-              Let's Grow Together
+            <div className="cta-badge">
+              <span>🤝</span>
+              <span>Let's Grow Together</span>
             </div>
 
             <h2
               style={{
                 fontSize: 'clamp(30px, 4.4vw, 50px)',
                 fontWeight: 800,
-                color: '#ffffff',
+                color: 'var(--text-white)',
                 lineHeight: 1.15,
                 marginBottom: '16px',
                 letterSpacing: '-0.02em',
@@ -1040,10 +1034,8 @@ export default function AboutPage() {
             </h2>
 
             <p
+              className="cta-desc"
               style={{
-                fontSize: '16px',
-                color: '#cbd5e1',
-                lineHeight: 1.7,
                 maxWidth: '680px',
                 margin: '0 auto 20px auto',
               }}
@@ -1051,7 +1043,7 @@ export default function AboutPage() {
               From <strong>Digital Marketing and Branding to Technology and Creative Solutions</strong>, GDAs is here to help your business build a stronger digital presence and move forward with confidence.
             </p>
 
-            <div style={{ fontSize: '18px', fontWeight: 700, color: '#93c5fd', marginBottom: '32px' }}>
+            <div className="cta-highlight" style={{ marginBottom: '32px' }}>
               Digital Ka Saath, Aapke Business Ka Vikas.
             </div>
 

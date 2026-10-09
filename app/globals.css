@@ -928,6 +928,78 @@ body.light-theme {
   color: #0f172a !important;
 }
 
+/* CTA Banners */
+.cta-banner-section {
+  padding: 90px 0;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.18) 0%, rgba(0, 0, 0, 0.95) 75%);
+}
+
+.cta-banner-card {
+  background: linear-gradient(180deg, rgba(37, 99, 235, 0.12) 0%, rgba(15, 23, 42, 0.95) 100%);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.cta-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 50px;
+  background: rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  color: #60a5fa;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.cta-desc {
+  font-size: 16.5px;
+  color: #cbd5e1;
+  line-height: 1.6;
+}
+
+.cta-highlight {
+  font-size: 18px;
+  font-weight: 700;
+  color: #93c5fd;
+}
+
+/* Light Mode CTA Banners */
+[data-theme="light"] .cta-banner-section {
+  background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.08) 0%, #f8fafc 75%) !important;
+}
+
+[data-theme="light"] .cta-banner-card {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 50%, #f0f9ff 100%) !important;
+  border: 1px solid rgba(37, 99, 235, 0.25) !important;
+  box-shadow: 0 20px 45px rgba(37, 99, 235, 0.12) !important;
+}
+
+[data-theme="light"] .cta-banner-card h2,
+[data-theme="light"] .cta-banner-card h2 * {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .cta-badge {
+  background: rgba(37, 99, 235, 0.1) !important;
+  border-color: rgba(37, 99, 235, 0.25) !important;
+  color: #1d4ed8 !important;
+}
+
+[data-theme="light"] .cta-desc {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .cta-highlight {
+  color: #1d4ed8 !important;
+}
+
 /* Admin Suite in Light Mode */
 [data-theme="light"] .admin-sidebar {
   background: #ffffff !important;
@@ -948,12 +1020,17 @@ body.light-theme {
   background: rgba(37, 99, 235, 0.06) !important;
 }
 
-/* Form Inputs & Modals in Light Mode */
+/* Form Inputs, Selects & Modals in Light Mode */
 [data-theme="light"] input,
 [data-theme="light"] textarea,
 [data-theme="light"] select {
   background: #ffffff !important;
-  border: 1px solid rgba(0, 0, 0, 0.18) !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] select option {
+  background: #ffffff !important;
   color: #0f172a !important;
 }
 
@@ -971,6 +1048,63 @@ body.light-theme {
 
 [data-theme="light"] .modal-overlay {
   background: rgba(15, 23, 42, 0.65) !important;
+}
+
+[data-theme="light"] .modal-content {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .modal-content h2,
+[data-theme="light"] .modal-content h3,
+[data-theme="light"] .modal-content h4,
+[data-theme="light"] .modal-content label,
+[data-theme="light"] .modal-content span:not(.pill-badge):not(.badge) {
+  color: #0f172a !important;
+}
+
+/* Multi-select and custom containers in Modals */
+[data-theme="light"] .modal-content div[style*="rgba(0,0,0,0.2)"],
+[data-theme="light"] .modal-content div[style*="rgba(0, 0, 0, 0.2)"] {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+}
+
+[data-theme="light"] .modal-content div[style*="rgba(255,255,255,0.02)"],
+[data-theme="light"] .modal-content div[style*="rgba(255, 255, 255, 0.02)"] {
+  background: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+}
+
+[data-theme="light"] .modal-content div[style*="rgba(37, 99, 235, 0.08)"],
+[data-theme="light"] .modal-content div[style*="rgba(37,99,235,0.08)"] {
+  background: #eff6ff !important;
+  border-color: #bfdbfe !important;
+}
+
+[data-theme="light"] .modal-content span[style*="rgba(255, 255, 255, 0.04)"],
+[data-theme="light"] .modal-content span[style*="rgba(255,255,255,0.04)"] {
+  background: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #1e293b !important;
+}
+
+/* Admin Kanban Board in Light Mode */
+[data-theme="light"] .admin-kanban-col,
+[data-theme="light"] div[style*="background: rgba(255, 255, 255, 0.02)"],
+[data-theme="light"] div[style*="background: rgba(255,255,255,0.02)"] {
+  background: #f1f5f9 !important;
+  border-color: #e2e8f0 !important;
+}
+
+[data-theme="light"] .admin-lead-card,
+[data-theme="light"] div[style*="background: rgba(255, 255, 255, 0.03)"],
+[data-theme="light"] div[style*="background: rgba(255,255,255,0.03)"] {
+  background: #ffffff !important;
+  border-color: #e2e8f0 !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04) !important;
 }
 
 /* Table Row Hover */

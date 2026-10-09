@@ -383,12 +383,11 @@ export default function BlogIndexPage() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={blurFadeIn}
+              className="blog-card glass-card"
               style={{
                 borderRadius: '24px',
                 overflow: 'hidden',
-                background: 'linear-gradient(135deg, #0d1424 0%, #070a12 100%)',
                 border: '1px solid rgba(59, 130, 246, 0.35)',
-                boxShadow: '0 20px 50px rgba(0,0,0,0.8)',
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
               }}
@@ -408,13 +407,13 @@ export default function BlogIndexPage() {
                       <span className="pulse-dot" />
                       <span>Featured Article</span>
                     </span>
-                    <span style={{ fontSize: '12px', color: '#9ca3af' }}>{featuredPost.readTime}</span>
+                    <span style={{ fontSize: '12px', color: 'var(--text-dim)' }}>{featuredPost.readTime}</span>
                   </div>
 
-                  <h2 style={{ fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 800, lineHeight: 1.2, color: '#fff', marginBottom: '14px' }}>
+                  <h2 style={{ fontSize: 'clamp(22px, 3vw, 32px)', fontWeight: 800, lineHeight: 1.2, color: 'var(--text-white)', marginBottom: '14px' }}>
                     <Link
                       href={`/blog/${featuredPost.slug}`}
-                      style={{ color: '#fff', textDecoration: 'none' }}
+                      style={{ color: 'inherit', textDecoration: 'none' }}
                       onMouseEnter={() => setCursorHovered(true)}
                       onMouseLeave={() => setCursorHovered(false)}
                     >
@@ -422,7 +421,7 @@ export default function BlogIndexPage() {
                     </Link>
                   </h2>
 
-                  <p style={{ fontSize: '14.5px', color: '#a3a3a3', lineHeight: 1.6, marginBottom: '20px' }}>
+                  <p style={{ fontSize: '14.5px', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '20px' }}>
                     {featuredPost.excerpt}
                   </p>
                 </div>
@@ -489,15 +488,13 @@ export default function BlogIndexPage() {
                   variants={blurFadeIn}
                   custom={idx * 0.4}
                   whileHover={{ y: -6, borderColor: 'rgba(59, 130, 246, 0.45)' }}
+                  className="blog-card glass-card"
                   style={{
-                    background: 'linear-gradient(135deg, #0b0b0b 0%, #121212 100%)',
-                    border: '1px solid rgba(255,255,255,0.08)',
                     borderRadius: '22px',
                     overflow: 'hidden',
                     display: 'flex',
                     flexDirection: 'column',
                     justifyContent: 'space-between',
-                    boxShadow: '0 15px 35px rgba(0,0,0,0.6)',
                   }}
                 >
                   <div>
@@ -529,14 +526,14 @@ export default function BlogIndexPage() {
 
                     {/* Card Body */}
                     <div style={{ padding: '24px 22px' }}>
-                      <div style={{ fontSize: '12px', color: '#9ca3af', marginBottom: '8px' }}>
+                      <div style={{ fontSize: '12px', color: 'var(--text-dim)', marginBottom: '8px' }}>
                         {post.readTime} • <span style={{ color: '#f59e0b' }}>{post.date}</span>
                       </div>
 
-                      <h4 style={{ fontSize: '18px', fontWeight: 800, color: '#fff', lineHeight: 1.35, marginBottom: '12px' }}>
+                      <h4 style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-white)', lineHeight: 1.35, marginBottom: '12px' }}>
                         <Link
                           href={`/blog/${post.slug}`}
-                          style={{ color: '#fff', textDecoration: 'none' }}
+                          style={{ color: 'inherit', textDecoration: 'none' }}
                           onMouseEnter={() => setCursorHovered(true)}
                           onMouseLeave={() => setCursorHovered(false)}
                         >
@@ -544,7 +541,7 @@ export default function BlogIndexPage() {
                         </Link>
                       </h4>
 
-                      <p style={{ fontSize: '13.5px', color: '#9ca3af', lineHeight: 1.55, marginBottom: '16px' }}>
+                      <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: 1.55, marginBottom: '16px' }}>
                         {post.excerpt.slice(0, 130)}...
                       </p>
                     </div>
@@ -554,7 +551,7 @@ export default function BlogIndexPage() {
                   <div
                     style={{
                       padding: '16px 22px',
-                      borderTop: '1px solid rgba(255,255,255,0.06)',
+                      borderTop: '1px solid var(--border-subtle)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'space-between',
@@ -566,7 +563,7 @@ export default function BlogIndexPage() {
                         alt={post.author.name}
                         style={{ width: '28px', height: '28px', borderRadius: '50%', objectFit: 'cover' }}
                       />
-                      <span style={{ fontSize: '12px', fontWeight: 700, color: '#d1d5db' }}>
+                      <span style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-secondary)' }}>
                         {post.author.name}
                       </span>
                     </div>
@@ -576,7 +573,7 @@ export default function BlogIndexPage() {
                       style={{
                         fontSize: '12.5px',
                         fontWeight: 800,
-                        color: '#3b82f6',
+                        color: 'var(--text-accent)',
                         textDecoration: 'none',
                       }}
                       onMouseEnter={() => setCursorHovered(true)}

@@ -818,23 +818,23 @@ export default function TrainingPage() {
                   </div>
 
                   {/* Title */}
-                  <h3 style={{ fontSize: '21px', fontWeight: 800, color: '#fff', marginBottom: '8px', lineHeight: 1.25 }}>
+                  <h3 style={{ fontSize: '21px', fontWeight: 800, color: 'var(--text-white)', marginBottom: '8px', lineHeight: 1.25 }}>
                     {program.title}
                   </h3>
 
                   {/* Tagline */}
-                  <div style={{ fontSize: '13px', color: '#93c5fd', fontWeight: 600, marginBottom: '14px' }}>
+                  <div style={{ fontSize: '13px', color: 'var(--text-accent)', fontWeight: 600, marginBottom: '14px' }}>
                     {program.tagline}
                   </div>
 
                   {/* Main Paragraph */}
-                  <p style={{ fontSize: '14px', color: '#a3a3a3', lineHeight: 1.55, marginBottom: '20px' }}>
+                  <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.55, marginBottom: '20px' }}>
                     {program.desc}
                   </p>
 
                   {/* Module Topics / Keywords Badge Cloud */}
                   <div style={{ marginBottom: '10px' }}>
-                    <div style={{ fontSize: '11.5px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#6b7280', marginBottom: '10px' }}>
+                    <div style={{ fontSize: '11.5px', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-dim)', marginBottom: '10px' }}>
                       Key Focus Areas:
                     </div>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
@@ -844,11 +844,11 @@ export default function TrainingPage() {
                           style={{
                             fontSize: '12px',
                             fontWeight: 600,
-                            background: 'rgba(255, 255, 255, 0.04)',
-                            border: '1px solid rgba(255, 255, 255, 0.08)',
+                            background: 'var(--pill-bg)',
+                            border: '1px solid var(--border-subtle)',
                             padding: '4px 10px',
                             borderRadius: '6px',
-                            color: '#e5e7eb',
+                            color: 'var(--pill-text)',
                           }}
                         >
                           {topic}
@@ -863,7 +863,7 @@ export default function TrainingPage() {
                   style={{
                     marginTop: '28px',
                     paddingTop: '18px',
-                    borderTop: '1px solid rgba(255,255,255,0.06)',
+                    borderTop: '1px solid var(--border-subtle)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
@@ -876,7 +876,7 @@ export default function TrainingPage() {
                     style={{
                       background: 'none',
                       border: 'none',
-                      color: '#3b82f6',
+                      color: 'var(--text-accent)',
                       fontSize: '13.5px',
                       fontWeight: 800,
                       cursor: 'pointer',
@@ -888,7 +888,7 @@ export default function TrainingPage() {
                   >
                     Enroll in {program.title.replace(' Training', '')} →
                   </button>
-                  <span style={{ fontSize: '12px', color: '#6b7280' }}>100% Practical</span>
+                  <span style={{ fontSize: '12px', color: 'var(--text-dim)' }}>100% Practical</span>
                 </div>
               </motion.div>
             ))}

@@ -616,7 +616,7 @@ export default function ServicesPage() {
                   </div>
 
                   {/* Title & Subtitle */}
-                  <h3 style={{ fontSize: '21px', fontWeight: 800, color: '#ffffff', marginBottom: '6px' }}>
+                  <h3 style={{ fontSize: '21px', fontWeight: 800, color: 'var(--text-white)', marginBottom: '6px' }}>
                     {srv.title}
                   </h3>
                   <div style={{ fontSize: '13px', fontWeight: 600, color: srv.color, marginBottom: '14px', lineHeight: 1.4 }}>
@@ -624,15 +624,15 @@ export default function ServicesPage() {
                   </div>
 
                   {/* Description */}
-                  <p style={{ fontSize: '14px', color: '#cbd5e1', lineHeight: 1.6, marginBottom: '20px' }}>
+                  <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '20px' }}>
                     {srv.desc}
                   </p>
 
                   {/* Value Prop Banner */}
                   <div
                     style={{
-                      background: 'rgba(255, 255, 255, 0.03)',
-                      border: '1px solid rgba(255, 255, 255, 0.07)',
+                      background: 'var(--pill-bg)',
+                      border: '1px solid var(--border-subtle)',
                       padding: '10px 14px',
                       borderRadius: '12px',
                       fontSize: '11.5px',
@@ -647,12 +647,12 @@ export default function ServicesPage() {
 
                   {/* Service Deliverables Checklist */}
                   <div style={{ marginBottom: '24px' }}>
-                    <div style={{ fontSize: '12px', fontWeight: 700, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '10px' }}>
+                    <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-dim)', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '10px' }}>
                       Key Features & Deliverables:
                     </div>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                       {srv.items.map((item, iIdx) => (
-                        <div key={iIdx} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '13px', color: '#e2e8f0', lineHeight: 1.4 }}>
+                        <div key={iIdx} style={{ display: 'flex', alignItems: 'flex-start', gap: '8px', fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.4 }}>
                           <span style={{ color: srv.color, fontWeight: 700 }}>✓</span>
                           <span>{item}</span>
                         </div>
@@ -662,7 +662,7 @@ export default function ServicesPage() {
                 </div>
 
                 {/* Card Action Button */}
-                <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.07)', paddingTop: '18px' }}>
+                <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '18px' }}>
                   <button
                     onClick={() => openServiceModal(srv.title)}
                     className="btn-primary"

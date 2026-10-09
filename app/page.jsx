@@ -1251,7 +1251,7 @@ export default function Home() {
                   </div>
 
                   {/* Title & Tagline */}
-                  <h3 style={{ fontSize: '21px', fontWeight: 700, color: '#ffffff', marginBottom: '8px' }}>
+                  <h3 style={{ fontSize: '21px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '8px' }}>
                     {srv.title}
                   </h3>
                   <div
@@ -1267,7 +1267,7 @@ export default function Home() {
                   </div>
 
                   {/* Description */}
-                  <p style={{ fontSize: '14px', color: '#a3a3a3', lineHeight: 1.6, marginBottom: '20px' }}>
+                  <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '20px' }}>
                     {srv.desc}
                   </p>
                 </div>
@@ -1280,10 +1280,10 @@ export default function Home() {
                         key={tIdx}
                         style={{
                           fontSize: '11px',
-                          fontWeight: 500,
-                          background: 'rgba(255, 255, 255, 0.04)',
-                          border: '1px solid rgba(255, 255, 255, 0.08)',
-                          color: '#cbd5e1',
+                          fontWeight: 600,
+                          background: 'var(--pill-bg)',
+                          border: '1px solid var(--border-subtle)',
+                          color: 'var(--pill-text)',
                           padding: '3px 9px',
                           borderRadius: '6px',
                         }}
@@ -1302,9 +1302,9 @@ export default function Home() {
                     style={{
                       background: 'none',
                       border: 'none',
-                      color: '#ffffff',
+                      color: 'var(--text-white)',
                       fontSize: '13px',
-                      fontWeight: 600,
+                      fontWeight: 700,
                       cursor: 'pointer',
                       display: 'flex',
                       alignItems: 'center',
@@ -1968,7 +1968,7 @@ export default function Home() {
                       padding: '20px 24px',
                       background: 'none',
                       border: 'none',
-                      color: '#ffffff',
+                      color: 'var(--text-white)',
                       fontSize: '16px',
                       fontWeight: 600,
                       cursor: 'pointer',
@@ -1983,7 +1983,7 @@ export default function Home() {
                       style={{
                         transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
                         transition: 'transform 0.25s ease',
-                        color: '#3b82f6',
+                        color: 'var(--text-accent)',
                         fontSize: '18px',
                       }}
                     >
@@ -2003,9 +2003,9 @@ export default function Home() {
                           style={{
                             padding: '0 24px 20px 24px',
                             fontSize: '14.5px',
-                            color: '#9ca3af',
+                            color: 'var(--text-secondary)',
                             lineHeight: 1.65,
-                            borderTop: '1px solid rgba(255, 255, 255, 0.04)',
+                            borderTop: '1px solid var(--border-subtle)',
                             paddingTop: '14px',
                           }}
                         >

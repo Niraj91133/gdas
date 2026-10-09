@@ -172,10 +172,10 @@ export default function CareersPage() {
               { title: 'High Creative Autonomy', desc: 'No micro-management. Own your campaigns & tests.', icon: '⚡' },
               { title: 'Elite Learning Budget', desc: 'Access to any masterclass, course, or tool you need.', icon: '📚' },
             ].map((perk, idx) => (
-              <div key={idx} style={{ background: '#0a0a0a', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '16px', padding: '22px 18px', textAlign: 'left' }}>
+              <div key={idx} className="glass-card perk-card" style={{ borderRadius: '16px', padding: '22px 18px', textAlign: 'left' }}>
                 <div style={{ fontSize: '24px', marginBottom: '8px' }}>{perk.icon}</div>
-                <div style={{ fontSize: '15px', fontWeight: 700, color: '#fff', marginBottom: '4px' }}>{perk.title}</div>
-                <div style={{ fontSize: '12px', color: '#888' }}>{perk.desc}</div>
+                <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '4px' }}>{perk.title}</div>
+                <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)' }}>{perk.desc}</div>
               </div>
             ))}
           </motion.div>
@@ -183,11 +183,11 @@ export default function CareersPage() {
       </section>
 
       {/* Open Roles Section */}
-      <section id="open-roles" className="section-spacing" style={{ background: '#050505', paddingTop: '60px', paddingBottom: '90px' }}>
+      <section id="open-roles" className="section-spacing" style={{ paddingTop: '60px', paddingBottom: '90px' }}>
         <div className="container-custom">
           <div style={{ textAlign: 'center', maxWidth: '700px', margin: '0 auto 50px auto' }}>
             <div className="section-tag">Open Positions</div>
-            <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.15 }}>
+            <h2 style={{ fontSize: 'clamp(28px, 4vw, 44px)', fontWeight: 800, letterSpacing: '-0.02em', lineHeight: 1.15, color: 'var(--text-white)' }}>
               Current <span className="serif-italic" style={{ color: '#3b82f6' }}>Opportunities</span>.
             </h2>
           </div>
@@ -202,9 +202,8 @@ export default function CareersPage() {
                 variants={blurFadeIn}
                 custom={idx}
                 whileHover={{ borderColor: 'rgba(37,99,235,0.5)', y: -2 }}
+                className="glass-card job-card"
                 style={{
-                  background: 'linear-gradient(135deg, #0a0a0a 0%, #111 100%)',
-                  border: '1px solid rgba(255,255,255,0.08)',
                   borderRadius: '20px',
                   padding: '28px 30px',
                   display: 'flex',
@@ -216,14 +215,14 @@ export default function CareersPage() {
               >
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '8px' }}>
-                    <span style={{ fontSize: '11px', fontWeight: 700, color: '#60a5fa', background: 'rgba(37,99,235,0.14)', border: '1px solid rgba(37,99,235,0.3)', padding: '4px 10px', borderRadius: '50px' }}>{role.department}</span>
-                    <span style={{ fontSize: '12px', color: '#888' }}>{role.type}</span>
+                    <span style={{ fontSize: '11px', fontWeight: 700, color: '#3b82f6', background: 'rgba(37,99,235,0.12)', border: '1px solid rgba(37,99,235,0.25)', padding: '4px 10px', borderRadius: '50px' }}>{role.department}</span>
+                    <span style={{ fontSize: '12px', color: 'var(--text-dim)' }}>{role.type}</span>
                   </div>
-                  <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#fff', marginBottom: '8px' }}>{role.title}</h3>
-                  <div style={{ fontSize: '13px', color: '#10b981', fontWeight: 600, marginBottom: '12px' }}>{role.salary}</div>
+                  <h3 style={{ fontSize: '20px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '8px' }}>{role.title}</h3>
+                  <div style={{ fontSize: '13px', color: '#10b981', fontWeight: 700, marginBottom: '12px' }}>{role.salary}</div>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                     {role.reqs.map((req, rIdx) => (
-                      <span key={rIdx} style={{ fontSize: '11.5px', color: '#888', background: 'rgba(255,255,255,0.04)', padding: '3px 10px', borderRadius: '6px' }}>✓ {req}</span>
+                      <span key={rIdx} style={{ fontSize: '11.5px', color: 'var(--text-secondary)', background: 'var(--pill-bg)', border: '1px solid var(--border-subtle)', padding: '3px 10px', borderRadius: '6px' }}>✓ {req}</span>
                     ))}
                   </div>
                 </div>

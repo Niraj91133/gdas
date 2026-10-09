@@ -546,24 +546,23 @@ export default function AboutPage() {
             style={{
               borderRadius: '24px',
               overflow: 'hidden',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              background: '#0a0a0a',
+              border: '1px solid var(--border-subtle)',
               marginBottom: '36px',
             }}
           >
             <div style={{ overflowX: 'auto' }}>
               <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '680px' }}>
                 <thead>
-                  <tr style={{ background: 'rgba(255, 255, 255, 0.04)', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
-                    <th style={{ padding: '18px 24px', fontSize: '13px', fontWeight: 700, color: '#60a5fa', textTransform: 'uppercase', letterSpacing: '0.08em', width: '22%' }}>
+                  <tr style={{ background: 'var(--pill-bg)', borderBottom: '1px solid var(--border-subtle)' }}>
+                    <th style={{ padding: '18px 24px', fontSize: '13px', fontWeight: 700, color: 'var(--text-accent)', textTransform: 'uppercase', letterSpacing: '0.08em', width: '22%' }}>
                       Growth Pillar
                     </th>
-                    <th style={{ padding: '18px 24px', fontSize: '14px', fontWeight: 800, color: '#ffffff', background: 'rgba(37, 99, 235, 0.15)', borderLeft: '1px solid rgba(59, 130, 246, 0.3)', borderRight: '1px solid rgba(59, 130, 246, 0.3)', width: '42%' }}>
+                    <th style={{ padding: '18px 24px', fontSize: '14px', fontWeight: 800, color: 'var(--text-white)', background: 'rgba(37, 99, 235, 0.15)', borderLeft: '1px solid rgba(59, 130, 246, 0.3)', borderRight: '1px solid rgba(59, 130, 246, 0.3)', width: '42%' }}>
                       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                         <span>⚡ GDAs — Growth-Focused Digital Agency</span>
                       </div>
                     </th>
-                    <th style={{ padding: '18px 24px', fontSize: '13px', fontWeight: 600, color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.06em', width: '36%' }}>
+                    <th style={{ padding: '18px 24px', fontSize: '13px', fontWeight: 600, color: 'var(--text-dim)', textTransform: 'uppercase', letterSpacing: '0.06em', width: '36%' }}>
                       Traditional Agency / Freelancer
                     </th>
                   </tr>
@@ -573,18 +572,17 @@ export default function AboutPage() {
                     <tr
                       key={rIdx}
                       style={{
-                        borderBottom: rIdx === comparisonRows.length - 1 ? 'none' : '1px solid rgba(255, 255, 255, 0.06)',
-                        background: rIdx % 2 === 0 ? 'rgba(255, 255, 255, 0.01)' : 'transparent',
+                        borderBottom: rIdx === comparisonRows.length - 1 ? 'none' : '1px solid var(--border-subtle)',
                       }}
                     >
-                      <td style={{ padding: '16px 24px', fontSize: '14.5px', fontWeight: 700, color: '#ffffff' }}>
+                      <td style={{ padding: '16px 24px', fontSize: '14.5px', fontWeight: 700, color: 'var(--text-white)' }}>
                         {row.pillar}
                       </td>
                       <td
                         style={{
                           padding: '16px 24px',
                           fontSize: '14px',
-                          color: '#e2e8f0',
+                          color: 'var(--text-secondary)',
                           lineHeight: 1.5,
                           background: 'rgba(37, 99, 235, 0.06)',
                           borderLeft: '1px solid rgba(59, 130, 246, 0.25)',
@@ -592,11 +590,11 @@ export default function AboutPage() {
                         }}
                       >
                         <div style={{ display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
-                          <span style={{ color: '#3b82f6', fontWeight: 700 }}>✓</span>
+                          <span style={{ color: 'var(--text-accent)', fontWeight: 700 }}>✓</span>
                           <span>{row.gdas}</span>
                         </div>
                       </td>
-                      <td style={{ padding: '16px 24px', fontSize: '13.5px', color: '#737373', lineHeight: 1.5 }}>
+                      <td style={{ padding: '16px 24px', fontSize: '13.5px', color: 'var(--text-dim)', lineHeight: 1.5 }}>
                         {row.traditional}
                       </td>
                     </tr>

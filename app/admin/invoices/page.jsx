@@ -38,7 +38,6 @@ export default function InvoiceManagementPage() {
     clientAddress: '',
     clientGst: '',
     issueDate: new Date().toISOString().split('T')[0],
-    dueDate: '',
     items: [
       { id: 'it-1', description: 'Meta & Google Ads Campaign Retainer', quantity: 1, unitPrice: 35000, total: 35000 },
     ],
@@ -47,7 +46,7 @@ export default function InvoiceManagementPage() {
     paidAmount: 0,
     status: 'Draft',
     paymentMethod: 'UPI',
-    terms: 'Payment payable within 15 days via UPI / Bank Transfer. GDAs is a registered Digital Growth Agency.',
+    terms: 'Payment payable via UPI / Bank Transfer. GDAs is a registered Digital Growth Agency.',
   });
 
   const INVOICE_STATUSES = ['All', 'Draft', 'Sent', 'Paid', 'Partially Paid', 'Overdue', 'Cancelled'];
@@ -88,7 +87,6 @@ export default function InvoiceManagementPage() {
       clientAddress: clients[0]?.address || '',
       clientGst: clients[0]?.gstNumber || '',
       issueDate: new Date().toISOString().split('T')[0],
-      dueDate: new Date(Date.now() + 14 * 86400000).toISOString().split('T')[0],
       items: [
         { id: `it-${Date.now()}`, description: 'Meta Ads & High-Converting Creative Management', quantity: 1, unitPrice: 40000, total: 40000 },
       ],
@@ -97,7 +95,7 @@ export default function InvoiceManagementPage() {
       paidAmount: 0,
       status: 'Sent',
       paymentMethod: 'UPI',
-      terms: 'Payment payable within 14 days via UPI / Bank Transfer. GDAs is a registered Digital Growth Agency.',
+      terms: 'Payment payable via UPI / Bank Transfer. GDAs is a registered Digital Growth Agency.',
     });
     setIsFormModalOpen(true);
   };
@@ -114,7 +112,6 @@ export default function InvoiceManagementPage() {
       clientAddress: inv.clientAddress,
       clientGst: inv.clientGst,
       issueDate: inv.issueDate,
-      dueDate: inv.dueDate,
       items: inv.items || [],
       discount: inv.discount || 0,
       taxRate: inv.taxRate !== undefined ? inv.taxRate : 18,
@@ -305,7 +302,7 @@ export default function InvoiceManagementPage() {
               <tr style={{ background: 'rgba(255, 255, 255, 0.03)', borderBottom: '1px solid var(--border-subtle)' }}>
                 <th style={{ padding: '14px 18px', color: 'var(--text-dim)', fontWeight: 700 }}>Invoice #</th>
                 <th style={{ padding: '14px 18px', color: 'var(--text-dim)', fontWeight: 700 }}>Client & Business</th>
-                <th style={{ padding: '14px 18px', color: 'var(--text-dim)', fontWeight: 700 }}>Dates</th>
+                <th style={{ padding: '14px 18px', color: 'var(--text-dim)', fontWeight: 700 }}>Issue Date</th>
                 <th style={{ padding: '14px 18px', color: 'var(--text-dim)', fontWeight: 700 }}>Amount Breakdown</th>
                 <th style={{ padding: '14px 18px', color: 'var(--text-dim)', fontWeight: 700 }}>Status</th>
                 <th style={{ padding: '14px 18px', color: 'var(--text-dim)', fontWeight: 700, textAlign: 'right' }}>Actions</th>
@@ -343,11 +340,10 @@ export default function InvoiceManagementPage() {
                         </div>
                       </td>
 
-                      {/* Dates */}
+                      {/* Issue Date */}
                       <td style={{ padding: '16px 18px' }}>
-                        <div style={{ color: 'var(--text-white)', fontSize: '12.5px' }}>Issued: {inv.issueDate}</div>
-                        <div style={{ fontSize: '11.5px', color: inv.status === 'Overdue' ? '#ef4444' : 'var(--text-dim)', fontWeight: 600 }}>
-                          Due: {inv.dueDate || 'Immediate'}
+                        <div style={{ color: 'var(--text-white)', fontSize: '13px', fontWeight: 600 }}>
+                          📅 {inv.issueDate}
                         </div>
                       </td>
 
@@ -550,7 +546,7 @@ export default function InvoiceManagementPage() {
               </div>
 
               {/* Invoice Metadata */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: '12px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                 <div>
                   <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '5px' }}>
                     Invoice Number
@@ -573,18 +569,6 @@ export default function InvoiceManagementPage() {
                     required
                     value={formData.issueDate}
                     onChange={(e) => setFormData({ ...formData, issueDate: e.target.value })}
-                    style={{ width: '100%', padding: '9px 12px', borderRadius: '8px', background: 'rgba(255,255,255,0.04)', border: '1px solid var(--border-subtle)', color: 'var(--text-white)', fontSize: '13px' }}
-                  />
-                </div>
-
-                <div>
-                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '5px' }}>
-                    Due Date
-                  </label>
-                  <input
-                    type="date"
-                    value={formData.dueDate}
-                    onChange={(e) => setFormData({ ...formData, dueDate: e.target.value })}
                     style={{ width: '100%', padding: '9px 12px', borderRadius: '8px', background: 'rgba(255,255,255,0.04)', border: '1px solid var(--border-subtle)', color: 'var(--text-white)', fontSize: '13px' }}
                   />
                 </div>
@@ -785,17 +769,17 @@ export default function InvoiceManagementPage() {
                       <div style={{ fontSize: '22px', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em' }}>
                         GANESHA DIGITAL ADS
                       </div>
-                      <div style={{ fontSize: '12px', color: '#2563eb', fontWeight: 700 }}>
-                        One Platform. All Solutions.
+                      <div style={{ fontSize: '13px', color: '#2563eb', fontWeight: 700, marginTop: '2px' }}>
+                        Digital Ka Saath, Aapke Business Ka Vikas
                       </div>
                     </div>
                   </div>
-                  <div style={{ fontSize: '12px', color: '#475569', lineHeight: 1.5 }}>
-                    {agencyDetails.address}
+                  <div style={{ fontSize: '12px', color: '#475569', lineHeight: 1.6, marginTop: '6px' }}>
+                    Near Magadh Medical Gaya, Bihar 823001
                     <br />
-                    Phone: {agencyDetails.phone} • Email: {agencyDetails.email}
+                    Phone: +91 99398 62765 • Email: ganeshadigiads@gmail.com
                     <br />
-                    GSTIN: <strong>{agencyDetails.gstin}</strong> • PAN: <strong>{agencyDetails.pan}</strong>
+                    GSTIN No: <strong>10CHUPG3836P1ZV</strong>
                   </div>
                 </div>
 
@@ -808,9 +792,6 @@ export default function InvoiceManagementPage() {
                   </div>
                   <div style={{ fontSize: '12.5px', color: '#64748b', marginTop: '4px' }}>
                     Date: <strong>{previewingInvoice.issueDate}</strong>
-                  </div>
-                  <div style={{ fontSize: '12.5px', color: '#64748b' }}>
-                    Due Date: <strong>{previewingInvoice.dueDate || 'Immediate'}</strong>
                   </div>
                 </div>
               </div>
@@ -884,24 +865,19 @@ export default function InvoiceManagementPage() {
                 </tbody>
               </table>
 
-              {/* Calculations & Bank Info Grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1.2fr 1fr', gap: '24px', marginBottom: '28px' }}>
-                {/* Bank / Payment Instructions */}
-                <div style={{ padding: '14px 16px', background: '#f8fafc', borderRadius: '10px', border: '1px solid #e2e8f0', fontSize: '12px' }}>
+              {/* Calculations & Totals (Payment Instructions Removed) */}
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '24px', marginBottom: '28px' }}>
+                <div style={{ flex: 1, padding: '16px', background: '#f8fafc', borderRadius: '10px', border: '1px solid #e2e8f0', fontSize: '12px', color: '#475569' }}>
                   <div style={{ fontWeight: 800, color: '#1e40af', marginBottom: '6px' }}>
-                    PAYMENT INSTRUCTIONS
+                    TERMS & CONDITIONS
                   </div>
-                  <div>Account Name: <strong>{agencyDetails.bankDetails.accountName}</strong></div>
-                  <div>Bank: <strong>{agencyDetails.bankDetails.bankName}</strong></div>
-                  <div>Account Number: <strong>{agencyDetails.bankDetails.accountNumber}</strong></div>
-                  <div>IFSC Code: <strong>{agencyDetails.bankDetails.ifscCode}</strong></div>
-                  <div style={{ marginTop: '4px', color: '#2563eb', fontWeight: 700 }}>
-                    UPI ID: {agencyDetails.bankDetails.upiId}
+                  <div style={{ lineHeight: 1.6 }}>
+                    {previewingInvoice.terms || 'All payments are due upon receipt. This is a computer generated tax invoice.'}
                   </div>
                 </div>
 
                 {/* Totals Table */}
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '13px' }}>
+                <div style={{ width: '320px', display: 'flex', flexDirection: 'column', gap: '6px', fontSize: '13px' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', color: '#475569' }}>
                     <span>Subtotal:</span>
                     <span style={{ fontWeight: 600 }}>{formatINR(previewingInvoice.subtotal)}</span>
@@ -936,20 +912,31 @@ export default function InvoiceManagementPage() {
                 </div>
               </div>
 
-              {/* Terms and Signatory Footer */}
+              {/* Signatory Footer with Signature Image */}
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', borderTop: '1px solid #e2e8f0', paddingTop: '18px', fontSize: '11.5px', color: '#64748b' }}>
-                <div style={{ maxWidth: '420px' }}>
-                  <strong>Terms & Conditions:</strong>
-                  <br />
-                  {previewingInvoice.terms || 'All payments are due upon receipt. This is a computer generated tax invoice.'}
+                <div>
+                  <div style={{ color: '#0f172a', fontWeight: 700, fontSize: '12px' }}>
+                    GDAs — Growth-Driven Digital Solutions
+                  </div>
+                  <div>Thank you for partnering with Ganesha Digital Ads.</div>
                 </div>
 
-                <div style={{ textAlign: 'center' }}>
-                  <div style={{ fontSize: '13px', fontWeight: 800, color: '#0f172a', marginBottom: '24px' }}>
+                <div style={{ textAlign: 'center', minWidth: '220px' }}>
+                  <div style={{ fontSize: '12px', fontWeight: 800, color: '#0f172a', marginBottom: '2px' }}>
                     For Ganesha Digital Ads (GDAs)
                   </div>
-                  <div style={{ fontSize: '12px', fontWeight: 700, color: '#2563eb', borderTop: '1px solid #94a3b8', paddingTop: '4px' }}>
+                  <div style={{ height: '54px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '2px 0' }}>
+                    <img
+                      src="/ram_gyan_signature.png"
+                      alt="Authorized Signature"
+                      style={{ height: '46px', width: 'auto', objectFit: 'contain' }}
+                    />
+                  </div>
+                  <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e40af', borderTop: '1px solid #94a3b8', paddingTop: '4px' }}>
                     Authorized Signatory (Mr. Ram Gyan)
+                  </div>
+                  <div style={{ fontSize: '10.5px', color: '#64748b', marginTop: '1px' }}>
+                    Co-Founder & CEO
                   </div>
                 </div>
               </div>

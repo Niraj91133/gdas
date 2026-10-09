@@ -375,9 +375,8 @@ export default function BlogPostDetail({ params }) {
                     viewport={{ once: true }}
                     variants={blurFadeIn}
                     id={`section-${idx}`}
+                    className="glass-card"
                     style={{
-                      background: 'rgba(255,255,255,0.02)',
-                      border: '1px solid rgba(255,255,255,0.06)',
                       borderRadius: '18px',
                       padding: '28px 26px',
                     }}
@@ -386,7 +385,7 @@ export default function BlogPostDetail({ params }) {
                       style={{
                         fontSize: 'clamp(20px, 2.6vw, 26px)',
                         fontWeight: 800,
-                        color: '#60a5fa',
+                        color: 'var(--text-accent)',
                         marginBottom: '16px',
                         lineHeight: 1.3,
                       }}
@@ -397,7 +396,7 @@ export default function BlogPostDetail({ params }) {
                     <div
                       style={{
                         fontSize: '15.5px',
-                        color: '#d1d5db',
+                        color: 'var(--text-secondary)',
                         lineHeight: 1.8,
                         whiteSpace: 'pre-line',
                       }}
@@ -410,11 +409,11 @@ export default function BlogPostDetail({ params }) {
 
               {/* Internal Links Strip */}
               <div
+                className="glass-card"
                 style={{
                   marginTop: '45px',
                   padding: '26px',
                   borderRadius: '16px',
-                  background: 'rgba(59, 130, 246, 0.08)',
                   border: '1px solid rgba(59, 130, 246, 0.25)',
                 }}
               >
@@ -431,12 +430,12 @@ export default function BlogPostDetail({ params }) {
                       style={{
                         fontSize: '13.5px',
                         fontWeight: 700,
-                        color: '#93c5fd',
-                        background: 'rgba(255,255,255,0.06)',
+                        color: 'var(--text-accent)',
+                        background: 'var(--pill-bg)',
                         padding: '6px 14px',
                         borderRadius: '8px',
                         textDecoration: 'none',
-                        border: '1px solid rgba(59, 130, 246, 0.3)',
+                        border: '1px solid var(--border-subtle)',
                       }}
                     >
                       → {link.text}
@@ -447,7 +446,7 @@ export default function BlogPostDetail({ params }) {
 
               {/* Keywords Tag Cloud */}
               <div style={{ marginTop: '28px' }}>
-                <div style={{ fontSize: '12px', fontWeight: 700, color: '#6b7280', textTransform: 'uppercase', marginBottom: '8px' }}>
+                <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-dim)', textTransform: 'uppercase', marginBottom: '8px' }}>
                   Primary & Secondary Keywords:
                 </div>
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
@@ -456,9 +455,9 @@ export default function BlogPostDetail({ params }) {
                       key={kIdx}
                       style={{
                         fontSize: '12px',
-                        color: '#9ca3af',
-                        background: 'rgba(255,255,255,0.03)',
-                        border: '1px solid rgba(255,255,255,0.06)',
+                        color: 'var(--text-secondary)',
+                        background: 'var(--pill-bg)',
+                        border: '1px solid var(--border-subtle)',
                         padding: '4px 10px',
                         borderRadius: '6px',
                       }}
@@ -471,9 +470,9 @@ export default function BlogPostDetail({ params }) {
 
               {/* Author Box Spotlight */}
               <div
+                className="glass-card"
                 style={{
                   marginTop: '45px',
-                  background: 'linear-gradient(135deg, #0d121f 0%, #070a12 100%)',
                   border: '1px solid rgba(59, 130, 246, 0.3)',
                   borderRadius: '20px',
                   padding: '28px',
@@ -495,16 +494,16 @@ export default function BlogPostDetail({ params }) {
                   }}
                 />
                 <div style={{ flex: 1, minWidth: '220px' }}>
-                  <div style={{ fontSize: '12px', fontWeight: 800, color: '#60a5fa', textTransform: 'uppercase' }}>
+                  <div style={{ fontSize: '12px', fontWeight: 800, color: 'var(--text-accent)', textTransform: 'uppercase' }}>
                     Written By
                   </div>
-                  <h3 style={{ fontSize: '20px', fontWeight: 900, color: '#fff', margin: '4px 0' }}>
+                  <h3 style={{ fontSize: '20px', fontWeight: 900, color: 'var(--text-white)', margin: '4px 0' }}>
                     {post.author.name}
                   </h3>
                   <div style={{ fontSize: '12.5px', color: '#f59e0b', fontWeight: 700, marginBottom: '6px' }}>
                     {post.author.role}
                   </div>
-                  <p style={{ fontSize: '13.5px', color: '#9ca3af', lineHeight: 1.5, margin: 0 }}>
+                  <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: 1.5, margin: 0 }}>
                     {post.author.bio}
                   </p>
                 </div>
@@ -516,14 +515,13 @@ export default function BlogPostDetail({ params }) {
               
               {/* Table of Contents */}
               <div
+                className="glass-card"
                 style={{
-                  background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid rgba(255,255,255,0.08)',
                   borderRadius: '18px',
                   padding: '22px',
                 }}
               >
-                <div style={{ fontSize: '14px', fontWeight: 800, color: '#fff', marginBottom: '14px' }}>
+                <div style={{ fontSize: '14px', fontWeight: 800, color: 'var(--text-white)', marginBottom: '14px' }}>
                   📑 Table of Contents
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -535,7 +533,7 @@ export default function BlogPostDetail({ params }) {
                       onMouseLeave={() => setCursorHovered(false)}
                       style={{
                         fontSize: '12.5px',
-                        color: '#9ca3af',
+                        color: 'var(--text-secondary)',
                         textDecoration: 'none',
                         lineHeight: 1.4,
                         transition: 'color 0.2s ease',
@@ -550,18 +548,19 @@ export default function BlogPostDetail({ params }) {
               {/* WhatsApp Quick CTA Box */}
               <div
                 style={{
-                  background: 'linear-gradient(135deg, #0f2b1d 0%, #07140e 100%)',
-                  border: '1px solid rgba(16, 185, 129, 0.4)',
+                  background: 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
                   borderRadius: '18px',
                   padding: '24px 20px',
                   textAlign: 'center',
+                  color: '#ffffff',
+                  boxShadow: '0 10px 25px rgba(16, 185, 129, 0.25)',
                 }}
               >
                 <div style={{ fontSize: '28px', marginBottom: '8px' }}>💬</div>
-                <h4 style={{ fontSize: '17px', fontWeight: 800, color: '#fff', marginBottom: '6px' }}>
+                <h4 style={{ fontSize: '17px', fontWeight: 800, color: '#ffffff', marginBottom: '6px' }}>
                   Ready to Grow Your Business?
                 </h4>
-                <p style={{ fontSize: '12.5px', color: '#9ca3af', lineHeight: 1.5, marginBottom: '16px' }}>
+                <p style={{ fontSize: '12.5px', color: 'rgba(255,255,255,0.9)', lineHeight: 1.5, marginBottom: '16px' }}>
                   Get custom digital marketing, ads, and website strategy tailored for your brand.
                 </p>
                 <a
@@ -575,8 +574,8 @@ export default function BlogPostDetail({ params }) {
                     padding: '10px',
                     fontSize: '13px',
                     fontWeight: 700,
-                    background: '#10b981',
-                    color: '#fff',
+                    background: '#ffffff',
+                    color: '#065f46',
                     borderRadius: '8px',
                     textDecoration: 'none',
                   }}
@@ -587,14 +586,13 @@ export default function BlogPostDetail({ params }) {
 
               {/* Related Posts */}
               <div
+                className="glass-card"
                 style={{
-                  background: 'rgba(255,255,255,0.03)',
-                  border: '1px solid rgba(255,255,255,0.08)',
                   borderRadius: '18px',
                   padding: '20px',
                 }}
               >
-                <div style={{ fontSize: '14px', fontWeight: 800, color: '#fff', marginBottom: '14px' }}>
+                <div style={{ fontSize: '14px', fontWeight: 800, color: 'var(--text-white)', marginBottom: '14px' }}>
                   ⚡ More Insights
                 </div>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
@@ -609,7 +607,7 @@ export default function BlogPostDetail({ params }) {
                         alt={rel.title}
                         style={{ width: '50px', height: '50px', borderRadius: '8px', objectFit: 'cover' }}
                       />
-                      <div style={{ fontSize: '12px', fontWeight: 700, color: '#e5e7eb', lineHeight: 1.3 }}>
+                      <div style={{ fontSize: '12px', fontWeight: 700, color: 'var(--text-white)', lineHeight: 1.3 }}>
                         {rel.title.slice(0, 45)}...
                       </div>
                     </Link>

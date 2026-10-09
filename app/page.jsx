@@ -307,7 +307,7 @@ export default function Home() {
   ];
 
   return (
-    <div style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#000000', color: '#ffffff', overflowX: 'hidden' }}>
+    <div style={{ position: 'relative', minHeight: '100vh', backgroundColor: 'var(--bg-black)', color: 'var(--text-white)', overflowX: 'hidden' }}>
       {/* Top Ambient Glow */}
       <div className="bg-ambient-top" />
 
@@ -367,7 +367,7 @@ export default function Home() {
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </div>
-            <span style={{ fontWeight: 800, fontSize: '19px', color: '#ffffff', letterSpacing: '-0.02em' }}>
+            <span style={{ fontWeight: 800, fontSize: '19px', color: 'var(--text-white)', letterSpacing: '-0.02em' }}>
               GDAs
             </span>
           </Link>
@@ -544,7 +544,7 @@ export default function Home() {
                   fontWeight: 800,
                   lineHeight: 1.08,
                   letterSpacing: '-0.035em',
-                  color: '#ffffff',
+                  color: 'var(--text-white)',
                   marginBottom: '16px',
                 }}
               >
@@ -870,10 +870,10 @@ export default function Home() {
       >
         <div className="container-custom">
           <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 40px auto' }}>
-            <h2 style={{ fontSize: 'clamp(26px, 3.2vw, 36px)', fontWeight: 700, color: '#ffffff', marginBottom: '12px' }}>
+            <h2 style={{ fontSize: 'clamp(26px, 3.2vw, 36px)', fontWeight: 700, color: 'var(--text-white)', marginBottom: '12px' }}>
               Everything Your Business Needs to Go Digital.
             </h2>
-            <p style={{ fontSize: '15.5px', color: '#a3a3a3', lineHeight: 1.6 }}>
+            <p style={{ fontSize: '15.5px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
               From building your brand identity to generating leads and growing your online presence, GDAs brings the essential digital solutions together in one place.
             </p>
           </div>
@@ -915,10 +915,10 @@ export default function Home() {
                 🎯
               </div>
               <div>
-                <div style={{ fontSize: '17px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
+                <div style={{ fontSize: '17px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '4px' }}>
                   Strategy
                 </div>
-                <div style={{ fontSize: '13.5px', color: '#94a3b8', lineHeight: 1.5 }}>
+                <div style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
                   Right strategy for your business tailored to your target audience.
                 </div>
               </div>
@@ -953,10 +953,10 @@ export default function Home() {
                 📈
               </div>
               <div>
-                <div style={{ fontSize: '17px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
+                <div style={{ fontSize: '17px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '4px' }}>
                   Growth
                 </div>
-                <div style={{ fontSize: '13.5px', color: '#94a3b8', lineHeight: 1.5 }}>
+                <div style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
                   Focused on measurable business growth and high-intent customer acquisition.
                 </div>
               </div>
@@ -991,10 +991,10 @@ export default function Home() {
                 🤝
               </div>
               <div>
-                <div style={{ fontSize: '17px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
+                <div style={{ fontSize: '17px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '4px' }}>
                   Support
                 </div>
-                <div style={{ fontSize: '13.5px', color: '#94a3b8', lineHeight: 1.5 }}>
+                <div style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
                   A dedicated digital partner for your journey from day one.
                 </div>
               </div>
@@ -1024,7 +1024,7 @@ export default function Home() {
                   fontSize: 'clamp(28px, 3.6vw, 44px)',
                   fontWeight: 700,
                   lineHeight: 1.2,
-                  color: '#ffffff',
+                  color: 'var(--text-white)',
                   marginBottom: '20px',
                   letterSpacing: '-0.02em',
                 }}
@@ -1035,11 +1035,11 @@ export default function Home() {
                 </span>
               </h2>
 
-              <p style={{ fontSize: '16px', color: '#d1d5db', lineHeight: 1.7, marginBottom: '16px' }}>
+              <p style={{ fontSize: '16px', color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: '16px' }}>
                 Ganesha Digital Ads (GDAs) is a digital growth company helping businesses build their brand, reach the right audience and grow online.
               </p>
 
-              <p style={{ fontSize: '15px', color: '#9ca3af', lineHeight: 1.7, marginBottom: '28px' }}>
+              <p style={{ fontSize: '15px', color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '28px' }}>
                 From Marketing and Branding to Websites and Technology, we bring multiple digital solutions together so you don't have to manage everything separately.
               </p>
 
@@ -1417,10 +1417,10 @@ export default function Home() {
                 >
                   {card.emoji}
                 </div>
-                <h3 style={{ fontSize: '19px', fontWeight: 700, color: '#ffffff', marginBottom: '10px' }}>
+                <h3 style={{ fontSize: '19px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '10px' }}>
                   {card.title}
                 </h3>
-                <p style={{ fontSize: '14.5px', color: '#a3a3a3', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '14.5px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                   {card.desc}
                 </p>
               </motion.div>
@@ -1503,10 +1503,10 @@ export default function Home() {
                 >
                   {step.step}.
                 </div>
-                <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#ffffff', marginBottom: '8px' }}>
+                <h3 style={{ fontSize: '18px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '8px' }}>
                   {step.title}
                 </h3>
-                <p style={{ fontSize: '14px', color: '#a3a3a3', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                   {step.desc}
                 </p>
               </motion.div>
@@ -1625,10 +1625,10 @@ export default function Home() {
                     <div style={{ fontSize: '11.5px', color: '#94a3b8', fontWeight: 600, marginBottom: '4px' }}>
                       {item.subCategory}
                     </div>
-                    <h3 style={{ fontSize: '19px', fontWeight: 700, color: '#ffffff', marginBottom: '8px' }}>
+                    <h3 style={{ fontSize: '19px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '8px' }}>
                       {item.title}
                     </h3>
-                    <p style={{ fontSize: '13.5px', color: '#a3a3a3', lineHeight: 1.55 }}>
+                    <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
                       {item.description}
                     </p>
                   </div>
@@ -1699,10 +1699,10 @@ export default function Home() {
                 >
                   {stat.num}
                 </div>
-                <div style={{ fontSize: '16px', fontWeight: 700, color: '#ffffff', marginBottom: '4px' }}>
+                <div style={{ fontSize: '16px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '4px' }}>
                   {stat.label}
                 </div>
-                <div style={{ fontSize: '12.5px', color: '#94a3b8' }}>
+                <div style={{ fontSize: '12.5px', color: 'var(--text-dim)' }}>
                   {stat.sub}
                 </div>
               </motion.div>
@@ -1918,10 +1918,10 @@ export default function Home() {
                     }}
                   />
                   <div>
-                    <div style={{ fontSize: '15px', fontWeight: 700, color: '#ffffff' }}>
+                    <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-white)' }}>
                       {t.name}
                     </div>
-                    <div style={{ fontSize: '12px', color: '#94a3b8' }}>
+                    <div style={{ fontSize: '12px', color: 'var(--text-dim)' }}>
                       {t.role}
                     </div>
                   </div>
@@ -2073,7 +2073,7 @@ export default function Home() {
               style={{
                 fontSize: 'clamp(32px, 4.8vw, 54px)',
                 fontWeight: 800,
-                color: '#ffffff',
+                color: 'var(--text-white)',
                 lineHeight: 1.12,
                 letterSpacing: '-0.03em',
                 marginBottom: '16px',
@@ -2189,41 +2189,41 @@ export default function Home() {
                 >
                   <img src="/gda_logo.png" alt="GDAs Logo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
-                <span style={{ fontWeight: 800, fontSize: '18px', color: '#ffffff' }}>GDAs</span>
+                <span style={{ fontWeight: 800, fontSize: '18px', color: 'var(--text-white)' }}>GDAs</span>
               </div>
               <div style={{ fontSize: '13px', fontWeight: 700, color: '#60a5fa', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '8px' }}>
                 GANESHA DIGITAL ADS
               </div>
-              <p style={{ fontSize: '14px', color: '#cbd5e1', fontWeight: 500, marginBottom: '16px' }}>
+              <p style={{ fontSize: '14px', color: 'var(--text-secondary)', fontWeight: 500, marginBottom: '16px' }}>
                 Digital Ka Saath, Aapke Business Ka Vikas.
               </p>
-              <p style={{ fontSize: '12.5px', color: '#737373', lineHeight: 1.5 }}>
+              <p style={{ fontSize: '12.5px', color: 'var(--text-dim)', lineHeight: 1.5 }}>
                 Built with a Vision. Driven by a Legacy. Father Never Dies.
               </p>
             </div>
 
             {/* Quick Links */}
             <div>
-              <div style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
+              <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--text-white)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
                 Quick Links
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px' }}>
-                <Link href="/" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Home</Link>
-                <Link href="/about" style={{ color: '#a3a3a3', textDecoration: 'none' }}>About</Link>
-                <Link href="/services" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Services</Link>
-                <Link href="/training" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Training</Link>
-                <a href="#portfolio" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Portfolio</a>
-                <Link href="/blog" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Blog</Link>
-                <Link href="/careers" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Careers</Link>
+                <Link href="/" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Home</Link>
+                <Link href="/about" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>About</Link>
+                <Link href="/services" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Services</Link>
+                <Link href="/training" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Training</Link>
+                <a href="#portfolio" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Portfolio</a>
+                <Link href="/blog" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Blog</Link>
+                <Link href="/careers" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Careers</Link>
               </div>
             </div>
 
             {/* Services */}
             <div>
-              <div style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
+              <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--text-white)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
                 Services
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px', color: '#a3a3a3' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px', color: 'var(--text-secondary)' }}>
                 <span>Digital Marketing</span>
                 <span>Branding</span>
                 <span>Website</span>
@@ -2235,11 +2235,11 @@ export default function Home() {
 
             {/* Contact & Socials */}
             <div>
-              <div style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
+              <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--text-white)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
                 Contact & Connect
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px', marginBottom: '20px' }}>
-                <a href="tel:9939862765" style={{ color: '#a3a3a3', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                <a href="tel:9939862765" style={{ color: 'var(--text-secondary)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
                   <span>📞</span> <span>+91 9939862765</span>
                 </a>
               </div>
@@ -2348,10 +2348,10 @@ export default function Home() {
                 <div style={{ fontSize: '11px', fontWeight: 800, color: '#60a5fa', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '4px' }}>
                   Grow With GDAs
                 </div>
-                <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#ffffff' }}>
+                <h3 style={{ fontSize: '22px', fontWeight: 800, color: 'var(--text-white)' }}>
                   Let's Discuss Your Business
                 </h3>
-                <p style={{ fontSize: '13px', color: '#9ca3af', marginTop: '4px' }}>
+                <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginTop: '4px' }}>
                   Fill in your details below and our team will get in touch with a customized digital growth plan.
                 </p>
               </div>
@@ -2359,10 +2359,10 @@ export default function Home() {
               {formSubmitted ? (
                 <div style={{ textAlign: 'center', padding: '30px 10px' }}>
                   <div style={{ fontSize: '42px', marginBottom: '12px' }}>✅</div>
-                  <h4 style={{ fontSize: '20px', fontWeight: 700, color: '#ffffff', marginBottom: '8px' }}>
+                  <h4 style={{ fontSize: '20px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '8px' }}>
                     Request Sent Successfully!
                   </h4>
-                  <p style={{ fontSize: '14px', color: '#a3a3a3', marginBottom: '20px' }}>
+                  <p style={{ fontSize: '14px', color: 'var(--text-secondary)', marginBottom: '20px' }}>
                     Our growth team will review your business details and connect with you shortly.
                   </p>
                   <button
@@ -2379,7 +2379,7 @@ export default function Home() {
               ) : (
                 <form onSubmit={handleFormSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                   <div>
-                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>
+                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '6px' }}>
                       Your Name *
                     </label>
                     <input
@@ -2391,10 +2391,10 @@ export default function Home() {
                       style={{
                         width: '100%',
                         padding: '11px 14px',
-                        background: '#141414',
-                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        background: 'var(--bg-card)',
+                        border: '1px solid var(--border-medium)',
                         borderRadius: '10px',
-                        color: '#ffffff',
+                        color: 'var(--text-white)',
                         fontSize: '14px',
                         outline: 'none',
                       }}
@@ -2402,7 +2402,7 @@ export default function Home() {
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>
+                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '6px' }}>
                       Phone / WhatsApp Number *
                     </label>
                     <input
@@ -2414,10 +2414,10 @@ export default function Home() {
                       style={{
                         width: '100%',
                         padding: '11px 14px',
-                        background: '#141414',
-                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        background: 'var(--bg-card)',
+                        border: '1px solid var(--border-medium)',
                         borderRadius: '10px',
-                        color: '#ffffff',
+                        color: 'var(--text-white)',
                         fontSize: '14px',
                         outline: 'none',
                       }}
@@ -2425,7 +2425,7 @@ export default function Home() {
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>
+                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '6px' }}>
                       Business Name or Industry
                     </label>
                     <input
@@ -2436,10 +2436,10 @@ export default function Home() {
                       style={{
                         width: '100%',
                         padding: '11px 14px',
-                        background: '#141414',
-                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        background: 'var(--bg-card)',
+                        border: '1px solid var(--border-medium)',
                         borderRadius: '10px',
-                        color: '#ffffff',
+                        color: 'var(--text-white)',
                         fontSize: '14px',
                         outline: 'none',
                       }}
@@ -2447,7 +2447,7 @@ export default function Home() {
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>
+                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '6px' }}>
                       Service Required
                     </label>
                     <select
@@ -2456,10 +2456,10 @@ export default function Home() {
                       style={{
                         width: '100%',
                         padding: '11px 14px',
-                        background: '#141414',
-                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        background: 'var(--bg-card)',
+                        border: '1px solid var(--border-medium)',
                         borderRadius: '10px',
-                        color: '#ffffff',
+                        color: 'var(--text-white)',
                         fontSize: '14px',
                         outline: 'none',
                       }}
@@ -2481,7 +2481,7 @@ export default function Home() {
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>
+                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '6px' }}>
                       Message or Requirements (Optional)
                     </label>
                     <textarea
@@ -2492,10 +2492,10 @@ export default function Home() {
                       style={{
                         width: '100%',
                         padding: '11px 14px',
-                        background: '#141414',
-                        border: '1px solid rgba(255, 255, 255, 0.12)',
+                        background: 'var(--bg-card)',
+                        border: '1px solid var(--border-medium)',
                         borderRadius: '10px',
-                        color: '#ffffff',
+                        color: 'var(--text-white)',
                         fontSize: '14px',
                         outline: 'none',
                         resize: 'none',

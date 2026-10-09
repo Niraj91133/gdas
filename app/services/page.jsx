@@ -320,7 +320,7 @@ export default function ServicesPage() {
       : servicesCatalog.filter((s) => s.category === activeTab);
 
   return (
-    <div style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#000000', color: '#ffffff', overflowX: 'hidden' }}>
+    <div style={{ position: 'relative', minHeight: '100vh', backgroundColor: 'var(--bg-black)', color: 'var(--text-white)', overflowX: 'hidden' }}>
 
       {/* Top Ambient Glow */}
       <div className="bg-ambient-top" />
@@ -358,7 +358,7 @@ export default function ServicesPage() {
             <div style={{ width: '36px', height: '36px', borderRadius: '10px', background: '#0d3899', border: '1px solid rgba(59, 130, 246, 0.4)', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
               <img src="/gda_logo.png" alt="GDAs Logo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
-            <span style={{ fontWeight: 800, fontSize: '19px', color: '#ffffff', letterSpacing: '-0.02em' }}>GDAs</span>
+            <span style={{ fontWeight: 800, fontSize: '19px', color: 'var(--text-white)', letterSpacing: '-0.02em' }}>GDAs</span>
           </Link>
 
           <nav style={{ display: 'flex', alignItems: 'center', gap: '26px' }} className="desktop-nav">
@@ -727,10 +727,10 @@ export default function ServicesPage() {
                 <div style={{ fontSize: '28px', fontWeight: 800, color: p.color, marginBottom: '10px' }}>
                   {p.step} —
                 </div>
-                <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#ffffff', marginBottom: '8px' }}>
+                <h3 style={{ fontSize: '18px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '8px' }}>
                   {p.title}
                 </h3>
-                <p style={{ fontSize: '13.5px', color: '#a3a3a3', lineHeight: 1.55 }}>
+                <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
                   {p.desc}
                 </p>
               </motion.div>
@@ -800,10 +800,10 @@ export default function ServicesPage() {
                 }}
               >
                 <div style={{ fontSize: '30px', marginBottom: '14px' }}>{card.icon}</div>
-                <h3 style={{ fontSize: '18px', fontWeight: 700, color: '#ffffff', marginBottom: '8px' }}>
+                <h3 style={{ fontSize: '18px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '8px' }}>
                   {card.title}
                 </h3>
-                <p style={{ fontSize: '14px', color: '#a3a3a3', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                   {card.desc}
                 </p>
               </motion.div>
@@ -860,7 +860,7 @@ export default function ServicesPage() {
                   borderRadius: '50px',
                   background: 'rgba(255, 255, 255, 0.04)',
                   border: '1px solid rgba(59, 130, 246, 0.3)',
-                  color: '#ffffff',
+                  color: 'var(--text-white)',
                   fontSize: '15px',
                   fontWeight: 600,
                   boxShadow: '0 4px 15px rgba(0, 0, 0, 0.4)',
@@ -904,7 +904,7 @@ export default function ServicesPage() {
               style={{
                 fontSize: 'clamp(30px, 4.4vw, 50px)',
                 fontWeight: 800,
-                color: '#ffffff',
+                color: 'var(--text-white)',
                 lineHeight: 1.15,
                 marginBottom: '16px',
                 letterSpacing: '-0.02em',
@@ -986,39 +986,39 @@ export default function ServicesPage() {
                 <div style={{ width: '34px', height: '34px', borderRadius: '8px', background: '#0d3899', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                   <img src="/gda_logo.png" alt="GDAs Logo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 </div>
-                <span style={{ fontWeight: 800, fontSize: '18px', color: '#ffffff' }}>GDAs</span>
+                <span style={{ fontWeight: 800, fontSize: '18px', color: 'var(--text-white)' }}>GDAs</span>
               </div>
               <div style={{ fontSize: '13px', fontWeight: 700, color: '#60a5fa', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '8px' }}>
                 GANESHA DIGITAL ADS
               </div>
-              <p style={{ fontSize: '14px', color: '#cbd5e1', marginBottom: '12px' }}>
+              <p style={{ fontSize: '14px', color: 'var(--text-secondary)', marginBottom: '12px' }}>
                 Digital Ka Saath, Aapke Business Ka Vikas.
               </p>
-              <p style={{ fontSize: '12.5px', color: '#737373' }}>
+              <p style={{ fontSize: '12.5px', color: 'var(--text-dim)' }}>
                 Built with a Vision. Driven by a Legacy. Father Never Dies.
               </p>
             </div>
 
             <div>
-              <div style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
+              <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--text-white)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
                 Quick Links
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px' }}>
-                <Link href="/" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Home</Link>
-                <Link href="/about" style={{ color: '#a3a3a3', textDecoration: 'none' }}>About</Link>
+                <Link href="/" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Home</Link>
+                <Link href="/about" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>About</Link>
                 <Link href="/services" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 600 }}>Services</Link>
-                <Link href="/training" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Training</Link>
-                <Link href="/blog" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Blog</Link>
-                <Link href="/careers" style={{ color: '#a3a3a3', textDecoration: 'none' }}>Careers</Link>
+                <Link href="/training" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Training</Link>
+                <Link href="/blog" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Blog</Link>
+                <Link href="/careers" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Careers</Link>
               </div>
             </div>
 
             <div>
-              <div style={{ fontSize: '14px', fontWeight: 700, color: '#ffffff', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
+              <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--text-white)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
                 Contact & Connect
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px', marginBottom: '16px' }}>
-                <a href="tel:9939862765" style={{ color: '#a3a3a3', textDecoration: 'none' }}>📞 +91 9939862765</a>
+                <a href="tel:9939862765" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>📞 +91 9939862765</a>
               </div>
               <SocialLinks />
             </div>
@@ -1071,29 +1071,29 @@ export default function ServicesPage() {
                 <div style={{ fontSize: '11px', fontWeight: 800, color: '#60a5fa', textTransform: 'uppercase' }}>
                   Grow With GDAs
                 </div>
-                <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#ffffff', marginTop: '4px' }}>
+                <h3 style={{ fontSize: '22px', fontWeight: 800, color: 'var(--text-white)', marginTop: '4px' }}>
                   {selectedServiceForModal}
                 </h3>
-                <p style={{ fontSize: '13px', color: '#94a3b8', marginTop: '2px' }}>
+                <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginTop: '2px' }}>
                   Tell us about your business goals and get a custom strategy tailored for you.
                 </p>
               </div>
 
               <form onSubmit={handleFormSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>Your Name *</label>
+                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '6px' }}>Your Name *</label>
                   <input
                     type="text"
                     required
                     placeholder="Your Name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    style={{ width: '100%', padding: '11px 14px', background: '#141414', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '10px', color: '#fff', fontSize: '14px', outline: 'none' }}
+                    style={{ width: '100%', padding: '11px 14px', background: 'var(--bg-card)', border: '1px solid var(--border-medium)', borderRadius: '10px', color: 'var(--text-white)', fontSize: '14px', outline: 'none' }}
                   />
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>Phone / WhatsApp *</label>
+                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '6px' }}>Phone / WhatsApp *</label>
                   <input
                     type="tel"
                     required

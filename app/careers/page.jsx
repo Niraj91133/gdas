@@ -86,8 +86,8 @@ export default function CareersPage() {
       style={{
         position: 'relative',
         minHeight: '100vh',
-        backgroundColor: '#000000',
-        color: '#ffffff',
+        backgroundColor: 'var(--bg-black)',
+        color: 'var(--text-white)',
         overflowX: 'hidden',
       }}
     >
@@ -100,7 +100,7 @@ export default function CareersPage() {
         style={{ position: 'fixed', top: '20px', left: 0, right: 0, margin: '0 auto', width: 'calc(100% - 40px)', maxWidth: '1100px', zIndex: 100 }}
       >
         <div className="glass-nav" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 24px', borderRadius: '9999px' }}>
-          <Link href="/" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: '#fff' }}>
+          <Link href="/" onMouseEnter={() => setCursorHovered(true)} onMouseLeave={() => setCursorHovered(false)} style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: 'var(--text-white)' }}>
             <div
               style={{
                 width: '34px',
@@ -318,30 +318,30 @@ export default function CareersPage() {
                     <span className="pulse-dot" />
                     <span>{selectedRole?.department || 'Career Opportunity'}</span>
                   </div>
-                  <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#fff', marginBottom: '4px' }}>
+                  <h3 style={{ fontSize: '20px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '4px' }}>
                     Apply: <span className="serif-italic">{selectedRole?.title}</span>
                   </h3>
-                  <p style={{ fontSize: '12.5px', color: '#888', marginBottom: '18px' }}>Direct application to the founding growth team.</p>
+                  <p style={{ fontSize: '12.5px', color: 'var(--text-secondary)', marginBottom: '18px' }}>Direct application to the founding growth team.</p>
 
                   <form onSubmit={handleApplySubmit} style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                     <div>
-                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#a3a3a3', marginBottom: '4px' }}>Full Name</label>
-                      <input type="text" required placeholder="e.g. Alex Morgan" value={applyForm.name} onChange={(e) => setApplyForm({ ...applyForm, name: e.target.value })} style={{ width: '100%', background: '#141414', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '10px 14px', color: '#fff', fontSize: '13px', outline: 'none' }} />
+                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '4px' }}>Full Name</label>
+                      <input type="text" required placeholder="e.g. Alex Morgan" value={applyForm.name} onChange={(e) => setApplyForm({ ...applyForm, name: e.target.value })} style={{ width: '100%', background: 'var(--bg-card)', border: '1px solid var(--border-medium)', borderRadius: '8px', padding: '10px 14px', color: 'var(--text-white)', fontSize: '13px', outline: 'none' }} />
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#a3a3a3', marginBottom: '4px' }}>Email Address</label>
-                      <input type="email" required placeholder="alex@gmail.com" value={applyForm.email} onChange={(e) => setApplyForm({ ...applyForm, email: e.target.value })} style={{ width: '100%', background: '#141414', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '10px 14px', color: '#fff', fontSize: '13px', outline: 'none' }} />
+                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '4px' }}>Email Address</label>
+                      <input type="email" required placeholder="alex@gmail.com" value={applyForm.email} onChange={(e) => setApplyForm({ ...applyForm, email: e.target.value })} style={{ width: '100%', background: 'var(--bg-card)', border: '1px solid var(--border-medium)', borderRadius: '8px', padding: '10px 14px', color: 'var(--text-white)', fontSize: '13px', outline: 'none' }} />
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#a3a3a3', marginBottom: '4px' }}>Portfolio / LinkedIn / Work Links</label>
-                      <input type="url" required placeholder="https://linkedin.com/in/... or drive link" value={applyForm.portfolio} onChange={(e) => setApplyForm({ ...applyForm, portfolio: e.target.value })} style={{ width: '100%', background: '#141414', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '10px 14px', color: '#fff', fontSize: '13px', outline: 'none' }} />
+                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '4px' }}>Portfolio / LinkedIn / Work Links</label>
+                      <input type="url" required placeholder="https://linkedin.com/in/... or drive link" value={applyForm.portfolio} onChange={(e) => setApplyForm({ ...applyForm, portfolio: e.target.value })} style={{ width: '100%', background: 'var(--bg-card)', border: '1px solid var(--border-medium)', borderRadius: '8px', padding: '10px 14px', color: 'var(--text-white)', fontSize: '13px', outline: 'none' }} />
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#a3a3a3', marginBottom: '4px' }}>Years of Experience</label>
-                      <select value={applyForm.experience} onChange={(e) => setApplyForm({ ...applyForm, experience: e.target.value })} style={{ width: '100%', background: '#141414', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '10px 14px', color: '#fff', fontSize: '13px', outline: 'none' }}>
+                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '4px' }}>Years of Experience</label>
+                      <select value={applyForm.experience} onChange={(e) => setApplyForm({ ...applyForm, experience: e.target.value })} style={{ width: '100%', background: 'var(--bg-card)', border: '1px solid var(--border-medium)', borderRadius: '8px', padding: '10px 14px', color: 'var(--text-white)', fontSize: '13px', outline: 'none' }}>
                         <option value="1 - 2 Years">1 - 2 Years</option>
                         <option value="2 - 4 Years">2 - 4 Years</option>
                         <option value="5+ Years">5+ Years (Senior Lead)</option>
@@ -349,8 +349,8 @@ export default function CareersPage() {
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#a3a3a3', marginBottom: '4px' }}>Why are you a fit for this role?</label>
-                      <textarea rows={3} placeholder="Briefly describe your most successful ad campaign or video project..." value={applyForm.coverNote} onChange={(e) => setApplyForm({ ...applyForm, coverNote: e.target.value })} style={{ width: '100%', background: '#141414', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', padding: '10px 14px', color: '#fff', fontSize: '13px', outline: 'none', resize: 'none' }} />
+                      <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '4px' }}>Why are you a fit for this role?</label>
+                      <textarea rows={3} placeholder="Briefly describe your most successful ad campaign or video project..." value={applyForm.coverNote} onChange={(e) => setApplyForm({ ...applyForm, coverNote: e.target.value })} style={{ width: '100%', background: 'var(--bg-card)', border: '1px solid var(--border-medium)', borderRadius: '8px', padding: '10px 14px', color: 'var(--text-white)', fontSize: '13px', outline: 'none', resize: 'none' }} />
                     </div>
 
                     <button type="submit" className="btn btn-primary" style={{ marginTop: '6px', padding: '12px', fontSize: '14px', fontWeight: 700 }}>

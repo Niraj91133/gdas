@@ -332,8 +332,8 @@ export default function TrainingPage() {
       style={{
         position: 'relative',
         minHeight: '100vh',
-        backgroundColor: '#000000',
-        color: '#ffffff',
+        backgroundColor: 'var(--bg-black)',
+        color: 'var(--text-white)',
         overflowX: 'hidden',
       }}
     >
@@ -404,7 +404,7 @@ export default function TrainingPage() {
                 }}
               />
             </div>
-            <span style={{ fontWeight: 800, fontSize: '18px', letterSpacing: '-0.02em', color: '#ffffff' }}>
+            <span style={{ fontWeight: 800, fontSize: '18px', letterSpacing: '-0.02em', color: 'var(--text-white)' }}>
               GDAs
             </span>
           </Link>
@@ -1804,9 +1804,9 @@ export default function TrainingPage() {
                         width: '100%',
                         padding: '11px 14px',
                         borderRadius: '10px',
-                        background: '#111827',
-                        border: '1px solid rgba(255,255,255,0.12)',
-                        color: '#fff',
+                        background: 'var(--bg-card)',
+                        border: '1px solid var(--border-medium)',
+                        color: 'var(--text-white)',
                         fontSize: '14px',
                         outline: 'none',
                       }}
@@ -1821,7 +1821,7 @@ export default function TrainingPage() {
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: '#d1d5db', marginBottom: '6px' }}>
+                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--text-secondary)', marginBottom: '6px' }}>
                       Your Current Background
                     </label>
                     <select
@@ -1831,9 +1831,9 @@ export default function TrainingPage() {
                         width: '100%',
                         padding: '11px 14px',
                         borderRadius: '10px',
-                        background: '#111827',
-                        border: '1px solid rgba(255,255,255,0.12)',
-                        color: '#fff',
+                        background: 'var(--bg-card)',
+                        border: '1px solid var(--border-medium)',
+                        color: 'var(--text-white)',
                         fontSize: '14px',
                         outline: 'none',
                       }}
@@ -1847,7 +1847,7 @@ export default function TrainingPage() {
                   </div>
 
                   <div>
-                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: '#d1d5db', marginBottom: '6px' }}>
+                    <label style={{ display: 'block', fontSize: '12px', fontWeight: 700, color: 'var(--text-secondary)', marginBottom: '6px' }}>
                       Any Specific Goal / Query? (Optional)
                     </label>
                     <textarea
@@ -1859,9 +1859,9 @@ export default function TrainingPage() {
                         width: '100%',
                         padding: '10px 14px',
                         borderRadius: '10px',
-                        background: 'rgba(255,255,255,0.06)',
-                        border: '1px solid rgba(255,255,255,0.12)',
-                        color: '#fff',
+                        background: 'var(--bg-card)',
+                        border: '1px solid var(--border-medium)',
+                        color: 'var(--text-white)',
                         fontSize: '13px',
                         outline: 'none',
                         resize: 'none',
@@ -1901,7 +1901,7 @@ export default function TrainingPage() {
               borderBottom: '1px solid rgba(255,255,255,0.06)',
             }}
           >
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: '#fff' }}>
+            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: 'var(--text-white)' }}>
               <div
                 style={{
                   width: '30px',
@@ -1930,12 +1930,12 @@ export default function TrainingPage() {
             </Link>
 
             <div style={{ display: 'flex', gap: '22px', fontSize: '13.5px', flexWrap: 'wrap', alignItems: 'center' }}>
-              <Link href="/" style={{ color: '#9ca3af', textDecoration: 'none' }}>Home</Link>
-              <Link href="/about" style={{ color: '#9ca3af', textDecoration: 'none' }}>About</Link>
-              <Link href="/services" style={{ color: '#9ca3af', textDecoration: 'none' }}>Services</Link>
+              <Link href="/" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Home</Link>
+              <Link href="/about" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>About</Link>
+              <Link href="/services" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Services</Link>
               <Link href="/training" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 700 }}>Training</Link>
-              <Link href="/blog" style={{ color: '#9ca3af', textDecoration: 'none' }}>Blog</Link>
-              <Link href="/careers" style={{ color: '#9ca3af', textDecoration: 'none' }}>Careers</Link>
+              <Link href="/blog" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Blog</Link>
+              <Link href="/careers" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Careers</Link>
               <SocialLinks size={32} />
             </div>
           </div>

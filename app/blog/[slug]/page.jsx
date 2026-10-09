@@ -50,8 +50,8 @@ export default function BlogPostDetail({ params }) {
       style={{
         position: 'relative',
         minHeight: '100vh',
-        backgroundColor: '#000000',
-        color: '#ffffff',
+        backgroundColor: 'var(--bg-black)',
+        color: 'var(--text-white)',
         overflowX: 'hidden',
       }}
     >
@@ -122,7 +122,7 @@ export default function BlogPostDetail({ params }) {
                 }}
               />
             </div>
-            <span style={{ fontWeight: 800, fontSize: '18px', letterSpacing: '-0.02em', color: '#ffffff' }}>
+            <span style={{ fontWeight: 800, fontSize: '18px', letterSpacing: '-0.02em', color: 'var(--text-white)' }}>
               GDAs
             </span>
           </Link>
@@ -635,7 +635,7 @@ export default function BlogPostDetail({ params }) {
               borderBottom: '1px solid rgba(255,255,255,0.06)',
             }}
           >
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: '#fff' }}>
+            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: 'var(--text-white)' }}>
               <div
                 style={{
                   width: '30px',
@@ -660,12 +660,12 @@ export default function BlogPostDetail({ params }) {
             </Link>
 
             <div style={{ display: 'flex', gap: '22px', fontSize: '13.5px', flexWrap: 'wrap', alignItems: 'center' }}>
-              <Link href="/" style={{ color: '#9ca3af', textDecoration: 'none' }}>Home</Link>
-              <Link href="/about" style={{ color: '#9ca3af', textDecoration: 'none' }}>About</Link>
-              <Link href="/services" style={{ color: '#9ca3af', textDecoration: 'none' }}>Services</Link>
-              <Link href="/training" style={{ color: '#9ca3af', textDecoration: 'none' }}>Training</Link>
+              <Link href="/" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Home</Link>
+              <Link href="/about" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>About</Link>
+              <Link href="/services" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Services</Link>
+              <Link href="/training" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Training</Link>
               <Link href="/blog" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 700 }}>Blog</Link>
-              <Link href="/careers" style={{ color: '#9ca3af', textDecoration: 'none' }}>Careers</Link>
+              <Link href="/careers" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Careers</Link>
               <SocialLinks size={32} />
             </div>
           </div>

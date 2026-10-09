@@ -119,7 +119,7 @@ export default function AboutPage() {
   ];
 
   return (
-    <div style={{ position: 'relative', minHeight: '100vh', backgroundColor: '#000000', color: '#ffffff', overflowX: 'hidden' }}>
+    <div style={{ position: 'relative', minHeight: '100vh', backgroundColor: 'var(--bg-black)', color: 'var(--text-white)', overflowX: 'hidden' }}>
       {/* Top Ambient Glow */}
       <div className="bg-ambient-top" />
 
@@ -171,7 +171,7 @@ export default function AboutPage() {
             >
               <img src="/gda_logo.png" alt="GDAs Logo" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
-            <span style={{ fontWeight: 800, fontSize: '19px', color: '#ffffff', letterSpacing: '-0.02em' }}>
+            <span style={{ fontWeight: 800, fontSize: '19px', color: 'var(--text-white)', letterSpacing: '-0.02em' }}>
               GDAs
             </span>
           </Link>
@@ -1190,10 +1190,10 @@ export default function AboutPage() {
                 <div style={{ fontSize: '11px', fontWeight: 700, color: '#60a5fa', textTransform: 'uppercase' }}>
                   {selectedCert.institution} • {selectedCert.year}
                 </div>
-                <h3 style={{ fontSize: '20px', fontWeight: 800, color: '#ffffff', marginTop: '2px' }}>
+                <h3 style={{ fontSize: '20px', fontWeight: 800, color: 'var(--text-white)', marginTop: '2px' }}>
                   {selectedCert.title}
                 </h3>
-                <div style={{ fontSize: '12px', color: '#94a3b8' }}>
+                <div style={{ fontSize: '12px', color: 'var(--text-dim)' }}>
                   Certificate ID: {selectedCert.certNo}
                 </div>
               </div>
@@ -1245,40 +1245,40 @@ export default function AboutPage() {
                 <div style={{ fontSize: '11px', fontWeight: 800, color: '#60a5fa', textTransform: 'uppercase' }}>
                   Connect with GDAs
                 </div>
-                <h3 style={{ fontSize: '22px', fontWeight: 800, color: '#ffffff', marginTop: '4px' }}>
+                <h3 style={{ fontSize: '22px', fontWeight: 800, color: 'var(--text-white)', marginTop: '4px' }}>
                   Talk to Our Growth Team
                 </h3>
               </div>
 
               <form onSubmit={handleFormSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
                 <div>
-                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>Your Name *</label>
+                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '6px' }}>Your Name *</label>
                   <input
                     type="text"
                     required
                     placeholder="Your Name"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    style={{ width: '100%', padding: '11px 14px', background: '#141414', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '10px', color: '#fff', fontSize: '14px', outline: 'none' }}
+                    style={{ width: '100%', padding: '11px 14px', background: 'var(--bg-card)', border: '1px solid var(--border-medium)', borderRadius: '10px', color: 'var(--text-white)', fontSize: '14px', outline: 'none' }}
                   />
                 </div>
                 <div>
-                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>Phone / WhatsApp *</label>
+                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '6px' }}>Phone / WhatsApp *</label>
                   <input
                     type="tel"
                     required
                     placeholder="+91 9939862765"
                     value={formData.phone}
                     onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    style={{ width: '100%', padding: '11px 14px', background: '#141414', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '10px', color: '#fff', fontSize: '14px', outline: 'none' }}
+                    style={{ width: '100%', padding: '11px 14px', background: 'var(--bg-card)', border: '1px solid var(--border-medium)', borderRadius: '10px', color: 'var(--text-white)', fontSize: '14px', outline: 'none' }}
                   />
                 </div>
                 <div>
-                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>Service Required</label>
+                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '6px' }}>Service Required</label>
                   <select
                     value={formData.service}
                     onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                    style={{ width: '100%', padding: '11px 14px', background: '#141414', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '10px', color: '#fff', fontSize: '14px', outline: 'none' }}
+                    style={{ width: '100%', padding: '11px 14px', background: 'var(--bg-card)', border: '1px solid var(--border-medium)', borderRadius: '10px', color: 'var(--text-white)', fontSize: '14px', outline: 'none' }}
                   >
                     <option value="Digital Marketing">Digital Marketing (Meta & Google Ads)</option>
                     <option value="Branding & Creative">Branding & Creative Design</option>
@@ -1287,13 +1287,13 @@ export default function AboutPage() {
                   </select>
                 </div>
                 <div>
-                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: '#cbd5e1', marginBottom: '6px' }}>Message (Optional)</label>
+                  <label style={{ display: 'block', fontSize: '12px', fontWeight: 600, color: 'var(--text-secondary)', marginBottom: '6px' }}>Message (Optional)</label>
                   <textarea
                     rows={3}
                     placeholder="Tell us about your business requirements..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    style={{ width: '100%', padding: '11px 14px', background: '#141414', border: '1px solid rgba(255, 255, 255, 0.12)', borderRadius: '10px', color: '#fff', fontSize: '14px', outline: 'none', resize: 'none' }}
+                    style={{ width: '100%', padding: '11px 14px', background: 'var(--bg-card)', border: '1px solid var(--border-medium)', borderRadius: '10px', color: 'var(--text-white)', fontSize: '14px', outline: 'none', resize: 'none' }}
                   />
                 </div>
                 <button type="submit" className="btn-primary" style={{ width: '100%', padding: '13px', fontSize: '15px', fontWeight: 700, marginTop: '6px' }}>

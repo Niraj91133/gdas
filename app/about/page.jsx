@@ -192,14 +192,14 @@ export default function AboutPage() {
             <ThemeToggle />
             <button
               onClick={() => setModalOpen(true)}
-              className="btn-primary"
+              className="btn-primary header-cta-btn"
               style={{ padding: '9px 20px', fontSize: '13px' }}
             >
               Talk to GDAs
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              style={{ display: 'none', background: 'none', border: 'none', color: '#fff', cursor: 'pointer', padding: '6px' }}
+              style={{ display: 'none', background: 'none', border: 'none', color: 'var(--text-white)', cursor: 'pointer', padding: '6px' }}
               className="mobile-toggle"
               aria-label="Toggle menu"
             >
@@ -453,7 +453,12 @@ export default function AboutPage() {
             </p>
           </div>
 
+          <div style={{ textAlign: 'center' }}>
+            <span className="mobile-swipe-hint">Swipe pillars →</span>
+          </div>
+
           <div
+            className="mobile-horizontal-scroll"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
@@ -788,7 +793,12 @@ export default function AboutPage() {
               </p>
             </div>
 
+            <div style={{ textAlign: 'center' }}>
+              <span className="mobile-swipe-hint">Swipe certificates →</span>
+            </div>
+
             <div
+              className="mobile-horizontal-scroll"
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
@@ -848,7 +858,7 @@ export default function AboutPage() {
                     </p>
                     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '12px', color: '#3b82f6', fontWeight: 600 }}>
                       <span>View Full Certificate</span>
-                      <span>🔍</span>
+                      <span>→</span>
                     </div>
                   </div>
                 </motion.div>
@@ -1008,7 +1018,7 @@ export default function AboutPage() {
             }}
           >
             <div className="cta-badge">
-              <span>🤝</span>
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#3b82f6', display: 'inline-block' }} />
               <span>Let's Grow Together</span>
             </div>
 
@@ -1048,7 +1058,7 @@ export default function AboutPage() {
               Digital Ka Saath, Aapke Business Ka Vikas.
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
+            <div className="mobile-btn-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
               <button
                 onClick={() => setModalOpen(true)}
                 className="btn-primary"
@@ -1065,7 +1075,6 @@ export default function AboutPage() {
                 style={{ padding: '14px 28px', fontSize: '15px', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '8px' }}
               >
                 <span>WhatsApp Us</span>
-                <span>💬</span>
               </a>
             </div>
           </div>

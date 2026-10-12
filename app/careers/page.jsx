@@ -139,11 +139,41 @@ export default function CareersPage() {
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             <ThemeToggle />
-            <a href="#open-roles" className="btn btn-primary" style={{ padding: '8px 18px', fontSize: '12.5px', fontWeight: 700, textDecoration: 'none' }}>
+            <a href="#open-roles" className="btn btn-primary header-cta-btn" style={{ padding: '8px 18px', fontSize: '12.5px', fontWeight: 700, textDecoration: 'none' }}>
               View Roles →
             </a>
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              style={{ display: 'none', background: 'none', border: 'none', color: 'var(--text-white)', cursor: 'pointer', padding: '6px' }}
+              className="mobile-toggle"
+              aria-label="Toggle menu"
+            >
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                {mobileMenuOpen ? <path d="M18 6L6 18M6 6l12 12" /> : <path d="M4 6h16M4 12h16M4 18h16" />}
+              </svg>
+            </button>
           </div>
         </div>
+
+        {/* Mobile Nav Drawer */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              className="glass-card"
+              style={{ marginTop: '10px', padding: '22px', borderRadius: '20px', display: 'flex', flexDirection: 'column', gap: '14px' }}
+            >
+              <Link href="/" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-white)', textDecoration: 'none' }}>Home</Link>
+              <Link href="/about" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-white)', textDecoration: 'none' }}>About</Link>
+              <Link href="/services" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-white)', textDecoration: 'none' }}>Services</Link>
+              <Link href="/training" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-white)', textDecoration: 'none' }}>Training</Link>
+              <Link href="/blog" onClick={() => setMobileMenuOpen(false)} style={{ color: 'var(--text-white)', textDecoration: 'none' }}>Blog</Link>
+              <Link href="/careers" onClick={() => setMobileMenuOpen(false)} style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 700 }}>Careers</Link>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.header>
 
       {/* Hero Section */}
@@ -165,15 +195,15 @@ export default function CareersPage() {
           </motion.p>
 
           {/* Perks Grid */}
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={blurFadeIn} custom={3} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px', marginTop: '20px' }}>
+          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={blurFadeIn} custom={3} className="mobile-stats-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px', marginTop: '20px' }}>
             {[
-              { title: '100% Remote First', desc: 'Work from anywhere in the world on flexible hours.', icon: '🌍' },
-              { title: 'Performance Profit Share', desc: 'Direct cash bonuses tied to client ad account scale.', icon: '💰' },
-              { title: 'High Creative Autonomy', desc: 'No micro-management. Own your campaigns & tests.', icon: '⚡' },
-              { title: 'Elite Learning Budget', desc: 'Access to any masterclass, course, or tool you need.', icon: '📚' },
+              { num: '01', title: '100% Remote First', desc: 'Work from anywhere in the world on flexible hours.' },
+              { num: '02', title: 'Performance Profit Share', desc: 'Direct cash bonuses tied to client ad account scale.' },
+              { num: '03', title: 'High Creative Autonomy', desc: 'No micro-management. Own your campaigns & tests.' },
+              { num: '04', title: 'Elite Learning Budget', desc: 'Access to any masterclass, course, or tool you need.' },
             ].map((perk, idx) => (
               <div key={idx} className="glass-card perk-card" style={{ borderRadius: '16px', padding: '22px 18px', textAlign: 'left' }}>
-                <div style={{ fontSize: '24px', marginBottom: '8px' }}>{perk.icon}</div>
+                <div style={{ fontSize: '13px', fontWeight: 800, color: '#3b82f6', letterSpacing: '0.06em', marginBottom: '8px' }}>{perk.num}</div>
                 <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '4px' }}>{perk.title}</div>
                 <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)' }}>{perk.desc}</div>
               </div>

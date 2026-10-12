@@ -71,7 +71,6 @@ export default function TrainingPage() {
         'Online Branding',
         'Marketing Fundamentals',
       ],
-      icon: '📈',
       color: '#2563eb',
       badge: 'Core Program',
     },
@@ -90,7 +89,6 @@ export default function TrainingPage() {
         'Retargeting',
         'Campaign Optimization',
       ],
-      icon: '🎯',
       color: '#2563eb',
       badge: 'High In-Demand',
     },
@@ -108,7 +106,6 @@ export default function TrainingPage() {
         'Conversion Tracking',
         'Remarketing',
       ],
-      icon: '🔍',
       color: '#2563eb',
       badge: 'High Intent',
     },
@@ -126,7 +123,6 @@ export default function TrainingPage() {
         'Google Business Profile',
         'SEO Optimization',
       ],
-      icon: '🚀',
       color: '#2563eb',
       badge: 'Organic Traffic',
     },
@@ -145,7 +141,6 @@ export default function TrainingPage() {
         'Engagement',
         'Social Media Management',
       ],
-      icon: '📱',
       color: '#2563eb',
       badge: 'Brand Authority',
     },
@@ -163,7 +158,6 @@ export default function TrainingPage() {
         'WhatsApp Leads',
         'Lead Management',
       ],
-      icon: '⚡',
       color: '#2563eb',
       badge: 'Revenue Focus',
     },
@@ -181,7 +175,6 @@ export default function TrainingPage() {
         'Marketing Automation',
         'Productivity Tools',
       ],
-      icon: '🤖',
       color: '#2563eb',
       badge: 'Next-Gen Tech',
     },
@@ -200,7 +193,6 @@ export default function TrainingPage() {
         'Responsive Web Development',
         'Website Optimization',
       ],
-      icon: '💻',
       color: '#2563eb',
       badge: 'Full Stack Web',
     },
@@ -470,7 +462,7 @@ export default function TrainingPage() {
               onMouseEnter={() => setCursorHovered(true)}
               onMouseLeave={() => setCursorHovered(false)}
               onClick={() => openProgramModal('General Training Enrollment')}
-              className="btn btn-primary"
+              className="btn btn-primary header-cta-btn"
               style={{ padding: '8px 18px', fontSize: '12.5px', fontWeight: 700 }}
             >
               Join GDAs Training →
@@ -485,7 +477,7 @@ export default function TrainingPage() {
                 display: 'none',
                 background: 'none',
                 border: 'none',
-                color: '#fff',
+                color: 'var(--text-white)',
                 cursor: 'pointer',
                 padding: '6px',
               }}
@@ -663,6 +655,7 @@ export default function TrainingPage() {
             viewport={{ once: true }}
             variants={blurFadeIn}
             custom={5}
+            className="mobile-btn-row"
             style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}
           >
             <motion.button
@@ -694,6 +687,7 @@ export default function TrainingPage() {
             viewport={{ once: true }}
             variants={blurFadeIn}
             custom={6}
+            className="mobile-stats-grid"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
@@ -749,7 +743,12 @@ export default function TrainingPage() {
             </p>
           </div>
 
+          <div style={{ textAlign: 'center' }}>
+            <span className="mobile-swipe-hint">Swipe programs →</span>
+          </div>
+
           <div
+            className="mobile-horizontal-scroll"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
@@ -1538,7 +1537,7 @@ export default function TrainingPage() {
               </div>
 
               {/* Action Button */}
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap', marginBottom: '24px' }}>
+              <div className="mobile-btn-row" style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap', marginBottom: '24px' }}>
                 <motion.button
                   whileHover={{ scale: 1.05, boxShadow: '0 0 35px rgba(37, 99, 235, 0.7)' }}
                   whileTap={{ scale: 0.96 }}
@@ -1559,7 +1558,7 @@ export default function TrainingPage() {
                   onMouseLeave={() => setCursorHovered(false)}
                   style={{ padding: '16px 30px', fontSize: '15px' }}
                 >
-                  Chat on WhatsApp 💬
+                  Chat on WhatsApp
                 </a>
               </div>
 
@@ -1727,7 +1726,11 @@ export default function TrainingPage() {
 
               {formSubmitted ? (
                 <div style={{ textAlign: 'center', padding: '30px 0' }}>
-                  <div style={{ fontSize: '42px', marginBottom: '12px' }}>✅</div>
+                  <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'rgba(34, 197, 94, 0.15)', border: '1.5px solid #22c55e', color: '#22c55e', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 12px auto' }}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </div>
                   <h4 style={{ fontSize: '18px', fontWeight: 800, color: '#fff' }}>
                     Redirecting to WhatsApp...
                   </h4>

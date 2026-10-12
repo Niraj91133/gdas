@@ -376,14 +376,14 @@ export default function ServicesPage() {
             <ThemeToggle />
             <button
               onClick={() => openServiceModal('Complete Digital Growth Suite')}
-              className="btn-primary"
+              className="btn-primary header-cta-btn"
               style={{ padding: '9px 20px', fontSize: '13px' }}
             >
               Talk to GDAs
             </button>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              style={{ display: 'none', background: 'none', border: 'none', color: '#fff', cursor: 'pointer', padding: '6px' }}
+              style={{ display: 'none', background: 'none', border: 'none', color: 'var(--text-white)', cursor: 'pointer', padding: '6px' }}
               className="mobile-toggle"
               aria-label="Toggle menu"
             >
@@ -754,7 +754,12 @@ export default function ServicesPage() {
             </p>
           </div>
 
+          <div style={{ textAlign: 'center' }}>
+            <span className="mobile-swipe-hint">Swipe advantages →</span>
+          </div>
+
           <div
+            className="mobile-horizontal-scroll"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
@@ -839,15 +844,15 @@ export default function ServicesPage() {
             }}
           >
             {[
-              { label: 'Startups', emoji: '🚀' },
-              { label: 'Local Businesses', emoji: '📍' },
-              { label: 'Service Businesses', emoji: '🛠️' },
-              { label: 'E-commerce Businesses', emoji: '🛍️' },
-              { label: 'Political Candidates & Parties', emoji: '🗳️' },
-              { label: 'Professionals & Doctors', emoji: '💼' },
-              { label: 'Personal Brands', emoji: '🌟' },
-              { label: 'Small & Medium Enterprises (SMEs)', emoji: '🏢' },
-              { label: 'High-Growth Brands', emoji: '📈' },
+              { label: 'Startups' },
+              { label: 'Local Businesses' },
+              { label: 'Service Businesses' },
+              { label: 'E-commerce Businesses' },
+              { label: 'Political Candidates & Parties' },
+              { label: 'Professionals & Doctors' },
+              { label: 'Personal Brands' },
+              { label: 'Small & Medium Enterprises (SMEs)' },
+              { label: 'High-Growth Brands' },
             ].map((niche, idx) => (
               <motion.div
                 key={idx}
@@ -856,17 +861,17 @@ export default function ServicesPage() {
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '8px',
-                  padding: '12px 22px',
+                  padding: '10px 20px',
                   borderRadius: '50px',
                   background: 'rgba(255, 255, 255, 0.04)',
                   border: '1px solid rgba(59, 130, 246, 0.3)',
                   color: 'var(--text-white)',
-                  fontSize: '15px',
+                  fontSize: '14px',
                   fontWeight: 600,
                   boxShadow: '0 4px 15px rgba(0, 0, 0, 0.4)',
                 }}
               >
-                <span>{niche.emoji}</span>
+                <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#3b82f6', display: 'inline-block' }} />
                 <span>{niche.label}</span>
               </motion.div>
             ))}
@@ -930,7 +935,7 @@ export default function ServicesPage() {
               One Platform. All Solutions. • Digital Ka Saath, Aapke Business Ka Vikas.
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
+            <div className="mobile-btn-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '16px', flexWrap: 'wrap' }}>
               <button
                 onClick={() => openServiceModal('Complete All-in-One Solution')}
                 className="btn-primary"
@@ -947,7 +952,6 @@ export default function ServicesPage() {
                 style={{ padding: '14px 28px', fontSize: '15px', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '8px' }}
               >
                 <span>WhatsApp Us</span>
-                <span>💬</span>
               </a>
             </div>
           </div>
@@ -1010,7 +1014,7 @@ export default function ServicesPage() {
                 Contact & Connect
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px', marginBottom: '16px' }}>
-                <a href="tel:9939862765" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>📞 +91 9939862765</a>
+                <a href="tel:9939862765" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>+91 9939862765</a>
               </div>
               <SocialLinks />
             </div>

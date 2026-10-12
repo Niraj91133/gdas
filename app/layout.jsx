@@ -2,6 +2,7 @@ import './globals.css';
 import EyesCursor from '../components/EyesCursor';
 import { ThemeProvider } from '../components/ThemeProvider';
 import { AdminProvider } from '../context/AdminContext';
+import MobileDock from '../components/MobileDock';
 
 export const metadata = {
   title: 'GDAs — One Platform. All Solutions. | Ganesha Digital Ads',
@@ -41,6 +42,7 @@ export default function RootLayout({ children }) {
           <AdminProvider>
             <EyesCursor />
             {children}
+            <MobileDock />
           </AdminProvider>
         </ThemeProvider>
       </body>

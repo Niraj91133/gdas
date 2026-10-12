@@ -2520,61 +2520,6 @@ export default function Home() {
           </div>
         )}
       </AnimatePresence>
-
-      {/* ========================================================================= */}
-      {/* MOBILE APP FLOATING BOTTOM DOCK */}
-      {/* ========================================================================= */}
-      <nav className="mobile-app-dock" aria-label="Mobile Bottom App Navigation">
-        <a href="#" className="mobile-dock-btn active" aria-label="Home">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-            <polyline points="9 22 9 12 15 12 15 22" />
-          </svg>
-          <span>Home</span>
-        </a>
-
-        <Link href="/services" className="mobile-dock-btn" aria-label="Services">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-            <rect x="3" y="3" width="7" height="7" rx="1.5" />
-            <rect x="14" y="3" width="7" height="7" rx="1.5" />
-            <rect x="14" y="14" width="7" height="7" rx="1.5" />
-            <rect x="3" y="14" width="7" height="7" rx="1.5" />
-          </svg>
-          <span>Services</span>
-        </Link>
-
-        <a href="#portfolio" className="mobile-dock-btn" aria-label="Work">
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
-            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-          </svg>
-          <span>Work</span>
-        </a>
-
-        <a
-          href="https://wa.me/919939862765?text=Hello%20GDAs%20Team%2C%20I%20want%20to%20grow%20my%20business%20digitally"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mobile-dock-btn"
-          aria-label="WhatsApp"
-        >
-          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.2">
-            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-          </svg>
-          <span>WhatsApp</span>
-        </a>
-
-        <button
-          onClick={() => setModalOpen(true)}
-          className="mobile-dock-btn mobile-dock-cta"
-          aria-label="Grow Business"
-        >
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
-          </svg>
-          <span>Grow</span>
-        </button>
-      </nav>
     </div>
   );
 }

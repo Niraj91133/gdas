@@ -149,7 +149,7 @@ export default function BlogIndexPage() {
               rel="noopener noreferrer"
               onMouseEnter={() => setCursorHovered(true)}
               onMouseLeave={() => setCursorHovered(false)}
-              className="btn btn-primary"
+              className="btn btn-primary header-cta-btn"
               style={{ padding: '8px 18px', fontSize: '12.5px', fontWeight: 700, textDecoration: 'none' }}
             >
               Talk to Us →
@@ -158,13 +158,13 @@ export default function BlogIndexPage() {
             {/* Mobile Hamburger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="mobile-hamburger"
+              className="mobile-toggle mobile-hamburger"
               aria-label="Toggle Menu"
               style={{
                 display: 'none',
                 background: 'none',
                 border: 'none',
-                color: '#fff',
+                color: 'var(--text-white)',
                 cursor: 'pointer',
                 padding: '6px',
               }}
@@ -300,18 +300,24 @@ export default function BlogIndexPage() {
                 boxShadow: '0 8px 30px rgba(0,0,0,0.5)',
               }}
             />
-            <span
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.2"
               style={{
                 position: 'absolute',
                 left: '18px',
                 top: '50%',
                 transform: 'translateY(-50%)',
-                fontSize: '16px',
                 color: '#9ca3af',
               }}
             >
-              🔍
-            </span>
+              <circle cx="11" cy="11" r="8" />
+              <line x1="21" y1="21" x2="16.65" y2="16.65" />
+            </svg>
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}

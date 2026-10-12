@@ -146,7 +146,7 @@ export default function BlogPostDetail({ params }) {
               rel="noopener noreferrer"
               onMouseEnter={() => setCursorHovered(true)}
               onMouseLeave={() => setCursorHovered(false)}
-              className="btn btn-primary"
+              className="btn btn-primary header-cta-btn"
               style={{ padding: '8px 18px', fontSize: '12.5px', fontWeight: 700, textDecoration: 'none' }}
             >
               Talk to Us →
@@ -155,13 +155,13 @@ export default function BlogPostDetail({ params }) {
             {/* Mobile Hamburger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="mobile-hamburger"
+              className="mobile-toggle mobile-hamburger"
               aria-label="Toggle Menu"
               style={{
                 display: 'none',
                 background: 'none',
                 border: 'none',
-                color: '#fff',
+                color: 'var(--text-white)',
                 cursor: 'pointer',
                 padding: '6px',
               }}

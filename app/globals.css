@@ -407,6 +407,77 @@ body {
   margin: 0 auto 28px auto;
 }
 
+/* Minimalist Hero Enhancements with Theme Support */
+.minimal-hero-card {
+  background: rgba(11, 18, 33, 0.7);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 30px;
+  box-shadow: 0 24px 60px -15px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+[data-theme="light"] .minimal-hero-card {
+  background: #ffffff !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+.minimal-hero-inner-box {
+  padding: 20px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 20px;
+}
+
+[data-theme="light"] .minimal-hero-inner-box {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.minimal-hero-tag {
+  padding: 12px 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  text-align: center;
+}
+
+[data-theme="light"] .minimal-hero-tag {
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.minimal-secondary-btn {
+  padding: 13px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-white);
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+[data-theme="light"] .minimal-secondary-btn {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04) !important;
+}
+
+
 /* Modal Popup */
 .modal-overlay {
   position: fixed;
@@ -464,32 +535,219 @@ body {
 }
 
 @media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+  }
+
+  body {
+    padding-bottom: 78px; /* Space for mobile floating dock */
+  }
+
+  .container-custom {
+    padding: 0 16px !important;
+  }
+
   .hero-wrapper {
-    padding: 100px 0 40px 0;
+    padding: 100px 0 36px 0;
   }
   .hero-h1 {
-    font-size: 34px;
+    font-size: 32px;
+    letter-spacing: -0.02em;
   }
   .hero-h1 span.serif-italic {
-    font-size: 40px;
+    font-size: 38px;
   }
   .hero-subtext {
-    font-size: 15px;
+    font-size: 14.5px;
   }
   .section-spacing {
-    padding: 60px 0;
+    padding: 50px 0;
   }
   .section-title {
-    font-size: 28px;
+    font-size: 26px;
   }
   .section-title span.serif-italic {
-    font-size: 34px;
+    font-size: 32px;
   }
   .desktop-nav {
     display: none !important;
   }
+  .header-cta-btn {
+    display: none !important;
+  }
   .mobile-toggle {
-    display: block !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: var(--text-white) !important;
+  }
+
+  /* =========================================
+     APP-LIKE MOBILE BUTTONS (SIDE-BY-SIDE)
+     ========================================= */
+  .mobile-btn-row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 8px !important;
+    width: 100% !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .mobile-btn-row > * {
+    flex: 1 1 0 !important;
+    min-width: 0 !important;
+    padding: 11px 8px !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    justify-content: center !important;
+    text-align: center !important;
+    white-space: nowrap !important;
+    border-radius: 12px !important;
+    box-sizing: border-box !important;
+  }
+
+  .mobile-btn-row svg {
+    display: none !important; /* Hide extra arrow glyphs so text is 100% visible side by side */
+  }
+
+  /* =========================================
+     APP-LIKE HORIZONTAL SWIPEABLE CARDS
+     ========================================= */
+  .mobile-horizontal-scroll {
+    display: flex !important;
+    flex-direction: row !important;
+    overflow-x: auto !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch !important;
+    gap: 12px !important;
+    padding: 4px 16px 14px 16px !important;
+    margin-left: -16px !important;
+    margin-right: -16px !important;
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+  }
+
+  .mobile-horizontal-scroll::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .mobile-horizontal-scroll > * {
+    scroll-snap-align: start !important;
+    flex: 0 0 82% !important;
+    max-width: 310px !important;
+    min-width: 260px !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Mobile Swipe Hint Badge */
+  .mobile-swipe-hint {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    color: #60a5fa;
+    background: rgba(37, 99, 235, 0.1);
+    border: 1px solid rgba(37, 99, 235, 0.25);
+    padding: 3px 9px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+  }
+
+  /* Compact 2x2 App Grid for Stats / Milestones */
+  .mobile-stats-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+
+  .mobile-stats-grid > * {
+    padding: 16px 12px !important;
+    border-radius: 16px !important;
+  }
+
+  .mobile-stats-grid div[style*="font-size: clamp"] {
+    font-size: 28px !important;
+  }
+
+  /* Mobile App Bottom Floating Dock */
+  .mobile-app-dock {
+    display: flex !important;
+    position: fixed !important;
+    bottom: 12px !important;
+    left: 12px !important;
+    right: 12px !important;
+    height: 58px !important;
+    background: rgba(10, 14, 24, 0.92) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    border-radius: 20px !important;
+    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7), 0 0 20px rgba(37, 99, 235, 0.15) !important;
+    z-index: 9990 !important;
+    align-items: center !important;
+    justify-content: space-around !important;
+    padding: 0 6px !important;
+  }
+
+  [data-theme="light"] .mobile-app-dock {
+    background: rgba(255, 255, 255, 0.94) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12), 0 2px 10px rgba(37, 99, 235, 0.08) !important;
+  }
+
+  .mobile-dock-btn {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 2px !important;
+    color: #94a3b8 !important;
+    text-decoration: none !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    padding: 6px 4px !important;
+    border-radius: 12px !important;
+    background: none !important;
+    border: none !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    flex: 1 !important;
+  }
+
+  .mobile-dock-btn:active {
+    transform: scale(0.92) !important;
+  }
+
+  [data-theme="light"] .mobile-dock-btn {
+    color: #475569 !important;
+  }
+
+  .mobile-dock-btn.active,
+  .mobile-dock-btn:hover {
+    color: #3b82f6 !important;
+  }
+
+  .mobile-dock-cta {
+    background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35) !important;
+    padding: 6px 10px !important;
+    border-radius: 12px !important;
+  }
+
+  .mobile-dock-cta span {
+    color: #ffffff !important;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-app-dock {
+    display: none !important;
+  }
+  .mobile-swipe-hint {
+    display: none !important;
   }
 }
 

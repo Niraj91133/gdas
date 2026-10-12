@@ -63,131 +63,131 @@ export default function Home() {
   const services = [
     {
       num: '01',
-      title: 'Digital Marketing (Meta & Google Ads)',
-      tagline: 'Meta Ads • Google Ads • Lead Generation • Performance Scaling',
-      desc: 'High-performing ad campaigns across Facebook, Instagram, Google Search & YouTube engineered to generate qualified business leads and scalable customer acquisition.',
+      title: 'Digital Marketing',
+      tagline: 'Meta & Google Ads • Lead Gen',
+      desc: 'High-ROI ad campaigns across Meta and Google engineered to acquire qualified leads and drive revenue.',
       icon: (
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M12 20V10M18 20V4M6 20v-4" />
         </svg>
       ),
-      tags: ['Meta Ads', 'Google Search Ads', 'Lead Generation', 'Performance Media'],
-      highlightColor: '#3b82f6',
+      tags: ['Meta Ads', 'Google Ads', 'Lead Funnels'],
+      highlightColor: '#2563eb',
     },
     {
       num: '02',
-      title: 'WhatsApp Bulk Marketing',
-      tagline: 'Official API • Green Tick • Bulk Broadcasts • Catalogs',
-      desc: 'Direct verified WhatsApp messaging with 98% open rates, automated quick-reply buttons, interactive product catalogs, and high-conversion bulk broadcast campaigns.',
+      title: 'WhatsApp Marketing',
+      tagline: 'Official API • Broadcasts',
+      desc: 'Direct verified messaging with 98% open rates, automated quick replies, and interactive catalogs.',
       icon: (
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
           <path d="M8 10h.01M12 10h.01M16 10h.01" />
         </svg>
       ),
-      tags: ['Official WhatsApp API', 'Bulk Broadcasts', 'Green Tick Support', 'Catalog Sharing'],
-      highlightColor: '#22c55e',
+      tags: ['Official API', 'Bulk Broadcasts', 'Green Tick'],
+      highlightColor: '#2563eb',
     },
     {
       num: '03',
       title: 'IVR Calling Service',
-      tagline: 'Voice Broadcasting • Multi-Level IVR • Smart Call Routing',
-      desc: 'Cloud-based IVR calling and automated voice broadcasting (OBD) to reach thousands of customers instantly, capture lead responses, and qualify calls automatically.',
+      tagline: 'Smart Voice OBD • Cloud Routing',
+      desc: 'Automated voice broadcasting and cloud call routing to connect with thousands of customers instantly.',
       icon: (
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
         </svg>
       ),
-      tags: ['Cloud IVR Menu', 'Bulk Voice OBD', 'Missed Call Leads', 'Live Call Recording'],
-      highlightColor: '#0ea5e9',
+      tags: ['Voice OBD', 'Cloud IVR', 'Call Routing'],
+      highlightColor: '#2563eb',
     },
     {
       num: '04',
-      title: 'GMB Setup & Ranking',
-      tagline: 'Google Maps Top 3 • Local SEO • Verified Profile Setup',
-      desc: 'Dominate local Google Search and Google Maps in your target city to drive daily walk-ins, phone inquiries, and local dominance over competitors.',
+      title: 'Local SEO & Google Maps',
+      tagline: 'GMB Top 3 • Local Reach',
+      desc: 'Rank in Google Maps Top 3 to drive daily customer walk-ins and direct phone inquiries.',
       icon: (
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <circle cx="11" cy="11" r="8" />
           <line x1="21" y1="21" x2="16.65" y2="16.65" />
           <path d="M11 8v6M8 11h6" />
         </svg>
       ),
-      tags: ['Google Maps 3-Pack', 'GMB Verification', 'Review Management', 'Local Citations'],
-      highlightColor: '#10b981',
+      tags: ['Maps 3-Pack', 'GMB Ranking', 'Reviews'],
+      highlightColor: '#2563eb',
     },
     {
       num: '05',
-      title: 'Digital Political Campaigning',
-      tagline: 'War Room • Constituency Geo Ads • Voter Outreach',
-      desc: 'Strategic political campaign management, constituency digital war rooms, booth-level geo-targeted video ads, WhatsApp networks, and perception narrative building.',
+      title: 'Political Campaigning',
+      tagline: 'War Room • Targeted Ads',
+      desc: 'Constituency-level targeted video ads, digital war rooms, and voter sentiment outreach.',
       icon: (
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
           <line x1="16" y1="2" x2="16" y2="6" />
           <line x1="8" y1="2" x2="8" y2="6" />
           <line x1="3" y1="10" x2="21" y2="10" />
         </svg>
       ),
-      tags: ['Constituency Geo Ads', 'Digital War Room', 'Speech & Reel Clips', 'Voter Sentiment'],
-      highlightColor: '#f97316',
+      tags: ['Constituency Ads', 'War Room', 'Voter Reach'],
+      highlightColor: '#2563eb',
     },
     {
       num: '06',
-      title: 'Business Growth Management',
-      tagline: 'Go-To-Market • Scale Architecture • Revenue Acceleration',
-      desc: 'End-to-end strategic growth consulting covering product positioning, CAC reduction, omnichannel budget allocation, and full-funnel conversion rate optimization.',
+      title: 'Growth Consulting',
+      tagline: 'GTM Strategy • Scaling',
+      desc: 'Strategic consulting covering market positioning, CAC reduction, and full-funnel CRO.',
       icon: (
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
         </svg>
       ),
-      tags: ['GTM Strategy', 'Unit Economics', 'Full-Funnel CRO', 'Dedicated Director'],
-      highlightColor: '#eab308',
+      tags: ['GTM Plan', 'Unit Economics', 'Funnel CRO'],
+      highlightColor: '#2563eb',
     },
     {
       num: '07',
-      title: 'CRM, ERP & Business Automation',
-      tagline: 'Lead Pipelines • ERP Workflows • Multi-Channel Sync',
-      desc: 'Custom CRM pipelines, automated lead scoring, ERP operational workflows, and invoice automation that unify sales, operations, and databases into one dashboard.',
+      title: 'CRM & Automation',
+      tagline: 'Pipelines • Workflows',
+      desc: 'Custom CRM pipelines, automated lead scoring, and sync across sales and operations.',
       icon: (
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <circle cx="12" cy="12" r="3" />
           <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z" />
         </svg>
       ),
-      tags: ['Custom CRM Setup', 'ERP Integration', 'Lead Routing', 'Automated Invoicing'],
-      highlightColor: '#6366f1',
+      tags: ['Lead CRM', 'Process Auto', 'ERP Sync'],
+      highlightColor: '#2563eb',
     },
     {
       num: '08',
       title: 'Branding & Creative',
-      tagline: 'Logo Design • Brand Identity • Graphic Design • Content',
-      desc: 'Distinctive visual identities, bespoke logo suites, brand books, and scroll-stopping graphic assets that establish trust and differentiate your business.',
+      tagline: 'Brand Identity • Visuals',
+      desc: 'Distinctive visual identities, logo suites, and scroll-stopping ad creatives that build trust.',
       icon: (
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <path d="M12 19l7-7 3 3-7 7-3-3z" />
           <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" />
           <path d="M2 2l7.586 7.586" />
           <circle cx="11" cy="11" r="2" />
         </svg>
       ),
-      tags: ['Visual Identity', 'Logo Suite', 'Brand Guidelines', 'Creative Direction'],
-      highlightColor: '#8b5cf6',
+      tags: ['Logo Design', 'Brand Identity', 'Ad Creatives'],
+      highlightColor: '#2563eb',
     },
     {
       num: '09',
-      title: 'Website & Technology',
-      tagline: 'Website Development • Landing Pages • Business Websites',
-      desc: 'Ultra-fast, mobile-first websites and conversion-focused landing pages engineered for high speed, search engines, and seamless user experiences.',
+      title: 'Web & Technology',
+      tagline: 'Fast Web • High Conversion',
+      desc: 'Ultra-fast, mobile-first websites and landing pages engineered to turn visitors into clients.',
       icon: (
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
           <polyline points="16 18 22 12 16 6" />
           <polyline points="8 6 2 12 8 18" />
         </svg>
       ),
-      tags: ['Custom Websites', 'Next.js & React', 'High-Converting Funnels', 'Mobile Responsive'],
-      highlightColor: '#06b6d4',
+      tags: ['Next.js Sites', 'Landing Pages', 'Fast Speed'],
+      highlightColor: '#2563eb',
     },
   ];
 
@@ -198,7 +198,7 @@ export default function Home() {
       title: 'Aura Luxury Living',
       category: 'Branding',
       subCategory: 'Brand Identity & Packaging',
-      description: 'Complete brand visual identity, premium packaging design, and visual brand playbook.',
+      description: 'Complete brand visual identity, premium packaging, and brand playbook.',
       image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&auto=format&fit=crop&q=80',
       badge: 'Brand Revamp',
     },
@@ -206,8 +206,8 @@ export default function Home() {
       id: 2,
       title: 'Elite Health & Wellness',
       category: 'Meta Ads',
-      subCategory: 'Lead Generation Campaign',
-      description: 'High-converting Meta ad campaigns delivering 420+ qualified customer enquiries per month.',
+      subCategory: 'Lead Generation',
+      description: 'High-converting Meta ad campaigns delivering 420+ monthly qualified inquiries.',
       image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&auto=format&fit=crop&q=80',
       badge: 'Lead Scaling',
     },
@@ -215,17 +215,17 @@ export default function Home() {
       id: 3,
       title: 'Apex Tech Solutions',
       category: 'Websites',
-      subCategory: 'Modern Web Platform',
+      subCategory: 'Corporate Web Platform',
       description: 'High-speed Next.js corporate website with interactive service demos and lead booking.',
       image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&auto=format&fit=crop&q=80',
-      badge: 'Website Tech',
+      badge: 'Web Platform',
     },
     {
       id: 4,
       title: 'Velvet Cafe & Roastery',
       category: 'Social Media',
       subCategory: 'Reels & Viral Social',
-      description: 'Organic video reels and Instagram brand strategy driving 2.4M organic local views.',
+      description: 'Organic video reels and Instagram brand strategy driving 2.4M local views.',
       image: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&auto=format&fit=crop&q=80',
       badge: 'Viral Reach',
     },
@@ -243,7 +243,7 @@ export default function Home() {
       title: 'Kavya Dental Care',
       category: 'Meta Ads',
       subCategory: 'Local Patient Growth',
-      description: 'Hyper-local Meta Ads and Google Maps SEO generating 180+ monthly patient appointments.',
+      description: 'Hyper-local Meta Ads and Google Maps SEO generating 180+ monthly appointments.',
       image: 'https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&auto=format&fit=crop&q=80',
       badge: 'Local Growth',
     },
@@ -258,26 +258,26 @@ export default function Home() {
   const testimonials = [
     {
       name: 'Kumud Kundan',
-      role: 'Makeup Artist • Professional Makeup & Hairstyling Academy',
+      role: 'Founder • Professional Makeup & Hairstyling Academy',
       avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&auto=format&fit=crop&q=80',
       content:
-        "Excellent experience with Ganesha Digital Ads (GDAs)! We ran a Meta Lead Generation campaign for our Professional Makeup & Hairstyling Academy, and within just 1 day we started receiving genuine leads. Their audience targeting, campaign setup, and optimization were excellent. If you're looking for the best digital marketing agency in Gaya for Meta Ads, Facebook Ads, Instagram Ads, or Lead Generation, I highly recommend GDAs. Thank you for delivering great results and professional support!",
+        'Excellent experience with GDAs! We ran Meta Lead Gen campaigns for our academy and received genuine student inquiries within 24 hours. Their targeting and creative guidance were outstanding.',
       rating: 5,
     },
     {
       name: 'Ravi Kumar Tiwari',
-      role: 'Business Owner • Gaya, Bihar & Patratu, Ramgarh Jharkhand',
+      role: 'Business Owner • Bihar & Jharkhand',
       avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&auto=format&fit=crop&q=80',
       content:
-        'Agar aap apne business ke liye online leads aur promotion chahte hain, then Ganesha Digital Ads is a great choice. They provide professional Meta Ads and digital marketing services in Gaya, Bihar, & Patratu Ramgarh Jharkhand Highly recommended!',
+        'If you want authentic online leads and customer growth, GDAs is the best choice. Highly professional digital marketing and local reach services across Bihar and Jharkhand.',
       rating: 5,
     },
     {
       name: 'Tanisha Choudhary',
-      role: 'E-Commerce & Website Client',
+      role: 'E-Commerce Founder',
       avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80',
       content:
-        'maine inse apna website bnwaya ...mujhe Ab tk ka sbse best kam lga inlog ka ..inke wjh se acha conversion aya ...maine audit karwaya to pata chala mere websit m kha problem tha...thanks You Gdas',
+        'GDAs audited and rebuilt our website funnel. The new speed and clean UX immediately improved our conversion rate. The best digital team we have worked with.',
       rating: 5,
     },
   ];
@@ -286,23 +286,23 @@ export default function Home() {
   const faqs = [
     {
       q: 'What services does GDAs provide?',
-      a: 'GDAs (Ganesha Digital Ads) provides end-to-end Digital Marketing (Meta Ads, Google Ads, Lead Gen), Branding & Creative Design (Logos, Visual Identity), Website & Technology Development, Local SEO & Google Business Profile optimization, Social Media Management, and WhatsApp/AI Business Automation.',
+      a: 'We provide Meta & Google Ads, WhatsApp Official API marketing, Cloud IVR calling, Local SEO & Google Maps ranking, Branding, and High-Speed Next.js Web Development.',
     },
     {
-      q: 'Does GDAs work with small businesses?',
-      a: 'Yes! We proudly work with businesses at all stages — from early-stage startups and local service providers to established retail brands and growing enterprises looking to scale.',
+      q: 'Does GDAs work with small and local businesses?',
+      a: 'Yes. We work with local business owners, early-stage startups, and growing enterprises across Bihar and Pan-India.',
     },
     {
-      q: 'Can I hire GDAs for only one service?',
-      a: 'Yes, absolutely. You can hire GDAs for an individual service (such as only Website Development, Logo & Branding, or Meta Ads) or choose our full-suite digital growth package for comprehensive business acceleration.',
+      q: 'Can I hire GDAs for a single specific service?',
+      a: 'Yes. You can engage us for a single service (such as Meta Ads or Website Development) or our full-suite growth package.',
     },
     {
-      q: 'How can I get started?',
-      a: 'Getting started is simple! Click the "Grow My Business" button or reach out to our team via WhatsApp/Call at 9939862765. We will schedule a quick discovery discussion, understand your goals, and share a tailored roadmap for your business within 24 to 48 hours.',
+      q: 'How do we get started?',
+      a: 'Click "Grow My Business" or contact us via WhatsApp at +91 9939862765. We will assess your business goals and share a clear growth roadmap within 24 to 48 hours.',
     },
     {
       q: 'What makes GDAs different from traditional agencies?',
-      a: 'Unlike traditional agencies that offer generic advice or fragment your work across disconnected vendors, GDAs is a unified growth partner. We combine creative brand storytelling with technical performance marketing and custom web technology under one roof.',
+      a: 'We unify brand design, performance advertising, and custom web technology under one roof with transparent ROI tracking and direct founder support.',
     },
   ];
 
@@ -413,7 +413,7 @@ export default function Home() {
               onMouseLeave={() => setCursorHovered(false)}
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
-              className="btn-primary"
+              className="btn-primary header-cta-btn"
               style={{ padding: '9px 20px', fontSize: '13px' }}
             >
               <span>Grow My Business</span>
@@ -424,7 +424,7 @@ export default function Home() {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              style={{ display: 'none', background: 'none', border: 'none', color: '#fff', cursor: 'pointer', padding: '6px' }}
+              style={{ display: 'none', background: 'none', border: 'none', color: 'var(--text-white)', cursor: 'pointer', padding: '6px' }}
               className="mobile-toggle"
               aria-label="Toggle menu"
             >
@@ -480,67 +480,110 @@ export default function Home() {
       {/* ========================================================================= */}
       {/* 01. HERO SECTION — Complete Visual Hierarchy */}
       {/* ========================================================================= */}
+      {/* ========================================================================= */}
+      {/* 01. HERO SECTION — Clean, Minimalist & Modern */}
+      {/* ========================================================================= */}
       <section
         className="hero-wrapper"
         style={{
           paddingTop: '160px',
-          paddingBottom: '80px',
+          paddingBottom: '90px',
           position: 'relative',
+          overflow: 'hidden',
         }}
       >
-        <div className="container-custom">
+        {/* Subtle Ambient Glow Behind Hero */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '-5%',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '900px',
+            height: '520px',
+            background: 'radial-gradient(ellipse at center, rgba(37, 99, 235, 0.16) 0%, rgba(30, 64, 175, 0.04) 50%, transparent 70%)',
+            filter: 'blur(60px)',
+            pointerEvents: 'none',
+            zIndex: 0,
+          }}
+        />
+
+        {/* Delicate Background Mesh Grid */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            backgroundImage: 'radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px)',
+            backgroundSize: '36px 36px',
+            maskImage: 'radial-gradient(ellipse 70% 60% at 50% 35%, black 25%, transparent 80%)',
+            WebkitMaskImage: 'radial-gradient(ellipse 70% 60% at 50% 35%, black 25%, transparent 80%)',
+            pointerEvents: 'none',
+            zIndex: 0,
+          }}
+        />
+
+        <div className="container-custom" style={{ position: 'relative', zIndex: 1 }}>
           <div
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-              gap: '48px',
+              gap: '56px',
               alignItems: 'center',
               textAlign: 'left',
             }}
           >
-            {/* Left Content — Strict Hierarchy */}
+            {/* Left Column — Clean Typography & Purposeful Action */}
             <div>
-              {/* 1. Small Eyebrow / Label */}
+              {/* 1. Minimal Eyebrow Badge */}
               <motion.div
-                initial={{ opacity: 0, filter: 'blur(8px)', y: 15 }}
-                animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-                transition={{ duration: 0.65, delay: 0.1 }}
-                style={{ display: 'inline-flex', alignItems: 'center', marginBottom: '18px' }}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.08 }}
+                style={{ display: 'inline-flex', alignItems: 'center', marginBottom: '22px' }}
               >
                 <div
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '10px',
-                    background: 'rgba(37, 99, 235, 0.1)',
-                    border: '1px solid rgba(59, 130, 246, 0.3)',
-                    borderRadius: '50px',
-                    padding: '6px 16px',
-                    boxShadow: '0 4px 20px rgba(37, 99, 235, 0.2)',
+                    gap: '8px',
+                    padding: '6px 14px',
+                    borderRadius: '9999px',
+                    background: 'rgba(255, 255, 255, 0.04)',
+                    border: '1px solid rgba(255, 255, 255, 0.08)',
+                    backdropFilter: 'blur(10px)',
+                    boxShadow: '0 2px 10px rgba(0, 0, 0, 0.25)',
                   }}
                 >
-                  <span className="pulse-dot" />
+                  <span
+                    style={{
+                      width: '6px',
+                      height: '6px',
+                      borderRadius: '50%',
+                      background: '#3b82f6',
+                      boxShadow: '0 0 8px #3b82f6',
+                    }}
+                  />
                   <span
                     style={{
                       fontSize: '12px',
-                      fontWeight: 700,
-                      letterSpacing: '0.1em',
-                      color: '#60a5fa',
+                      fontWeight: 600,
+                      color: '#93c5fd',
+                      letterSpacing: '0.04em',
                       textTransform: 'uppercase',
                     }}
                   >
-                    GANESHA DIGITAL ADS • GDAs
+                    GDAs • Complete Growth Studio
                   </span>
                 </div>
               </motion.div>
 
-              {/* 2. Main Heading — Sabse Bada */}
+              {/* 2. Main Title */}
               <motion.h1
-                initial={{ opacity: 0, filter: 'blur(12px)', y: 25 }}
-                animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-                transition={{ duration: 0.85, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                initial={{ opacity: 0, y: 18 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
                 style={{
-                  fontSize: 'clamp(40px, 5.2vw, 68px)',
+                  fontSize: 'clamp(42px, 5.2vw, 68px)',
                   fontWeight: 800,
                   lineHeight: 1.08,
                   letterSpacing: '-0.035em',
@@ -551,7 +594,7 @@ export default function Home() {
                 One Platform.{' '}
                 <span
                   style={{
-                    background: 'linear-gradient(135deg, #60a5fa 0%, #2563eb 100%)',
+                    background: 'linear-gradient(135deg, #93c5fd 0%, #3b82f6 50%, #2563eb 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     display: 'inline-block',
@@ -561,74 +604,46 @@ export default function Home() {
                 </span>
               </motion.h1>
 
-              {/* 3. Main GDAs Tagline — Second Biggest */}
+              {/* 3. Tagline */}
               <motion.div
-                initial={{ opacity: 0, filter: 'blur(10px)', y: 20 }}
-                animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-                transition={{ duration: 0.75, delay: 0.3 }}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.65, delay: 0.26 }}
                 style={{
-                  fontSize: 'clamp(20px, 2.6vw, 28px)',
+                  fontSize: 'clamp(20px, 2.3vw, 26px)',
                   fontWeight: 600,
-                  color: '#e2e8f0',
-                  lineHeight: 1.3,
+                  color: 'var(--text-white)',
+                  lineHeight: 1.35,
                   letterSpacing: '-0.015em',
-                  marginBottom: '18px',
+                  marginBottom: '16px',
                 }}
               >
                 Digital Ka Saath,{' '}
-                <span style={{ color: '#3b82f6', fontWeight: 700 }}>Aapke Business Ka Vikas.</span>
+                <span style={{ color: '#2563eb', fontWeight: 700 }}>Aapke Business Ka Vikas.</span>
               </motion.div>
 
-              {/* Supporting Text */}
+              {/* 4. Minimalist Supporting Text */}
               <motion.p
-                initial={{ opacity: 0, filter: 'blur(8px)', y: 20 }}
-                animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-                transition={{ duration: 0.75, delay: 0.4 }}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.65, delay: 0.34 }}
                 style={{
-                  fontSize: '16px',
-                  color: '#a3a3a3',
+                  fontSize: '15.5px',
+                  color: 'var(--text-secondary)',
                   lineHeight: 1.65,
-                  maxWidth: '560px',
-                  marginBottom: '20px',
+                  maxWidth: '520px',
+                  marginBottom: '32px',
                 }}
               >
-                We help businesses grow with Digital Marketing, Branding & Technology solutions — all under one roof.
+                We help ambitious businesses scale through strategic Meta & Google Ads, official WhatsApp automation, and high-converting modern web technology.
               </motion.p>
 
-              {/* 4. Services Line */}
+              {/* 5. Minimal Action Row — Side by Side on Mobile */}
               <motion.div
-                initial={{ opacity: 0, filter: 'blur(6px)', y: 15 }}
-                animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-                transition={{ duration: 0.65, delay: 0.48 }}
-                style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '8px',
-                  flexWrap: 'wrap',
-                  fontSize: '14px',
-                  fontWeight: 600,
-                  color: '#93c5fd',
-                  marginBottom: '30px',
-                }}
-              >
-                <span style={{ background: 'rgba(59, 130, 246, 0.15)', padding: '4px 12px', borderRadius: '20px', border: '1px solid rgba(59, 130, 246, 0.25)' }}>
-                  Digital Marketing
-                </span>
-                <span style={{ color: 'rgba(255, 255, 255, 0.4)' }}>•</span>
-                <span style={{ background: 'rgba(59, 130, 246, 0.15)', padding: '4px 12px', borderRadius: '20px', border: '1px solid rgba(59, 130, 246, 0.25)' }}>
-                  Branding
-                </span>
-                <span style={{ color: 'rgba(255, 255, 255, 0.4)' }}>•</span>
-                <span style={{ background: 'rgba(59, 130, 246, 0.15)', padding: '4px 12px', borderRadius: '20px', border: '1px solid rgba(59, 130, 246, 0.25)' }}>
-                  Technology
-                </span>
-              </motion.div>
-
-              {/* 5. CTA Buttons */}
-              <motion.div
-                initial={{ opacity: 0, filter: 'blur(8px)', y: 20 }}
-                animate={{ opacity: 1, filter: 'blur(0px)', y: 0 }}
-                transition={{ duration: 0.7, delay: 0.55 }}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.65, delay: 0.42 }}
+                className="mobile-btn-row"
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -641,13 +656,15 @@ export default function Home() {
                   onClick={() => setModalOpen(true)}
                   onMouseEnter={() => setCursorHovered(true)}
                   onMouseLeave={() => setCursorHovered(false)}
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.96 }}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
                   className="btn-primary"
                   style={{
-                    padding: '13px 30px',
+                    padding: '13px 28px',
                     fontSize: '14.5px',
-                    fontWeight: 700,
+                    fontWeight: 600,
+                    borderRadius: '9999px',
+                    boxShadow: '0 4px 22px rgba(37, 99, 235, 0.45)',
                   }}
                 >
                   <span>Grow My Business</span>
@@ -662,193 +679,218 @@ export default function Home() {
                   rel="noopener noreferrer"
                   onMouseEnter={() => setCursorHovered(true)}
                   onMouseLeave={() => setCursorHovered(false)}
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.96 }}
-                  className="btn-secondary"
-                  style={{
-                    padding: '13px 26px',
-                    fontSize: '14.5px',
-                    fontWeight: 600,
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                  }}
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="minimal-secondary-btn"
                 >
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.2">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                  </svg>
-                  <span>Talk to GDAs</span>
+                  <span
+                    style={{
+                      width: '7px',
+                      height: '7px',
+                      borderRadius: '50%',
+                      background: '#22c55e',
+                      boxShadow: '0 0 8px #22c55e',
+                    }}
+                  />
+                  <span>Chat on WhatsApp</span>
                 </motion.a>
               </motion.div>
 
-              {/* 6. Father Never Dies — Sabse Subtle */}
+              {/* 6. Subtle Legacy Tribute */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 1, delay: 0.7 }}
+                transition={{ duration: 0.9, delay: 0.55 }}
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '8px',
-                  borderTop: '1px solid rgba(255, 255, 255, 0.08)',
-                  paddingTop: '16px',
+                  fontSize: '12.5px',
+                  color: 'var(--text-muted)',
                 }}
               >
+                <span style={{ color: '#eab308' }}>✦</span>
+                <span>Guided by Vision •</span>
                 <a
                   href="#legacy"
                   style={{
-                    color: 'rgba(255, 255, 255, 0.5)',
-                    fontSize: '12.5px',
+                    color: 'var(--text-secondary)',
                     textDecoration: 'none',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '6px',
+                    fontWeight: 600,
                     transition: 'color 0.2s ease',
                   }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = '#eab308')}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255, 255, 255, 0.5)')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--text-secondary)')}
                 >
-                  <span style={{ color: '#eab308' }}>✦</span>
-                  <span>Built with a Vision. Driven by a Legacy.</span>
-                  <strong style={{ color: 'rgba(255, 255, 255, 0.75)', fontWeight: 600 }}>Father Never Dies.</strong>
+                  Father Never Dies
                 </a>
               </motion.div>
             </div>
 
-            {/* Right Side — Modern Growth Visual (No Fake Numbers) */}
+            {/* Right Column — Ultra-Clean Glass Engine Showcase */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.94, filter: 'blur(12px)' }}
-              animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-              transition={{ duration: 0.9, delay: 0.3 }}
+              initial={{ opacity: 0, y: 20, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{ duration: 0.85, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
               style={{ position: 'relative' }}
             >
-              {/* Central Glowing Shield / Visual Hub */}
-              <div
-                className="glass-card glass-card-glow"
-                style={{
-                  padding: '36px 28px',
-                  borderRadius: '28px',
-                  position: 'relative',
-                  border: '1px solid rgba(59, 130, 246, 0.3)',
-                  background: 'linear-gradient(180deg, rgba(13, 56, 153, 0.2) 0%, rgba(10, 10, 10, 0.95) 100%)',
-                }}
-              >
-                {/* Central Emblem Badge */}
-                <div style={{ textAlign: 'center', marginBottom: '24px' }}>
-                  <div
-                    style={{
-                      width: '74px',
-                      height: '74px',
-                      borderRadius: '20px',
-                      background: 'radial-gradient(circle, #1d4ed8 0%, #0a2566 100%)',
-                      border: '2px solid rgba(59, 130, 246, 0.6)',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      boxShadow: '0 0 35px rgba(37, 99, 235, 0.5)',
-                      marginBottom: '12px',
-                    }}
-                  >
-                    <img
-                      src="/gda_logo.png"
-                      alt="GDAs Emblem"
-                      style={{ width: '85%', height: '85%', objectFit: 'contain' }}
-                    />
-                  </div>
-                  <div style={{ fontSize: '18px', fontWeight: 800, color: 'var(--text-white)', letterSpacing: '-0.01em' }}>
-                    GDAs Unified Growth System
-                  </div>
-                  <div style={{ fontSize: '12px', color: 'var(--text-secondary)', marginTop: '2px' }}>
-                    Creative • Marketing • Tech Stack
-                  </div>
-                </div>
-
-                {/* 4 Multi-Tier Ecosystem Elements */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '14px' }}>
-                  <div
-                    className="glass-card"
-                    style={{
-                      padding: '16px',
-                      borderRadius: '16px',
-                      background: 'rgba(255, 255, 255, 0.03)',
-                      border: '1px solid rgba(255, 255, 255, 0.07)',
-                    }}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                      <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#3b82f6' }} />
-                      <span style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-white)' }}>Performance Ads</span>
-                    </div>
-                    <div style={{ fontSize: '11.5px', color: 'var(--text-secondary)' }}>Meta, Google & Targeted Lead Flow</div>
-                  </div>
-
-                  <div
-                    className="glass-card"
-                    style={{
-                      padding: '16px',
-                      borderRadius: '16px',
-                      background: 'rgba(255, 255, 255, 0.03)',
-                      border: '1px solid rgba(255, 255, 255, 0.07)',
-                    }}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                      <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#8b5cf6' }} />
-                      <span style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-white)' }}>Brand Identity</span>
-                    </div>
-                    <div style={{ fontSize: '11.5px', color: 'var(--text-secondary)' }}>Distinctive Logos, Visuals & Assets</div>
-                  </div>
-
-                  <div
-                    className="glass-card"
-                    style={{
-                      padding: '16px',
-                      borderRadius: '16px',
-                      background: 'rgba(255, 255, 255, 0.03)',
-                      border: '1px solid rgba(255, 255, 255, 0.07)',
-                    }}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                      <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#06b6d4' }} />
-                      <span style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-white)' }}>Web & Tech</span>
-                    </div>
-                    <div style={{ fontSize: '11.5px', color: 'var(--text-secondary)' }}>Fast, High-Converting Pages</div>
-                  </div>
-
-                  <div
-                    className="glass-card"
-                    style={{
-                      padding: '16px',
-                      borderRadius: '16px',
-                      background: 'rgba(255, 255, 255, 0.03)',
-                      border: '1px solid rgba(255, 255, 255, 0.07)',
-                    }}
-                  >
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                      <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#10b981' }} />
-                      <span style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-white)' }}>Social & Growth</span>
-                    </div>
-                    <div style={{ fontSize: '11.5px', color: 'var(--text-secondary)' }}>Viral Reels & Active Reach</div>
-                  </div>
-                </div>
-
-                {/* Bottom Trust Badge */}
+              {/* Outer Minimalist Glass Card */}
+              <div className="minimal-hero-card">
+                {/* Top Subtle Light Accent */}
                 <div
                   style={{
-                    marginTop: '18px',
+                    position: 'absolute',
+                    top: 0,
+                    left: '20%',
+                    right: '20%',
+                    height: '1px',
+                    background: 'linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.6), transparent)',
+                  }}
+                />
+
+                {/* Card Header: Window Dots & Status */}
+                <div
+                  style={{
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'space-between',
-                    padding: '10px 16px',
-                    background: 'rgba(37, 99, 235, 0.12)',
-                    borderRadius: '12px',
-                    border: '1px solid rgba(37, 99, 235, 0.25)',
+                    paddingBottom: '20px',
+                    borderBottom: '1px solid var(--border-subtle)',
+                    marginBottom: '24px',
                   }}
                 >
-                  <span style={{ fontSize: '12px', color: '#bfdbfe', fontWeight: 600 }}>
-                    🎯 Dedicated Business Growth
-                  </span>
-                  <span style={{ fontSize: '11.5px', color: '#60a5fa', fontWeight: 700 }}>
-                    100% Focused
-                  </span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <div style={{ width: '9px', height: '9px', borderRadius: '50%', background: 'rgba(100, 116, 139, 0.4)' }} />
+                    <div style={{ width: '9px', height: '9px', borderRadius: '50%', background: 'rgba(100, 116, 139, 0.4)' }} />
+                    <div style={{ width: '9px', height: '9px', borderRadius: '50%', background: 'rgba(100, 116, 139, 0.4)' }} />
+                    <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--text-muted)', marginLeft: '6px' }}>
+                      GDAs Growth Suite
+                    </span>
+                  </div>
+
+                  <div
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
+                      padding: '3px 10px',
+                      borderRadius: '9999px',
+                      background: 'rgba(34, 197, 94, 0.1)',
+                      border: '1px solid rgba(34, 197, 94, 0.25)',
+                      fontSize: '11px',
+                      fontWeight: 600,
+                      color: '#16a34a',
+                    }}
+                  >
+                    <span style={{ width: '5px', height: '5px', borderRadius: '50%', background: '#22c55e' }} />
+                    <span>Live Campaigns</span>
+                  </div>
+                </div>
+
+                {/* Featured Growth Indicator & Trajectory Chart */}
+                <div className="minimal-hero-inner-box">
+                  <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '14px' }}>
+                    <div>
+                      <div style={{ fontSize: '11.5px', color: 'var(--text-muted)', fontWeight: 500 }}>
+                        Average Campaign Growth
+                      </div>
+                      <div style={{ fontSize: '32px', fontWeight: 800, color: 'var(--text-white)', letterSpacing: '-0.02em', marginTop: '2px' }}>
+                        +185%
+                      </div>
+                    </div>
+                    <span
+                      style={{
+                        fontSize: '12px',
+                        fontWeight: 600,
+                        color: '#0284c7',
+                        background: 'rgba(56, 189, 248, 0.12)',
+                        padding: '4px 10px',
+                        borderRadius: '20px',
+                      }}
+                    >
+                      3.8x ROAS
+                    </span>
+                  </div>
+
+                  {/* Minimalist SVG Growth Curve */}
+                  <div style={{ width: '100%', height: '54px', position: 'relative' }}>
+                    <svg
+                      viewBox="0 0 320 60"
+                      fill="none"
+                      style={{ width: '100%', height: '100%', overflow: 'visible' }}
+                      preserveAspectRatio="none"
+                    >
+                      <defs>
+                        <linearGradient id="chartGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                          <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.25" />
+                          <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.0" />
+                        </linearGradient>
+                      </defs>
+                      <path
+                        d="M0,50 Q45,46 90,38 T180,24 T270,12 L320,4 L320,60 L0,60 Z"
+                        fill="url(#chartGrad)"
+                      />
+                      <path
+                        d="M0,50 Q45,46 90,38 T180,24 T270,12 L320,4"
+                        stroke="#3b82f6"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                      />
+                      <circle cx="320" cy="4" r="4.5" fill="#60a5fa" stroke="#1d4ed8" strokeWidth="2" />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* 3 Clean Modular Service Badges */}
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '10px', marginBottom: '20px' }}>
+                  <div className="minimal-hero-tag">
+                    <div style={{ fontSize: '15px', fontWeight: 700, color: '#2563eb' }}>Meta & Google</div>
+                    <div style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '2px' }}>Targeted Ads</div>
+                  </div>
+
+                  <div className="minimal-hero-tag">
+                    <div style={{ fontSize: '15px', fontWeight: 700, color: '#16a34a' }}>WhatsApp</div>
+                    <div style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '2px' }}>Official API</div>
+                  </div>
+
+                  <div className="minimal-hero-tag">
+                    <div style={{ fontSize: '15px', fontWeight: 700, color: '#7c3aed' }}>Web & Brand</div>
+                    <div style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '2px' }}>High Speed</div>
+                  </div>
+                </div>
+
+                {/* Bottom Verified Footnote */}
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    paddingTop: '16px',
+                    borderTop: '1px solid var(--border-subtle)',
+                    fontSize: '12px',
+                    color: 'var(--text-muted)',
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <div
+                      style={{
+                        width: '20px',
+                        height: '20px',
+                        borderRadius: '6px',
+                        background: '#1d4ed8',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        fontSize: '10px',
+                        fontWeight: 800,
+                        color: '#fff',
+                      }}
+                    >
+                      G
+                    </div>
+                    <span>GDAs Unified System</span>
+                  </div>
+                  <span style={{ color: '#2563eb', fontWeight: 600 }}>Pan-India & Bihar</span>
                 </div>
               </div>
             </motion.div>
@@ -861,7 +903,7 @@ export default function Home() {
       {/* ========================================================================= */}
       <section
         style={{
-          padding: '60px 0',
+          padding: '50px 0',
           borderTop: '1px solid rgba(255, 255, 255, 0.07)',
           borderBottom: '1px solid rgba(255, 255, 255, 0.07)',
           background: 'linear-gradient(180deg, #050505 0%, #0a0a0a 100%)',
@@ -869,136 +911,87 @@ export default function Home() {
         }}
       >
         <div className="container-custom">
-          <div style={{ textAlign: 'center', maxWidth: '820px', margin: '0 auto 40px auto' }}>
-            <h2 style={{ fontSize: 'clamp(26px, 3.2vw, 36px)', fontWeight: 700, color: 'var(--text-white)', marginBottom: '12px' }}>
-              Everything Your Business Needs to Go Digital.
+          <div style={{ textAlign: 'center', maxWidth: '680px', margin: '0 auto 36px auto' }}>
+            <h2 style={{ fontSize: 'clamp(24px, 2.8vw, 32px)', fontWeight: 700, color: 'var(--text-white)', marginBottom: '10px', letterSpacing: '-0.02em' }}>
+              Everything You Need to Scale
             </h2>
-            <p style={{ fontSize: '15.5px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-              From building your brand identity to generating leads and growing your online presence, GDAs brings the essential digital solutions together in one place.
+            <p style={{ fontSize: '14.5px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+              Strategy, execution, and dedicated growth support under one roof.
             </p>
           </div>
 
-          {/* 3 Small Highlights */}
+          <div style={{ textAlign: 'center' }}>
+            <span className="mobile-swipe-hint">Swipe cards →</span>
+          </div>
+
+          {/* 3 Clean Highlights — Horizontal Swipe on Mobile */}
           <div
+            className="mobile-horizontal-scroll"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
               gap: '20px',
             }}
           >
-            <motion.div
-              whileHover={{ y: -4 }}
-              className="glass-card"
-              style={{
-                padding: '24px 22px',
-                borderRadius: '18px',
-                display: 'flex',
-                alignItems: 'flex-start',
-                gap: '16px',
-                background: 'rgba(255, 255, 255, 0.02)',
-              }}
-            >
-              <div
+            {[
+              {
+                num: '01',
+                title: 'Strategy',
+                desc: 'Tailored digital roadmaps built around your target market and growth goals.',
+              },
+              {
+                num: '02',
+                title: 'Growth',
+                desc: 'Data-driven customer acquisition focused on real revenue and ROI.',
+              },
+              {
+                num: '03',
+                title: 'Support',
+                desc: 'A dedicated growth team working alongside you from day one.',
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ y: -3 }}
+                className="glass-card"
                 style={{
-                  fontSize: '26px',
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '12px',
-                  background: 'rgba(37, 99, 235, 0.15)',
-                  border: '1px solid rgba(37, 99, 235, 0.3)',
+                  padding: '24px 22px',
+                  borderRadius: '18px',
                   display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
+                  alignItems: 'flex-start',
+                  gap: '16px',
+                  background: 'rgba(255, 255, 255, 0.02)',
                 }}
               >
-                🎯
-              </div>
-              <div>
-                <div style={{ fontSize: '17px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '4px' }}>
-                  Strategy
+                <div
+                  style={{
+                    fontSize: '12px',
+                    fontWeight: 800,
+                    color: '#3b82f6',
+                    width: '36px',
+                    height: '36px',
+                    borderRadius: '10px',
+                    background: 'rgba(37, 99, 235, 0.1)',
+                    border: '1px solid rgba(59, 130, 246, 0.25)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flexShrink: 0,
+                    letterSpacing: '0.04em',
+                  }}
+                >
+                  {item.num}
                 </div>
-                <div style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-                  Right strategy for your business tailored to your target audience.
+                <div>
+                  <div style={{ fontSize: '16px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '4px' }}>
+                    {item.title}
+                  </div>
+                  <div style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
+                    {item.desc}
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              whileHover={{ y: -4 }}
-              className="glass-card"
-              style={{
-                padding: '24px 22px',
-                borderRadius: '18px',
-                display: 'flex',
-                alignItems: 'flex-start',
-                gap: '16px',
-                background: 'rgba(255, 255, 255, 0.02)',
-              }}
-            >
-              <div
-                style={{
-                  fontSize: '26px',
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '12px',
-                  background: 'rgba(16, 185, 129, 0.15)',
-                  border: '1px solid rgba(16, 185, 129, 0.3)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
-                }}
-              >
-                📈
-              </div>
-              <div>
-                <div style={{ fontSize: '17px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '4px' }}>
-                  Growth
-                </div>
-                <div style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-                  Focused on measurable business growth and high-intent customer acquisition.
-                </div>
-              </div>
-            </motion.div>
-
-            <motion.div
-              whileHover={{ y: -4 }}
-              className="glass-card"
-              style={{
-                padding: '24px 22px',
-                borderRadius: '18px',
-                display: 'flex',
-                alignItems: 'flex-start',
-                gap: '16px',
-                background: 'rgba(255, 255, 255, 0.02)',
-              }}
-            >
-              <div
-                style={{
-                  fontSize: '26px',
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '12px',
-                  background: 'rgba(234, 179, 8, 0.15)',
-                  border: '1px solid rgba(234, 179, 8, 0.3)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
-                }}
-              >
-                🤝
-              </div>
-              <div>
-                <div style={{ fontSize: '17px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '4px' }}>
-                  Support
-                </div>
-                <div style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
-                  A dedicated digital partner for your journey from day one.
-                </div>
-              </div>
-            </motion.div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -1021,44 +1014,44 @@ export default function Home() {
               <div className="section-tag">About GDAs</div>
               <h2
                 style={{
-                  fontSize: 'clamp(28px, 3.6vw, 44px)',
+                  fontSize: 'clamp(26px, 3.2vw, 38px)',
                   fontWeight: 700,
                   lineHeight: 1.2,
                   color: 'var(--text-white)',
-                  marginBottom: '20px',
+                  marginBottom: '18px',
                   letterSpacing: '-0.02em',
                 }}
               >
-                More Than a Digital Agency.{' '}
+                Your Dedicated{' '}
                 <span style={{ color: '#3b82f6', display: 'block' }}>
-                  We're Your Digital Growth Partner.
+                  Growth Partner.
                 </span>
               </h2>
 
-              <p style={{ fontSize: '16px', color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: '16px' }}>
-                Ganesha Digital Ads (GDAs) is a digital growth company helping businesses build their brand, reach the right audience and grow online.
+              <p style={{ fontSize: '15px', color: 'var(--text-secondary)', lineHeight: 1.65, marginBottom: '14px' }}>
+                Ganesha Digital Ads (GDAs) helps businesses build their brand, acquire high-intent customers, and scale online.
               </p>
 
-              <p style={{ fontSize: '15px', color: 'var(--text-muted)', lineHeight: 1.7, marginBottom: '28px' }}>
-                From Marketing and Branding to Websites and Technology, we bring multiple digital solutions together so you don't have to manage everything separately.
+              <p style={{ fontSize: '14px', color: 'var(--text-muted)', lineHeight: 1.65, marginBottom: '26px' }}>
+                We unite marketing, branding, and modern technology so you never have to coordinate across multiple disconnected vendors.
               </p>
 
-              <div style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
+              <div className="mobile-btn-row" style={{ display: 'flex', gap: '14px', flexWrap: 'wrap' }}>
                 <Link
                   href="/about"
                   className="btn-primary"
-                  style={{ textDecoration: 'none', padding: '12px 26px', fontSize: '14px' }}
+                  style={{ textDecoration: 'none', padding: '11px 24px', fontSize: '13.5px' }}
                 >
-                  <span>Know More About GDAs</span>
+                  <span>About GDAs</span>
                   <span>→</span>
                 </Link>
 
                 <button
                   onClick={() => setModalOpen(true)}
                   className="btn-secondary"
-                  style={{ padding: '12px 24px', fontSize: '14px' }}
+                  style={{ padding: '11px 22px', fontSize: '13.5px' }}
                 >
-                  Contact Our Team
+                  Contact Team
                 </button>
               </div>
             </div>
@@ -1066,7 +1059,7 @@ export default function Home() {
             {/* Right Content: Founder Pic & Details */}
             <div>
               <motion.div
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.01 }}
                 transition={{ duration: 0.3 }}
                 className="glass-card"
                 style={{
@@ -1088,9 +1081,9 @@ export default function Home() {
                 >
                   <div
                     style={{
-                      width: '90px',
-                      height: '90px',
-                      borderRadius: '20px',
+                      width: '84px',
+                      height: '84px',
+                      borderRadius: '18px',
                       overflow: 'hidden',
                       border: '2px solid rgba(59, 130, 246, 0.5)',
                       boxShadow: '0 8px 24px rgba(37, 99, 235, 0.35)',
@@ -1118,11 +1111,11 @@ export default function Home() {
                     >
                       Co-Founder & CEO
                     </div>
-                    <div style={{ fontSize: '20px', fontWeight: 800, color: 'var(--text-white)' }}>
+                    <div style={{ fontSize: '19px', fontWeight: 800, color: 'var(--text-white)' }}>
                       Mr. Ram Gyan
                     </div>
-                    <div style={{ fontSize: '13px', color: 'var(--text-secondary)' }}>
-                      Building in Digital Marketing Since 2019
+                    <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)' }}>
+                      Digital Marketing Specialist Since 2019
                     </div>
                   </div>
                 </div>
@@ -1131,9 +1124,9 @@ export default function Home() {
                   style={{
                     background: 'rgba(37, 99, 235, 0.08)',
                     borderLeft: '3px solid #3b82f6',
-                    padding: '12px 16px',
-                    borderRadius: '0 12px 12px 0',
-                    fontSize: '13.5px',
+                    padding: '11px 15px',
+                    borderRadius: '0 10px 10px 0',
+                    fontSize: '13px',
                     color: '#2563eb',
                     fontWeight: 700,
                     marginBottom: '14px',
@@ -1145,15 +1138,15 @@ export default function Home() {
                 <div
                   style={{
                     background: 'rgba(255, 255, 255, 0.03)',
-                    padding: '14px 16px',
-                    borderRadius: '14px',
+                    padding: '12px 14px',
+                    borderRadius: '12px',
                     border: '1px solid rgba(255, 255, 255, 0.06)',
-                    fontSize: '13px',
+                    fontSize: '12.5px',
                     color: 'var(--text-secondary)',
-                    lineHeight: 1.6,
+                    lineHeight: 1.55,
                   }}
                 >
-                  Honorary Doctorate (USA) • Bharat Visionary Leader 2026 • IIT Delhi & IIT Patna Trained • Vskills Certified Master
+                  Honorary Doctorate (USA) • Bharat Visionary Leader 2026 • IIT Delhi & IIT Patna Alum • Vskills Certified Master
                 </div>
 
                 <div
@@ -1167,7 +1160,7 @@ export default function Home() {
                   }}
                 >
                   <Link href="/about#leadership" style={{ color: '#60a5fa', fontWeight: 600, textDecoration: 'none' }}>
-                    View Certifications & Awards →
+                    View Credentials →
                   </Link>
                   <span style={{ color: '#22c55e', fontWeight: 600 }}>● Available</span>
                 </div>
@@ -1184,17 +1177,22 @@ export default function Home() {
         <div className="container-custom">
           {/* Section Header */}
           <div className="section-header">
-            <div className="section-tag">Our Digital Ecosystem</div>
+            <div className="section-tag">Services</div>
             <h2 className="section-title">
-              Everything You Need to <span className="serif-italic">Grow Digitally</span>
+              Everything You Need to <span className="serif-italic">Scale Digitally</span>
             </h2>
             <p className="section-subtitle">
-              One platform. Multiple solutions. One goal — your business growth.
+              One unified platform for modern business growth.
             </p>
           </div>
 
-          {/* 6 Service Cards Grid */}
+          <div style={{ textAlign: 'center' }}>
+            <span className="mobile-swipe-hint">Swipe services →</span>
+          </div>
+
+          {/* Service Cards Grid — Horizontal Swipe on Mobile */}
           <div
+            className="mobile-horizontal-scroll"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
@@ -1211,7 +1209,7 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: idx * 0.08 }}
                 className="glass-card service-card"
                 style={{
-                  padding: '30px 26px',
+                  padding: '28px 24px',
                   borderRadius: '22px',
                   display: 'flex',
                   flexDirection: 'column',
@@ -1222,10 +1220,10 @@ export default function Home() {
               >
                 <div>
                   {/* Top Bar */}
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '20px' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '18px' }}>
                     <span
                       style={{
-                        fontSize: '13px',
+                        fontSize: '12.5px',
                         fontWeight: 800,
                         color: srv.highlightColor,
                         letterSpacing: '0.08em',
@@ -1235,9 +1233,9 @@ export default function Home() {
                     </span>
                     <div
                       style={{
-                        width: '46px',
-                        height: '46px',
-                        borderRadius: '12px',
+                        width: '42px',
+                        height: '42px',
+                        borderRadius: '11px',
                         background: `${srv.highlightColor}18`,
                         border: `1px solid ${srv.highlightColor}40`,
                         color: srv.highlightColor,
@@ -1251,15 +1249,15 @@ export default function Home() {
                   </div>
 
                   {/* Title & Tagline */}
-                  <h3 style={{ fontSize: '21px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '8px' }}>
+                  <h3 style={{ fontSize: '19px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '6px' }}>
                     {srv.title}
                   </h3>
                   <div
                     style={{
-                      fontSize: '12.5px',
+                      fontSize: '12px',
                       fontWeight: 600,
                       color: srv.highlightColor,
-                      marginBottom: '14px',
+                      marginBottom: '12px',
                       lineHeight: 1.4,
                     }}
                   >
@@ -1267,14 +1265,14 @@ export default function Home() {
                   </div>
 
                   {/* Description */}
-                  <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '20px' }}>
+                  <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: 1.55, marginBottom: '18px' }}>
                     {srv.desc}
                   </p>
                 </div>
 
                 <div>
                   {/* Feature Tags */}
-                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '20px' }}>
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '18px' }}>
                     {srv.tags.map((tag, tIdx) => (
                       <span
                         key={tIdx}
@@ -1284,7 +1282,7 @@ export default function Home() {
                           background: 'var(--pill-bg)',
                           border: '1px solid var(--border-subtle)',
                           color: 'var(--pill-text)',
-                          padding: '3px 9px',
+                          padding: '3px 8px',
                           borderRadius: '6px',
                         }}
                       >
@@ -1304,7 +1302,7 @@ export default function Home() {
                       border: 'none',
                       color: 'var(--text-white)',
                       fontSize: '13px',
-                      fontWeight: 700,
+                      fontWeight: 600,
                       cursor: 'pointer',
                       display: 'flex',
                       alignItems: 'center',
@@ -1312,7 +1310,7 @@ export default function Home() {
                       padding: 0,
                     }}
                   >
-                    <span>Get Started with {srv.title}</span>
+                    <span>Explore Service</span>
                     <span style={{ color: srv.highlightColor }}>→</span>
                   </button>
                 </div>
@@ -1320,12 +1318,12 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Explore All Services CTA */}
-          <div style={{ textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
+          {/* Explore All Services CTA — Side by Side on Mobile */}
+          <div className="mobile-btn-row" style={{ textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '14px', flexWrap: 'wrap' }}>
             <Link
               href="/services"
               className="btn-primary"
-              style={{ padding: '13px 32px', fontSize: '15px', textDecoration: 'none' }}
+              style={{ padding: '12px 28px', fontSize: '14px', textDecoration: 'none' }}
             >
               <span>Explore All Services</span>
               <span>→</span>
@@ -1333,7 +1331,7 @@ export default function Home() {
             <button
               onClick={() => setModalOpen(true)}
               className="btn-secondary"
-              style={{ padding: '13px 28px', fontSize: '15px' }}
+              style={{ padding: '12px 24px', fontSize: '14px' }}
             >
               Get Custom Quote
             </button>
@@ -1347,80 +1345,76 @@ export default function Home() {
       <section id="why-gdas" className="section-spacing" style={{ position: 'relative' }}>
         <div className="container-custom">
           <div className="section-header">
-            <div className="section-tag">The GDAs Advantage</div>
+            <div className="section-tag">Why GDAs</div>
             <h2 className="section-title">
-              Why Businesses <span className="serif-italic">Choose GDAs</span>
+              Built for <span className="serif-italic">Real Business Impact</span>
             </h2>
             <p className="section-subtitle">
-              One Partner. Complete Digital Solutions.
+              One unified team for strategy, creative, and performance.
             </p>
           </div>
 
-          {/* 4 Cards Grid */}
+          <div style={{ textAlign: 'center' }}>
+            <span className="mobile-swipe-hint">Swipe benefits →</span>
+          </div>
+
+          {/* 4 Clean Cards Grid — Horizontal Swipe on Mobile */}
           <div
+            className="mobile-horizontal-scroll"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
-              gap: '24px',
+              gap: '22px',
             }}
           >
             {[
               {
-                emoji: '🎯',
-                title: 'Business-Focused',
-                desc: "We don't just create campaigns. We focus on helping your business move forward.",
-                accent: '#3b82f6',
+                num: '01',
+                title: 'Business-First',
+                desc: 'Campaigns focused on qualified leads, revenue, and real business momentum.',
               },
               {
-                emoji: '💡',
+                num: '02',
                 title: 'Creative + Strategy',
-                desc: 'Creative ideas backed by practical digital strategy that delivers tangible business impact.',
-                accent: '#8b5cf6',
+                desc: 'Compelling brand design backed by data-driven performance marketing.',
               },
               {
-                emoji: '⚡',
-                title: 'One Platform',
-                desc: 'Marketing, branding, technology and digital solutions under one cohesive roof.',
-                accent: '#06b6d4',
+                num: '03',
+                title: 'One Unified Roof',
+                desc: 'Marketing, branding, and tech aligned without multiple vendor friction.',
               },
               {
-                emoji: '🤝',
-                title: 'Long-Term Partnership',
-                desc: 'We aim to grow with your business, not just complete a one-time project.',
-                accent: '#10b981',
+                num: '04',
+                title: 'Dedicated Partner',
+                desc: 'An invested growth team working alongside you as your business scales.',
               },
             ].map((card, i) => (
               <motion.div
                 key={i}
-                whileHover={{ y: -6 }}
+                whileHover={{ y: -4 }}
                 className="glass-card"
                 style={{
-                  padding: '32px 26px',
-                  borderRadius: '22px',
+                  padding: '28px 24px',
+                  borderRadius: '20px',
                   background: 'rgba(15, 15, 15, 0.8)',
                   border: '1px solid rgba(255, 255, 255, 0.08)',
                 }}
               >
                 <div
                   style={{
-                    fontSize: '32px',
-                    width: '60px',
-                    height: '60px',
-                    borderRadius: '16px',
-                    background: `${card.accent}18`,
-                    border: `1px solid ${card.accent}35`,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: '20px',
+                    fontSize: '12px',
+                    fontWeight: 800,
+                    color: '#3b82f6',
+                    letterSpacing: '0.06em',
+                    marginBottom: '14px',
                   }}
                 >
-                  {card.emoji}
+                  {card.num}
                 </div>
-                <h3 style={{ fontSize: '19px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '10px' }}>
+                <h3 style={{ fontSize: '17px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '8px' }}>
                   {card.title}
                 </h3>
-                <p style={{ fontSize: '14.5px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
                   {card.desc}
                 </p>
               </motion.div>
@@ -1435,57 +1429,58 @@ export default function Home() {
       <section id="how-it-works" className="section-spacing" style={{ background: '#050505', position: 'relative' }}>
         <div className="container-custom">
           <div className="section-header">
-            <div className="section-tag">Simple 4-Step Process</div>
+            <div className="section-tag">Process</div>
             <h2 className="section-title">
-              From Idea to Growth — <span className="serif-italic">We Make It Simple</span>
+              How We <span className="serif-italic">Work</span>
             </h2>
             <p className="section-subtitle">
-              A transparent, structured methodology that turns your business vision into measurable momentum.
+              A clear four-step path from consultation to measurable results.
             </p>
           </div>
 
-          {/* 4 Steps Horizontal Grid */}
+          <div style={{ textAlign: 'center' }}>
+            <span className="mobile-swipe-hint">Swipe steps →</span>
+          </div>
+
+          {/* 4 Steps Horizontal Grid — Horizontal Swipe on Mobile */}
           <div
+            className="mobile-horizontal-scroll"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
-              gap: '24px',
+              gap: '22px',
               position: 'relative',
             }}
           >
             {[
               {
                 step: '01',
-                title: 'Understand',
-                desc: 'We understand your business, goals, target audience, and current challenges.',
-                color: '#3b82f6',
+                title: 'Discover',
+                desc: 'We analyze your market, audience, and key customer acquisition bottlenecks.',
               },
               {
                 step: '02',
                 title: 'Strategize',
-                desc: 'We create a tailored digital strategy and marketing roadmap according to your needs.',
-                color: '#8b5cf6',
+                desc: 'We craft a tailored roadmap with clear targets and budget allocation.',
               },
               {
                 step: '03',
-                title: 'Create',
-                desc: 'We build your brand identity, content, high-converting ad campaigns and digital assets.',
-                color: '#06b6d4',
+                title: 'Execute',
+                desc: 'We deploy high-converting campaigns, creative assets, and tech funnels.',
               },
               {
                 step: '04',
-                title: 'Grow',
-                desc: 'We optimize, improve performance, and scale what delivers real business growth.',
-                color: '#10b981',
+                title: 'Scale',
+                desc: 'We optimize performance continuously to maximize your return on ad spend.',
               },
             ].map((step, idx) => (
               <motion.div
                 key={step.step}
-                whileHover={{ y: -4 }}
+                whileHover={{ y: -3 }}
                 className="glass-card"
                 style={{
-                  padding: '28px 24px',
-                  borderRadius: '20px',
+                  padding: '26px 22px',
+                  borderRadius: '18px',
                   background: 'rgba(15, 15, 15, 0.75)',
                   border: '1px solid rgba(255, 255, 255, 0.08)',
                   position: 'relative',
@@ -1493,20 +1488,20 @@ export default function Home() {
               >
                 <div
                   style={{
-                    fontSize: '28px',
+                    fontSize: '22px',
                     fontWeight: 800,
-                    color: step.color,
+                    color: '#3b82f6',
                     letterSpacing: '-0.02em',
-                    marginBottom: '12px',
+                    marginBottom: '10px',
                     fontFamily: 'var(--font-sans)',
                   }}
                 >
                   {step.step}.
                 </div>
-                <h3 style={{ fontSize: '18px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '8px' }}>
+                <h3 style={{ fontSize: '17px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '6px' }}>
                   {step.title}
                 </h3>
-                <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '13px', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
                   {step.desc}
                 </p>
               </motion.div>
@@ -1663,6 +1658,7 @@ export default function Home() {
           </div>
 
           <div
+            className="mobile-stats-grid"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
@@ -1671,10 +1667,10 @@ export default function Home() {
             }}
           >
             {[
-              { num: '50+', label: 'Clients Served', sub: 'Growing businesses empowered', color: '#3b82f6' },
-              { num: '120+', label: 'Projects Delivered', sub: 'From branding to websites', color: '#8b5cf6' },
-              { num: '300+', label: 'Campaigns Managed', sub: 'Performance ad executions', color: '#06b6d4' },
-              { num: '100%', label: 'Businesses Supported', sub: 'Hands-on dedicated partner', color: '#10b981' },
+              { num: '50+', label: 'Clients Served', sub: 'Growing businesses empowered', color: '#2563eb' },
+              { num: '120+', label: 'Projects Delivered', sub: 'From branding to websites', color: '#2563eb' },
+              { num: '300+', label: 'Campaigns Managed', sub: 'Performance ad executions', color: '#2563eb' },
+              { num: '100%', label: 'Businesses Supported', sub: 'Hands-on dedicated partner', color: '#2563eb' },
             ].map((stat, i) => (
               <motion.div
                 key={i}
@@ -1712,7 +1708,7 @@ export default function Home() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 09. GDAs LEGACY SECTION ❤️ (Father Never Dies Tribute) */}
+      {/* 09. GDAs LEGACY SECTION (Father Never Dies Tribute) */}
       {/* ========================================================================= */}
       <section id="legacy" className="section-spacing" style={{ position: 'relative' }}>
         <div className="container-custom">
@@ -1723,8 +1719,8 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="legacy-card"
             style={{
-              padding: 'clamp(32px, 5vw, 60px)',
-              borderRadius: '30px',
+              padding: 'clamp(32px, 5vw, 56px)',
+              borderRadius: '28px',
               position: 'relative',
               overflow: 'hidden',
             }}
@@ -1749,20 +1745,20 @@ export default function Home() {
                     background: 'rgba(234, 179, 8, 0.12)',
                     border: '1px solid rgba(234, 179, 8, 0.3)',
                     color: '#fde047',
-                    fontSize: '12px',
+                    fontSize: '11.5px',
                     fontWeight: 700,
                     letterSpacing: '0.08em',
                     textTransform: 'uppercase',
                     marginBottom: '16px',
                   }}
                 >
-                  <span>❤️</span>
-                  <span>The Legacy Behind GDAs</span>
+                  <span style={{ color: '#eab308' }}>✦</span>
+                  <span>Founder Tribute • Heritage</span>
                 </div>
 
                 <h2
                   style={{
-                    fontSize: 'clamp(28px, 3.6vw, 42px)',
+                    fontSize: 'clamp(26px, 3.4vw, 38px)',
                     fontWeight: 800,
                     color: '#ffffff',
                     lineHeight: 1.15,
@@ -1772,34 +1768,34 @@ export default function Home() {
                 >
                   Mr. Ganesh Ram
                 </h2>
-                <div style={{ fontSize: '15px', color: '#facc15', fontWeight: 700, marginBottom: '2px' }}>
+                <div style={{ fontSize: '14.5px', color: '#facc15', fontWeight: 700, marginBottom: '2px' }}>
                   Ex-Senior Controller, JSEB
                 </div>
-                <div style={{ fontSize: '13px', color: '#cbd5e1', marginBottom: '18px' }}>
+                <div style={{ fontSize: '12.5px', color: '#cbd5e1', marginBottom: '16px' }}>
                   Patratu Thermal Power Station, Patratu
                 </div>
 
-                <div style={{ fontSize: '17px', fontWeight: 700, color: '#ffffff', marginBottom: '8px' }}>
+                <div style={{ fontSize: '16px', fontWeight: 700, color: '#ffffff', marginBottom: '8px' }}>
                   Inspired by a Legacy. Built for the Future.
                 </div>
 
-                <p style={{ fontSize: '15px', color: '#e2e8f0', lineHeight: 1.7, marginBottom: '18px' }}>
-                  The values of <strong>discipline, dedication, responsibility and perseverance</strong> continue to inspire the journey of GDAs.
+                <p style={{ fontSize: '14.5px', color: '#e2e8f0', lineHeight: 1.65, marginBottom: '18px' }}>
+                  The values of <strong>discipline, dedication, responsibility and perseverance</strong> continue to shape every standard at GDAs.
                 </p>
 
                 <div
                   style={{
                     background: 'rgba(234, 179, 8, 0.08)',
                     borderLeft: '4px solid #eab308',
-                    padding: '16px 20px',
-                    borderRadius: '0 14px 14px 0',
-                    marginBottom: '24px',
+                    padding: '14px 18px',
+                    borderRadius: '0 12px 12px 0',
+                    marginBottom: '22px',
                   }}
                 >
-                  <div style={{ fontSize: '20px', fontWeight: 800, color: '#fde047', marginBottom: '6px' }}>
+                  <div style={{ fontSize: '18px', fontWeight: 800, color: '#fde047', marginBottom: '4px' }}>
                     Father Never Dies.
                   </div>
-                  <div style={{ fontSize: '14px', color: '#fef08a', lineHeight: 1.6, fontStyle: 'italic' }}>
+                  <div style={{ fontSize: '13.5px', color: '#fef08a', lineHeight: 1.55, fontStyle: 'italic' }}>
                     His values live on.<br />
                     His vision moves forward.<br />
                     His legacy continues through GDAs.
@@ -1810,8 +1806,8 @@ export default function Home() {
                   href="/about#legacy"
                   className="btn-secondary"
                   style={{
-                    padding: '12px 26px',
-                    fontSize: '14px',
+                    padding: '11px 24px',
+                    fontSize: '13.5px',
                     textDecoration: 'none',
                     borderColor: 'rgba(234, 179, 8, 0.4)',
                     color: '#fef08a',
@@ -1827,18 +1823,18 @@ export default function Home() {
                 <div
                   style={{
                     display: 'inline-block',
-                    padding: '12px',
-                    borderRadius: '26px',
+                    padding: '10px',
+                    borderRadius: '24px',
                     background: 'radial-gradient(ellipse at center, rgba(234, 179, 8, 0.2) 0%, rgba(15, 15, 15, 0.85) 75%)',
                     border: '1px solid rgba(234, 179, 8, 0.4)',
                     boxShadow: '0 16px 48px rgba(0, 0, 0, 0.9), 0 0 40px rgba(234, 179, 8, 0.2)',
-                    maxWidth: '420px',
+                    maxWidth: '400px',
                     width: '100%',
                   }}
                 >
                   <div
                     style={{
-                      borderRadius: '20px',
+                      borderRadius: '18px',
                       overflow: 'hidden',
                       position: 'relative',
                     }}
@@ -1862,16 +1858,21 @@ export default function Home() {
       <section id="testimonials" className="section-spacing" style={{ background: '#050505', position: 'relative' }}>
         <div className="container-custom">
           <div className="section-header">
-            <div className="section-tag">Client Reviews</div>
+            <div className="section-tag">Testimonials</div>
             <h2 className="section-title">
-              What Our <span className="serif-italic">Clients Say</span>
+              Client <span className="serif-italic">Stories</span>
             </h2>
             <p className="section-subtitle">
               Authentic experiences shared by business leaders and founders partnering with GDAs.
             </p>
           </div>
 
+          <div style={{ textAlign: 'center' }}>
+            <span className="mobile-swipe-hint">Swipe client stories →</span>
+          </div>
+
           <div
+            className="mobile-horizontal-scroll"
             style={{
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(270px, 1fr))',
@@ -1881,11 +1882,11 @@ export default function Home() {
             {testimonials.map((t, idx) => (
               <motion.div
                 key={idx}
-                whileHover={{ y: -5 }}
+                whileHover={{ y: -4 }}
                 className="glass-card"
                 style={{
-                  padding: '28px 24px',
-                  borderRadius: '22px',
+                  padding: '26px 22px',
+                  borderRadius: '20px',
                   background: 'rgba(15, 15, 15, 0.8)',
                   border: '1px solid rgba(255, 255, 255, 0.08)',
                   display: 'flex',
@@ -1895,30 +1896,30 @@ export default function Home() {
               >
                 <div>
                   {/* Rating Stars */}
-                  <div style={{ display: 'flex', gap: '3px', color: '#facc15', fontSize: '16px', marginBottom: '14px' }}>
+                  <div style={{ display: 'flex', gap: '3px', color: '#facc15', fontSize: '15px', marginBottom: '12px' }}>
                     {'★★★★★'}
                   </div>
                   {/* Testimonial Quote */}
-                  <p style={{ fontSize: '14.5px', color: '#d1d5db', lineHeight: 1.65, marginBottom: '22px' }}>
+                  <p style={{ fontSize: '14px', color: '#d1d5db', lineHeight: 1.6, marginBottom: '20px' }}>
                     "{t.content}"
                   </p>
                 </div>
 
                 {/* Author Info */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '14px', borderTop: '1px solid rgba(255, 255, 255, 0.06)', paddingTop: '16px' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '12px', borderTop: '1px solid rgba(255, 255, 255, 0.06)', paddingTop: '14px' }}>
                   <img
                     src={t.avatar}
                     alt={t.name}
                     style={{
-                      width: '44px',
-                      height: '44px',
+                      width: '42px',
+                      height: '42px',
                       borderRadius: '50%',
                       objectFit: 'cover',
                       border: '1.5px solid rgba(59, 130, 246, 0.4)',
                     }}
                   />
                   <div>
-                    <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-white)' }}>
+                    <div style={{ fontSize: '14.5px', fontWeight: 700, color: 'var(--text-white)' }}>
                       {t.name}
                     </div>
                     <div style={{ fontSize: '12px', color: 'var(--text-dim)' }}>
@@ -1938,7 +1939,7 @@ export default function Home() {
       <section id="faq" className="section-spacing" style={{ position: 'relative' }}>
         <div className="container-custom">
           <div className="section-header">
-            <div className="section-tag">Got Questions?</div>
+            <div className="section-tag">FAQ</div>
             <h2 className="section-title">
               Frequently Asked <span className="serif-italic">Questions</span>
             </h2>
@@ -1947,7 +1948,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div style={{ maxWidth: '820px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '14px' }}>
+          <div style={{ maxWidth: '800px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '12px' }}>
             {faqs.map((faq, i) => {
               const isOpen = activeFaq === i;
               return (
@@ -1965,11 +1966,11 @@ export default function Home() {
                     style={{
                       width: '100%',
                       textAlign: 'left',
-                      padding: '20px 24px',
+                      padding: '18px 22px',
                       background: 'none',
                       border: 'none',
                       color: 'var(--text-white)',
-                      fontSize: '16px',
+                      fontSize: '15px',
                       fontWeight: 600,
                       cursor: 'pointer',
                       display: 'flex',
@@ -1984,7 +1985,7 @@ export default function Home() {
                         transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)',
                         transition: 'transform 0.25s ease',
                         color: 'var(--text-accent)',
-                        fontSize: '18px',
+                        fontSize: '16px',
                       }}
                     >
                       ▾
@@ -2001,12 +2002,12 @@ export default function Home() {
                       >
                         <div
                           style={{
-                            padding: '0 24px 20px 24px',
-                            fontSize: '14.5px',
+                            padding: '0 22px 18px 22px',
+                            fontSize: '14px',
                             color: 'var(--text-secondary)',
-                            lineHeight: 1.65,
+                            lineHeight: 1.6,
                             borderTop: '1px solid var(--border-subtle)',
-                            paddingTop: '14px',
+                            paddingTop: '12px',
                           }}
                         >
                           {faq.a}
@@ -2022,41 +2023,41 @@ export default function Home() {
       </section>
 
       {/* ========================================================================= */}
-      {/* 12. FINAL CTA — VERY IMPORTANT 🔥 */}
+      {/* 12. FINAL CTA */}
       {/* ========================================================================= */}
       <section className="cta-banner-section">
         <div className="container-custom">
           <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
+            initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
             className="cta-banner-card"
             style={{
-              padding: 'clamp(40px, 6vw, 70px) 30px',
-              borderRadius: '32px',
+              padding: 'clamp(36px, 5vw, 60px) 28px',
+              borderRadius: '28px',
               textAlign: 'center',
-              maxWidth: '920px',
+              maxWidth: '860px',
               margin: '0 auto',
               position: 'relative',
             }}
           >
             <div className="cta-badge">
-              <span>🔥</span>
-              <span>Take Your Business To The Next Level</span>
+              <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: '#3b82f6', display: 'inline-block' }} />
+              <span>Start Growing Today</span>
             </div>
 
             <h2
               style={{
-                fontSize: 'clamp(32px, 4.8vw, 54px)',
+                fontSize: 'clamp(28px, 4vw, 44px)',
                 fontWeight: 800,
                 color: 'var(--text-white)',
-                lineHeight: 1.12,
-                letterSpacing: '-0.03em',
-                marginBottom: '16px',
+                lineHeight: 1.15,
+                letterSpacing: '-0.025em',
+                marginBottom: '14px',
               }}
             >
-              Ready to Grow Your Business{' '}
+              Ready to Scale Your Business{' '}
               <span
                 style={{
                   background: 'linear-gradient(135deg, #60a5fa 0%, #2563eb 100%)',
@@ -2071,19 +2072,23 @@ export default function Home() {
             <p
               className="cta-desc"
               style={{
-                maxWidth: '620px',
-                margin: '0 auto 34px auto',
+                maxWidth: '560px',
+                margin: '0 auto 28px auto',
+                fontSize: '15px',
+                color: 'var(--text-secondary)',
+                lineHeight: 1.6,
               }}
             >
-              Let's build your brand, reach your audience and take your business to the next level with GDAs.
+              Schedule a free strategy consultation or connect with our team directly on WhatsApp.
             </p>
 
             <div
+              className="mobile-btn-row"
               style={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '16px',
+                gap: '14px',
                 flexWrap: 'wrap',
               }}
             >
@@ -2091,12 +2096,12 @@ export default function Home() {
                 onClick={() => setModalOpen(true)}
                 className="btn-primary"
                 style={{
-                  padding: '14px 36px',
-                  fontSize: '15.5px',
-                  fontWeight: 700,
+                  padding: '13px 30px',
+                  fontSize: '14.5px',
+                  fontWeight: 600,
                 }}
               >
-                <span>Start Your Digital Journey</span>
+                <span>Get Free Strategy Call</span>
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
@@ -2108,19 +2113,17 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="btn-secondary"
                 style={{
-                  padding: '14px 28px',
-                  fontSize: '15px',
+                  padding: '13px 26px',
+                  fontSize: '14.5px',
                   fontWeight: 600,
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '10px',
+                  gap: '8px',
                   borderColor: 'rgba(34, 197, 94, 0.4)',
                 }}
               >
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.2">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg>
-                <span>Call / WhatsApp GDAs</span>
+                <span style={{ width: '7px', height: '7px', borderRadius: '50%', background: '#22c55e' }} />
+                <span>Chat on WhatsApp</span>
               </a>
             </div>
           </motion.div>
@@ -2134,7 +2137,7 @@ export default function Home() {
         style={{
           borderTop: '1px solid rgba(255, 255, 255, 0.08)',
           background: '#040404',
-          padding: '70px 0 30px 0',
+          padding: '60px 0 28px 0',
           position: 'relative',
         }}
       >
@@ -2144,7 +2147,7 @@ export default function Home() {
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
               gap: '40px',
-              marginBottom: '50px',
+              marginBottom: '46px',
             }}
           >
             {/* Brand Column */}
@@ -2152,8 +2155,8 @@ export default function Home() {
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '14px' }}>
                 <div
                   style={{
-                    width: '34px',
-                    height: '34px',
+                    width: '32px',
+                    height: '32px',
                     borderRadius: '8px',
                     background: '#0d3899',
                     display: 'flex',
@@ -2166,23 +2169,23 @@ export default function Home() {
                 </div>
                 <span style={{ fontWeight: 800, fontSize: '18px', color: 'var(--text-white)' }}>GDAs</span>
               </div>
-              <div style={{ fontSize: '13px', fontWeight: 700, color: '#60a5fa', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '8px' }}>
+              <div style={{ fontSize: '12px', fontWeight: 700, color: '#60a5fa', textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: '8px' }}>
                 GANESHA DIGITAL ADS
               </div>
-              <p style={{ fontSize: '14px', color: 'var(--text-secondary)', fontWeight: 500, marginBottom: '16px' }}>
+              <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', fontWeight: 500, marginBottom: '12px' }}>
                 Digital Ka Saath, Aapke Business Ka Vikas.
               </p>
-              <p style={{ fontSize: '12.5px', color: 'var(--text-dim)', lineHeight: 1.5 }}>
+              <p style={{ fontSize: '12px', color: 'var(--text-dim)', lineHeight: 1.5 }}>
                 Built with a Vision. Driven by a Legacy. Father Never Dies.
               </p>
             </div>
 
             {/* Quick Links */}
             <div>
-              <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--text-white)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
+              <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-white)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
                 Quick Links
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13.5px' }}>
                 <Link href="/" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Home</Link>
                 <Link href="/about" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>About</Link>
                 <Link href="/services" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>Services</Link>
@@ -2195,27 +2198,30 @@ export default function Home() {
 
             {/* Services */}
             <div>
-              <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--text-white)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
+              <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-white)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
                 Services
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px', color: 'var(--text-secondary)' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13.5px', color: 'var(--text-secondary)' }}>
                 <span>Digital Marketing</span>
+                <span>WhatsApp API</span>
+                <span>IVR Calling</span>
+                <span>Local SEO</span>
                 <span>Branding</span>
-                <span>Website</span>
-                <span>SEO</span>
-                <span>Social Media</span>
-                <span>Automation</span>
+                <span>Web Development</span>
               </div>
             </div>
 
             {/* Contact & Socials */}
             <div>
-              <div style={{ fontSize: '14px', fontWeight: 700, color: 'var(--text-white)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
+              <div style={{ fontSize: '13px', fontWeight: 700, color: 'var(--text-white)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '16px' }}>
                 Contact & Connect
               </div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '14px', marginBottom: '20px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', fontSize: '13.5px', marginBottom: '18px' }}>
                 <a href="tel:9939862765" style={{ color: 'var(--text-secondary)', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span>📞</span> <span>+91 9939862765</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                  <span>+91 9939862765</span>
                 </a>
               </div>
 
@@ -2228,23 +2234,23 @@ export default function Home() {
           <div
             style={{
               borderTop: '1px solid rgba(255, 255, 255, 0.06)',
-              paddingTop: '24px',
+              paddingTop: '22px',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'space-between',
               flexWrap: 'wrap',
               gap: '14px',
-              fontSize: '13px',
+              fontSize: '12.5px',
               color: '#737373',
             }}
           >
             <div>© 2026 GDAs Ganesha Digital Ads. All Rights Reserved.</div>
-            <div style={{ display: 'flex', gap: '18px' }}>
+            <div style={{ display: 'flex', gap: '16px' }}>
               <Link href="/privacy-policy" style={{ color: '#737373', textDecoration: 'none' }}>Privacy Policy</Link>
               <Link href="/terms-conditions" style={{ color: '#737373', textDecoration: 'none' }}>Terms & Conditions</Link>
               <Link href="/refund-policy" style={{ color: '#737373', textDecoration: 'none' }}>Refund Policy</Link>
               <Link href="/disclaimer" style={{ color: '#737373', textDecoration: 'none' }}>Disclaimer</Link>
-              <Link href="/admin" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 600 }}>🔒 Admin Portal</Link>
+              <Link href="/admin" style={{ color: '#3b82f6', textDecoration: 'none', fontWeight: 600 }}>Admin Portal</Link>
             </div>
           </div>
         </div>
@@ -2263,8 +2269,8 @@ export default function Home() {
           bottom: '24px',
           right: '24px',
           zIndex: 999,
-          width: '54px',
-          height: '54px',
+          width: '52px',
+          height: '52px',
           borderRadius: '50%',
           backgroundColor: '#22c55e',
           color: '#ffffff',
@@ -2274,10 +2280,10 @@ export default function Home() {
           boxShadow: '0 8px 25px rgba(34, 197, 94, 0.5)',
           transition: 'transform 0.25s ease',
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
+        onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.08)')}
         onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
       >
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
         </svg>
       </a>
@@ -2323,21 +2329,38 @@ export default function Home() {
                 <div style={{ fontSize: '11px', fontWeight: 800, color: '#60a5fa', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '4px' }}>
                   Grow With GDAs
                 </div>
-                <h3 style={{ fontSize: '22px', fontWeight: 800, color: 'var(--text-white)' }}>
+                <h3 style={{ fontSize: '21px', fontWeight: 800, color: 'var(--text-white)' }}>
                   Let's Discuss Your Business
                 </h3>
                 <p style={{ fontSize: '13px', color: 'var(--text-secondary)', marginTop: '4px' }}>
-                  Fill in your details below and our team will get in touch with a customized digital growth plan.
+                  Fill in your details and our team will get in touch with a customized digital growth plan.
                 </p>
               </div>
 
               {formSubmitted ? (
                 <div style={{ textAlign: 'center', padding: '30px 10px' }}>
-                  <div style={{ fontSize: '42px', marginBottom: '12px' }}>✅</div>
-                  <h4 style={{ fontSize: '20px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '8px' }}>
+                  <div
+                    style={{
+                      width: '46px',
+                      height: '46px',
+                      borderRadius: '50%',
+                      background: 'rgba(34, 197, 94, 0.12)',
+                      border: '1px solid rgba(34, 197, 94, 0.3)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      margin: '0 auto 12px auto',
+                      color: '#22c55e',
+                    }}
+                  >
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </div>
+                  <h4 style={{ fontSize: '19px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '6px' }}>
                     Request Sent Successfully!
                   </h4>
-                  <p style={{ fontSize: '14px', color: 'var(--text-secondary)', marginBottom: '20px' }}>
+                  <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', marginBottom: '20px' }}>
                     Our growth team will review your business details and connect with you shortly.
                   </p>
                   <button
@@ -2497,6 +2520,61 @@ export default function Home() {
           </div>
         )}
       </AnimatePresence>
+
+      {/* ========================================================================= */}
+      {/* MOBILE APP FLOATING BOTTOM DOCK */}
+      {/* ========================================================================= */}
+      <nav className="mobile-app-dock" aria-label="Mobile Bottom App Navigation">
+        <a href="#" className="mobile-dock-btn active" aria-label="Home">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+            <polyline points="9 22 9 12 15 12 15 22" />
+          </svg>
+          <span>Home</span>
+        </a>
+
+        <Link href="/services" className="mobile-dock-btn" aria-label="Services">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+            <rect x="3" y="3" width="7" height="7" rx="1.5" />
+            <rect x="14" y="3" width="7" height="7" rx="1.5" />
+            <rect x="14" y="14" width="7" height="7" rx="1.5" />
+            <rect x="3" y="14" width="7" height="7" rx="1.5" />
+          </svg>
+          <span>Services</span>
+        </Link>
+
+        <a href="#portfolio" className="mobile-dock-btn" aria-label="Work">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2">
+            <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+          </svg>
+          <span>Work</span>
+        </a>
+
+        <a
+          href="https://wa.me/919939862765?text=Hello%20GDAs%20Team%2C%20I%20want%20to%20grow%20my%20business%20digitally"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mobile-dock-btn"
+          aria-label="WhatsApp"
+        >
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.2">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+          </svg>
+          <span>WhatsApp</span>
+        </a>
+
+        <button
+          onClick={() => setModalOpen(true)}
+          className="mobile-dock-btn mobile-dock-cta"
+          aria-label="Grow Business"
+        >
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
+          </svg>
+          <span>Grow</span>
+        </button>
+      </nav>
     </div>
   );
 }

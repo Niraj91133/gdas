@@ -48,7 +48,7 @@ export default function ServicesPage() {
       subTitle: 'Grow Your Business With Digital Marketing',
       desc: 'Our Digital Marketing Services are designed to help businesses increase online visibility, reach potential customers and generate quality leads.',
       icon: '📈',
-      color: '#3b82f6',
+      color: '#2563eb',
       valueProp: 'More Visibility • Better Reach • Quality Leads • Business Growth',
       items: [
         'Meta Ads Management (Facebook & Instagram)',
@@ -70,7 +70,7 @@ export default function ServicesPage() {
       subTitle: 'Reach the Right Audience on Facebook & Instagram',
       desc: 'As a Meta Ads Agency, GDAs helps businesses plan, create and manage Facebook and Instagram advertising campaigns focused on awareness, engagement, leads and conversions.',
       icon: '🎯',
-      color: '#60a5fa',
+      color: '#2563eb',
       valueProp: 'Meta Ads • Facebook Ads • Instagram Ads • Lead Generation • Retargeting',
       items: [
         'Targeted Audience Research & Persona Mapping',
@@ -89,7 +89,7 @@ export default function ServicesPage() {
       subTitle: 'Get Found When Your Customers Are Searching',
       desc: 'Our Google Ads Services help businesses reach potential customers at the exact moment they search for relevant services through targeted search and performance campaigns.',
       icon: '⚡',
-      color: '#f59e0b',
+      color: '#2563eb',
       valueProp: 'Google Search Ads • Lead Generation • Performance Campaigns • Remarketing',
       items: [
         'Google Search High-Intent Ads',
@@ -108,7 +108,7 @@ export default function ServicesPage() {
       subTitle: 'High-Open-Rate Direct Customer Messaging & Broadcasts',
       desc: 'Official WhatsApp Business API & bulk broadcasting solutions delivering verified brand messages, rich media catalogs, interactive quick-reply buttons, and high-conversion promotions directly to your audience.',
       icon: '💬',
-      color: '#22c55e',
+      color: '#2563eb',
       valueProp: '98% Open Rates • Direct Engagement • Instant Conversions • Verified Branding',
       items: [
         'Official WhatsApp Business API Setup & Verification',
@@ -127,7 +127,7 @@ export default function ServicesPage() {
       subTitle: 'Automated Voice Broadcasting & Smart Call Management',
       desc: 'Professional cloud-based IVR (Interactive Voice Response) and automated voice broadcasting solutions to connect with thousands of customers, capture feedback, route support, and qualify leads at scale.',
       icon: '📞',
-      color: '#0ea5e9',
+      color: '#2563eb',
       valueProp: 'Instant Reach • Automated Calling • 24/7 Connectivity • Lead Qualification',
       items: [
         'Cloud-Based Multi-Level IVR Menu Architecture',
@@ -146,7 +146,7 @@ export default function ServicesPage() {
       subTitle: 'Dominate Local Search & Google Maps In Your City',
       desc: 'Complete Google Business Profile (formerly GMB) setup, optimization, category refinement, review management, and local 3-pack map ranking to drive daily footfall and high-intent customer phone calls.',
       icon: '📍',
-      color: '#10b981',
+      color: '#2563eb',
       valueProp: 'Top 3 Map Ranking • Direct Phone Calls • Footfall Influx • Local Dominance',
       items: [
         '100% Verified Google Business Profile Setup & Audit',
@@ -165,7 +165,7 @@ export default function ServicesPage() {
       subTitle: 'Improve Your Search Visibility. Grow Organically.',
       desc: 'Our SEO Services help businesses improve their ranking on search engines and build a stronger long-term online presence with consistent organic customer traffic.',
       icon: '🔍',
-      color: '#10b981',
+      color: '#2563eb',
       valueProp: 'Better Rankings • More Organic Traffic • Long-Term Growth',
       items: [
         'On-Page SEO & Keyword Architecture',
@@ -184,7 +184,7 @@ export default function ServicesPage() {
       subTitle: 'Voter Outreach, Perception Management & Digital War Room',
       desc: 'End-to-end strategic digital political campaign management, constituency social media war rooms, geo-targeted voter outreach, narrative creation, and digital perception management.',
       icon: '🗳️',
-      color: '#f97316',
+      color: '#2563eb',
       valueProp: 'Hyper-Local Reach • Voter Engagement • War Room Strategy • Narrative Control',
       items: [
         'Constituency & Booth-Level Geo-Targeted Ads',
@@ -203,7 +203,7 @@ export default function ServicesPage() {
       subTitle: 'Build Your Brand. Engage Your Audience.',
       desc: 'Our Social Media Marketing Services help businesses create a consistent, captivating social presence and connect with their target audience across major platforms.',
       icon: '📱',
-      color: '#ec4899',
+      color: '#2563eb',
       valueProp: 'Strategy • Content Planning • Creative Posts • Reels • Engagement',
       items: [
         'Monthly Social Media Strategy & Calendar',
@@ -222,7 +222,7 @@ export default function ServicesPage() {
       subTitle: 'Build a Brand People Remember.',
       desc: 'GDAs is a Branding Agency helping businesses create a professional, trustworthy, and visually unforgettable brand identity that commands respect in the marketplace.',
       icon: '🎨',
-      color: '#8b5cf6',
+      color: '#2563eb',
       valueProp: 'Strong Identity • Professional Presence • Better Brand Recognition',
       items: [
         'Logo Design & Vector Master Files',
@@ -243,7 +243,7 @@ export default function ServicesPage() {
       subTitle: 'Turn Your Website Into a Business Growth Tool.',
       desc: 'Our Website Development Services help businesses establish a professional online home with modern, mobile-responsive, lightning-fast and conversion-focused architecture.',
       icon: '💻',
-      color: '#06b6d4',
+      color: '#2563eb',
       valueProp: 'Professional Website • Better User Experience • More Opportunities',
       items: [
         'Custom Business Website Development',
@@ -263,7 +263,7 @@ export default function ServicesPage() {
       subTitle: 'Custom Enterprise Tech, Lead Pipelines & Process Automation',
       desc: 'Tailored CRM implementations, ERP workflow integrations, automated lead routing, and cloud software solutions that unify your sales, operations, inventory, and customer databases into one seamless system.',
       icon: '⚙️',
-      color: '#6366f1',
+      color: '#2563eb',
       valueProp: 'Zero Data Leakage • Faster Sales Cycles • Automated Operations • Complete Control',
       items: [
         'Custom CRM Pipeline Setup & Lead Scoring',
@@ -282,7 +282,7 @@ export default function ServicesPage() {
       subTitle: 'End-to-End Strategic Scale & Revenue Acceleration',
       desc: 'Comprehensive growth architecture covering market positioning, full-funnel customer acquisition, revenue retention, brand valuation, and dedicated performance management for high-growth enterprises.',
       icon: '👑',
-      color: '#eab308',
+      color: '#2563eb',
       valueProp: 'Revenue Acceleration • Structured Scale • High Retention • Strategic Clarity',
       items: [
         'Go-To-Market (GTM) Strategy & Product Positioning',
@@ -301,7 +301,7 @@ export default function ServicesPage() {
       subTitle: 'Work Smarter. Save Time. Grow Better.',
       desc: 'We leverage cutting-edge AI and Automation Solutions to help businesses eliminate repetitive manual tasks, reply to customer leads instantly 24/7, and scale efficiently.',
       icon: '🤖',
-      color: '#eab308',
+      color: '#2563eb',
       valueProp: 'Save Time • Improve Efficiency • Scale Your Business',
       items: [
         'AI-Powered Digital Marketing & Content Systems',
@@ -598,21 +598,21 @@ export default function ServicesPage() {
                     <span style={{ fontSize: '13px', fontWeight: 800, color: srv.color, letterSpacing: '0.08em' }}>
                       {srv.num}
                     </span>
-                    <div
+                    <span
                       style={{
-                        width: '50px',
-                        height: '50px',
-                        borderRadius: '14px',
-                        background: `${srv.color}18`,
+                        fontSize: '11px',
+                        fontWeight: 700,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.06em',
+                        color: srv.color,
+                        background: `${srv.color}15`,
                         border: `1px solid ${srv.color}35`,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        fontSize: '24px',
+                        padding: '4px 10px',
+                        borderRadius: '20px',
                       }}
                     >
-                      {srv.icon}
-                    </div>
+                      {srv.category}
+                    </span>
                   </div>
 
                   {/* Title & Subtitle */}
@@ -707,11 +707,11 @@ export default function ServicesPage() {
             }}
           >
             {[
-              { step: '01', title: 'Understand', desc: 'We understand your business, target audience and goals thoroughly.', color: '#3b82f6' },
-              { step: '02', title: 'Strategize', desc: 'We develop a customized Digital Marketing Strategy based on your business requirements.', color: '#8b5cf6' },
-              { step: '03', title: 'Execute', desc: 'We implement the strategy through Digital Marketing, SEO, Branding, Advertising and Technology.', color: '#06b6d4' },
-              { step: '04', title: 'Optimize', desc: 'We monitor performance and continuously improve campaigns and digital assets.', color: '#10b981' },
-              { step: '05', title: 'Grow', desc: 'Our ultimate goal is to help your business achieve sustainable digital growth.', color: '#eab308' },
+              { step: '01', title: 'Understand', desc: 'We understand your business, target audience and goals thoroughly.', color: '#2563eb' },
+              { step: '02', title: 'Strategize', desc: 'We develop a customized Digital Marketing Strategy based on your business requirements.', color: '#2563eb' },
+              { step: '03', title: 'Execute', desc: 'We implement the strategy through Digital Marketing, SEO, Branding, Advertising and Technology.', color: '#2563eb' },
+              { step: '04', title: 'Optimize', desc: 'We monitor performance and continuously improve campaigns and digital assets.', color: '#2563eb' },
+              { step: '05', title: 'Grow', desc: 'Our ultimate goal is to help your business achieve sustainable digital growth.', color: '#2563eb' },
             ].map((p, idx) => (
               <motion.div
                 key={p.step}
@@ -763,29 +763,29 @@ export default function ServicesPage() {
           >
             {[
               {
+                num: '01',
                 title: 'Complete Digital Solutions',
                 desc: 'Digital Marketing, SEO, GMB, IVR, WhatsApp Bulk, Branding, Websites, and CRM/ERP Automation under one platform.',
-                icon: '⚡',
               },
               {
+                num: '02',
                 title: 'Business-Focused Strategy',
                 desc: 'We build tailored strategies around your specific business goals, unit economics, and target audience.',
-                icon: '🎯',
               },
               {
+                num: '03',
                 title: 'Performance & Creativity',
                 desc: 'We seamlessly combine memorable creative branding with performance-focused digital marketing and lead conversion.',
-                icon: '💡',
               },
               {
+                num: '04',
                 title: 'Modern Technology',
                 desc: 'AI, WhatsApp automation, IVR calling, and cloud ERP/CRM tools implemented where they create real, measurable business value.',
-                icon: '🤖',
               },
               {
+                num: '05',
                 title: 'Long-Term Growth',
                 desc: 'Our focus is not just on individual campaigns — it is on building enduring, long-term digital asset value for your brand.',
-                icon: '🤝',
               },
             ].map((card, i) => (
               <motion.div
@@ -799,7 +799,7 @@ export default function ServicesPage() {
                   border: '1px solid rgba(255, 255, 255, 0.08)',
                 }}
               >
-                <div style={{ fontSize: '30px', marginBottom: '14px' }}>{card.icon}</div>
+                <div style={{ fontSize: '12px', fontWeight: 800, color: '#3b82f6', letterSpacing: '0.06em', marginBottom: '14px' }}>{card.num}</div>
                 <h3 style={{ fontSize: '18px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '8px' }}>
                   {card.title}
                 </h3>

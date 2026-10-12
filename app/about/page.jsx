@@ -182,7 +182,7 @@ export default function AboutPage() {
             <Link href="/services" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Services</Link>
             <a href="#leadership" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Leadership</a>
             <a href="#awards" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Certificates & Awards</a>
-            <a href="/#legacy" style={{ fontSize: '13.5px', fontWeight: 600, color: '#eab308', textDecoration: 'none' }}>Legacy ❤️</a>
+            <a href="/#legacy" style={{ fontSize: '13.5px', fontWeight: 600, color: '#eab308', textDecoration: 'none' }}>Legacy</a>
             <Link href="/training" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Training</Link>
             <Link href="/blog" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Blog</Link>
             <Link href="/careers" style={{ fontSize: '13.5px', fontWeight: 500, color: '#a3a3a3', textDecoration: 'none' }}>Careers</Link>
@@ -383,10 +383,14 @@ export default function AboutPage() {
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: '22px',
+                    color: '#3b82f6',
                   }}
                 >
-                  🎯
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <circle cx="12" cy="12" r="10" />
+                    <circle cx="12" cy="12" r="6" />
+                    <circle cx="12" cy="12" r="2" />
+                  </svg>
                 </div>
                 <h2 style={{ fontSize: '24px', fontWeight: 800, color: '#ffffff' }}>Our Mission</h2>
               </div>
@@ -402,8 +406,8 @@ export default function AboutPage() {
               style={{
                 padding: '36px 30px',
                 borderRadius: '24px',
-                background: 'linear-gradient(180deg, rgba(139, 92, 246, 0.08) 0%, rgba(15, 15, 15, 0.95) 100%)',
-                border: '1px solid rgba(139, 92, 246, 0.3)',
+                background: 'linear-gradient(180deg, rgba(37, 99, 235, 0.08) 0%, rgba(15, 15, 15, 0.95) 100%)',
+                border: '1px solid rgba(59, 130, 246, 0.3)',
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '14px', marginBottom: '16px' }}>
@@ -412,15 +416,17 @@ export default function AboutPage() {
                     width: '46px',
                     height: '46px',
                     borderRadius: '12px',
-                    background: 'rgba(139, 92, 246, 0.15)',
-                    border: '1px solid rgba(139, 92, 246, 0.35)',
+                    background: 'rgba(37, 99, 235, 0.15)',
+                    border: '1px solid rgba(37, 99, 235, 0.35)',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: '22px',
+                    color: '#3b82f6',
                   }}
                 >
-                  🚀
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
                 </div>
                 <h2 style={{ fontSize: '24px', fontWeight: 800, color: '#ffffff' }}>Our Vision</h2>
               </div>
@@ -456,67 +462,62 @@ export default function AboutPage() {
           >
             {[
               {
-                icon: '🎯',
+                num: '01',
                 title: 'Business-Focused',
-                desc: 'Every strategy starts with understanding your business and its goals.',
+                desc: 'Every strategy starts with understanding your business goals and market.',
                 color: '#3b82f6',
               },
               {
-                icon: '📈',
+                num: '02',
                 title: 'Growth-Focused',
-                desc: 'We focus on solutions that help your business reach more people, generate leads and grow digitally.',
-                color: '#10b981',
+                desc: 'Solutions engineered to expand audience reach, capture leads, and drive revenue.',
+                color: '#2563eb',
               },
               {
-                icon: '💡',
+                num: '03',
                 title: 'Creative & Professional',
-                desc: 'From branding to advertising creatives, we combine creativity with professional execution.',
-                color: '#8b5cf6',
+                desc: 'From branding to performance creatives, combining strong design with reliable execution.',
+                color: '#2563eb',
               },
               {
-                icon: '⚡',
+                num: '04',
                 title: 'Complete Digital Solutions',
-                desc: 'Digital Marketing, Branding, SEO, Social Media, Websites, Technology and more — all under one platform.',
-                color: '#06b6d4',
+                desc: 'Marketing, Branding, SEO, Websites, and Business Automation under one unified roof.',
+                color: '#2563eb',
               },
               {
-                icon: '🤝',
+                num: '05',
                 title: 'Long-Term Partnership',
-                desc: 'We aim to build lasting digital value rather than just completing individual projects.',
-                color: '#eab308',
+                desc: 'We build lasting business momentum rather than just completing isolated tasks.',
+                color: '#2563eb',
               },
             ].map((item, idx) => (
               <motion.div
                 key={idx}
-                whileHover={{ y: -5 }}
+                whileHover={{ y: -4 }}
                 className="glass-card"
                 style={{
-                  padding: '30px 24px',
-                  borderRadius: '22px',
+                  padding: '28px 24px',
+                  borderRadius: '20px',
                   background: 'rgba(15, 15, 15, 0.8)',
                   border: '1px solid rgba(255, 255, 255, 0.08)',
                 }}
               >
                 <div
                   style={{
-                    fontSize: '30px',
-                    width: '56px',
-                    height: '56px',
-                    borderRadius: '16px',
-                    background: `${item.color}18`,
-                    border: `1px solid ${item.color}35`,
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: '18px',
+                    fontSize: '12px',
+                    fontWeight: 800,
+                    color: item.color,
+                    letterSpacing: '0.06em',
+                    marginBottom: '14px',
                   }}
                 >
-                  {item.icon}
+                  {item.num}
                 </div>
-                <h3 style={{ fontSize: '19px', fontWeight: 700, color: '#ffffff', marginBottom: '8px' }}>
+                <h3 style={{ fontSize: '18px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '8px' }}>
                   {item.title}
                 </h3>
-                <p style={{ fontSize: '14.5px', color: '#a3a3a3', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '13.5px', color: 'var(--text-secondary)', lineHeight: 1.55 }}>
                   {item.desc}
                 </p>
               </motion.div>
@@ -900,8 +901,8 @@ export default function AboutPage() {
                     marginBottom: '20px',
                   }}
                 >
-                  <span>❤️</span>
-                  <span>The Legacy Behind GDAs</span>
+                  <span style={{ color: '#eab308' }}>✦</span>
+                  <span>Founder Tribute • Heritage</span>
                 </div>
 
                 <h2 style={{ fontSize: 'clamp(28px, 3.6vw, 42px)', fontWeight: 800, color: '#ffffff', lineHeight: 1.15, marginBottom: '6px' }}>

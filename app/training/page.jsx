@@ -72,7 +72,7 @@ export default function TrainingPage() {
         'Marketing Fundamentals',
       ],
       icon: '📈',
-      color: '#3b82f6',
+      color: '#2563eb',
       badge: 'Core Program',
     },
     {
@@ -91,7 +91,7 @@ export default function TrainingPage() {
         'Campaign Optimization',
       ],
       icon: '🎯',
-      color: '#60a5fa',
+      color: '#2563eb',
       badge: 'High In-Demand',
     },
     {
@@ -109,7 +109,7 @@ export default function TrainingPage() {
         'Remarketing',
       ],
       icon: '🔍',
-      color: '#f59e0b',
+      color: '#2563eb',
       badge: 'High Intent',
     },
     {
@@ -127,7 +127,7 @@ export default function TrainingPage() {
         'SEO Optimization',
       ],
       icon: '🚀',
-      color: '#10b981',
+      color: '#2563eb',
       badge: 'Organic Traffic',
     },
     {
@@ -146,7 +146,7 @@ export default function TrainingPage() {
         'Social Media Management',
       ],
       icon: '📱',
-      color: '#a855f7',
+      color: '#2563eb',
       badge: 'Brand Authority',
     },
     {
@@ -164,7 +164,7 @@ export default function TrainingPage() {
         'Lead Management',
       ],
       icon: '⚡',
-      color: '#ec4899',
+      color: '#2563eb',
       badge: 'Revenue Focus',
     },
     {
@@ -182,7 +182,7 @@ export default function TrainingPage() {
         'Productivity Tools',
       ],
       icon: '🤖',
-      color: '#06b6d4',
+      color: '#2563eb',
       badge: 'Next-Gen Tech',
     },
     {
@@ -201,7 +201,7 @@ export default function TrainingPage() {
         'Website Optimization',
       ],
       icon: '💻',
-      color: '#f97316',
+      color: '#2563eb',
       badge: 'Full Stack Web',
     },
   ];
@@ -265,25 +265,25 @@ export default function TrainingPage() {
       title: 'Hands-On Practice',
       desc: 'Apply what you learn through practical sessions and live campaign setup.',
       icon: '🛠️',
-      color: '#3b82f6',
+      color: '#2563eb',
     },
     {
       title: 'Real-World Projects',
       desc: 'Work on projects based on genuine business requirements and real client briefs.',
       icon: '📊',
-      color: '#10b981',
+      color: '#2563eb',
     },
     {
       title: 'Industry Tools',
       desc: 'Master the exact tools used in modern Digital Marketing and Website Development.',
       icon: '⚙️',
-      color: '#f59e0b',
+      color: '#2563eb',
     },
     {
       title: 'Professional Guidance',
       desc: 'Learn directly from experienced industry professionals who manage live accounts.',
       icon: '👨‍🏫',
-      color: '#a855f7',
+      color: '#2563eb',
     },
   ];
 
@@ -702,10 +702,10 @@ export default function TrainingPage() {
             }}
           >
             {[
-              { title: 'Hands-On Practice', desc: 'Real campaigns, not theoretical lectures', icon: '🛠️' },
-              { title: 'Expert Trainers', desc: 'Direct mentorship from active industry CEOs', icon: '👨‍🏫' },
-              { title: '8 In-Demand Programs', desc: 'From Meta & Google Ads to AI & Web Dev', icon: '🚀' },
-              { title: 'Zero Prerequisites', desc: 'No technical coding background required', icon: '✨' },
+              { num: '01', title: 'Hands-On Practice', desc: 'Real campaigns, not theoretical lectures' },
+              { num: '02', title: 'Expert Trainers', desc: 'Direct mentorship from active industry practitioners' },
+              { num: '03', title: '8 In-Demand Programs', desc: 'From Meta & Google Ads to AI & Web Development' },
+              { num: '04', title: 'Zero Prerequisites', desc: 'No technical coding background required' },
             ].map((item, idx) => (
               <div
                 key={idx}
@@ -717,7 +717,7 @@ export default function TrainingPage() {
                   transition: 'all 0.3s ease',
                 }}
               >
-                <div style={{ fontSize: '24px', marginBottom: '8px' }}>{item.icon}</div>
+                <div style={{ fontSize: '12px', fontWeight: 800, color: '#3b82f6', letterSpacing: '0.06em', marginBottom: '8px' }}>{item.num}</div>
                 <div style={{ fontSize: '15px', fontWeight: 700, color: 'var(--text-white)', marginBottom: '4px' }}>{item.title}</div>
                 <div style={{ fontSize: '12.5px', color: 'var(--text-secondary)' }}>{item.desc}</div>
               </div>
@@ -781,24 +781,20 @@ export default function TrainingPage() {
                 {/* Top Number & Badge */}
                 <div>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '18px' }}>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                       <span
                         style={{
-                          width: '38px',
-                          height: '38px',
-                          borderRadius: '10px',
+                          fontSize: '12px',
+                          fontWeight: 800,
+                          color: '#3b82f6',
                           background: 'rgba(59, 130, 246, 0.12)',
                           border: '1px solid rgba(59, 130, 246, 0.3)',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          fontSize: '20px',
+                          padding: '4px 10px',
+                          borderRadius: '8px',
+                          letterSpacing: '0.04em',
                         }}
                       >
-                        {program.icon}
-                      </span>
-                      <span style={{ fontSize: '12px', fontWeight: 800, color: '#3b82f6', letterSpacing: '1px' }}>
-                        PROGRAM {program.num}
+                        {program.num}
                       </span>
                     </div>
                     <span
@@ -1107,9 +1103,9 @@ export default function TrainingPage() {
                       width: '88px',
                       height: '88px',
                       borderRadius: '20px',
-                      background: 'linear-gradient(135deg, #f97316 0%, #c2410c 100%)',
-                      border: '2px solid rgba(249, 115, 22, 0.5)',
-                      boxShadow: '0 6px 20px rgba(249, 115, 22, 0.3)',
+                      background: 'linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)',
+                      border: '2px solid rgba(59, 130, 246, 0.5)',
+                      boxShadow: '0 6px 20px rgba(37, 99, 235, 0.3)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -1127,11 +1123,11 @@ export default function TrainingPage() {
                         fontWeight: 800,
                         textTransform: 'uppercase',
                         letterSpacing: '0.08em',
-                        color: '#fb923c',
-                        background: 'rgba(249, 115, 22, 0.12)',
+                        color: '#60a5fa',
+                        background: 'rgba(37, 99, 235, 0.12)',
                         padding: '3px 10px',
                         borderRadius: '999px',
-                        border: '1px solid rgba(249, 115, 22, 0.3)',
+                        border: '1px solid rgba(59, 130, 246, 0.3)',
                       }}
                     >
                       Website Development Trainer
@@ -1139,7 +1135,7 @@ export default function TrainingPage() {
                     <h3 style={{ fontSize: '26px', fontWeight: 900, color: 'var(--text-white)', marginTop: '6px', marginBottom: '4px' }}>
                       Neeraj Kumar
                     </h3>
-                    <div style={{ fontSize: '12.5px', color: '#fb923c', fontWeight: 700 }}>
+                    <div style={{ fontSize: '12.5px', color: '#60a5fa', fontWeight: 700 }}>
                       MCA | 5+ Years of Professional Experience
                     </div>
                   </div>
@@ -1152,7 +1148,7 @@ export default function TrainingPage() {
 
                 {/* Expertise Badges */}
                 <div style={{ marginBottom: '24px' }}>
-                  <div style={{ fontSize: '11.5px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#fb923c', marginBottom: '12px' }}>
+                  <div style={{ fontSize: '11.5px', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: '#60a5fa', marginBottom: '12px' }}>
                     Core Expertise:
                   </div>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
@@ -1171,7 +1167,7 @@ export default function TrainingPage() {
                           fontSize: '12.5px',
                           fontWeight: 600,
                           background: 'var(--pill-bg)',
-                          border: '1px solid rgba(249, 115, 22, 0.25)',
+                          border: '1px solid rgba(59, 130, 246, 0.25)',
                           padding: '6px 12px',
                           borderRadius: '8px',
                           color: 'var(--text-white)',
@@ -1195,7 +1191,7 @@ export default function TrainingPage() {
                       'Conversion rate optimization and ultra-fast page speeds',
                     ].map((item, i) => (
                       <div key={i} style={{ fontSize: '12.5px', color: 'var(--text-secondary)', display: 'flex', gap: '8px' }}>
-                        <span style={{ color: '#f97316' }}>•</span>
+                        <span style={{ color: '#3b82f6' }}>•</span>
                         <span>{item}</span>
                       </div>
                     ))}
